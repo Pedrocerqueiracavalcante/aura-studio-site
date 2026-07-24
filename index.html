@@ -5,31 +5,293 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0C0A08">
   <title>Menuz · Plataforma para Barbearias</title>
-  <meta name="description" content="Crie uma página profissional da sua barbearia, envie o link para clientes e agilize agendamentos.">
+  <meta name="description" content="Crie uma página profissional para sua barbearia, receba agendamentos online e confirme horários pelo painel Menuz.">
   <link rel="canonical" href="https://pedrocerqueiracavalcante.github.io/aura-studio-site/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Menuz · Plataforma para Barbearias">
-  <meta property="og:description" content="Monte a página da sua barbearia e compartilhe com seus clientes.">
+  <meta property="og:description" content="Página pública, catálogo de cortes, agenda e confirmações automáticas para barbeiros.">
   <meta property="og:image" content="https://pedrocerqueiracavalcante.github.io/aura-studio-site/assets/img/logo.svg">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="apple-touch-icon" href="assets/img/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-10">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-12">
 </head>
-<body class="minimal-page">
-  <main class="minimal-landing" id="main">
-    <section class="minimal-card" aria-labelledby="landingTitle">
-      <img src="assets/img/logo.svg" alt="Menuz" width="84" height="84" class="minimal-logo">
-      <p class="minimal-kicker">Menuz para barbearias</p>
-      <h1 id="landingTitle">Sua barbearia em um link.</h1>
-      <p class="minimal-sub">Monte uma página visual, envie para seus clientes e agilize o atendimento antes deles chegarem.</p>
-      <div class="minimal-actions">
-        <a class="btn btn--primary btn--lg" href="login.html">Entrar</a>
-        <a class="btn btn--ghost btn--lg" href="login.html?mode=signup">Criar conta</a>
+<body class="landing-page">
+  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+
+  <header class="site-header lp-header" data-header>
+    <div class="container header__inner">
+      <a class="brand" href="#main" aria-label="Menuz">
+        <img class="brand__mark" src="assets/img/logo.svg" alt="" width="44" height="44">
+        <span class="brand__name">Menuz<span class="brand__dot">.</span></span>
+      </a>
+
+      <nav class="nav" id="primaryNav" aria-label="Navegação principal">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#como-funciona">Como funciona</a></li>
+          <li><a class="nav__link" href="#beneficios">Benefícios</a></li>
+          <li><a class="nav__link" href="#demo">Demonstração</a></li>
+          <li><a class="nav__link" href="#recursos">Recursos</a></li>
+          <li><a class="nav__link" href="#depoimentos">Depoimentos</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <a class="btn btn--ghost btn--sm lp-hide-mobile" href="login.html">Entrar</a>
+        <a class="btn btn--ghost btn--sm lp-hide-mobile" href="login.html?mode=signup">Criar Conta</a>
+        <a class="btn btn--primary btn--sm" href="login.html?mode=signup">Começar Agora</a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="primaryNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="lp-hero">
+      <div class="lp-hero__bg" aria-hidden="true"></div>
+      <div class="container lp-hero__grid">
+        <div class="lp-hero__copy" data-reveal>
+          <p class="eyebrow"><span class="eyebrow__dot"></span> Plataforma para barbearias</p>
+          <h1>Atendimento digital para barbearias modernas.</h1>
+          <p>Com a Menuz, o barbeiro cria uma página profissional, mostra cortes e serviços, recebe agendamentos e confirma horários sem depender de conversas longas no WhatsApp.</p>
+          <div class="lp-actions">
+            <a class="btn btn--primary btn--lg" href="login.html?mode=signup">Criar Minha Barbearia</a>
+            <a class="btn btn--ghost btn--lg" href="barbearia-menuz.html">Ver Demonstração</a>
+          </div>
+          <div class="lp-proof" aria-label="Resumo da plataforma">
+            <article><strong>1 link</strong><span>para clientes</span></article>
+            <article><strong>24h</strong><span>recebendo pedidos</span></article>
+            <article><strong>0 complicação</strong><span>para começar</span></article>
+          </div>
+        </div>
+
+        <div class="lp-hero__visual" data-reveal data-reveal-delay="120" aria-label="Mockup da plataforma Menuz">
+          <div class="lp-dashboard-card">
+            <div class="lp-window-bar"><span></span><span></span><span></span></div>
+            <div class="lp-dashboard-top">
+              <div>
+                <small>Painel Menuz</small>
+                <strong>Agendamentos de hoje</strong>
+              </div>
+              <span class="status-pill status-pill--confirmed">Online</span>
+            </div>
+            <div class="lp-dashboard-grid">
+              <article><span>Pendentes</span><strong>8</strong></article>
+              <article><span>Confirmados</span><strong>21</strong></article>
+              <article><span>Clientes</span><strong>148</strong></article>
+            </div>
+            <div class="lp-booking-row">
+              <div class="avatar">PH</div>
+              <div><strong>Pedro Henrique</strong><span>Low Fade · 16:00</span></div>
+              <em>Confirmar</em>
+            </div>
+            <div class="lp-preview-stack">
+              <div class="lp-preview-photo bg-shop-main"><span>Página pública</span></div>
+              <div class="lp-preview-list">
+                <strong>Barbearia Menuz</strong>
+                <span>Cortes, barbeiros e agenda em uma página.</span>
+                <a href="barbearia-menuz.html">Abrir exemplo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section lp-section" id="como-funciona">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <p class="eyebrow"><span class="eyebrow__dot"></span> Como funciona</p>
+          <h2 class="section__title">Do cadastro ao horário confirmado em poucos passos.</h2>
+          <p class="section__sub">A jornada foi desenhada para barbeiros e clientes entenderem tudo rapidamente.</p>
+        </div>
+        <div class="lp-steps">
+          <article data-reveal><span>01</span><strong>Crie sua conta</strong><p>O barbeiro acessa o painel e inicia o perfil da barbearia.</p></article>
+          <article data-reveal><span>02</span><strong>Personalize a página</strong><p>Adicione logo, fotos, serviços, cortes, horários e contatos.</p></article>
+          <article data-reveal><span>03</span><strong>Compartilhe o link</strong><p>Envie uma página clara para o cliente escolher antes de chegar.</p></article>
+          <article data-reveal><span>04</span><strong>Receba agendamentos</strong><p>O cliente escolhe barbeiro, serviço, data, horário e pagamento.</p></article>
+          <article data-reveal><span>05</span><strong>Confirme no painel</strong><p>A solicitação fica pendente até o barbeiro confirmar ou recusar.</p></article>
+          <article data-reveal><span>06</span><strong>Cliente avisado</strong><p>A mensagem de confirmação fica pronta para envio automático.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt lp-section" id="beneficios">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <p class="eyebrow"><span class="eyebrow__dot"></span> Benefícios</p>
+          <h2 class="section__title">Mais organização para o barbeiro. Menos dúvida para o cliente.</h2>
+        </div>
+        <div class="lp-benefits">
+          <article data-reveal><span>AG</span><strong>Agendamento online</strong><p>Solicitações organizadas por data, profissional e status.</p></article>
+          <article data-reveal><span>PG</span><strong>Página personalizada</strong><p>Uma vitrine profissional com fotos, serviços e localização.</p></article>
+          <article data-reveal><span>LK</span><strong>Compartilhamento por link</strong><p>Envie para clientes no WhatsApp, Instagram ou bio.</p></article>
+          <article data-reveal><span>CL</span><strong>Gestão de clientes</strong><p>Centralize histórico, telefone e próximos atendimentos.</p></article>
+          <article data-reveal><span>CT</span><strong>Catálogo de cortes</strong><p>Ajude o cliente a escolher visualmente o modelo desejado.</p></article>
+          <article data-reveal><span>PA</span><strong>Painel administrativo</strong><p>Controle serviços, barbeiros, fotos e agenda em uma tela.</p></article>
+          <article data-reveal><span>OK</span><strong>Confirmação automática</strong><p>Mensagens prontas para confirmação, recusa e lembrete.</p></article>
+          <article data-reveal><span>WA</span><strong>Integração WhatsApp</strong><p>Estrutura preparada para WhatsApp Business API.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section lp-section" id="demo">
+      <div class="container">
+        <div class="lp-demo">
+          <div class="lp-demo__copy" data-reveal>
+            <p class="eyebrow"><span class="eyebrow__dot"></span> Demonstração</p>
+            <h2 class="section__title">Veja como a plataforma se apresenta para barbeiros e clientes.</h2>
+            <p class="section__sub">A Menuz combina página pública, dashboard e agenda para reduzir o tempo de atendimento e deixar a escolha do corte mais visual.</p>
+            <a class="btn btn--primary" href="dashboard.html">Abrir Dashboard</a>
+          </div>
+          <div class="lp-demo__grid">
+            <article class="lp-demo-card lp-demo-card--wide" data-reveal>
+              <div class="lp-demo-shot bg-shop-main"></div>
+              <strong>Página da Barbearia</strong>
+              <span>Ambiente, serviços, profissionais, cortes e agendamento.</span>
+            </article>
+            <article class="lp-demo-card" data-reveal>
+              <div class="lp-demo-mini"><span>8</span><small>Pendentes</small></div>
+              <strong>Agendamentos</strong>
+              <span>Confirme ou recuse solicitações pelo painel.</span>
+            </article>
+            <article class="lp-demo-card" data-reveal>
+              <div class="lp-demo-mini"><span>3</span><small>Barbeiros</small></div>
+              <strong>Perfil do Barbeiro</strong>
+              <span>Foto, especialidade, bio e botão de agendamento.</span>
+            </article>
+            <article class="lp-demo-card" data-reveal>
+              <div class="lp-demo-shot bg-cut-low"></div>
+              <strong>Catálogo de Cortes</strong>
+              <span>Cards visuais para o cliente escolher com facilidade.</span>
+            </article>
+            <article class="lp-demo-card" data-reveal>
+              <div class="lp-demo-mini"><span>R$</span><small>Serviços</small></div>
+              <strong>Dashboard</strong>
+              <span>Preços, horários, fotos, promoções e clientes.</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt lp-section" id="recursos">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <p class="eyebrow"><span class="eyebrow__dot"></span> Recursos</p>
+          <h2 class="section__title">Tudo que a barbearia precisa para atender melhor.</h2>
+        </div>
+        <div class="lp-features">
+          <span>Gestão de Serviços</span>
+          <span>Agenda Inteligente</span>
+          <span>Cadastro de Clientes</span>
+          <span>Controle de Horários</span>
+          <span>Upload de Fotos</span>
+          <span>Modelos de Cortes</span>
+          <span>Produtos</span>
+          <span>Promoções</span>
+          <span>Fidelidade</span>
+          <span>Avaliações</span>
+          <span>Página Pública Personalizada</span>
+          <span>Relatórios</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section lp-section" id="depoimentos">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <p class="eyebrow"><span class="eyebrow__dot"></span> Depoimentos</p>
+          <h2 class="section__title">Barbeiros trabalhando com mais clareza no atendimento.</h2>
+        </div>
+        <div class="lp-testimonials">
+          <article data-reveal>
+            <div class="lp-person"><span>JS</span><div><strong>João Silva</strong><small>Belo Horizonte/MG</small></div></div>
+            <p class="stars">★★★★★</p>
+            <blockquote>“Agora o cliente chega sabendo o corte, o preço e o horário. O atendimento ficou mais rápido.”</blockquote>
+          </article>
+          <article data-reveal>
+            <div class="lp-person"><span>RM</span><div><strong>Rafael Martins</strong><small>Contagem/MG</small></div></div>
+            <p class="stars">★★★★★</p>
+            <blockquote>“A página parece profissional e eu consigo mostrar meus serviços sem explicar tudo no WhatsApp.”</blockquote>
+          </article>
+          <article data-reveal>
+            <div class="lp-person"><span>LC</span><div><strong>Lucas Costa</strong><small>Igarapé/MG</small></div></div>
+            <p class="stars">★★★★★</p>
+            <blockquote>“O painel de agendamentos ajudou a organizar os horários e evitar conflito na agenda.”</blockquote>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="lp-final-cta">
+      <div class="container">
+        <div class="lp-final-cta__inner" data-reveal>
+          <p class="eyebrow"><span class="eyebrow__dot"></span> Comece hoje</p>
+          <h2>Pronto para modernizar sua barbearia?</h2>
+          <p>Crie uma página profissional, receba solicitações de agendamento e deixe o cliente escolher o serviço antes de chegar.</p>
+          <div class="lp-actions">
+            <a class="btn btn--light btn--lg" href="login.html?mode=signup">Criar Conta Gratuitamente</a>
+            <a class="btn btn--ghost btn--lg" href="mailto:contato@menuz.com.br">Falar com um Consultor</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__col footer__col--brand">
+        <a class="brand" href="#main" aria-label="Menuz">
+          <img class="brand__mark" src="assets/img/logo.svg" alt="" width="44" height="44">
+          <span class="brand__name">Menuz<span class="brand__dot">.</span></span>
+        </a>
+        <p>Plataforma para barbearias criarem uma página profissional, receberem agendamentos e organizarem o atendimento.</p>
+        <div class="contact__social">
+          <a class="soc" href="#" aria-label="Instagram">IG</a>
+          <a class="soc" href="#" aria-label="WhatsApp">WA</a>
+          <a class="soc" href="#" aria-label="Facebook">FB</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#beneficios">Benefícios</a></li>
+          <li><a href="#demo">Demonstração</a></li>
+          <li><a href="#recursos">Recursos</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Produto</h4>
+        <ul>
+          <li><a href="login.html">Entrar</a></li>
+          <li><a href="login.html?mode=signup">Criar conta</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="barbearia-menuz.html">Página exemplo</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contato</h4>
+        <ul class="footer__contact">
+          <li>contato@menuz.com.br</li>
+          <li>WhatsApp: (31) 99999-9999</li>
+          <li>Atendimento para barbearias</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>© 2026 Menuz. Todos os direitos reservados.</p>
+        <p><a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" type="button" aria-label="Voltar ao topo">↑</button>
+  <script src="assets/js/main.js?v=20260724-12" defer></script>
 </body>
 </html>
