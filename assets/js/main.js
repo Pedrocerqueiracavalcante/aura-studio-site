@@ -23,6 +23,33 @@
   };
   window.addEventListener("scroll", onScroll, { passive: true });
 
+  /* ---------- Landing premium: carousel de fundo + tilt do card ---------- */
+  const barberSlides = $$("[data-barber-carousel] .barber-slide");
+  if (barberSlides.length) {
+    let barberSlideIndex = 0;
+    const showBarberSlide = (nextIndex) => {
+      barberSlides[barberSlideIndex]?.classList.remove("is-active");
+      barberSlideIndex = (nextIndex + barberSlides.length) % barberSlides.length;
+      barberSlides[barberSlideIndex]?.classList.add("is-active");
+    };
+    if (!reduceMotion) {
+      setInterval(() => showBarberSlide(barberSlideIndex + 1), 4000);
+    }
+  }
+
+  const tiltCard = $("[data-tilt-card]");
+  if (tiltCard && !reduceMotion) {
+    tiltCard.addEventListener("pointermove", (event) => {
+      const rect = tiltCard.getBoundingClientRect();
+      const px = (event.clientX - rect.left) / rect.width - .5;
+      const py = (event.clientY - rect.top) / rect.height - .5;
+      tiltCard.style.transform = `rotateX(${(-py * 7).toFixed(2)}deg) rotateY(${(px * 8).toFixed(2)}deg) translateY(-6px)`;
+    });
+    tiltCard.addEventListener("pointerleave", () => {
+      tiltCard.style.transform = "";
+    });
+  }
+
   /* ---------- Menu mobile ---------- */
   const navToggle = $("#navToggle");
   const nav = $("#primaryNav");

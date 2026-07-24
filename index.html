@@ -3,87 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0C0A08">
-  <title>Menuz · Plataforma para Barbearias</title>
-  <meta name="description" content="Crie uma página profissional para sua barbearia, receba agendamentos online e confirme horários pelo painel Menuz.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Menuz Barber | Barbearia Premium</title>
+  <meta name="description" content="Barbearia premium com agendamento online, serviços masculinos, barbeiros especialistas e atendimento personalizado.">
   <link rel="canonical" href="https://pedrocerqueiracavalcante.github.io/aura-studio-site/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Menuz · Plataforma para Barbearias">
-  <meta property="og:description" content="Página pública, catálogo de cortes, agenda e confirmações automáticas para barbeiros.">
+  <meta property="og:title" content="Menuz Barber | Barbearia Premium">
+  <meta property="og:description" content="Agende corte, barba, sobrancelha e pigmentação com uma experiência premium.">
   <meta property="og:image" content="https://pedrocerqueiracavalcante.github.io/aura-studio-site/assets/img/logo.svg">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="apple-touch-icon" href="assets/img/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-18">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-19">
 </head>
-<body class="landing-page">
+<body class="landing-page premium-barber-page">
   <a class="skip-link" href="#main">Ir para o conteúdo</a>
 
-  <header class="site-header lp-header menuz-search-header" data-header>
-    <div class="container menuz-header__inner">
-      <a class="brand" href="#main" aria-label="Menuz">
+  <header class="site-header premium-header" data-header>
+    <div class="container premium-header__inner">
+      <a class="brand" href="#main" aria-label="Menuz Barber">
         <img class="brand__mark" src="assets/img/logo.svg" alt="" width="44" height="44">
         <span class="brand__name">Menuz<span class="brand__dot">.</span></span>
       </a>
 
-      <form class="menuz-search" role="search" action="#demo">
-        <label class="sr-only" for="globalSearch">Pesquisar</label>
-        <span class="menuz-search__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" focusable="false">
-            <path d="m21 21-4.35-4.35"></path>
-            <circle cx="11" cy="11" r="7"></circle>
-          </svg>
-        </span>
-        <input id="globalSearch" name="q" type="search" placeholder="Pesquisar barbearias, barbeiros ou serviços">
-        <button type="submit">Pesquisar</button>
-      </form>
-
-      <nav class="nav menuz-mobile-nav" id="primaryNav" aria-label="Navegação principal">
+      <nav class="nav premium-nav" id="primaryNav" aria-label="Navegação principal">
         <ul class="nav__list">
-          <li><a class="nav__link" href="#como-funciona">Como funciona</a></li>
-          <li><a class="nav__link" href="#beneficios">Benefícios</a></li>
-          <li><a class="nav__link" href="#demo">Demonstração</a></li>
-          <li><a class="nav__link" href="#recursos">Recursos</a></li>
-          <li><a class="nav__link" href="#depoimentos">Depoimentos</a></li>
-          <li><a class="nav__link" href="login.html">Entrar</a></li>
-          <li><a class="nav__link" href="login.html?mode=signup">Criar Conta</a></li>
+          <li><a class="nav__link" href="#servicos">Serviços</a></li>
+          <li><a class="nav__link" href="#profissionais">Profissionais</a></li>
+          <li><a class="nav__link" href="#avaliacoes">Avaliações</a></li>
+          <li><a class="nav__link" href="#galeria">Galeria</a></li>
+          <li><a class="nav__link" href="#planos">Planos</a></li>
+          <li><a class="nav__link" href="#contato">Contato</a></li>
         </ul>
       </nav>
 
-      <div class="menuz-userbar">
-        <button class="menuz-icon-btn" type="button" aria-label="Notificações">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-          </svg>
-        </button>
-        <button class="menuz-icon-btn" type="button" aria-label="Mensagens">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
-          </svg>
-        </button>
-        <button class="menuz-lang" type="button" aria-label="Idioma">PT</button>
-        <div class="menuz-auth">
-          <a class="btn btn--ghost btn--sm" href="login.html">Entrar</a>
-          <a class="btn btn--primary btn--sm" href="login.html?mode=signup">Criar Conta</a>
-        </div>
-        <details class="menuz-user-menu">
-          <summary>
-            <span class="menuz-avatar">?</span>
-            <span><strong>Visitante</strong><small>Clique para entrar</small></span>
-          </summary>
-          <div class="menuz-user-dropdown">
-            <a href="login.html">Meu Perfil</a>
-            <a href="barbearia-menuz.html">Minha Barbearia</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="dashboard.html#agenda">Agendamentos</a>
-            <a href="dashboard.html#clientes">Clientes</a>
-            <a href="dashboard.html#configuracoes">Configurações</a>
-            <a href="login.html">Sair</a>
-          </div>
-        </details>
+      <div class="premium-header__actions">
+        <a class="btn btn--ghost btn--sm" href="login.html">Entrar</a>
+        <a class="btn btn--primary btn--sm" href="#contato">Agendar</a>
         <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="primaryNav">
           <span></span><span></span><span></span>
         </button>
@@ -92,248 +50,168 @@
   </header>
 
   <main id="main">
-    <section class="lp-hero">
-      <div class="lp-hero__bg" aria-hidden="true"></div>
-      <div class="container lp-hero__grid">
-        <div class="lp-hero__copy" data-reveal>
-          <p class="eyebrow"><span class="eyebrow__dot"></span> Plataforma para barbearias</p>
-          <h1>Atendimento digital para barbearias modernas.</h1>
-          <p>Com a Menuz, o barbeiro cria uma página profissional, mostra cortes e serviços, recebe agendamentos e confirma horários sem depender de conversas longas no WhatsApp.</p>
-          <div class="lp-actions">
-            <a class="btn btn--primary btn--lg" href="login.html?mode=signup">Criar Minha Barbearia</a>
-            <a class="btn btn--ghost btn--lg" href="barbearia-menuz.html">Ver Demonstração</a>
-          </div>
-          <div class="lp-proof" aria-label="Resumo da plataforma">
-            <article><strong>1 link</strong><span>para clientes</span></article>
-            <article><strong>24h</strong><span>recebendo pedidos</span></article>
-            <article><strong>0 complicação</strong><span>para começar</span></article>
-          </div>
-        </div>
+    <section class="premium-hero" aria-labelledby="heroTitle">
+      <div class="barber-carousel" data-barber-carousel aria-hidden="true">
+        <div class="barber-slide is-active" style="--photo:url('https://images.unsplash.com/photo-1621607512214-68297480165e?auto=format&fit=crop&w=1600&q=80')"></div>
+        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1600&q=80')"></div>
+        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1600&q=80')"></div>
+        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1600&q=80')"></div>
+        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1600&q=80')"></div>
+        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1512690459411-b9245aed614b?auto=format&fit=crop&w=1600&q=80')"></div>
+        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?auto=format&fit=crop&w=1600&q=80')"></div>
+        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1592647420148-bfcc177e2117?auto=format&fit=crop&w=1600&q=80')"></div>
+      </div>
 
-        <div class="lp-hero__visual" data-reveal data-reveal-delay="120" aria-label="Mockup da plataforma Menuz">
-          <div class="lp-dashboard-card">
-            <div class="lp-window-bar"><span></span><span></span><span></span></div>
-            <div class="lp-dashboard-top">
-              <div>
-                <small>Painel Menuz</small>
-                <strong>Agendamentos de hoje</strong>
-              </div>
-              <span class="status-pill status-pill--confirmed">Online</span>
+      <div class="premium-hero__stage">
+        <article class="barber-hero-card" data-tilt-card data-reveal>
+          <span class="premium-badge">Atendimento Premium</span>
+          <div class="barber-hero-card__photo bg-barber-1" aria-label="Foto profissional do barbeiro"></div>
+          <div class="barber-hero-card__body">
+            <p class="barber-hero-card__kicker">Barbearia Premium</p>
+            <h1 id="heroTitle">Barbearia Menuz</h1>
+            <p class="barber-hero-card__barber">Pedro Henrique, especialista em fades e acabamento</p>
+            <div class="barber-rating" aria-label="Avaliação cinco estrelas">
+              <span>★★★★★</span>
+              <strong>5.0</strong>
+              <small>327 avaliações</small>
             </div>
-            <div class="lp-dashboard-grid">
-              <article><span>Pendentes</span><strong>8</strong></article>
-              <article><span>Confirmados</span><strong>21</strong></article>
-              <article><span>Clientes</span><strong>148</strong></article>
+            <div class="barber-metrics" aria-label="Resumo do atendimento">
+              <strong>2.480+</strong>
+              <span>clientes atendidos</span>
             </div>
-            <div class="lp-booking-row">
-              <div class="avatar">PH</div>
-              <div><strong>Pedro Henrique</strong><span>Low Fade · 16:00</span></div>
-              <em>Confirmar</em>
+            <div class="barber-tags" aria-label="Serviços rápidos">
+              <span>Corte</span>
+              <span>Barba</span>
+              <span>Sobrancelha</span>
+              <span>Pigmentação</span>
             </div>
-            <div class="lp-preview-stack">
-              <div class="lp-preview-photo bg-shop-main"><span>Página pública</span></div>
-              <div class="lp-preview-list">
-                <strong>Barbearia Menuz</strong>
-                <span>Cortes, barbeiros e agenda em uma página.</span>
-                <a href="barbearia-menuz.html">Abrir exemplo</a>
-              </div>
+            <div class="barber-actions">
+              <a class="btn btn--primary btn--lg" href="#contato">Agendar Agora</a>
+              <a class="btn btn--ghost btn--lg" href="#servicos">Conheça nossos serviços</a>
             </div>
           </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="premium-section" id="servicos">
+      <div class="container">
+        <div class="premium-section__head" data-reveal>
+          <p class="premium-eyebrow">Serviços</p>
+          <h2>O essencial para sair pronto.</h2>
+        </div>
+        <div class="premium-grid premium-grid--four">
+          <article class="premium-card" data-reveal><span>Corte</span><strong>R$ 45</strong><p>Consultoria rápida, corte masculino e finalização.</p></article>
+          <article class="premium-card" data-reveal><span>Barba</span><strong>R$ 35</strong><p>Toalha quente, navalha e acabamento natural.</p></article>
+          <article class="premium-card" data-reveal><span>Sobrancelha</span><strong>R$ 20</strong><p>Limpeza discreta para valorizar a expressão.</p></article>
+          <article class="premium-card" data-reveal><span>Pigmentação</span><strong>R$ 55</strong><p>Correção visual com acabamento leve e moderno.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section lp-section" id="como-funciona">
+    <section class="premium-section" id="profissionais">
       <div class="container">
-        <div class="section__head" data-reveal>
-          <p class="eyebrow"><span class="eyebrow__dot"></span> Como funciona</p>
-          <h2 class="section__title">Do cadastro ao horário confirmado em poucos passos.</h2>
-          <p class="section__sub">A jornada foi desenhada para barbeiros e clientes entenderem tudo rapidamente.</p>
+        <div class="premium-section__head" data-reveal>
+          <p class="premium-eyebrow">Profissionais</p>
+          <h2>Barbeiros com estilo definido.</h2>
         </div>
-        <div class="lp-steps">
-          <article data-reveal><span>01</span><strong>Crie sua conta</strong><p>O barbeiro acessa o painel e inicia o perfil da barbearia.</p></article>
-          <article data-reveal><span>02</span><strong>Personalize a página</strong><p>Adicione logo, fotos, serviços, cortes, horários e contatos.</p></article>
-          <article data-reveal><span>03</span><strong>Compartilhe o link</strong><p>Envie uma página clara para o cliente escolher antes de chegar.</p></article>
-          <article data-reveal><span>04</span><strong>Receba agendamentos</strong><p>O cliente escolhe barbeiro, serviço, data, horário e pagamento.</p></article>
-          <article data-reveal><span>05</span><strong>Confirme no painel</strong><p>A solicitação fica pendente até o barbeiro confirmar ou recusar.</p></article>
-          <article data-reveal><span>06</span><strong>Cliente avisado</strong><p>A mensagem de confirmação fica pronta para envio automático.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt lp-section" id="beneficios">
-      <div class="container">
-        <div class="section__head" data-reveal>
-          <p class="eyebrow"><span class="eyebrow__dot"></span> Benefícios</p>
-          <h2 class="section__title">Mais organização para o barbeiro. Menos dúvida para o cliente.</h2>
-        </div>
-        <div class="lp-benefits">
-          <article data-reveal><span>AG</span><strong>Agendamento online</strong><p>Solicitações organizadas por data, profissional e status.</p></article>
-          <article data-reveal><span>PG</span><strong>Página personalizada</strong><p>Uma vitrine profissional com fotos, serviços e localização.</p></article>
-          <article data-reveal><span>LK</span><strong>Compartilhamento por link</strong><p>Envie para clientes no WhatsApp, Instagram ou bio.</p></article>
-          <article data-reveal><span>CL</span><strong>Gestão de clientes</strong><p>Centralize histórico, telefone e próximos atendimentos.</p></article>
-          <article data-reveal><span>CT</span><strong>Catálogo de cortes</strong><p>Ajude o cliente a escolher visualmente o modelo desejado.</p></article>
-          <article data-reveal><span>PA</span><strong>Painel administrativo</strong><p>Controle serviços, barbeiros, fotos e agenda em uma tela.</p></article>
-          <article data-reveal><span>OK</span><strong>Confirmação automática</strong><p>Mensagens prontas para confirmação, recusa e lembrete.</p></article>
-          <article data-reveal><span>WA</span><strong>Integração WhatsApp</strong><p>Estrutura preparada para WhatsApp Business API.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section lp-section" id="demo">
-      <div class="container">
-        <div class="lp-demo">
-          <div class="lp-demo__copy" data-reveal>
-            <p class="eyebrow"><span class="eyebrow__dot"></span> Demonstração</p>
-            <h2 class="section__title">Veja como a plataforma se apresenta para barbeiros e clientes.</h2>
-            <p class="section__sub">A Menuz combina página pública, dashboard e agenda para reduzir o tempo de atendimento e deixar a escolha do corte mais visual.</p>
-            <a class="btn btn--primary" href="dashboard.html">Abrir Dashboard</a>
-          </div>
-          <div class="lp-demo__grid">
-            <article class="lp-demo-card lp-demo-card--wide" data-reveal>
-              <div class="lp-demo-shot bg-shop-main"></div>
-              <strong>Página da Barbearia</strong>
-              <span>Ambiente, serviços, profissionais, cortes e agendamento.</span>
-            </article>
-            <article class="lp-demo-card" data-reveal>
-              <div class="lp-demo-mini"><span>8</span><small>Pendentes</small></div>
-              <strong>Agendamentos</strong>
-              <span>Confirme ou recuse solicitações pelo painel.</span>
-            </article>
-            <article class="lp-demo-card" data-reveal>
-              <div class="lp-demo-mini"><span>3</span><small>Barbeiros</small></div>
-              <strong>Perfil do Barbeiro</strong>
-              <span>Foto, especialidade, bio e botão de agendamento.</span>
-            </article>
-            <article class="lp-demo-card" data-reveal>
-              <div class="lp-demo-shot bg-cut-low"></div>
-              <strong>Catálogo de Cortes</strong>
-              <span>Cards visuais para o cliente escolher com facilidade.</span>
-            </article>
-            <article class="lp-demo-card" data-reveal>
-              <div class="lp-demo-mini"><span>R$</span><small>Serviços</small></div>
-              <strong>Dashboard</strong>
-              <span>Preços, horários, fotos, promoções e clientes.</span>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--alt lp-section" id="recursos">
-      <div class="container">
-        <div class="section__head" data-reveal>
-          <p class="eyebrow"><span class="eyebrow__dot"></span> Recursos</p>
-          <h2 class="section__title">Tudo que a barbearia precisa para atender melhor.</h2>
-        </div>
-        <div class="lp-features">
-          <span>Gestão de Serviços</span>
-          <span>Agenda Inteligente</span>
-          <span>Cadastro de Clientes</span>
-          <span>Controle de Horários</span>
-          <span>Upload de Fotos</span>
-          <span>Modelos de Cortes</span>
-          <span>Produtos</span>
-          <span>Promoções</span>
-          <span>Fidelidade</span>
-          <span>Avaliações</span>
-          <span>Página Pública Personalizada</span>
-          <span>Relatórios</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section lp-section" id="depoimentos">
-      <div class="container">
-        <div class="section__head" data-reveal>
-          <p class="eyebrow"><span class="eyebrow__dot"></span> Depoimentos</p>
-          <h2 class="section__title">Barbeiros trabalhando com mais clareza no atendimento.</h2>
-        </div>
-        <div class="lp-testimonials">
-          <article data-reveal>
-            <div class="lp-person"><span>JS</span><div><strong>João Silva</strong><small>Belo Horizonte/MG</small></div></div>
-            <p class="stars">★★★★★</p>
-            <blockquote>“Agora o cliente chega sabendo o corte, o preço e o horário. O atendimento ficou mais rápido.”</blockquote>
+        <div class="premium-grid premium-grid--three">
+          <article class="professional-card" data-reveal>
+            <div class="professional-card__photo bg-barber-1"></div>
+            <strong>Pedro Henrique</strong>
+            <span>Fades e cortes modernos</span>
           </article>
-          <article data-reveal>
-            <div class="lp-person"><span>RM</span><div><strong>Rafael Martins</strong><small>Contagem/MG</small></div></div>
-            <p class="stars">★★★★★</p>
-            <blockquote>“A página parece profissional e eu consigo mostrar meus serviços sem explicar tudo no WhatsApp.”</blockquote>
+          <article class="professional-card" data-reveal>
+            <div class="professional-card__photo bg-barber-2"></div>
+            <strong>Rafael Martins</strong>
+            <span>Barba e navalha</span>
           </article>
-          <article data-reveal>
-            <div class="lp-person"><span>LC</span><div><strong>Lucas Costa</strong><small>Igarapé/MG</small></div></div>
-            <p class="stars">★★★★★</p>
-            <blockquote>“O painel de agendamentos ajudou a organizar os horários e evitar conflito na agenda.”</blockquote>
+          <article class="professional-card" data-reveal>
+            <div class="professional-card__photo bg-barber-3"></div>
+            <strong>Lucas Costa</strong>
+            <span>Acabamento e pigmentação</span>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="lp-final-cta">
+    <section class="premium-section" id="avaliacoes">
       <div class="container">
-        <div class="lp-final-cta__inner" data-reveal>
-          <p class="eyebrow"><span class="eyebrow__dot"></span> Comece hoje</p>
-          <h2>Pronto para modernizar sua barbearia?</h2>
-          <p>Crie uma página profissional, receba solicitações de agendamento e deixe o cliente escolher o serviço antes de chegar.</p>
-          <div class="lp-actions">
-            <a class="btn btn--light btn--lg" href="login.html?mode=signup">Criar Conta Gratuitamente</a>
-            <a class="btn btn--ghost btn--lg" href="mailto:contato@menuz.com.br">Falar com um Consultor</a>
+        <div class="premium-section__head" data-reveal>
+          <p class="premium-eyebrow">Avaliações</p>
+          <h2>Confiança antes do primeiro corte.</h2>
+        </div>
+        <div class="premium-grid premium-grid--three">
+          <article class="review-card" data-reveal><span>★★★★★</span><p>Atendimento pontual e corte exatamente como escolhi pelo link.</p><strong>Marcos Lima</strong></article>
+          <article class="review-card" data-reveal><span>★★★★★</span><p>A página é simples, vi os serviços e já cheguei sabendo o valor.</p><strong>André Souza</strong></article>
+          <article class="review-card" data-reveal><span>★★★★★</span><p>Ambiente limpo, barbeiro cuidadoso e acabamento muito profissional.</p><strong>João Pedro</strong></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="premium-section" id="galeria">
+      <div class="container">
+        <div class="premium-section__head" data-reveal>
+          <p class="premium-eyebrow">Galeria</p>
+          <h2>Ambiente, ferramentas e cortes.</h2>
+        </div>
+        <div class="premium-gallery" data-reveal>
+          <div class="premium-gallery__item premium-gallery__item--large bg-shop-main"><span>Ambiente premium</span></div>
+          <div class="premium-gallery__item bg-cut-low"><span>Fade</span></div>
+          <div class="premium-gallery__item bg-shop-tools"><span>Ferramentas</span></div>
+          <div class="premium-gallery__item bg-shop-chair"><span>Atendimento</span></div>
+          <div class="premium-gallery__item bg-cut-navalha"><span>Navalha</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="premium-section" id="planos">
+      <div class="container">
+        <div class="premium-section__head" data-reveal>
+          <p class="premium-eyebrow">Planos</p>
+          <h2>Escolha sua experiência.</h2>
+        </div>
+        <div class="premium-grid premium-grid--three">
+          <article class="plan-card" data-reveal><span>Essencial</span><strong>R$ 45</strong><p>Corte, acabamento e finalização.</p><a href="#contato">Agendar</a></article>
+          <article class="plan-card plan-card--featured" data-reveal><span>Premium</span><strong>R$ 80</strong><p>Corte, barba, sobrancelha e consultoria.</p><a href="#contato">Agendar</a></article>
+          <article class="plan-card" data-reveal><span>Completo</span><strong>R$ 120</strong><p>Corte, barba, pigmentação e tratamento.</p><a href="#contato">Agendar</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="premium-section premium-contact" id="contato">
+      <div class="container">
+        <div class="contact-panel" data-reveal>
+          <div>
+            <p class="premium-eyebrow">Contato</p>
+            <h2>Agende seu próximo horário.</h2>
+            <p>Envie uma mensagem com o serviço desejado. A equipe confirma o melhor horário disponível.</p>
+          </div>
+          <div class="contact-panel__actions">
+            <a class="btn btn--primary btn--lg" href="https://wa.me/5531999999999?text=Olá! Quero agendar um horário na Barbearia Menuz.">Chamar no WhatsApp</a>
+            <a class="btn btn--ghost btn--lg" href="barbearia-menuz.html">Ver página pública</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer__grid">
-      <div class="footer__col footer__col--brand">
-        <a class="brand" href="#main" aria-label="Menuz">
-          <img class="brand__mark" src="assets/img/logo.svg" alt="" width="44" height="44">
-          <span class="brand__name">Menuz<span class="brand__dot">.</span></span>
-        </a>
-        <p>Plataforma para barbearias criarem uma página profissional, receberem agendamentos e organizarem o atendimento.</p>
-        <div class="contact__social">
-          <a class="soc" href="#" aria-label="Instagram">IG</a>
-          <a class="soc" href="#" aria-label="WhatsApp">WA</a>
-          <a class="soc" href="#" aria-label="Facebook">FB</a>
-        </div>
-      </div>
-      <div class="footer__col">
-        <h4>Navegação</h4>
-        <ul>
-          <li><a href="#como-funciona">Como funciona</a></li>
-          <li><a href="#beneficios">Benefícios</a></li>
-          <li><a href="#demo">Demonstração</a></li>
-          <li><a href="#recursos">Recursos</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h4>Produto</h4>
-        <ul>
-          <li><a href="login.html">Entrar</a></li>
-          <li><a href="login.html?mode=signup">Criar conta</a></li>
-          <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="barbearia-menuz.html">Página exemplo</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h4>Contato</h4>
-        <ul class="footer__contact">
-          <li>contato@menuz.com.br</li>
-          <li>WhatsApp: (31) 99999-9999</li>
-          <li>Atendimento para barbearias</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <div class="container footer__bottom-inner">
-        <p>© 2026 Menuz. Todos os direitos reservados.</p>
-        <p><a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a></p>
+  <footer class="footer premium-footer">
+    <div class="container premium-footer__inner">
+      <a class="brand" href="#main" aria-label="Menuz Barber">
+        <img class="brand__mark" src="assets/img/logo.svg" alt="" width="40" height="40">
+        <span class="brand__name">Menuz<span class="brand__dot">.</span></span>
+      </a>
+      <p>© 2026 Menuz Barber. Atendimento premium para barbearias modernas.</p>
+      <div class="premium-footer__links">
+        <a href="#servicos">Serviços</a>
+        <a href="#planos">Planos</a>
+        <a href="#contato">Contato</a>
       </div>
     </div>
   </footer>
 
   <button class="to-top" id="toTop" type="button" aria-label="Voltar ao topo">↑</button>
-  <script src="assets/js/main.js?v=20260724-18" defer></script>
+  <script src="assets/js/main.js?v=20260724-19" defer></script>
 </body>
 </html>
