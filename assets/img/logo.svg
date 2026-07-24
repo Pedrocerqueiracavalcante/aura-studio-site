@@ -1,15 +1,12 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Menuz">
   <defs>
     <linearGradient id="menuzGrad" x1="6" y1="10" x2="58" y2="56" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#FF9A3D"/>
-      <stop offset="0.5" stop-color="#FF6A00"/>
-      <stop offset="1" stop-color="#E8480A"/>
+      <stop offset="0" stop-color="#E6CE93"/>
+      <stop offset="0.5" stop-color="#B88A32"/>
+      <stop offset="1" stop-color="#8A6424"/>
     </linearGradient>
   </defs>
-  <!-- Squircle base laranja -->
   <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#menuzGrad)"/>
-  <!-- Monograma "M" -->
   <path d="M17 45 V21 L32 37 L47 21 V45" stroke="#FFFFFF" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Ponto de acento -->
   <circle cx="47" cy="45" r="2.6" fill="#FFFFFF" fill-opacity="0.92"/>
 </svg>

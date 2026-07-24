@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0C0A08">
+  <meta name="theme-color" content="#FFFFFF">
   <title>Barbearia Menuz</title>
   <meta name="description" content="Conheça a Barbearia Menuz, veja cortes, serviços e solicite seu agendamento online.">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
@@ -13,18 +13,40 @@
   <link rel="stylesheet" href="assets/css/styles.css?v=20260724-21">
 </head>
 <body class="public-page">
+  <!-- ===== HERO PREMIUM (card central minimalista) ===== -->
+  <section class="premium-hero" id="topo">
+    <div class="barber-carousel" data-barber-carousel aria-hidden="true">
+      <div class="barber-slide is-active" style="--photo: linear-gradient(125deg, #efe9dc, #d7cdb8)"></div>
+      <div class="barber-slide" style="--photo: linear-gradient(125deg, #e6e8ee, #c9cdd6)"></div>
+      <div class="barber-slide" style="--photo: linear-gradient(125deg, #efe4d4, #d8c39f)"></div>
+    </div>
+
+    <div class="premium-hero__stage">
+      <article class="barber-hero-card" data-tilt-card>
+        <span class="premium-badge">★ 4,9</span>
+        <!-- Substitua o gradiente por: background-image: url('assets/img/barbeiro.jpg') -->
+        <div class="barber-hero-card__photo"
+             style="background-image: linear-gradient(160deg, rgba(255,255,255,.06), rgba(0,0,0,.5)), linear-gradient(160deg, #2c2c33, #101015);"
+             role="img" aria-label="Pedro Almeida, barbeiro em destaque"></div>
+        <div class="barber-hero-card__body">
+          <p class="barber-hero-card__kicker">Barbeiro em destaque</p>
+          <h1>Barbearia Menuz</h1>
+          <p class="barber-hero-card__barber">com Pedro Almeida</p>
+          <div class="barber-rating">
+            <span aria-hidden="true">★★★★★</span>
+            <small>4,9 · 327 avaliações</small>
+          </div>
+          <div class="barber-actions">
+            <a class="btn btn--primary btn--lg" href="#agendamento">Agendar Agora</a>
+            <a class="btn btn--ghost btn--lg" href="#servicos">Ver Serviços</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <main class="public-shell">
     <section class="public-main">
-      <header class="public-head">
-        <img src="assets/img/logo.svg" alt="" width="62" height="62">
-        <div>
-          <p class="minimal-kicker">Página pública da barbearia</p>
-          <h1>Barbearia Menuz</h1>
-          <span data-review-summary>★ 4,9 · 327 avaliações · 92% nota 5</span>
-        </div>
-        <a class="btn btn--primary" href="#agendamento">Agendar agora</a>
-      </header>
-
       <div class="public-gallery">
         <button class="public-photo public-photo--large bg-shop-main" type="button" data-lightbox="Ambiente principal"><span>Ambiente principal</span></button>
         <button class="public-photo bg-shop-chair" type="button" data-lightbox="Cadeiras"><span>Cadeiras</span></button>
