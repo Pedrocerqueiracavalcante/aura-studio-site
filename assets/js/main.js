@@ -9,6 +9,53 @@
   const $  = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => c ? Array.from(c.querySelectorAll(s)) : [];
 
+  /* ---------- App shell: banner + tab bar + ondas (todas as páginas) ---------- */
+  (function appShell() {
+    if (!document.body) return;
+    const page = (location.pathname.split("/").pop() || "index.html").toLowerCase() || "index.html";
+
+    // Ondas de fundo
+    const waves = document.createElement("div");
+    waves.className = "app-bg-waves";
+    waves.setAttribute("aria-hidden", "true");
+    document.body.prepend(waves);
+
+    // Banner superior (dispensável por sessão)
+    if (sessionStorage.getItem("menuzBannerClosed") !== "1") {
+      const banner = document.createElement("div");
+      banner.className = "app-banner";
+      banner.innerHTML =
+        '<img class="app-banner__logo" src="assets/img/logo.svg" alt="">' +
+        '<div class="app-banner__txt"><strong>Menuz</strong><span>Agende agora, é rápido</span></div>' +
+        '<a class="btn btn--primary btn--sm app-banner__cta" href="barbearia-menuz.html#agendamento">Abrir</a>' +
+        '<button class="app-banner__close" type="button" aria-label="Fechar aviso">×</button>';
+      document.body.prepend(banner);
+      banner.querySelector(".app-banner__close").addEventListener("click", () => {
+        banner.hidden = true;
+        sessionStorage.setItem("menuzBannerClosed", "1");
+      });
+    }
+
+    // Tab bar inferior
+    const tabs = [
+      { label: "Início", href: "index.html", match: ["index.html", ""], icon: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>' },
+      { label: "Buscar", href: "index.html#buscar", match: ["buscar"], icon: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>' },
+      { label: "Agendamentos", href: "barbearia-menuz.html#agendamento", match: ["barbearia-menuz.html"], icon: '<rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/>' },
+      { label: "Perfil", href: "login.html", match: ["login.html", "dashboard.html"], icon: '<circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3.5-6 7-6s7 2 7 6"/>' },
+    ];
+    const bar = document.createElement("nav");
+    bar.className = "app-tabbar";
+    bar.setAttribute("aria-label", "Navegação principal do app");
+    bar.innerHTML = tabs.map((t) => {
+      const active = t.match.includes(page) ? " is-active" : "";
+      return '<a class="app-tab' + active + '" href="' + t.href + '"' + (active ? ' aria-current="page"' : '') +
+        '><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        t.icon + '</svg>' + t.label + '</a>';
+    }).join("");
+    document.body.appendChild(bar);
+    document.body.classList.add("has-tabbar");
+  })();
+
   /* ---------- Ano no rodapé ---------- */
   const yearEl = $("#year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();

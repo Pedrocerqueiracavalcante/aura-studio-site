@@ -3794,3 +3794,158 @@ body::after {
     margin-top: .35rem;
   }
 }
+
+/* =====================================================================
+   TEMA ESCURO (app-like) + acento Menuz dourado  ·  html.theme-dark
+   ===================================================================== */
+html.theme-dark {
+  --bg: #0C0E12;
+  --bg-2: #14171D;
+  --surface: rgba(255,255,255,.055);
+  --surface-2: rgba(255,255,255,.09);
+  --border: rgba(255,255,255,.10);
+  --border-2: rgba(255,255,255,.17);
+  --text: #F4F5F7;
+  --muted: #9AA1AD;
+  --dim: #6C7280;
+  --shadow: 0 30px 70px -30px rgba(0,0,0,.72);
+  background: #0C0E12;
+  color-scheme: dark;
+}
+html.theme-dark body { background: transparent; color: var(--text); }
+html.theme-dark body::before {
+  background:
+    radial-gradient(60% 45% at 14% 0%, rgba(217,184,111,.10), transparent 60%),
+    radial-gradient(55% 45% at 100% 8%, rgba(217,184,111,.06), transparent 60%),
+    #0C0E12;
+}
+html.theme-dark body::after { opacity: .16; }
+
+/* Superfícies: cabeçalhos */
+html.theme-dark .site-header,
+html.theme-dark .premium-header,
+html.theme-dark .menuz-header,
+html.theme-dark .public-head { background: rgba(12,14,18,.82); border-color: var(--border); }
+
+/* Superfícies: cards e painéis */
+html.theme-dark .glass-card,
+html.theme-dark .premium-card,
+html.theme-dark .review-card,
+html.theme-dark .plan-card,
+html.theme-dark .professional-card,
+html.theme-dark .contact-panel,
+html.theme-dark .barber-card,
+html.theme-dark .login-card,
+html.theme-dark .login-box,
+html.theme-dark .clean-login-form,
+html.theme-dark .admin-panel,
+html.theme-dark .appointments-panel,
+html.theme-dark .appointment-card,
+html.theme-dark .dash-editor-card,
+html.theme-dark .dashboard-preview,
+html.theme-dark .schedule-card,
+html.theme-dark .review-form-card,
+html.theme-dark .public-side,
+html.theme-dark .quick-service-grid article,
+html.theme-dark .quick-cuts-grid article,
+html.theme-dark .booking-steps article,
+html.theme-dark .review-summary-grid article,
+html.theme-dark .public-tabs {
+  background: rgba(255,255,255,.055);
+  border-color: var(--border);
+  color: var(--text);
+  box-shadow: 0 26px 60px -46px rgba(0,0,0,.8);
+}
+html.theme-dark .public-side strong { color: var(--text); }
+
+/* Card do hero da barbearia — vidro escuro */
+html.theme-dark .barber-hero-card {
+  background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+  border-color: rgba(255,255,255,.14);
+}
+html.theme-dark .barber-hero-card__barber,
+html.theme-dark .barber-rating small,
+html.theme-dark .barber-metrics span { color: var(--muted); }
+html.theme-dark .barber-tags span { background: rgba(255,255,255,.06); border-color: var(--border); color: var(--text); }
+html.theme-dark .premium-badge { background: rgba(255,255,255,.08); border-color: rgba(217,184,111,.35); color: var(--brand-light); }
+
+/* Campos de formulário */
+html.theme-dark input,
+html.theme-dark select,
+html.theme-dark textarea {
+  background: rgba(255,255,255,.05);
+  color: var(--text);
+  border-color: var(--border-2);
+}
+html.theme-dark input::placeholder,
+html.theme-dark textarea::placeholder { color: var(--dim); }
+html.theme-dark select option { background: #14171D; color: var(--text); }
+
+/* Cabeçalho Menuz / ticket (busca, pílulas, ícones, usuário) */
+html.theme-dark .menuz-search,
+html.theme-dark .ticket-search { background: rgba(255,255,255,.06); border-color: var(--border); }
+html.theme-dark .menuz-search input,
+html.theme-dark .ticket-search input { background: transparent; }
+html.theme-dark .ticket-pill,
+html.theme-dark .ticket-icon,
+html.theme-dark .ticket-user summary,
+html.theme-dark .menuz-icon-btn,
+html.theme-dark .menuz-user-menu summary,
+html.theme-dark .menuz-lang { background: rgba(255,255,255,.05); border-color: var(--border); color: var(--text); }
+html.theme-dark .public-tabs a { color: var(--muted); }
+html.theme-dark .public-tabs a:hover { color: var(--text); }
+
+/* Botões secundários no escuro */
+html.theme-dark .btn--ghost { background: rgba(255,255,255,.05); color: var(--text); border-color: var(--border-2); }
+html.theme-dark .btn--light { background: rgba(255,255,255,.94); color: #15110b; }
+
+/* =====================================================================
+   APP SHELL — banner (topo) + tab bar (inferior) + ondas de fundo
+   ===================================================================== */
+.app-bg-waves {
+  position: fixed; left: 0; right: 0; bottom: 0; height: 44vh; z-index: 0; pointer-events: none; opacity: .8;
+  background: bottom / 100% auto no-repeat
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='%23ffffff' fill-opacity='0.028' d='M0,160 C240,240 480,80 720,120 C960,160 1200,260 1440,170 L1440,320 L0,320 Z'/%3E%3Cpath fill='%23ffffff' fill-opacity='0.02' d='M0,225 C300,165 600,285 900,225 C1140,175 1320,245 1440,215 L1440,320 L0,320 Z'/%3E%3C/svg%3E");
+}
+html:not(.theme-dark) .app-bg-waves { display: none; }
+
+.app-banner {
+  position: sticky; top: 0; z-index: 60;
+  display: flex; align-items: center; gap: .8rem;
+  padding: .7rem clamp(.9rem, 4vw, 1.4rem);
+  background: rgba(12,14,18,.94);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}
+.app-banner[hidden] { display: none; }
+.app-banner__logo { width: 36px; height: 36px; border-radius: 10px; }
+.app-banner__txt { line-height: 1.2; }
+.app-banner__txt strong { font-family: var(--font-display); font-size: .95rem; color: var(--text); }
+.app-banner__txt span { display: block; color: var(--muted); font-size: .8rem; }
+.app-banner__cta { margin-left: auto; }
+.app-banner__close { width: 34px; height: 34px; border-radius: 50%; color: var(--muted); font-size: 1.3rem; line-height: 1; display: grid; place-items: center; flex: none; }
+.app-banner__close:hover { background: var(--surface); color: var(--text); }
+
+.app-tabbar {
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: 0; z-index: 70;
+  width: min(100%, 560px);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  background: rgba(12,14,18,.96);
+  border: 1px solid var(--border); border-bottom: none;
+  border-radius: 22px 22px 0 0;
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  padding: .45rem .4rem calc(.45rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -18px 44px -30px rgba(0,0,0,.8);
+}
+.app-tab {
+  display: grid; justify-items: center; gap: .18rem; padding: .5rem .2rem;
+  color: var(--muted); font-family: var(--font-body); font-size: .7rem; font-weight: 600;
+  border-radius: 14px; transition: color .25s var(--ease), background .25s var(--ease);
+}
+.app-tab svg { width: 22px; height: 22px; }
+.app-tab:hover { color: var(--text); background: rgba(255,255,255,.04); }
+.app-tab.is-active { color: var(--brand-light); }
+.app-tab.is-active svg { filter: drop-shadow(0 0 10px rgba(217,184,111,.55)); }
+
+body.has-tabbar { padding-bottom: 84px; }
+body.has-tabbar .to-top { bottom: calc(84px + 1rem); }
