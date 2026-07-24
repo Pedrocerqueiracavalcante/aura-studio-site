@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-5">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-6">
 </head>
 <body class="minimal-page">
   <main class="login-page" id="main">
@@ -22,12 +22,12 @@
     <section class="login-box" aria-labelledby="loginTitle">
       <p class="minimal-kicker">Login do barbeiro</p>
       <h1 id="loginTitle">Entre no painel</h1>
-      <form class="clean-login-form" action="dashboard.html">
+      <form class="clean-login-form" data-clean-login onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
         <label for="email">E-mail</label>
-        <input id="email" name="email" type="email" placeholder="barbeiro@menuz.com.br" autocomplete="email" required>
+        <input id="email" type="email" placeholder="barbeiro@menuz.com.br" autocomplete="email" required>
 
         <label for="password">Senha</label>
-        <input id="password" name="password" type="password" placeholder="Sua senha" autocomplete="current-password" required>
+        <input id="password" type="password" placeholder="Sua senha" autocomplete="current-password" required>
 
         <button class="btn btn--primary btn--block btn--lg" type="submit">Entrar</button>
         <a class="btn btn--ghost btn--block btn--lg" href="dashboard.html?new=1">Criar conta</a>
@@ -35,5 +35,6 @@
       <a class="login-help" href="mailto:contato@menuz.com.br">Recuperar senha</a>
     </section>
   </main>
+  <script src="assets/js/main.js?v=20260724-6" defer></script>
 </body>
 </html>

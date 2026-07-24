@@ -350,6 +350,12 @@
     }
   });
 
+  const cleanLogin = $("[data-clean-login]");
+  cleanLogin?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    window.location.href = "dashboard.html";
+  });
+
   const lightbox = $("#lightbox");
   const lightboxImage = $("#lightboxImage");
   const lightboxCaption = $("#lightboxCaption");
