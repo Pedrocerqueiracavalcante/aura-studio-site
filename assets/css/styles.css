@@ -648,6 +648,126 @@ body::after {
 .publish-flow small,
 .booking-steps strong { display: block; }
 .publish-flow small { color: var(--muted); margin-top: .2rem; line-height: 1.4; }
+.appointments-panel { margin-top: 1rem; }
+.appointments-head,
+.message-preview > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.appointment-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+  margin-top: 1rem;
+}
+.appointment-stats article {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(0,0,0,.22);
+  padding: .9rem;
+}
+.appointment-stats strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+}
+.appointment-stats span,
+.message-preview span { color: var(--muted); }
+.appointments-filters {
+  display: grid;
+  grid-template-columns: 1.3fr .85fr .85fr;
+  gap: .8rem;
+  margin-top: 1rem;
+}
+.appointment-list {
+  display: grid;
+  gap: .8rem;
+  margin-top: 1rem;
+}
+.appointment-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(0,0,0,.2);
+  padding: 1rem;
+}
+.appointment-card h3 {
+  font-size: 1.1rem;
+  margin-top: .45rem;
+}
+.appointment-card p { color: var(--muted); margin-top: .15rem; }
+.appointment-card dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .65rem;
+  margin-top: .8rem;
+}
+.appointment-card dt {
+  color: var(--muted);
+  font-size: .75rem;
+  font-weight: 700;
+}
+.appointment-card dd {
+  color: #fff;
+  font-weight: 800;
+}
+.appointment-card__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: .5rem;
+  min-width: 150px;
+}
+.appointment-card__actions small {
+  color: var(--muted);
+  max-width: 220px;
+}
+.status-pill {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  padding: .35rem .6rem;
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 800;
+}
+.status-pill--pending { background: rgba(255,106,0,.2); color: #ffbf8a; }
+.status-pill--confirmed { background: rgba(52,230,160,.14); color: #8df6c8; }
+.status-pill--cancelled { background: rgba(255,74,74,.15); color: #ffb0b0; }
+.status-pill--finished { background: rgba(255,255,255,.1); color: var(--muted); }
+.status-pill--rescheduled { background: rgba(90,160,255,.15); color: #b9d6ff; }
+.message-preview {
+  display: grid;
+  gap: .8rem;
+  border: 1px solid rgba(255,106,0,.35);
+  border-radius: 12px;
+  background: rgba(255,106,0,.1);
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.message-preview[hidden] { display: none; }
+.message-preview pre {
+  white-space: pre-wrap;
+  overflow-x: auto;
+  border-radius: 10px;
+  background: rgba(0,0,0,.34);
+  color: #fff;
+  padding: 1rem;
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+.empty-state {
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  color: var(--muted);
+  padding: 1rem;
+  text-align: center;
+}
 .dash-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -818,7 +938,88 @@ body::after {
 .public-barbers strong,
 .public-barbers span { display: block; }
 .public-barbers span { color: var(--muted); font-size: .9rem; margin-top: .2rem; }
+.public-barbers p { margin: 0; }
+.public-barbers button,
+.quick-cuts-grid button {
+  position: relative;
+  z-index: 2;
+  justify-self: start;
+  border-radius: 999px;
+  background: rgba(255,106,0,.18);
+  color: #fff;
+  font-weight: 800;
+  padding: .55rem .8rem;
+}
+.public-barbers button:hover,
+.quick-cuts-grid button:hover { background: var(--brand); }
+.quick-cuts-grid button {
+  position: absolute;
+  left: 1rem;
+  bottom: 3.1rem;
+}
 .booking-steps { grid-template-columns: repeat(3, 1fr); }
+.schedule-card,
+.appointments-panel {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255,255,255,.045);
+  box-shadow: var(--shadow);
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.section-heading--compact h2,
+.appointments-head h2 {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  margin-top: .2rem;
+}
+.section-heading--compact span,
+.appointments-head span { color: var(--muted); }
+.schedule-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem;
+  margin-top: 1rem;
+}
+.schedule-form label,
+.appointments-filters label {
+  display: grid;
+  gap: .45rem;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: .84rem;
+  font-weight: 700;
+}
+.schedule-form input,
+.schedule-form select,
+.appointments-filters input,
+.appointments-filters select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(0,0,0,.28);
+  color: #fff;
+  min-height: 46px;
+  padding: .8rem .9rem;
+}
+.schedule-form option,
+.appointments-filters option { color: #121217; }
+.schedule-form .btn { align-self: end; min-height: 46px; }
+.booking-success {
+  display: grid;
+  gap: .2rem;
+  margin-top: 1rem;
+  border: 1px solid rgba(52,230,160,.35);
+  border-radius: 10px;
+  background: rgba(52,230,160,.1);
+  color: #dfffee;
+  padding: .9rem;
+}
+.booking-success span { color: var(--muted); }
+.booking-success.is-error {
+  border-color: rgba(255,106,0,.45);
+  background: rgba(255,106,0,.12);
+  color: #fff;
+}
 .public-side {
   position: sticky;
   top: 1rem;
@@ -1830,6 +2031,13 @@ body::after {
   .public-shell { grid-template-columns: 1fr; }
   .public-side { position: static; }
   .publish-flow { grid-template-columns: repeat(2, 1fr); }
+  .appointments-filters { grid-template-columns: 1fr 1fr; }
+  .appointment-card { grid-template-columns: 1fr; }
+  .appointment-card__actions {
+    min-width: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
   .admin-layout { grid-template-columns: 1fr; }
   .login-showcase { grid-template-columns: 1fr; }
   .login-preview { grid-template-columns: 1fr; }
@@ -1871,10 +2079,19 @@ body::after {
   .dash-sidebar nav,
   .dash-grid,
   .publish-flow,
+  .appointment-stats,
+  .appointments-filters,
+  .appointment-card dl,
+  .schedule-form,
   .quick-service-grid,
   .quick-cuts-grid,
   .public-barbers,
   .booking-steps { grid-template-columns: 1fr; }
+  .appointments-head,
+  .message-preview > div { flex-direction: column; }
+  .appointments-head .btn,
+  .appointment-card__actions .btn,
+  .message-preview .btn { width: 100%; }
   .preview-gallery,
   .public-gallery {
     grid-template-columns: 1fr;

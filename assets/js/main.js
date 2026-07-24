@@ -7,7 +7,7 @@
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $  = (s, c = document) => c.querySelector(s);
-  const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+  const $$ = (s, c = document) => c ? Array.from(c.querySelectorAll(s)) : [];
 
   /* ---------- Ano no rodapé ---------- */
   const yearEl = $("#year");
@@ -15,6 +15,7 @@
 
   /* ---------- Header: estado ao rolar ---------- */
   const header = $("[data-header]");
+  const toTop = $("#toTop");
   const onScroll = () => {
     if (header) header.toggleAttribute("data-scrolled", window.scrollY > 24);
     // Back to top
@@ -356,6 +357,321 @@
     window.location.href = "dashboard.html";
   });
 
+  /* ---------- Agendamento: cliente -> painel -> mensagem automatica ---------- */
+  const APPOINTMENTS_KEY = "menuzAppointments";
+  let memoryAppointments = [];
+  const appointmentsStorage = (() => {
+    try {
+      const storage = window.localStorage;
+      const testKey = "__menuz_storage_test__";
+      storage.setItem(testKey, "1");
+      storage.removeItem(testKey);
+      return storage;
+    } catch (_) {
+      return null;
+    }
+  })();
+  const statusText = {
+    pending: "Aguardando Confirmação",
+    confirmed: "Confirmado",
+    cancelled: "Cancelado",
+    finished: "Finalizado",
+    rescheduled: "Reagendado",
+  };
+  const serviceMinutes = {
+    "Corte masculino": 40,
+    "Barba + Navalha": 30,
+    "Corte + Barba": 70,
+  };
+  const defaultAppointments = [
+    {
+      id: "demo-appointment-1",
+      client: "Pedro Henrique",
+      phone: "(31) 99999-9999",
+      barber: "Pedro",
+      service: "Low Fade",
+      cut: "Low Fade",
+      date: "2026-07-25",
+      time: "16:00",
+      payment: "PIX",
+      price: 45,
+      minutes: 40,
+      status: "pending",
+      createdAt: new Date().toISOString(),
+      reminders: ["24 horas antes", "2 horas antes", "30 minutos antes"],
+    },
+  ];
+  const readAppointments = () => {
+    if (!appointmentsStorage) return memoryAppointments;
+    try {
+      const parsed = JSON.parse(appointmentsStorage.getItem(APPOINTMENTS_KEY) || "[]");
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (_) {
+      return [];
+    }
+  };
+  const writeAppointments = (items) => {
+    if (appointmentsStorage) appointmentsStorage.setItem(APPOINTMENTS_KEY, JSON.stringify(items));
+    else memoryAppointments = items;
+    window.dispatchEvent(new CustomEvent("menuz:appointments-updated"));
+  };
+  const formatDate = (date) => {
+    if (!date) return "";
+    const [year, month, day] = date.split("-");
+    return `${day}/${month}/${year}`;
+  };
+  const formatCurrency = (value) => Number(value || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  const escapeHtml = (value) => String(value || "").replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#039;",
+  }[char]));
+  const phoneToWa = (phone) => {
+    const digits = String(phone || "").replace(/\D/g, "");
+    if (!digits) return WA_NUMBER;
+    return digits.startsWith("55") ? digits : "55" + digits;
+  };
+  const appointmentMessage = (item, type = "confirmed") => {
+    if (type === "cancelled") {
+      return [
+        `Olá, ${item.client}.`,
+        "",
+        "Infelizmente não será possível realizar seu atendimento no horário solicitado.",
+        item.reason ? `Motivo: ${item.reason}` : "Motivo: horário indisponível.",
+        "",
+        "Por favor, escolha um novo horário disponível.",
+        "Obrigado pela compreensão.",
+      ].join("\n");
+    }
+    if (type === "reminder") {
+      return [
+        `Olá, ${item.client}.`,
+        "",
+        "Este é um lembrete do seu agendamento.",
+        `Data: ${formatDate(item.date)} às ${item.time}.`,
+        `Serviço: ${item.service}`,
+        "Barbearia Menuz",
+        "",
+        "Esperamos você.",
+      ].join("\n");
+    }
+    return [
+      `Olá, ${item.client}!`,
+      "",
+      "Seu agendamento foi confirmado com sucesso.",
+      "",
+      "Barbearia: Barbearia Menuz",
+      `Profissional: ${item.barber}`,
+      `Serviço: ${item.service}`,
+      item.cut ? `Modelo de corte: ${item.cut}` : "",
+      `Data: ${formatDate(item.date)}`,
+      `Horário: ${item.time}`,
+      `Valor: ${formatCurrency(item.price)}`,
+      `Forma de pagamento: ${item.payment}`,
+      "",
+      "Endereço: Rua Tiradentes, 48 - Centro - Igarapé/MG",
+      "Pedimos que chegue com 5 minutos de antecedência.",
+      "",
+      "Agradecemos pela preferência e esperamos você!",
+    ].filter(Boolean).join("\n");
+  };
+  const isSlotBlocked = (candidate, ignoreId = "") => readAppointments().some((item) => (
+    item.id !== ignoreId &&
+    item.barber === candidate.barber &&
+    item.date === candidate.date &&
+    item.time === candidate.time &&
+    ["pending", "confirmed"].includes(item.status)
+  ));
+  const updateBlockedTimes = (formEl) => {
+    const barber = formEl?.elements.barber?.value;
+    const date = formEl?.elements.date?.value;
+    const timeSelect = formEl?.elements.time;
+    if (!barber || !date || !timeSelect) return;
+    const current = timeSelect.value;
+    Array.from(timeSelect.options).forEach((option) => {
+      if (!option.value) return;
+      option.disabled = isSlotBlocked({ barber, date, time: option.value });
+    });
+    if (current && timeSelect.selectedOptions[0]?.disabled) timeSelect.value = "";
+  };
+  const setBookingField = (name, value) => {
+    const formEl = $("[data-booking-form]");
+    const field = formEl?.elements[name];
+    if (!field) return;
+    field.value = value;
+    field.dispatchEvent(new Event("change", { bubbles: true }));
+    document.getElementById("agendamento")?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  };
+
+  document.addEventListener("click", (e) => {
+    const service = e.target.closest("[data-pick-service]");
+    const cut = e.target.closest("[data-pick-cut]");
+    const barber = e.target.closest("[data-pick-barber]");
+    if (service) setBookingField("service", service.getAttribute("data-pick-service"));
+    if (cut) setBookingField("cut", cut.getAttribute("data-pick-cut"));
+    if (barber) setBookingField("barber", barber.getAttribute("data-pick-barber"));
+  });
+
+  const bookingForm = $("[data-booking-form]");
+  if (bookingForm) {
+    const todayIso = new Date().toISOString().slice(0, 10);
+    if (bookingForm.elements.date) bookingForm.elements.date.min = todayIso;
+    ["barber", "date"].forEach((name) => bookingForm.elements[name]?.addEventListener("change", () => updateBlockedTimes(bookingForm)));
+    updateBlockedTimes(bookingForm);
+    bookingForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = new FormData(bookingForm);
+      const serviceSelect = bookingForm.elements.service;
+      const selectedService = serviceSelect.selectedOptions[0];
+      const appointment = {
+        id: "appointment-" + Date.now(),
+        client: data.get("client").trim(),
+        phone: data.get("phone").trim(),
+        barber: data.get("barber"),
+        service: data.get("service"),
+        cut: data.get("cut"),
+        date: data.get("date"),
+        time: data.get("time"),
+        payment: data.get("payment"),
+        price: Number(selectedService?.dataset.price || 0),
+        minutes: serviceMinutes[data.get("service")] || 40,
+        status: "pending",
+        createdAt: new Date().toISOString(),
+        reminders: ["24 horas antes", "2 horas antes", "30 minutos antes"],
+      };
+      if (isSlotBlocked(appointment)) {
+        const success = $("[data-booking-success]");
+        if (success) {
+          success.hidden = false;
+          success.classList.add("is-error");
+          success.textContent = "Este horário acabou de ficar indisponível. Escolha outro horário.";
+        }
+        updateBlockedTimes(bookingForm);
+        return;
+      }
+      writeAppointments([appointment, ...readAppointments()]);
+      bookingForm.reset();
+      updateBlockedTimes(bookingForm);
+      const success = $("[data-booking-success]");
+      if (success) {
+        success.hidden = false;
+        success.classList.remove("is-error");
+        success.innerHTML = `<strong>Solicitação enviada.</strong><span>Status: ${statusText.pending}. O barbeiro foi notificado no painel e você receberá a confirmação automática.</span>`;
+      }
+    });
+  }
+
+  const listEl = $("[data-appointment-list]");
+  const renderAppointments = () => {
+    if (!listEl) return;
+    let items = readAppointments();
+    if (!items.length) {
+      items = defaultAppointments;
+      writeAppointments(items);
+    }
+    const search = ($("[data-appointment-search]")?.value || "").toLowerCase().trim();
+    const status = $("[data-appointment-status]")?.value || "all";
+    const barber = $("[data-appointment-barber]")?.value || "all";
+    const counts = items.reduce((acc, item) => {
+      acc[item.status] = (acc[item.status] || 0) + 1;
+      return acc;
+    }, {});
+    const setCount = (selector, value) => { const el = $(selector); if (el) el.textContent = value || 0; };
+    setCount("[data-count-pending]", counts.pending);
+    setCount("[data-count-confirmed]", counts.confirmed);
+    setCount("[data-count-cancelled]", counts.cancelled);
+    const filtered = items.filter((item) => (
+      (!search || item.client.toLowerCase().includes(search)) &&
+      (status === "all" || item.status === status) &&
+      (barber === "all" || item.barber === barber)
+    ));
+    if (!filtered.length) {
+      listEl.innerHTML = `<div class="empty-state">Nenhum agendamento encontrado com estes filtros.</div>`;
+      return;
+    }
+    listEl.innerHTML = filtered.map((item) => `
+      <article class="appointment-card" data-appointment-id="${escapeHtml(item.id)}">
+        <div class="appointment-card__main">
+          <span class="status-pill status-pill--${escapeHtml(item.status)}">${escapeHtml(statusText[item.status] || item.status)}</span>
+          <h3>${escapeHtml(item.client)}</h3>
+          <p>${escapeHtml(item.phone)} · ${escapeHtml(item.payment)}</p>
+          <dl>
+            <div><dt>Serviço</dt><dd>${escapeHtml(item.service)}</dd></div>
+            <div><dt>Profissional</dt><dd>${escapeHtml(item.barber)}</dd></div>
+            <div><dt>Data</dt><dd>${formatDate(item.date)}</dd></div>
+            <div><dt>Horário</dt><dd>${escapeHtml(item.time)}</dd></div>
+            <div><dt>Valor</dt><dd>${formatCurrency(item.price)}</dd></div>
+            <div><dt>Corte</dt><dd>${escapeHtml(item.cut || "Opcional")}</dd></div>
+          </dl>
+        </div>
+        <div class="appointment-card__actions">
+          ${item.status === "pending" ? `<button class="btn btn--primary btn--sm" type="button" data-appointment-confirm>Confirmar</button><button class="btn btn--ghost btn--sm" type="button" data-appointment-cancel>Recusar</button>` : ""}
+          ${item.status === "confirmed" ? `<button class="btn btn--ghost btn--sm" type="button" data-appointment-reminder>Lembrete</button><button class="btn btn--ghost btn--sm" type="button" data-appointment-finish>Finalizar</button><button class="btn btn--ghost btn--sm" type="button" data-appointment-reschedule>Reagendar</button>` : ""}
+          ${item.status === "cancelled" && item.reason ? `<small>Motivo: ${escapeHtml(item.reason)}</small>` : ""}
+        </div>
+      </article>
+    `).join("");
+  };
+  const showMessagePreview = (item, type) => {
+    const panel = $("[data-message-preview]");
+    const textEl = $("[data-message-text]");
+    const waEl = $("[data-message-whatsapp]");
+    if (!panel || !textEl || !waEl) return;
+    const message = appointmentMessage(item, type);
+    textEl.textContent = message;
+    waEl.href = `https://wa.me/${phoneToWa(item.phone)}?text=${encodeURIComponent(message)}`;
+    panel.hidden = false;
+    panel.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+  };
+  const updateAppointment = (id, updater) => {
+    const items = readAppointments();
+    const index = items.findIndex((item) => item.id === id);
+    if (index === -1) return null;
+    items[index] = updater({ ...items[index] });
+    writeAppointments(items);
+    renderAppointments();
+    return items[index];
+  };
+  if (listEl) {
+    renderAppointments();
+    ["input", "change"].forEach((evt) => {
+      $("[data-appointment-search]")?.addEventListener(evt, renderAppointments);
+      $("[data-appointment-status]")?.addEventListener(evt, renderAppointments);
+      $("[data-appointment-barber]")?.addEventListener(evt, renderAppointments);
+    });
+    $("[data-seed-booking]")?.addEventListener("click", () => {
+      writeAppointments([{ ...defaultAppointments[0], id: "demo-appointment-" + Date.now(), createdAt: new Date().toISOString() }, ...readAppointments()]);
+      renderAppointments();
+    });
+    listEl.addEventListener("click", (e) => {
+      const card = e.target.closest("[data-appointment-id]");
+      if (!card) return;
+      const id = card.getAttribute("data-appointment-id");
+      if (e.target.closest("[data-appointment-confirm]")) {
+        const item = updateAppointment(id, (current) => ({ ...current, status: "confirmed", confirmedAt: new Date().toISOString() }));
+        if (item) showMessagePreview(item, "confirmed");
+      }
+      if (e.target.closest("[data-appointment-cancel]")) {
+        const reason = window.prompt("Motivo da recusa (opcional):", "O profissional já possui outro compromisso nesse horário.") || "";
+        const item = updateAppointment(id, (current) => ({ ...current, status: "cancelled", reason, cancelledAt: new Date().toISOString() }));
+        if (item) showMessagePreview(item, "cancelled");
+      }
+      if (e.target.closest("[data-appointment-reminder]")) {
+        const item = readAppointments().find((current) => current.id === id);
+        if (item) showMessagePreview(item, "reminder");
+      }
+      if (e.target.closest("[data-appointment-finish]")) {
+        updateAppointment(id, (current) => ({ ...current, status: "finished", finishedAt: new Date().toISOString() }));
+      }
+      if (e.target.closest("[data-appointment-reschedule]")) {
+        updateAppointment(id, (current) => ({ ...current, status: "rescheduled", rescheduledAt: new Date().toISOString() }));
+      }
+    });
+    window.addEventListener("menuz:appointments-updated", renderAppointments);
+  }
+
   const lightbox = $("#lightbox");
   const lightboxImage = $("#lightboxImage");
   const lightboxCaption = $("#lightboxCaption");
@@ -420,7 +736,6 @@
   });
 
   /* ---------- Back to top ---------- */
-  const toTop = $("#toTop");
   toTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
 
   // Estado inicial
