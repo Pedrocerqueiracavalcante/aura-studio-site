@@ -35,7 +35,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-2">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-3">
 
   <!-- Structured data (SEO) -->
   <script type="application/ld+json">
@@ -747,40 +747,80 @@
           </div>
         </div>
 
-        <div class="admin-demo" data-reveal data-reveal-delay="120">
-          <aside class="admin-menu" aria-label="Menu do painel administrativo">
-            <strong>Menuz Admin</strong>
-            <span class="is-active">Dashboard</span>
-            <span>Minha Barbearia</span>
-            <span>Meu Perfil</span>
-            <span>Profissionais</span>
-            <span>Serviços</span>
-            <span>Modelos de Cortes</span>
-            <span>Agenda</span>
-            <span>Clientes</span>
-            <span>Fidelidade</span>
-          </aside>
-          <div class="admin-panel">
-            <div class="admin-panel__top">
-              <div>
-                <p>Barbearia Menuz</p>
-                <h3>Resumo de hoje</h3>
+        <div class="login-showcase" data-reveal data-reveal-delay="120">
+          <div class="login-preview" aria-label="Prévia da página pública que o barbeiro envia ao cliente">
+            <div class="login-preview__main">
+              <div class="login-preview__head">
+                <img src="assets/img/logo.svg" alt="" width="54" height="54">
+                <div>
+                  <span>Página pública da barbearia</span>
+                  <h3>Barbearia Menuz</h3>
+                  <p>★ 5.0 <small>327 avaliações</small></p>
+                </div>
+                <div class="login-preview__actions" aria-hidden="true">
+                  <span>♡</span>
+                  <span>↗</span>
+                  <strong>Agendar agora</strong>
+                </div>
               </div>
-              <span>Conta independente</span>
+
+              <div class="login-preview__gallery">
+                <div class="login-preview__photo login-preview__photo--large bg-shop-main"><span>Ambiente principal</span></div>
+                <div class="login-preview__photo bg-shop-chair"><span>Cadeiras</span></div>
+                <div class="login-preview__photo bg-shop-tools"><span>Equipamentos</span></div>
+                <div class="login-preview__photo bg-shop-cards"><span>+12 fotos<br>Ver galeria</span></div>
+              </div>
+
+              <div class="login-preview__tabs">
+                <span class="is-active">Serviços</span>
+                <span>Profissionais</span>
+                <span>Galeria</span>
+                <span>Produtos</span>
+                <span>Fidelidade</span>
+                <span>Avaliações</span>
+                <span>Contato</span>
+              </div>
+
+              <div class="login-preview__steps">
+                <article><b>1</b><strong>Veja os cortes</strong><small>Escolha olhando as fotos.</small></article>
+                <article><b>2</b><strong>Selecione o barbeiro</strong><small>Compare experiência e avaliação.</small></article>
+                <article><b>3</b><strong>Envie pelo WhatsApp</strong><small>O barbeiro já prepara o atendimento.</small></article>
+              </div>
             </div>
-            <div class="admin-stats">
-              <article><strong>18</strong><span>Agendamentos</span></article>
-              <article><strong>11</strong><span>Cortes escolhidos</span></article>
-              <article><strong>42</strong><span>Fotos publicadas</span></article>
-            </div>
-            <div class="admin-editor">
-              <h4>Publicar novo corte</h4>
-              <div class="fake-field">Imagem do corte</div>
-              <div class="fake-field">Nome: Mid Fade</div>
-              <div class="fake-field">Preço: R$ 45,00 · Tempo: 40 min</div>
-              <button class="btn btn--primary btn--block" type="button">Salvar e mostrar no site</button>
-            </div>
+
+            <aside class="login-preview__side">
+              <section>
+                <h4>Localização</h4>
+                <p>Rua Tiradentes, 48 - Centro<br>Igarapé/MG</p>
+              </section>
+              <section>
+                <h4>Horário de atendimento</h4>
+                <p><span>Segunda-feira</span><strong>Fechado</strong></p>
+                <p><span>Terça-feira</span><strong>09:00 - 19:00</strong></p>
+                <p><span>Quarta-feira</span><strong>09:00 - 19:00</strong></p>
+                <p><span>Quinta-feira</span><strong>09:00 - 19:00</strong></p>
+                <p><span>Sexta-feira <em>Hoje</em></span><strong>09:00 - 19:00</strong></p>
+                <p><span>Sábado</span><strong>09:00 - 18:00</strong></p>
+                <p><span>Domingo</span><strong>Fechado</strong></p>
+              </section>
+              <section>
+                <h4>Formas de pagamento</h4>
+                <div><span>PIX</span><span>Dinheiro</span><span>Crédito</span><span>Débito</span></div>
+              </section>
+            </aside>
           </div>
+
+          <form class="login-inline" aria-label="Entrar na área administrativa">
+            <span class="eyebrow"><span class="eyebrow__dot"></span> Área do barbeiro</span>
+            <h3>Entre para editar esta página</h3>
+            <p>Cadastre fotos, cortes, barbeiros, serviços, horários e produtos para enviar o link atualizado aos clientes.</p>
+            <label for="adminEmail">E-mail</label>
+            <input id="adminEmail" type="email" placeholder="barbeiro@menuz.com.br">
+            <label for="adminPass">Senha</label>
+            <input id="adminPass" type="password" placeholder="••••••••">
+            <button class="btn btn--primary btn--block" type="button" data-login-open>Entrar no painel</button>
+            <button class="btn btn--ghost btn--block" type="button" data-login-open>Criar conta</button>
+          </form>
         </div>
       </div>
     </section>
@@ -974,6 +1014,6 @@
     <p id="lightboxCaption"></p>
   </div>
 
-  <script src="assets/js/main.js?v=20260724-2" defer></script>
+  <script src="assets/js/main.js?v=20260724-3" defer></script>
 </body>
 </html>
