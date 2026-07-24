@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-19">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-20">
 </head>
 <body class="landing-page premium-barber-page">
   <a class="skip-link" href="#main">Ir para o conteúdo</a>
@@ -30,11 +30,7 @@
 
       <nav class="nav premium-nav" id="primaryNav" aria-label="Navegação principal">
         <ul class="nav__list">
-          <li><a class="nav__link" href="#servicos">Serviços</a></li>
-          <li><a class="nav__link" href="#profissionais">Profissionais</a></li>
           <li><a class="nav__link" href="#avaliacoes">Avaliações</a></li>
-          <li><a class="nav__link" href="#galeria">Galeria</a></li>
-          <li><a class="nav__link" href="#planos">Planos</a></li>
           <li><a class="nav__link" href="#contato">Contato</a></li>
         </ul>
       </nav>
@@ -50,92 +46,7 @@
   </header>
 
   <main id="main">
-    <section class="premium-hero" aria-labelledby="heroTitle">
-      <div class="barber-carousel" data-barber-carousel aria-hidden="true">
-        <div class="barber-slide is-active" style="--photo:url('https://images.unsplash.com/photo-1621607512214-68297480165e?auto=format&fit=crop&w=1600&q=80')"></div>
-        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1600&q=80')"></div>
-        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1600&q=80')"></div>
-        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1600&q=80')"></div>
-        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1600&q=80')"></div>
-        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1512690459411-b9245aed614b?auto=format&fit=crop&w=1600&q=80')"></div>
-        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?auto=format&fit=crop&w=1600&q=80')"></div>
-        <div class="barber-slide" style="--photo:url('https://images.unsplash.com/photo-1592647420148-bfcc177e2117?auto=format&fit=crop&w=1600&q=80')"></div>
-      </div>
-
-      <div class="premium-hero__stage">
-        <article class="barber-hero-card" data-tilt-card data-reveal>
-          <span class="premium-badge">Atendimento Premium</span>
-          <div class="barber-hero-card__photo bg-barber-1" aria-label="Foto profissional do barbeiro"></div>
-          <div class="barber-hero-card__body">
-            <p class="barber-hero-card__kicker">Barbearia Premium</p>
-            <h1 id="heroTitle">Barbearia Menuz</h1>
-            <p class="barber-hero-card__barber">Pedro Henrique, especialista em fades e acabamento</p>
-            <div class="barber-rating" aria-label="Avaliação cinco estrelas">
-              <span>★★★★★</span>
-              <strong>5.0</strong>
-              <small>327 avaliações</small>
-            </div>
-            <div class="barber-metrics" aria-label="Resumo do atendimento">
-              <strong>2.480+</strong>
-              <span>clientes atendidos</span>
-            </div>
-            <div class="barber-tags" aria-label="Serviços rápidos">
-              <span>Corte</span>
-              <span>Barba</span>
-              <span>Sobrancelha</span>
-              <span>Pigmentação</span>
-            </div>
-            <div class="barber-actions">
-              <a class="btn btn--primary btn--lg" href="#contato">Agendar Agora</a>
-              <a class="btn btn--ghost btn--lg" href="#servicos">Conheça nossos serviços</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="premium-section" id="servicos">
-      <div class="container">
-        <div class="premium-section__head" data-reveal>
-          <p class="premium-eyebrow">Serviços</p>
-          <h2>O essencial para sair pronto.</h2>
-        </div>
-        <div class="premium-grid premium-grid--four">
-          <article class="premium-card" data-reveal><span>Corte</span><strong>R$ 45</strong><p>Consultoria rápida, corte masculino e finalização.</p></article>
-          <article class="premium-card" data-reveal><span>Barba</span><strong>R$ 35</strong><p>Toalha quente, navalha e acabamento natural.</p></article>
-          <article class="premium-card" data-reveal><span>Sobrancelha</span><strong>R$ 20</strong><p>Limpeza discreta para valorizar a expressão.</p></article>
-          <article class="premium-card" data-reveal><span>Pigmentação</span><strong>R$ 55</strong><p>Correção visual com acabamento leve e moderno.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="premium-section" id="profissionais">
-      <div class="container">
-        <div class="premium-section__head" data-reveal>
-          <p class="premium-eyebrow">Profissionais</p>
-          <h2>Barbeiros com estilo definido.</h2>
-        </div>
-        <div class="premium-grid premium-grid--three">
-          <article class="professional-card" data-reveal>
-            <div class="professional-card__photo bg-barber-1"></div>
-            <strong>Pedro Henrique</strong>
-            <span>Fades e cortes modernos</span>
-          </article>
-          <article class="professional-card" data-reveal>
-            <div class="professional-card__photo bg-barber-2"></div>
-            <strong>Rafael Martins</strong>
-            <span>Barba e navalha</span>
-          </article>
-          <article class="professional-card" data-reveal>
-            <div class="professional-card__photo bg-barber-3"></div>
-            <strong>Lucas Costa</strong>
-            <span>Acabamento e pigmentação</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="premium-section" id="avaliacoes">
+    <section class="premium-section premium-section--first" id="avaliacoes">
       <div class="container">
         <div class="premium-section__head" data-reveal>
           <p class="premium-eyebrow">Avaliações</p>
@@ -145,36 +56,6 @@
           <article class="review-card" data-reveal><span>★★★★★</span><p>Atendimento pontual e corte exatamente como escolhi pelo link.</p><strong>Marcos Lima</strong></article>
           <article class="review-card" data-reveal><span>★★★★★</span><p>A página é simples, vi os serviços e já cheguei sabendo o valor.</p><strong>André Souza</strong></article>
           <article class="review-card" data-reveal><span>★★★★★</span><p>Ambiente limpo, barbeiro cuidadoso e acabamento muito profissional.</p><strong>João Pedro</strong></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="premium-section" id="galeria">
-      <div class="container">
-        <div class="premium-section__head" data-reveal>
-          <p class="premium-eyebrow">Galeria</p>
-          <h2>Ambiente, ferramentas e cortes.</h2>
-        </div>
-        <div class="premium-gallery" data-reveal>
-          <div class="premium-gallery__item premium-gallery__item--large bg-shop-main"><span>Ambiente premium</span></div>
-          <div class="premium-gallery__item bg-cut-low"><span>Fade</span></div>
-          <div class="premium-gallery__item bg-shop-tools"><span>Ferramentas</span></div>
-          <div class="premium-gallery__item bg-shop-chair"><span>Atendimento</span></div>
-          <div class="premium-gallery__item bg-cut-navalha"><span>Navalha</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="premium-section" id="planos">
-      <div class="container">
-        <div class="premium-section__head" data-reveal>
-          <p class="premium-eyebrow">Planos</p>
-          <h2>Escolha sua experiência.</h2>
-        </div>
-        <div class="premium-grid premium-grid--three">
-          <article class="plan-card" data-reveal><span>Essencial</span><strong>R$ 45</strong><p>Corte, acabamento e finalização.</p><a href="#contato">Agendar</a></article>
-          <article class="plan-card plan-card--featured" data-reveal><span>Premium</span><strong>R$ 80</strong><p>Corte, barba, sobrancelha e consultoria.</p><a href="#contato">Agendar</a></article>
-          <article class="plan-card" data-reveal><span>Completo</span><strong>R$ 120</strong><p>Corte, barba, pigmentação e tratamento.</p><a href="#contato">Agendar</a></article>
         </div>
       </div>
     </section>
@@ -204,14 +85,12 @@
       </a>
       <p>© 2026 Menuz Barber. Atendimento premium para barbearias modernas.</p>
       <div class="premium-footer__links">
-        <a href="#servicos">Serviços</a>
-        <a href="#planos">Planos</a>
         <a href="#contato">Contato</a>
       </div>
     </div>
   </footer>
 
   <button class="to-top" id="toTop" type="button" aria-label="Voltar ao topo">↑</button>
-  <script src="assets/js/main.js?v=20260724-19" defer></script>
+  <script src="assets/js/main.js?v=20260724-20" defer></script>
 </body>
 </html>
