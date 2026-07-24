@@ -7,7 +7,7 @@
 
   <!-- Primary SEO -->
   <title>Menuz · Barbearia & Estúdio de Cortes Masculinos</title>
-  <meta name="description" content="Barbearia Menuz — escolhe o teu corte antes de chegar. Degradê, fades, navalha e muito mais. Vê os modelos, seleciona o teu e agenda em segundos.">
+  <meta name="description" content="Barbearia Menuz — escolha seu corte antes de chegar. Degradê, fades, navalha e muito mais. Veja os modelos, selecione o seu e agende em segundos.">
   <meta name="keywords" content="barbearia, barbeiro, corte masculino, degradê, fade, low fade, mid fade, high fade, undercut, navalha, agendamento online, Menuz">
   <meta name="author" content="Menuz">
   <link rel="canonical" href="https://pedrocerqueiracavalcante.github.io/aura-studio-site/">
@@ -16,14 +16,14 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pedrocerqueiracavalcante.github.io/aura-studio-site/">
   <meta property="og:title" content="Menuz · Barbearia & Estúdio de Cortes">
-  <meta property="og:description" content="Escolhe o teu corte antes de chegar e agenda em segundos. Degradê, fades, navalha e muito mais.">
+  <meta property="og:description" content="Escolha seu corte antes de chegar e agende em segundos. Degradê, fades, navalha e muito mais.">
   <meta property="og:image" content="https://pedrocerqueiracavalcante.github.io/aura-studio-site/assets/img/logo.svg">
   <meta property="og:locale" content="pt_PT">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Menuz · Barbearia & Estúdio de Cortes">
-  <meta name="twitter:description" content="Escolhe o teu corte antes de chegar e agenda em segundos.">
+  <meta name="twitter:description" content="Escolha seu corte antes de chegar e agende em segundos.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
@@ -45,20 +45,21 @@
     "name": "Barbearia Menuz",
     "description": "Barbearia e estúdio de cortes masculinos — degradê, fades, navalha e cuidados de barba. Escolha o corte online e agende.",
     "image": "https://pedrocerqueiracavalcante.github.io/aura-studio-site/assets/img/logo.svg",
-    "priceRange": "€€",
-    "telephone": "+351 900 000 000",
+    "priceRange": "R$",
+    "telephone": "+55 31 99999-9999",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Av. da Liberdade, 100",
-      "addressLocality": "Lisboa",
-      "postalCode": "1250-000",
-      "addressCountry": "PT"
+      "streetAddress": "Rua Tiradentes, 48",
+      "addressLocality": "Igarapé",
+      "addressRegion": "MG",
+      "postalCode": "32900-000",
+      "addressCountry": "BR"
     },
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"],
-        "opens": "09:00", "closes": "20:00"
+        "opens": "09:00", "closes": "19:00"
       },
       {
         "@type": "OpeningHoursSpecification",
@@ -83,18 +84,19 @@
 
       <nav class="nav" id="primaryNav" aria-label="Navegação principal">
         <ul class="nav__list">
-          <li><a href="#sobre" class="nav__link">Sobre</a></li>
+          <li><a href="#sobre" class="nav__link">Barbearia</a></li>
           <li><a href="#cortes" class="nav__link">Cortes</a></li>
           <li><a href="#servicos" class="nav__link">Serviços</a></li>
-          <li><a href="#beneficios" class="nav__link">Benefícios</a></li>
-          <li><a href="#depoimentos" class="nav__link">Depoimentos</a></li>
-          <li><a href="#planos" class="nav__link">Planos</a></li>
-          <li><a href="#contato" class="nav__link">Contacto</a></li>
+          <li><a href="#profissionais" class="nav__link">Profissionais</a></li>
+          <li><a href="#galeria" class="nav__link">Galeria</a></li>
+          <li><a href="#admin" class="nav__link">Login</a></li>
+          <li><a href="#contato" class="nav__link">Contato</a></li>
         </ul>
       </nav>
 
       <div class="header__actions">
-        <a href="#contato" class="btn btn--primary btn--sm">Agendar horário</a>
+        <button class="btn btn--ghost btn--sm" type="button" data-login-open>Entrar</button>
+        <a href="#contato" class="btn btn--primary btn--sm">Agendar agora</a>
         <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menu">
           <span></span><span></span><span></span>
         </button>
@@ -104,84 +106,130 @@
 
   <main id="main">
 
-    <!-- ============ HERO ============ -->
-    <section class="hero" id="hero">
+    <!-- ============ PERFIL PUBLICO ============ -->
+    <section class="hero profile-hero" id="hero">
       <div class="hero__bg" aria-hidden="true">
         <span class="blob blob--1"></span>
         <span class="blob blob--2"></span>
-        <span class="blob blob--3"></span>
         <span class="grid-glow"></span>
       </div>
 
-      <div class="container hero__inner">
-        <div class="hero__content" data-reveal>
-          <span class="eyebrow"><span class="eyebrow__star">★</span> 5.0 · Barbearia Menuz</span>
-          <h1 class="hero__title">Escolhe o teu <span class="grad-text">corte</span> em segundos.</h1>
-          <p class="hero__lead">Vê os modelos, toca em <strong>Selecionar</strong> e continua o atendimento pelo WhatsApp. Sem filas e sem complicação — o barbeiro já sabe o que preparar.</p>
-
-          <div class="hero__cta">
-            <a href="#cortes" class="btn btn--primary btn--lg">
-              Ver os cortes
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a href="#contato" class="btn btn--ghost btn--lg">Agendar</a>
-          </div>
-
-          <dl class="hero__stats">
-            <div class="stat"><dt class="stat__num"><span data-count="12">0</span>+</dt><dd class="stat__label">Anos de experiência</dd></div>
-            <div class="stat"><dt class="stat__num"><span data-count="8500">0</span>+</dt><dd class="stat__label">Clientes satisfeitos</dd></div>
-            <div class="stat"><dt class="stat__num"><span data-count="4.9">0</span></dt><dd class="stat__label">Avaliação média</dd></div>
-          </dl>
-        </div>
-
-        <!-- Carrossel de cortes em destaque (inspirado no coverflow Menuz) -->
-        <div class="hero__visual" data-reveal data-reveal-delay="150">
-          <div class="cuts-hero">
-            <div class="cuts-hero__head">
-              <span class="cuts-hero__eyebrow">Cortes em destaque</span>
-              <div class="cuts-hero__nav">
-                <button class="cc-arrow" id="ccPrev" type="button" aria-label="Corte anterior">‹</button>
-                <button class="cc-arrow" id="ccNext" type="button" aria-label="Próximo corte">›</button>
+      <div class="container profile-shell">
+        <div class="profile-main" data-reveal>
+          <div class="profile-top">
+            <div class="profile-brand">
+              <img src="assets/img/logo.svg" alt="Logo Barbearia Menuz" class="profile-logo" width="64" height="64">
+              <div>
+                <p class="profile-kicker">Página pública da barbearia</p>
+                <h1 class="profile-title">Barbearia Menuz</h1>
+                <p class="profile-rating"><span aria-hidden="true">★</span> 5.0 <small>327 avaliações</small></p>
               </div>
             </div>
-            <div class="cc-viewport">
-              <ul class="cc-track" id="ccTrack">
-                <li class="cc-slide"><article class="cut cut--hero">
-                  <div class="cut__photo cp-degrade"><span class="cut__tag">Fade</span></div>
-                  <div class="cut__body"><h3 class="cut__name">Degradê</h3><p class="cut__desc">Transição suave dos lados ao topo.</p>
-                  <button class="btn btn--primary btn--block cut__select" type="button" data-cut="Degradê">Selecionar</button></div>
-                </article></li>
-                <li class="cc-slide"><article class="cut cut--hero">
-                  <div class="cut__photo cp-lowfade"><span class="cut__tag">Fade</span></div>
-                  <div class="cut__body"><h3 class="cut__name">Low Fade</h3><p class="cut__desc">Degradê baixo, discreto e versátil.</p>
-                  <button class="btn btn--primary btn--block cut__select" type="button" data-cut="Low Fade">Selecionar</button></div>
-                </article></li>
-                <li class="cc-slide"><article class="cut cut--hero">
-                  <div class="cut__photo cp-midfade"><span class="cut__tag">Fade</span></div>
-                  <div class="cut__body"><h3 class="cut__name">Mid Fade</h3><p class="cut__desc">Degradê médio, o equilíbrio perfeito.</p>
-                  <button class="btn btn--primary btn--block cut__select" type="button" data-cut="Mid Fade">Selecionar</button></div>
-                </article></li>
-                <li class="cc-slide"><article class="cut cut--hero">
-                  <div class="cut__photo cp-highfade"><span class="cut__tag">Fade</span></div>
-                  <div class="cut__body"><h3 class="cut__name">High Fade</h3><p class="cut__desc">Degradê alto, moderno e marcante.</p>
-                  <button class="btn btn--primary btn--block cut__select" type="button" data-cut="High Fade">Selecionar</button></div>
-                </article></li>
-                <li class="cc-slide"><article class="cut cut--hero">
-                  <div class="cut__photo cp-undercut"><span class="cut__tag">Moderno</span></div>
-                  <div class="cut__body"><h3 class="cut__name">Undercut</h3><p class="cut__desc">Laterais raspadas, topo comprido.</p>
-                  <button class="btn btn--primary btn--block cut__select" type="button" data-cut="Undercut">Selecionar</button></div>
-                </article></li>
-                <li class="cc-slide"><article class="cut cut--hero">
-                  <div class="cut__photo cp-navalha"><span class="cut__tag">Navalha</span></div>
-                  <div class="cut__body"><h3 class="cut__name">Corte com Navalha</h3><p class="cut__desc">Riscos e acabamento à navalha.</p>
-                  <button class="btn btn--primary btn--block cut__select" type="button" data-cut="Corte com Navalha">Selecionar</button></div>
-                </article></li>
-              </ul>
+
+            <div class="profile-actions">
+              <button class="icon-btn" type="button" aria-label="Favoritar barbearia">
+                <svg viewBox="0 0 24 24" width="21" height="21" fill="none" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.4A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="icon-btn" type="button" data-share aria-label="Compartilhar página">
+                <svg viewBox="0 0 24 24" width="21" height="21" fill="none" aria-hidden="true"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="1.8"/><path d="m8.6 10.6 6.8-4.2M8.6 13.4l6.8 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </button>
+              <a href="#contato" class="btn btn--primary btn--sm">Agendar agora</a>
             </div>
-            <div class="cc-dots" id="ccDots" role="tablist" aria-label="Selecionar corte em destaque"></div>
-            <p class="cc-hint">Arrasta ou usa as setas para ver mais cortes</p>
+          </div>
+
+          <div class="profile-gallery" aria-label="Galeria principal da Barbearia Menuz">
+            <button class="profile-photo profile-photo--large bg-shop-main" type="button" data-lightbox="Ambiente principal da barbearia">
+              <span>Ambiente principal</span>
+            </button>
+            <button class="profile-photo bg-shop-chair" type="button" data-lightbox="Cadeiras e bancadas">
+              <span>Cadeiras</span>
+            </button>
+            <button class="profile-photo bg-shop-tools" type="button" data-lightbox="Equipamentos profissionais">
+              <span>Equipamentos</span>
+            </button>
+            <button class="profile-photo bg-shop-cards" type="button" data-lightbox="Cortes e trabalhos recentes">
+              <strong>+12 fotos</strong>
+              <span>Ver galeria</span>
+            </button>
+          </div>
+
+          <nav class="profile-tabs" aria-label="Navegação da página da barbearia">
+            <a href="#servicos" class="is-active">Serviços</a>
+            <a href="#profissionais">Profissionais</a>
+            <a href="#galeria">Galeria</a>
+            <a href="#produtos">Produtos</a>
+            <a href="#planos">Fidelidade</a>
+            <a href="#depoimentos">Avaliações</a>
+            <a href="#contato">Contato</a>
+          </nav>
+
+          <div class="quick-guide" aria-label="Como usar a página">
+            <article>
+              <span>1</span>
+              <strong>Veja os cortes</strong>
+              <p>Escolha olhando as fotos, sem precisar explicar tudo na chegada.</p>
+            </article>
+            <article>
+              <span>2</span>
+              <strong>Selecione o barbeiro</strong>
+              <p>Compare especialidade, experiência e avaliação.</p>
+            </article>
+            <article>
+              <span>3</span>
+              <strong>Envie pelo WhatsApp</strong>
+              <p>O barbeiro recebe o corte escolhido e já prepara o atendimento.</p>
+            </article>
           </div>
         </div>
+
+        <aside class="profile-sidebar" data-reveal data-reveal-delay="120" aria-label="Informações da barbearia">
+          <section class="side-block">
+            <div class="side-title">
+              <h2>Localização</h2>
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Rua%20Tiradentes%2048%20Centro%20Igarap%C3%A9%20MG" target="_blank" rel="noopener" aria-label="Abrir localização no Google Maps">
+                <svg viewBox="0 0 24 24" width="23" height="23" fill="none" aria-hidden="true"><path d="M20 4 9.5 14.5M20 4l-4.5 16-6-5.5L4 12l16-8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+            <p>Rua Tiradentes, 48 - Centro<br>Igarapé/MG</p>
+          </section>
+
+          <section class="side-block">
+            <h2>Horário de atendimento</h2>
+            <ul class="hours-list" data-hours>
+              <li data-day="1"><span>Segunda-feira</span><strong>Fechado</strong></li>
+              <li data-day="2"><span>Terça-feira</span><strong>09:00 - 19:00</strong></li>
+              <li data-day="3"><span>Quarta-feira</span><strong>09:00 - 19:00</strong></li>
+              <li data-day="4"><span>Quinta-feira</span><strong>09:00 - 19:00</strong></li>
+              <li data-day="5"><span>Sexta-feira</span><strong>09:00 - 19:00</strong></li>
+              <li data-day="6"><span>Sábado</span><strong>09:00 - 18:00</strong></li>
+              <li data-day="0"><span>Domingo</span><strong>Fechado</strong></li>
+            </ul>
+          </section>
+
+          <section class="side-block">
+            <h2>Formas de pagamento</h2>
+            <div class="pill-list">
+              <span>PIX</span>
+              <span>Dinheiro</span>
+              <span>Crédito</span>
+              <span>Débito</span>
+            </div>
+          </section>
+
+          <section class="side-block">
+            <h2>Redes sociais</h2>
+            <div class="social-round">
+              <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 32 32" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16 3C9 3 3.5 8.5 3.5 15.5c0 2.4.7 4.6 1.9 6.5L4 29l7.2-1.9c1.8 1 3.8 1.5 5.9 1.5 6.9 0 12.5-5.6 12.5-12.5S22.9 3 16 3Zm0 22.7c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.3 1.1 1.1-4.2-.2-.4a10 10 0 0 1-1.6-5.5C5.3 9.9 10 5.3 16 5.3s10.7 4.6 10.7 10.2S22 25.7 16 25.7Z"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+              <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M14 4c.4 2.4 2 4 4.5 4.2M14 4v10.5a3.5 3.5 0 1 1-3-3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </section>
+
+          <section class="side-block">
+            <h2>Contato</h2>
+            <p><a href="tel:+5531999999999">(31) 99999-9999</a><br><a href="mailto:contato@menuz.com.br">contato@menuz.com.br</a></p>
+          </section>
+        </aside>
       </div>
     </section>
 
@@ -208,8 +256,8 @@
       <div class="container">
         <header class="section__head" data-reveal>
           <span class="eyebrow"><span class="eyebrow__dot"></span> Galeria de Cortes</span>
-          <h2 class="section__title">Escolhe o teu corte</h2>
-          <p class="section__sub">Toca em <strong>Selecionar</strong> no corte que queres — o barbeiro já fica a saber o que preparar. <em>Troca as imagens pelas fotos reais da barbearia.</em></p>
+          <h2 class="section__title">Escolha seu corte</h2>
+          <p class="section__sub">Toque em <strong>Selecionar</strong> no corte desejado — o barbeiro já sabe o que preparar. <em>Troque as imagens pelas fotos reais da barbearia.</em></p>
         </header>
 
         <div class="cuts-filter" id="cutsFilter" role="tablist" aria-label="Filtrar cortes">
@@ -346,8 +394,8 @@
         <div class="about__content" data-reveal data-reveal-delay="120">
           <span class="eyebrow"><span class="eyebrow__dot"></span> Sobre a Menuz</span>
           <h2 class="section__title">Cortes com <span class="grad-text">precisão</span> e atitude.</h2>
-          <p>Na Barbearia Menuz unimos técnica apurada, produtos de excelência e um ambiente descontraído para que cada visita seja rápida, prática e do teu jeito. Escolhe o teu corte antes de chegar e ganha tempo.</p>
-          <p>A nossa equipa de barbeiros mantém-se em constante formação, acompanhando as tendências para entregar resultados que combinam com o teu estilo.</p>
+          <p>Na Barbearia Menuz unimos técnica apurada, produtos de excelência e um ambiente descontraído para que cada visita seja rápida, prática e do seu jeito. Escolha seu corte antes de chegar e ganhe tempo.</p>
+          <p>Nossa equipe de barbeiros se mantém em constante formação, acompanhando as tendências para entregar resultados que combinam com seu estilo.</p>
 
           <ul class="check-list">
             <li><span class="check">✓</span> Profissionais certificados e especializados</li>
@@ -366,7 +414,7 @@
       <div class="container">
         <header class="section__head" data-reveal>
           <span class="eyebrow"><span class="eyebrow__dot"></span> Serviços</span>
-          <h2 class="section__title">Tudo o que o teu cabelo precisa</h2>
+          <h2 class="section__title">Tudo o que seu cabelo precisa</h2>
           <p class="section__sub">Serviços pensados ao pormenor, executados por especialistas apaixonados pela sua arte.</p>
         </header>
 
@@ -376,8 +424,8 @@
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 7.5 20 18M8.5 16.5 20 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
             </div>
             <h3>Corte de autor</h3>
-            <p>Corte personalizado à tua estrutura facial e estilo de vida, com finalização impecável.</p>
-            <span class="service-card__price">desde €25</span>
+            <p>Corte personalizado à sua estrutura facial e estilo de vida, com finalização impecável.</p>
+            <span class="service-card__price">desde R$ 45</span>
           </article>
 
           <article class="service-card" data-reveal data-reveal-delay="80">
@@ -386,7 +434,7 @@
             </div>
             <h3>Barba & Toalha Quente</h3>
             <p>Barba modelada com toalha quente, vapor e produtos premium.</p>
-            <span class="service-card__price">desde €15</span>
+            <span class="service-card__price">desde R$ 35</span>
           </article>
 
           <article class="service-card" data-reveal data-reveal-delay="160">
@@ -395,7 +443,7 @@
             </div>
             <h3>Tratamentos capilares</h3>
             <p>Hidratação, reconstrução e nutrição profunda para devolver brilho e força.</p>
-            <span class="service-card__price">desde €30</span>
+            <span class="service-card__price">desde R$ 60</span>
           </article>
 
           <article class="service-card" data-reveal>
@@ -404,7 +452,7 @@
             </div>
             <h3>Barbearia premium</h3>
             <p>Corte, barba e cuidados masculinos com toalha quente e produtos de excelência.</p>
-            <span class="service-card__price">desde €20</span>
+            <span class="service-card__price">desde R$ 50</span>
           </article>
 
           <article class="service-card" data-reveal data-reveal-delay="80">
@@ -413,7 +461,7 @@
             </div>
             <h3>Sobrancelha & Pigmentação</h3>
             <p>Design de sobrancelha e pigmentação para um acabamento perfeito.</p>
-            <span class="service-card__price">desde €10</span>
+            <span class="service-card__price">desde R$ 20</span>
           </article>
 
           <article class="service-card" data-reveal data-reveal-delay="160">
@@ -421,9 +469,84 @@
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
             </div>
             <h3>Consultoria de imagem</h3>
-            <p>Análise de visagismo e aconselhamento para valorizar a tua identidade única.</p>
-            <span class="service-card__price">desde €40</span>
+            <p>Análise de visagismo e aconselhamento para valorizar sua identidade única.</p>
+            <span class="service-card__price">desde R$ 80</span>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROFISSIONAIS ============ -->
+    <section class="section" id="profissionais">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow"><span class="eyebrow__dot"></span> Profissionais</span>
+          <h2 class="section__title">Escolha quem vai atender você</h2>
+          <p class="section__sub">Cada barbeiro pode mostrar foto, especialidade, experiência e os cortes que domina.</p>
+        </header>
+
+        <div class="barbers-grid">
+          <article class="barber-card" data-reveal>
+            <div class="barber-card__photo bg-barber-1" role="img" aria-label="Foto do barbeiro Pedro"></div>
+            <div class="barber-card__body">
+              <h3>Pedro Cavalcante</h3>
+              <p>Especialista em fades, cortes desenhados e atendimento rápido.</p>
+              <dl>
+                <div><dt>Experiência</dt><dd>8 anos</dd></div>
+                <div><dt>Avaliação</dt><dd>5.0</dd></div>
+                <div><dt>Atendimentos</dt><dd>4.200+</dd></div>
+              </dl>
+              <a href="#contato" class="btn btn--primary btn--block">Agendar com este barbeiro</a>
+            </div>
+          </article>
+
+          <article class="barber-card" data-reveal data-reveal-delay="80">
+            <div class="barber-card__photo bg-barber-2" role="img" aria-label="Foto do barbeiro Rafael"></div>
+            <div class="barber-card__body">
+              <h3>Rafael Souza</h3>
+              <p>Barba, navalha, acabamento social e atendimento clássico.</p>
+              <dl>
+                <div><dt>Experiência</dt><dd>6 anos</dd></div>
+                <div><dt>Avaliação</dt><dd>4.9</dd></div>
+                <div><dt>Atendimentos</dt><dd>3.100+</dd></div>
+              </dl>
+              <a href="#contato" class="btn btn--primary btn--block">Agendar com este barbeiro</a>
+            </div>
+          </article>
+
+          <article class="barber-card" data-reveal data-reveal-delay="160">
+            <div class="barber-card__photo bg-barber-3" role="img" aria-label="Foto do barbeiro Lucas"></div>
+            <div class="barber-card__body">
+              <h3>Lucas Almeida</h3>
+              <p>Cortes modernos, mullet, undercut e finalização com estilo.</p>
+              <dl>
+                <div><dt>Experiência</dt><dd>5 anos</dd></div>
+                <div><dt>Avaliação</dt><dd>4.8</dd></div>
+                <div><dt>Atendimentos</dt><dd>2.700+</dd></div>
+              </dl>
+              <a href="#contato" class="btn btn--primary btn--block">Agendar com este barbeiro</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GALERIA ============ -->
+    <section class="section section--alt" id="galeria">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow"><span class="eyebrow__dot"></span> Galeria</span>
+          <h2 class="section__title">Fotos do espaço e dos trabalhos</h2>
+          <p class="section__sub">O cliente vê o ambiente antes de chegar e o barbeiro pode atualizar as fotos pelo painel.</p>
+        </header>
+
+        <div class="studio-gallery">
+          <button class="studio-shot studio-shot--wide bg-shop-main" type="button" data-lightbox="Recepção e ambiente principal"><span>Recepção</span></button>
+          <button class="studio-shot bg-shop-chair" type="button" data-lightbox="Cadeiras de atendimento"><span>Cadeiras</span></button>
+          <button class="studio-shot bg-shop-tools" type="button" data-lightbox="Ferramentas e produtos"><span>Equipamentos</span></button>
+          <button class="studio-shot bg-cut-low" type="button" data-lightbox="Low fade finalizado"><span>Low Fade</span></button>
+          <button class="studio-shot bg-cut-mid" type="button" data-lightbox="Mid fade finalizado"><span>Mid Fade</span></button>
+          <button class="studio-shot studio-shot--wide bg-cut-navalha" type="button" data-lightbox="Corte navalhado"><span>Navalhado</span></button>
         </div>
       </div>
     </section>
@@ -467,6 +590,47 @@
             <div class="benefit__ic">🛡️</div>
             <h3>Higiene rigorosa</h3>
             <p>Protocolos de limpeza e esterilização em todos os utensílios.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRODUTOS ============ -->
+    <section class="section" id="produtos">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow"><span class="eyebrow__dot"></span> Produtos</span>
+          <h2 class="section__title">Produtos vendidos na barbearia</h2>
+          <p class="section__sub">O barbeiro pode divulgar pomadas, óleos, shampoos e kits para o cliente já pedir junto do atendimento.</p>
+        </header>
+
+        <div class="products-grid">
+          <article class="product-card" data-reveal>
+            <div class="product-card__photo bg-product-pomade" role="img" aria-label="Pomada modeladora"></div>
+            <div class="product-card__body">
+              <span>Finalização</span>
+              <h3>Pomada Matte</h3>
+              <p>Fixação forte, sem brilho e fácil de remover.</p>
+              <strong>R$ 39,90</strong>
+            </div>
+          </article>
+          <article class="product-card" data-reveal data-reveal-delay="80">
+            <div class="product-card__photo bg-product-beard" role="img" aria-label="Óleo para barba"></div>
+            <div class="product-card__body">
+              <span>Barba</span>
+              <h3>Óleo Premium</h3>
+              <p>Hidrata, perfuma e reduz o ressecamento.</p>
+              <strong>R$ 49,90</strong>
+            </div>
+          </article>
+          <article class="product-card" data-reveal data-reveal-delay="160">
+            <div class="product-card__photo bg-product-kit" role="img" aria-label="Kit de cuidado masculino"></div>
+            <div class="product-card__body">
+              <span>Kit</span>
+              <h3>Combo Menuz</h3>
+              <p>Pomada, pente e balm para manutenção em casa.</p>
+              <strong>R$ 89,90</strong>
+            </div>
           </article>
         </div>
       </div>
@@ -527,7 +691,7 @@
           <article class="plan" data-reveal>
             <h3 class="plan__name">Essencial</h3>
             <p class="plan__desc">O básico bem feito, todos os meses.</p>
-            <p class="plan__price"><span class="plan__cur">€</span>29<span class="plan__per">/mês</span></p>
+            <p class="plan__price"><span class="plan__cur">R$</span>89<span class="plan__per">/mês</span></p>
             <ul class="plan__feats">
               <li><span class="check">✓</span> 1 corte por mês</li>
               <li><span class="check">✓</span> Lavagem + finalização</li>
@@ -542,7 +706,7 @@
             <span class="plan__tag">Mais popular</span>
             <h3 class="plan__name">Premium</h3>
             <p class="plan__desc">Para quem não abre mão do melhor.</p>
-            <p class="plan__price"><span class="plan__cur">€</span>59<span class="plan__per">/mês</span></p>
+            <p class="plan__price"><span class="plan__cur">R$</span>149<span class="plan__per">/mês</span></p>
             <ul class="plan__feats">
               <li><span class="check">✓</span> 2 cortes por mês</li>
               <li><span class="check">✓</span> Lavagem + finalização</li>
@@ -556,7 +720,7 @@
           <article class="plan" data-reveal data-reveal-delay="160">
             <h3 class="plan__name">Signature</h3>
             <p class="plan__desc">A experiência Menuz sem limites.</p>
-            <p class="plan__price"><span class="plan__cur">€</span>99<span class="plan__per">/mês</span></p>
+            <p class="plan__price"><span class="plan__cur">R$</span>249<span class="plan__per">/mês</span></p>
             <ul class="plan__feats">
               <li><span class="check">✓</span> Cortes ilimitados</li>
               <li><span class="check">✓</span> Barba incluída</li>
@@ -570,30 +734,81 @@
       </div>
     </section>
 
-    <!-- ============ CONTACTO ============ -->
+    <!-- ============ AREA ADMINISTRATIVA ============ -->
+    <section class="section" id="admin">
+      <div class="container admin-layout">
+        <div class="admin-copy" data-reveal>
+          <span class="eyebrow"><span class="eyebrow__dot"></span> Login do barbeiro</span>
+          <h2 class="section__title">Painel simples para publicar a página da barbearia</h2>
+          <p class="section__sub">Depois de entrar, o barbeiro atualiza fotos, perfil, serviços, cortes, agenda, produtos e promoções sem depender de conhecimento técnico.</p>
+          <div class="admin-actions">
+            <button class="btn btn--primary btn--lg" type="button" data-login-open>Entrar no painel</button>
+            <button class="btn btn--ghost btn--lg" type="button" data-login-open>Criar conta</button>
+          </div>
+        </div>
+
+        <div class="admin-demo" data-reveal data-reveal-delay="120">
+          <aside class="admin-menu" aria-label="Menu do painel administrativo">
+            <strong>Menuz Admin</strong>
+            <span class="is-active">Dashboard</span>
+            <span>Minha Barbearia</span>
+            <span>Meu Perfil</span>
+            <span>Profissionais</span>
+            <span>Serviços</span>
+            <span>Modelos de Cortes</span>
+            <span>Agenda</span>
+            <span>Clientes</span>
+            <span>Fidelidade</span>
+          </aside>
+          <div class="admin-panel">
+            <div class="admin-panel__top">
+              <div>
+                <p>Barbearia Menuz</p>
+                <h3>Resumo de hoje</h3>
+              </div>
+              <span>Conta independente</span>
+            </div>
+            <div class="admin-stats">
+              <article><strong>18</strong><span>Agendamentos</span></article>
+              <article><strong>11</strong><span>Cortes escolhidos</span></article>
+              <article><strong>42</strong><span>Fotos publicadas</span></article>
+            </div>
+            <div class="admin-editor">
+              <h4>Publicar novo corte</h4>
+              <div class="fake-field">Imagem do corte</div>
+              <div class="fake-field">Nome: Mid Fade</div>
+              <div class="fake-field">Preço: R$ 45,00 · Tempo: 40 min</div>
+              <button class="btn btn--primary btn--block" type="button">Salvar e mostrar no site</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTATO ============ -->
     <section class="section" id="contato">
       <div class="container contact">
         <div class="contact__info" data-reveal>
-          <span class="eyebrow"><span class="eyebrow__dot"></span> Contacto</span>
-          <h2 class="section__title">Vamos marcar o teu momento</h2>
-          <p class="section__sub">Preenche o formulário e entraremos em contacto para confirmar a tua marcação. Ou fala connosco diretamente.</p>
+          <span class="eyebrow"><span class="eyebrow__dot"></span> Contato</span>
+          <h2 class="section__title">Vamos marcar seu horário</h2>
+          <p class="section__sub">Preencha o formulário e entraremos em contato para confirmar seu atendimento. Ou fale diretamente pelo WhatsApp.</p>
 
           <ul class="contact__list">
             <li>
               <span class="contact__ic">📍</span>
-              <div><strong>Morada</strong><span>Av. da Liberdade, 100 · Lisboa</span></div>
+              <div><strong>Endereço</strong><span>Rua Tiradentes, 48 · Centro · Igarapé/MG</span></div>
             </li>
             <li>
               <span class="contact__ic">📞</span>
-              <div><strong>Telefone</strong><a href="tel:+351900000000">+351 900 000 000</a></div>
+              <div><strong>Telefone</strong><a href="tel:+5531999999999">(31) 99999-9999</a></div>
             </li>
             <li>
               <span class="contact__ic">✉️</span>
-              <div><strong>Email</strong><a href="mailto:ola@menuz.pt">ola@menuz.pt</a></div>
+              <div><strong>Email</strong><a href="mailto:contato@menuz.com.br">contato@menuz.com.br</a></div>
             </li>
             <li>
               <span class="contact__ic">🕑</span>
-              <div><strong>Horário</strong><span>Ter–Sex 09h–20h · Sáb 09h–18h</span></div>
+              <div><strong>Horário</strong><span>Ter–Sex 09h–19h · Sáb 09h–18h</span></div>
             </li>
           </ul>
 
@@ -608,13 +823,13 @@
           <form class="form glass-card" id="contactForm" novalidate>
             <div class="field">
               <label for="cf-name">Nome completo</label>
-              <input type="text" id="cf-name" name="name" placeholder="O teu nome" required autocomplete="name">
+              <input type="text" id="cf-name" name="name" placeholder="Seu nome" required autocomplete="name">
               <small class="field__error" data-error-for="cf-name"></small>
             </div>
             <div class="field-row">
               <div class="field">
-                <label for="cf-phone">Telemóvel</label>
-                <input type="tel" id="cf-phone" name="phone" placeholder="+351 …" required autocomplete="tel">
+                <label for="cf-phone">WhatsApp</label>
+                <input type="tel" id="cf-phone" name="phone" placeholder="(31) 99999-9999" required autocomplete="tel">
                 <small class="field__error" data-error-for="cf-phone"></small>
               </div>
               <div class="field">
@@ -636,16 +851,16 @@
             </div>
             <div class="field">
               <label for="cf-msg">Mensagem</label>
-              <textarea id="cf-msg" name="message" rows="4" placeholder="Conta-nos o que procuras e a tua disponibilidade…"></textarea>
+              <textarea id="cf-msg" name="message" rows="4" placeholder="Conte qual corte você quer e sua disponibilidade…"></textarea>
             </div>
             <p class="form__chosen" id="formChosen" hidden></p>
             <button type="submit" class="btn btn--primary btn--block btn--lg">Enviar pedido de marcação</button>
-            <a class="btn btn--wa btn--block" id="waSend" href="https://wa.me/351900000000?text=Ol%C3%A1!%20Quero%20agendar%20na%20Barbearia%20Menuz." target="_blank" rel="noopener">
+            <a class="btn btn--wa btn--block" id="waSend" href="https://wa.me/5531999999999?text=Ol%C3%A1!%20Quero%20agendar%20na%20Barbearia%20Menuz." target="_blank" rel="noopener">
               <svg viewBox="0 0 32 32" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16 3C9 3 3.5 8.5 3.5 15.5c0 2.4.7 4.6 1.9 6.5L4 29l7.2-1.9c1.8 1 3.8 1.5 5.9 1.5 6.9 0 12.5-5.6 12.5-12.5S22.9 3 16 3Zm0 22.7c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.3 1.1 1.1-4.2-.2-.4a10 10 0 0 1-1.6-5.5C5.3 9.9 10 5.3 16 5.3s10.7 4.6 10.7 10.2S22 25.7 16 25.7Z"/></svg>
               Enviar pelo WhatsApp
             </a>
-            <p class="form__note">Ao enviar, concordas em ser contactado sobre a tua marcação.</p>
-            <p class="form__success" id="formSuccess" role="status" hidden>✓ Pedido enviado! Entraremos em contacto muito em breve.</p>
+            <p class="form__note">Ao enviar, você concorda em ser contatado sobre seu agendamento.</p>
+            <p class="form__success" id="formSuccess" role="status" hidden>✓ Pedido enviado! Entraremos em contato muito em breve.</p>
           </form>
         </div>
       </div>
@@ -654,8 +869,8 @@
     <!-- ============ CTA BAND ============ -->
     <section class="cta-band" data-reveal>
       <div class="container cta-band__inner">
-        <h2>Pronto para uma nova versão de ti?</h2>
-        <p>Marca já o teu horário e vive a experiência Menuz.</p>
+        <h2>Pronto para acelerar o atendimento?</h2>
+        <p>Escolha o corte, envie para o barbeiro e chegue com tudo definido.</p>
         <a href="#contato" class="btn btn--light btn--lg">Marcar horário</a>
       </div>
     </section>
@@ -669,7 +884,7 @@
           <img src="assets/img/logo.svg" alt="" width="38" height="38" class="brand__mark">
           <span class="brand__name">Menuz<span class="brand__dot">.</span></span>
         </a>
-        <p>Barbearia & estúdio de cortes masculinos. Escolhe o teu corte e agenda em segundos.</p>
+        <p>Barbearia & estúdio de cortes masculinos. Escolha seu corte e agende em segundos.</p>
         <div class="contact__social">
           <a href="#" aria-label="Instagram" class="soc"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
           <a href="#" aria-label="Facebook" class="soc"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M14 8h2V5h-2c-2 0-3 1.3-3 3v2H9v3h2v6h3v-6h2l.5-3H14V8.5c0-.3.2-.5.5-.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></a>
@@ -700,12 +915,12 @@
       </div>
 
       <div class="footer__col">
-        <h4>Contacto</h4>
+        <h4>Contato</h4>
         <ul class="footer__contact">
-          <li>Av. da Liberdade, 100 · Lisboa</li>
-          <li><a href="tel:+351900000000">+351 900 000 000</a></li>
-          <li><a href="mailto:ola@menuz.pt">ola@menuz.pt</a></li>
-          <li>Ter–Sex 09h–20h · Sáb 09h–18h</li>
+          <li>Rua Tiradentes, 48 · Centro · Igarapé/MG</li>
+          <li><a href="tel:+5531999999999">(31) 99999-9999</a></li>
+          <li><a href="mailto:contato@menuz.com.br">contato@menuz.com.br</a></li>
+          <li>Ter–Sex 09h–19h · Sáb 09h–18h</li>
         </ul>
       </div>
     </div>
@@ -713,13 +928,13 @@
     <div class="footer__bottom">
       <div class="container footer__bottom-inner">
         <p>© <span id="year">2025</span> Barbearia Menuz. Todos os direitos reservados.</p>
-        <p class="footer__credit">Escolhe o teu corte online · identidade visual Menuz (laranja &amp; branco).</p>
+        <p class="footer__credit">Escolha seu corte online · identidade visual Menuz (laranja &amp; branco).</p>
       </div>
     </div>
   </footer>
 
   <!-- ============ FLOATING WHATSAPP ============ -->
-  <a class="wa-float" href="https://wa.me/351900000000?text=Ol%C3%A1!%20Gostaria%20de%20marcar%20um%20hor%C3%A1rio%20na%20Barbearia%20Menuz."
+  <a class="wa-float" href="https://wa.me/5531999999999?text=Ol%C3%A1!%20Gostaria%20de%20marcar%20um%20hor%C3%A1rio%20na%20Barbearia%20Menuz."
      target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
     <svg viewBox="0 0 32 32" width="30" height="30" fill="currentColor" aria-hidden="true">
       <path d="M16 3C9 3 3.5 8.5 3.5 15.5c0 2.4.7 4.6 1.9 6.5L4 29l7.2-1.9c1.8 1 3.8 1.5 5.9 1.5 6.9 0 12.5-5.6 12.5-12.5S22.9 3 16 3Zm0 22.7c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.3 1.1 1.1-4.2-.2-.4a10 10 0 0 1-1.6-5.5C5.3 9.9 10 5.3 16 5.3s10.7 4.6 10.7 10.2S22 25.7 16 25.7Zm5.9-7.6c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2c-.2.3-.8 1-1 1.2s-.4.2-.7.1c-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.3s0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5s0-.4 0-.6c-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.2 3.3 5.3 4.6.7.3 1.3.5 1.7.7.7.2 1.4.2 1.9.1.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5-.1-.1-.3-.2-.6-.3Z"/>
@@ -731,6 +946,33 @@
   <button class="to-top" id="toTop" aria-label="Voltar ao topo">
     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
+
+  <!-- ============ LOGIN MODAL ============ -->
+  <div class="login-modal" id="loginModal" aria-hidden="true">
+    <div class="login-modal__backdrop" data-login-close></div>
+    <div class="login-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <button class="login-modal__close" type="button" data-login-close aria-label="Fechar login">×</button>
+      <div class="login-card">
+        <span class="eyebrow"><span class="eyebrow__dot"></span> Acesso profissional</span>
+        <h2 id="loginTitle">Entrar na conta da barbearia</h2>
+        <p>Use qualquer e-mail no modo demonstração para visualizar o painel do barbeiro.</p>
+        <form id="loginForm" class="login-form">
+          <label for="loginEmail">E-mail</label>
+          <input id="loginEmail" type="email" placeholder="barbeiro@menuz.com.br" autocomplete="email" required>
+          <label for="loginPassword">Senha</label>
+          <input id="loginPassword" type="password" placeholder="••••••••" autocomplete="current-password" required>
+          <button class="btn btn--primary btn--block" type="submit">Entrar no painel</button>
+        </form>
+        <p class="login-card__note">Cada barbeiro tem uma conta separada, com seus próprios clientes, fotos, serviços e agenda.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="Fechar imagem">×</button>
+    <div class="lightbox__image" id="lightboxImage" role="img"></div>
+    <p id="lightboxCaption"></p>
+  </div>
 
   <script src="assets/js/main.js" defer></script>
 </body>

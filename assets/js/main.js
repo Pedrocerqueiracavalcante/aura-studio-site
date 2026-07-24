@@ -82,15 +82,15 @@
   const animateCount = (el) => {
     const target = parseFloat(el.getAttribute("data-count"));
     const decimals = (el.getAttribute("data-count").split(".")[1] || "").length;
-    if (reduceMotion) { el.textContent = target.toLocaleString("pt-PT", { minimumFractionDigits: decimals }); return; }
+      if (reduceMotion) { el.textContent = target.toLocaleString("pt-BR", { minimumFractionDigits: decimals }); return; }
     const dur = 1600; const start = performance.now();
     const step = (now) => {
       const p = Math.min((now - start) / dur, 1);
       const eased = 1 - Math.pow(1 - p, 3);
       const val = target * eased;
-      el.textContent = val.toLocaleString("pt-PT", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+      el.textContent = val.toLocaleString("pt-BR", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
       if (p < 1) requestAnimationFrame(step);
-      else el.textContent = target.toLocaleString("pt-PT", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+      else el.textContent = target.toLocaleString("pt-BR", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
     };
     requestAnimationFrame(step);
   };
@@ -162,7 +162,7 @@
     const success = $("#formSuccess");
 
     const validators = {
-      name: (v) => v.trim().length >= 2 || "Indica o teu nome.",
+      name: (v) => v.trim().length >= 2 || "Informe seu nome.",
       phone: (v) => /[0-9]{6,}/.test(v.replace(/\s/g, "")) || "Indica um telemóvel válido.",
       email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Indica um email válido.",
     };
@@ -207,45 +207,57 @@
     });
   }
 
-  /* ---------- Carrossel de cortes em destaque (hero) ---------- */
-  const ccTrack = $("#ccTrack");
-  if (ccTrack) {
-    const slides = $$(".cc-slide", ccTrack);
-    const dotsWrap = $("#ccDots");
-    let idx = 0, ccTimer = null;
+  /* ---------- Coverflow de cortes em destaque (hero, estilo Menuz) ---------- */
+  const cfTrack = $("#cfTrack");
+  if (cfTrack) {
+    const stage = cfTrack.closest(".cf-stage");
+    const slides = $$(".cf-slide", cfTrack);
+    const dotsWrap = $("#cfDots");
+    let active = Math.min(1, slides.length - 1), cfTimer = null;
 
-    slides.forEach((_, i) => {
+    slides.forEach((s, i) => {
       const b = document.createElement("button");
       b.type = "button";
       b.setAttribute("role", "tab");
       b.setAttribute("aria-label", "Corte " + (i + 1));
-      if (i === 0) b.classList.add("is-active");
-      b.addEventListener("click", () => { ccGo(i); ccRestart(); });
+      b.addEventListener("click", () => { cfCenter(i); cfRestart(); });
       dotsWrap.appendChild(b);
+      // clicar num card vizinho tra-lo para o centro
+      s.addEventListener("click", (e) => {
+        if (e.target.closest(".cut__select")) return;
+        if (i !== active) { cfCenter(i); cfRestart(); }
+      });
     });
-    const ccDots = $$("button", dotsWrap);
+    const cfDots = $$("button", dotsWrap);
 
-    const ccGo = (i) => {
-      idx = (i + slides.length) % slides.length;
-      ccTrack.style.transform = `translateX(-${idx * 100}%)`;
-      ccDots.forEach((d, di) => d.classList.toggle("is-active", di === idx));
+    const cfCenter = (i) => {
+      active = (i + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle("is-active", k === active));
+      cfDots.forEach((d, k) => d.classList.toggle("is-active", k === active));
+      const s = slides[active];
+      const target = stage.clientWidth / 2 - (s.offsetLeft + s.offsetWidth / 2);
+      cfTrack.style.transform = `translateX(${target}px)`;
     };
-    const ccNext = () => ccGo(idx + 1);
-    const ccPrev = () => ccGo(idx - 1);
-    $("#ccNext")?.addEventListener("click", () => { ccNext(); ccRestart(); });
-    $("#ccPrev")?.addEventListener("click", () => { ccPrev(); ccRestart(); });
+    const cfNext = () => cfCenter(active + 1);
+    const cfPrev = () => cfCenter(active - 1);
+    $("#cfNext")?.addEventListener("click", () => { cfNext(); cfRestart(); });
+    $("#cfPrev")?.addEventListener("click", () => { cfPrev(); cfRestart(); });
 
-    const ccStart = () => { if (!reduceMotion) ccTimer = setInterval(ccNext, 4500); };
-    const ccStop = () => { if (ccTimer) clearInterval(ccTimer); };
-    const ccRestart = () => { ccStop(); ccStart(); };
+    const cfStart = () => { if (!reduceMotion) cfTimer = setInterval(cfNext, 4500); };
+    const cfStop = () => { if (cfTimer) clearInterval(cfTimer); };
+    const cfRestart = () => { cfStop(); cfStart(); };
 
-    const vp = ccTrack.closest(".cc-viewport") || ccTrack.parentElement;
-    vp.addEventListener("mouseenter", ccStop);
-    vp.addEventListener("mouseleave", ccStart);
-    let ccSx = 0;
-    vp.addEventListener("touchstart", (e) => { ccSx = e.touches[0].clientX; ccStop(); }, { passive: true });
-    vp.addEventListener("touchend", (e) => { const dx = e.changedTouches[0].clientX - ccSx; if (Math.abs(dx) > 40) (dx < 0 ? ccNext() : ccPrev()); ccStart(); }, { passive: true });
-    ccStart();
+    stage.addEventListener("mouseenter", cfStop);
+    stage.addEventListener("mouseleave", cfStart);
+    let cfSx = 0;
+    stage.addEventListener("touchstart", (e) => { cfSx = e.touches[0].clientX; cfStop(); }, { passive: true });
+    stage.addEventListener("touchend", (e) => { const dx = e.changedTouches[0].clientX - cfSx; if (Math.abs(dx) > 40) (dx < 0 ? cfNext() : cfPrev()); cfStart(); }, { passive: true });
+
+    let cfRz;
+    window.addEventListener("resize", () => { clearTimeout(cfRz); cfRz = setTimeout(() => cfCenter(active), 120); });
+    window.addEventListener("load", () => cfCenter(active));
+    requestAnimationFrame(() => cfCenter(active));
+    cfStart();
   }
 
   /* ---------- Filtro de cortes por categoria ---------- */
@@ -268,8 +280,8 @@
     });
   }
 
-  /* ---------- Seleção de corte → contacto + WhatsApp ---------- */
-  const WA_NUMBER = "351900000000";
+  /* ---------- Seleção de corte → contato + WhatsApp ---------- */
+  const WA_NUMBER = "5531999999999";
   const cutsSelected = $("#cutsSelected");
   const formChosen = $("#formChosen");
   const cfMsg = document.getElementById("cf-msg");
@@ -296,6 +308,84 @@
     if (!btn) return;
     const name = btn.getAttribute("data-cut") || btn.closest(".cut")?.querySelector(".cut__name")?.textContent?.trim() || "Corte";
     selectCut(name, btn.closest(".cut"));
+  });
+
+  /* ---------- Perfil publico: dia atual, compartilhar e lightbox ---------- */
+  const today = new Date().getDay();
+  $$("[data-hours] [data-day]").forEach((item) => {
+    item.classList.toggle("is-today", Number(item.getAttribute("data-day")) === today);
+  });
+
+  document.addEventListener("click", async (e) => {
+    const btn = e.target.closest("[data-share]");
+    if (!btn) return;
+    const shareData = {
+      title: "Barbearia Menuz",
+      text: "Conheça a Barbearia Menuz, escolha seu corte e agende pelo link.",
+      url: window.location.href.split("#")[0],
+    };
+    if (navigator.share) {
+      try { await navigator.share(shareData); } catch (_) { /* usuário cancelou */ }
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(shareData.url);
+      btn.classList.add("is-copied");
+      setTimeout(() => btn.classList.remove("is-copied"), 1400);
+    } catch (_) {
+      window.prompt("Copie o link da barbearia:", shareData.url);
+    }
+  });
+
+  const lightbox = $("#lightbox");
+  const lightboxImage = $("#lightboxImage");
+  const lightboxCaption = $("#lightboxCaption");
+  const closeLightbox = () => {
+    lightbox?.classList.remove("is-open");
+    lightbox?.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  };
+  document.addEventListener("click", (e) => {
+    const target = e.target.closest("[data-lightbox]");
+    if (!target || !lightbox || !lightboxImage) return;
+    lightboxImage.style.backgroundImage = getComputedStyle(target).backgroundImage;
+    lightboxImage.setAttribute("aria-label", target.getAttribute("data-lightbox") || "Foto da barbearia");
+    if (lightboxCaption) lightboxCaption.textContent = target.getAttribute("data-lightbox") || "";
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  });
+  $("[data-lightbox-close]")?.addEventListener("click", closeLightbox);
+  lightbox?.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+
+  /* ---------- Login demonstrativo do painel ---------- */
+  const loginModal = $("#loginModal");
+  const loginForm = $("#loginForm");
+  const openLogin = () => {
+    if (!loginModal) return;
+    loginModal.classList.add("is-open");
+    loginModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    setTimeout(() => $("#loginEmail")?.focus(), 60);
+  };
+  const closeLogin = () => {
+    loginModal?.classList.remove("is-open");
+    loginModal?.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  };
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("[data-login-open]")) openLogin();
+    if (e.target.closest("[data-login-close]")) closeLogin();
+  });
+  loginForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    closeLogin();
+    document.getElementById("admin")?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    closeLightbox();
+    closeLogin();
   });
 
   /* ---------- Back to top ---------- */
