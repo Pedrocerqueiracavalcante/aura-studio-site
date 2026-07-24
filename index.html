@@ -35,7 +35,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-3">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-4">
 
   <!-- Structured data (SEO) -->
   <script type="application/ld+json">
@@ -810,7 +810,7 @@
             </aside>
           </div>
 
-          <form class="login-inline" aria-label="Entrar na área administrativa">
+          <form class="login-inline" id="inlineLoginForm" aria-label="Entrar na área administrativa">
             <span class="eyebrow"><span class="eyebrow__dot"></span> Área do barbeiro</span>
             <h3>Entre para editar esta página</h3>
             <p>Cadastre fotos, cortes, barbeiros, serviços, horários e produtos para enviar o link atualizado aos clientes.</p>
@@ -818,9 +818,71 @@
             <input id="adminEmail" type="email" placeholder="barbeiro@menuz.com.br">
             <label for="adminPass">Senha</label>
             <input id="adminPass" type="password" placeholder="••••••••">
-            <button class="btn btn--primary btn--block" type="button" data-login-open>Entrar no painel</button>
+            <button class="btn btn--primary btn--block" type="submit">Entrar no painel</button>
             <button class="btn btn--ghost btn--block" type="button" data-login-open>Criar conta</button>
           </form>
+        </div>
+
+        <div class="admin-workspace" id="adminWorkspace" hidden aria-live="polite">
+          <aside class="workspace-menu" aria-label="Menu do painel logado">
+            <strong>Menuz Admin</strong>
+            <a href="#admin" class="is-active">Dashboard</a>
+            <a href="#admin">Minha Barbearia</a>
+            <a href="#admin">Meu Perfil</a>
+            <a href="#admin">Profissionais</a>
+            <a href="#admin">Serviços</a>
+            <a href="#admin">Modelos de Cortes</a>
+            <a href="#admin">Agenda</a>
+            <a href="#admin">Clientes</a>
+            <a href="#admin">Produtos</a>
+            <a href="#admin">Fidelidade</a>
+          </aside>
+
+          <div class="workspace-panel">
+            <div class="workspace-head">
+              <div>
+                <span>Painel logado</span>
+                <h3>Olá, Barbeiro Menuz</h3>
+                <p>Edite o que aparece no link público enviado aos clientes.</p>
+              </div>
+              <a class="btn btn--primary btn--sm" href="#hero">Ver página pública</a>
+            </div>
+
+            <div class="workspace-stats">
+              <article><strong>18</strong><span>Agendamentos hoje</span></article>
+              <article><strong>11</strong><span>Cortes escolhidos</span></article>
+              <article><strong>42</strong><span>Fotos publicadas</span></article>
+              <article><strong>327</strong><span>Avaliações recebidas</span></article>
+            </div>
+
+            <div class="workspace-grid">
+              <article class="workspace-card">
+                <h4>Minha Barbearia</h4>
+                <p>Atualize nome, logo, descrição, endereço, horários e redes sociais.</p>
+                <div class="fake-field">Nome: Barbearia Menuz</div>
+                <div class="fake-field">Endereço: Rua Tiradentes, 48</div>
+                <button class="btn btn--ghost btn--block" type="button">Salvar informações</button>
+              </article>
+
+              <article class="workspace-card">
+                <h4>Novo modelo de corte</h4>
+                <p>Cadastre a foto e o preço para o cliente escolher antes de chegar.</p>
+                <div class="fake-field">Imagem do corte</div>
+                <div class="fake-field">Nome: Mid Fade</div>
+                <div class="fake-field">Preço: R$ 45,00 · Tempo: 40 min</div>
+                <button class="btn btn--primary btn--block" type="button">Publicar corte</button>
+              </article>
+
+              <article class="workspace-card workspace-card--wide">
+                <h4>Próximos atendimentos</h4>
+                <ul class="workspace-list">
+                  <li><span>09:30</span><strong>Lucas Ferreira</strong><em>Low Fade · Pedro</em></li>
+                  <li><span>10:20</span><strong>Rafael Martins</strong><em>Barba + Navalha · Rafael</em></li>
+                  <li><span>11:10</span><strong>João Pedro</strong><em>Social · Lucas</em></li>
+                </ul>
+              </article>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1014,6 +1076,6 @@
     <p id="lightboxCaption"></p>
   </div>
 
-  <script src="assets/js/main.js?v=20260724-3" defer></script>
+  <script src="assets/js/main.js?v=20260724-4" defer></script>
 </body>
 </html>

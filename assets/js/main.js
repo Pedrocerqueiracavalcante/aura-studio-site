@@ -361,6 +361,14 @@
   /* ---------- Login demonstrativo do painel ---------- */
   const loginModal = $("#loginModal");
   const loginForm = $("#loginForm");
+  const inlineLoginForm = $("#inlineLoginForm");
+  const adminLayout = $(".admin-layout");
+  const adminWorkspace = $("#adminWorkspace");
+  const showAdminDashboard = () => {
+    adminLayout?.classList.add("is-logged-in");
+    if (adminWorkspace) adminWorkspace.hidden = false;
+    document.getElementById("admin")?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  };
   const openLogin = () => {
     if (!loginModal) return;
     loginModal.classList.add("is-open");
@@ -380,7 +388,11 @@
   loginForm?.addEventListener("submit", (e) => {
     e.preventDefault();
     closeLogin();
-    document.getElementById("admin")?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    showAdminDashboard();
+  });
+  inlineLoginForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    showAdminDashboard();
   });
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
