@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-10">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-13">
 </head>
 <body class="public-page">
   <main class="public-shell">
@@ -20,7 +20,7 @@
         <div>
           <p class="minimal-kicker">Página pública da barbearia</p>
           <h1>Barbearia Menuz</h1>
-          <span>★ 5.0 · 327 avaliações</span>
+          <span data-review-summary>★ 4,9 · 327 avaliações · 92% nota 5</span>
         </div>
         <a class="btn btn--primary" href="#agendamento">Agendar agora</a>
       </header>
@@ -37,6 +37,7 @@
         <a href="#cortes">Cortes</a>
         <a href="#profissionais">Profissionais</a>
         <a href="#agendamento">Agendamento</a>
+        <a href="#avaliacoes">Avaliações</a>
         <a href="#contato">Contato</a>
       </nav>
 
@@ -147,6 +148,70 @@
         </form>
         <div class="booking-success" data-booking-success hidden></div>
       </section>
+
+      <section class="reviews-section" id="avaliacoes" data-public-reviews-section aria-labelledby="reviewsTitle">
+        <div class="section-heading section-heading--compact">
+          <p class="minimal-kicker">Avaliações dos clientes</p>
+          <h2 id="reviewsTitle">O que os clientes dizem</h2>
+          <span>Reputação da barbearia baseada em atendimentos concluídos.</span>
+        </div>
+
+        <div class="review-summary-grid" aria-label="Resumo das avaliações">
+          <article><strong data-review-average>4,9</strong><span>Nota média</span></article>
+          <article><strong data-review-total>327</strong><span>Avaliações</span></article>
+          <article><strong data-review-five>92%</strong><span>Notas 5 estrelas</span></article>
+        </div>
+
+        <div class="reviews-grid" data-public-reviews></div>
+
+        <article class="review-form-card" id="avaliar" aria-labelledby="reviewFormTitle">
+          <div>
+            <p class="minimal-kicker">Após o atendimento</p>
+            <h3 id="reviewFormTitle">Avalie sua experiência</h3>
+            <span>Leva menos de um minuto. Seu comentário ajuda novos clientes.</span>
+          </div>
+          <form class="review-form" data-review-form>
+            <fieldset>
+              <legend>Nota</legend>
+              <div class="star-rating" aria-label="Nota de 1 a 5 estrelas">
+                <input type="radio" id="star5" name="rating" value="5" required>
+                <label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4">
+                <label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3">
+                <label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2">
+                <label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1">
+                <label for="star1">★</label>
+              </div>
+            </fieldset>
+            <label>
+              Nome
+              <input name="client" type="text" placeholder="Seu nome" autocomplete="name" required>
+            </label>
+            <label class="review-check">
+              <input name="anonymous" type="checkbox">
+              Publicar como avaliação anônima
+            </label>
+            <label>
+              Cidade
+              <input name="city" type="text" placeholder="Sua cidade">
+            </label>
+            <label class="review-form__wide">
+              Comentário
+              <textarea name="comment" rows="4" placeholder="Conte como foi o atendimento"></textarea>
+            </label>
+            <label>
+              Foto do resultado
+              <input name="photo" type="file" accept="image/*">
+            </label>
+            <input name="date" type="hidden" data-review-date>
+            <button class="btn btn--primary btn--block" type="submit">Enviar avaliação</button>
+          </form>
+          <div class="booking-success" data-review-success hidden></div>
+        </article>
+      </section>
     </section>
 
     <aside class="public-side" id="contato">
@@ -172,6 +237,6 @@
     <div class="lightbox__image" id="lightboxImage" role="img"></div>
     <p id="lightboxCaption"></p>
   </div>
-  <script src="assets/js/main.js?v=20260724-10" defer></script>
+  <script src="assets/js/main.js?v=20260724-13" defer></script>
 </body>
 </html>

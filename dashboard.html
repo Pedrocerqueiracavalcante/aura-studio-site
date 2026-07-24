@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-10">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-13">
 </head>
 <body class="dashboard-page">
   <aside class="dash-sidebar" aria-label="Menu do painel">
@@ -25,6 +25,8 @@
       <a href="#servicos">Serviços</a>
       <a href="#cortes">Cortes</a>
       <a href="#agenda">Agendamentos</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#configuracoes">Configurações</a>
       <a href="#clientes">Clientes</a>
     </nav>
   </aside>
@@ -145,12 +147,73 @@
       </article>
     </section>
 
+    <section class="reviews-admin-panel" id="avaliacoes" aria-labelledby="reviewsAdminTitle">
+      <div class="appointments-head">
+        <div>
+          <p class="minimal-kicker">Gerenciar avaliações</p>
+          <h2 id="reviewsAdminTitle">Avaliações recebidas</h2>
+          <span>Aprove, oculte, responda ou denuncie comentários. O conteúdo do cliente não pode ser editado.</span>
+        </div>
+        <button class="btn btn--ghost btn--sm" type="button" data-seed-review>Adicionar exemplo</button>
+      </div>
+
+      <div class="review-admin-stats" aria-label="Resumo das avaliações">
+        <article><strong data-admin-review-average>4,9</strong><span>Nota média</span></article>
+        <article><strong data-admin-review-total>0</strong><span>Total</span></article>
+        <article><strong data-admin-review-pending>0</strong><span>Pendentes</span></article>
+      </div>
+
+      <div class="reviews-filters">
+        <label>
+          Buscar cliente
+          <input type="search" placeholder="Nome do cliente" data-review-search>
+        </label>
+        <label>
+          Nota
+          <select data-review-rating-filter>
+            <option value="all">Todas</option>
+            <option value="5">5 estrelas</option>
+            <option value="4">4 estrelas</option>
+            <option value="3">3 estrelas</option>
+            <option value="2">2 estrelas</option>
+            <option value="1">1 estrela</option>
+          </select>
+        </label>
+        <label>
+          Status
+          <select data-review-status-filter>
+            <option value="all">Todos</option>
+            <option value="pending">Pendentes</option>
+            <option value="approved">Aprovadas</option>
+            <option value="hidden">Ocultas</option>
+            <option value="reported">Denunciadas</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="reviews-admin-list" data-admin-reviews></div>
+    </section>
+
+    <section class="settings-panel" id="configuracoes" aria-labelledby="reviewSettingsTitle">
+      <div>
+        <p class="minimal-kicker">Configurações</p>
+        <h2 id="reviewSettingsTitle">Avaliações dos clientes</h2>
+        <span>Defina se a página pública exibirá avaliações e se clientes receberão convites após o atendimento.</span>
+      </div>
+      <label class="settings-toggle">
+        <input type="checkbox" data-review-toggle checked>
+        <span></span>
+        Ativar avaliações dos clientes
+      </label>
+      <p data-review-toggle-note>Quando ativo, a seção aparece na página pública e o convite de avaliação é gerado após finalizar atendimento.</p>
+    </section>
+
     <section class="dashboard-preview" aria-label="Prévia da página pública">
       <div class="preview-head">
         <div>
           <p class="minimal-kicker">Prévia do cliente</p>
           <h2>Barbearia Menuz</h2>
-          <span>★ 5.0 · 327 avaliações</span>
+          <span data-review-summary>★ 4,9 · 327 avaliações · 92% nota 5</span>
         </div>
         <a class="btn btn--primary btn--sm" href="barbearia-menuz.html">Agendar agora</a>
       </div>
@@ -162,6 +225,6 @@
     </section>
   </main>
 
-  <script src="assets/js/main.js?v=20260724-10" defer></script>
+  <script src="assets/js/main.js?v=20260724-13" defer></script>
 </body>
 </html>

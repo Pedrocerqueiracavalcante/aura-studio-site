@@ -401,6 +401,51 @@
       reminders: ["24 horas antes", "2 horas antes", "30 minutos antes"],
     },
   ];
+  const REVIEWS_KEY = "menuzReviews";
+  const REVIEW_SETTINGS_KEY = "menuzReviewSettings";
+  let memoryReviews = [];
+  let memoryReviewSettings = { enabled: true };
+  const reviewStatusText = {
+    pending: "Pendente",
+    approved: "Aprovada",
+    hidden: "Oculta",
+    reported: "Denunciada",
+  };
+  const defaultReviews = [
+    {
+      id: "demo-review-1",
+      client: "Marcos Lima",
+      city: "Igarapé/MG",
+      rating: 5,
+      comment: "Atendimento rápido, corte bem explicado e resultado exatamente como escolhi na página.",
+      date: "2026-07-20",
+      status: "approved",
+      photo: "",
+      reply: "Obrigado pela confiança, Marcos. Será sempre bem-vindo.",
+    },
+    {
+      id: "demo-review-2",
+      client: "André Souza",
+      city: "Belo Horizonte/MG",
+      rating: 5,
+      comment: "Gostei de ver os modelos antes de chegar. Facilitou muito para explicar o corte.",
+      date: "2026-07-18",
+      status: "approved",
+      photo: "",
+      reply: "",
+    },
+    {
+      id: "demo-review-3",
+      client: "Cliente anônimo",
+      city: "Contagem/MG",
+      rating: 4,
+      comment: "Ambiente organizado e barbeiro pontual. Voltarei mais vezes.",
+      date: "2026-07-16",
+      status: "approved",
+      photo: "",
+      reply: "",
+    },
+  ];
   const readAppointments = () => {
     if (!appointmentsStorage) return memoryAppointments;
     try {
@@ -415,6 +460,34 @@
     else memoryAppointments = items;
     window.dispatchEvent(new CustomEvent("menuz:appointments-updated"));
   };
+  const readReviews = () => {
+    if (!appointmentsStorage) return memoryReviews;
+    try {
+      const parsed = JSON.parse(appointmentsStorage.getItem(REVIEWS_KEY) || "[]");
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (_) {
+      return [];
+    }
+  };
+  const writeReviews = (items) => {
+    if (appointmentsStorage) appointmentsStorage.setItem(REVIEWS_KEY, JSON.stringify(items));
+    else memoryReviews = items;
+    window.dispatchEvent(new CustomEvent("menuz:reviews-updated"));
+  };
+  const readReviewSettings = () => {
+    if (!appointmentsStorage) return memoryReviewSettings;
+    try {
+      return { enabled: true, ...(JSON.parse(appointmentsStorage.getItem(REVIEW_SETTINGS_KEY) || "{}") || {}) };
+    } catch (_) {
+      return { enabled: true };
+    }
+  };
+  const writeReviewSettings = (settings) => {
+    const next = { enabled: true, ...settings };
+    if (appointmentsStorage) appointmentsStorage.setItem(REVIEW_SETTINGS_KEY, JSON.stringify(next));
+    else memoryReviewSettings = next;
+    window.dispatchEvent(new CustomEvent("menuz:reviews-updated"));
+  };
   const formatDate = (date) => {
     if (!date) return "";
     const [year, month, day] = date.split("-");
@@ -428,6 +501,80 @@
     "\"": "&quot;",
     "'": "&#039;",
   }[char]));
+  const ensureReviews = () => {
+    const current = readReviews();
+    if (current.length) return current;
+    writeReviews(defaultReviews);
+    return defaultReviews;
+  };
+  const starsText = (rating) => "★★★★★".slice(0, Number(rating || 0)) + "☆☆☆☆☆".slice(0, 5 - Number(rating || 0));
+  const reviewInitials = (name) => String(name || "Cliente")
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("") || "CL";
+  const reviewStats = (items) => {
+    const approved = items.filter((item) => item.status === "approved");
+    const base = approved.length ? approved : items;
+    const total = base.length;
+    const average = total ? base.reduce((sum, item) => sum + Number(item.rating || 0), 0) / total : 0;
+    const five = total ? Math.round((base.filter((item) => Number(item.rating) === 5).length / total) * 100) : 0;
+    return {
+      total,
+      approved: approved.length,
+      pending: items.filter((item) => item.status === "pending").length,
+      average,
+      five,
+    };
+  };
+  const updateReviewSummary = () => {
+    const settings = readReviewSettings();
+    const section = $("[data-public-reviews-section]");
+    if (section && !settings.enabled) {
+      section.innerHTML = `<div class="reviews-disabled">As avaliações desta barbearia estão desativadas no momento.</div>`;
+    }
+    const items = ensureReviews();
+    const stats = reviewStats(items);
+    const averageText = stats.average ? stats.average.toFixed(1).replace(".", ",") : "0,0";
+    $$("[data-review-summary]").forEach((el) => {
+      el.textContent = settings.enabled ? `★ ${averageText} · ${stats.total} avaliações · ${stats.five}% nota 5` : "Avaliações desativadas";
+    });
+    $$("[data-review-average]").forEach((el) => { el.textContent = averageText; });
+    $$("[data-review-total]").forEach((el) => { el.textContent = stats.total; });
+    $$("[data-review-five]").forEach((el) => { el.textContent = `${stats.five}%`; });
+    $$("[data-admin-review-average]").forEach((el) => { el.textContent = averageText; });
+    $$("[data-admin-review-total]").forEach((el) => { el.textContent = items.length; });
+    $$("[data-admin-review-pending]").forEach((el) => { el.textContent = stats.pending; });
+  };
+  const renderPublicReviews = () => {
+    const wrap = $("[data-public-reviews]");
+    if (!wrap) return;
+    const settings = readReviewSettings();
+    if (!settings.enabled) {
+      updateReviewSummary();
+      return;
+    }
+    const approved = ensureReviews().filter((item) => item.status === "approved");
+    wrap.innerHTML = approved.map((item) => `
+      <article class="review-card">
+        <div class="review-card__head">
+          <div class="review-person">
+            <span class="review-avatar">${item.photo ? `<img src="${escapeHtml(item.photo)}" alt="">` : escapeHtml(reviewInitials(item.client))}</span>
+            <div>
+              <strong>${escapeHtml(item.client)}</strong>
+              <span>${escapeHtml(item.city || "Cliente Menuz")}</span>
+            </div>
+          </div>
+          <span class="review-stars" aria-label="${escapeHtml(String(item.rating))} de 5 estrelas">${starsText(item.rating)}</span>
+        </div>
+        ${item.comment ? `<blockquote>${escapeHtml(item.comment)}</blockquote>` : ""}
+        ${item.reply ? `<div class="review-reply"><strong>Resposta da barbearia</strong><br>${escapeHtml(item.reply)}</div>` : ""}
+        <time datetime="${escapeHtml(item.date)}">${formatDate(item.date)}</time>
+      </article>
+    `).join("");
+    updateReviewSummary();
+  };
   const phoneToWa = (phone) => {
     const digits = String(phone || "").replace(/\D/g, "");
     if (!digits) return WA_NUMBER;
@@ -455,6 +602,20 @@
         "Barbearia Menuz",
         "",
         "Esperamos você.",
+      ].join("\n");
+    }
+    if (type === "review") {
+      const reviewUrl = new URL("barbearia-menuz.html", window.location.href).href + "#avaliar";
+      return [
+        `Olá, ${item.client}.`,
+        "",
+        "Obrigado por escolher a Barbearia Menuz.",
+        "Seu atendimento foi finalizado e gostaríamos de saber como foi sua experiência.",
+        "",
+        "Avalie pelo link:",
+        reviewUrl,
+        "",
+        "Sua opinião ajuda outros clientes e valoriza o trabalho do barbeiro.",
       ].join("\n");
     }
     return [
@@ -663,7 +824,8 @@
         if (item) showMessagePreview(item, "reminder");
       }
       if (e.target.closest("[data-appointment-finish]")) {
-        updateAppointment(id, (current) => ({ ...current, status: "finished", finishedAt: new Date().toISOString() }));
+        const item = updateAppointment(id, (current) => ({ ...current, status: "finished", finishedAt: new Date().toISOString() }));
+        if (item && readReviewSettings().enabled) showMessagePreview(item, "review");
       }
       if (e.target.closest("[data-appointment-reschedule]")) {
         updateAppointment(id, (current) => ({ ...current, status: "rescheduled", rescheduledAt: new Date().toISOString() }));
@@ -671,6 +833,173 @@
     });
     window.addEventListener("menuz:appointments-updated", renderAppointments);
   }
+
+  const updateReview = (id, updater) => {
+    const items = ensureReviews();
+    const index = items.findIndex((item) => item.id === id);
+    if (index === -1) return null;
+    items[index] = updater({ ...items[index] });
+    writeReviews(items);
+    renderPublicReviews();
+    renderAdminReviews();
+    updateReviewSummary();
+    return items[index];
+  };
+  const renderAdminReviews = () => {
+    const wrap = $("[data-admin-reviews]");
+    if (!wrap) return;
+    const items = ensureReviews();
+    updateReviewSummary();
+    const search = ($("[data-review-search]")?.value || "").toLowerCase().trim();
+    const rating = $("[data-review-rating-filter]")?.value || "all";
+    const status = $("[data-review-status-filter]")?.value || "all";
+    const filtered = items.filter((item) => (
+      (!search || item.client.toLowerCase().includes(search)) &&
+      (rating === "all" || String(item.rating) === rating) &&
+      (status === "all" || item.status === status)
+    ));
+    if (!filtered.length) {
+      wrap.innerHTML = `<div class="empty-state">Nenhuma avaliação encontrada com estes filtros.</div>`;
+      return;
+    }
+    wrap.innerHTML = filtered.map((item) => `
+      <article class="review-admin-card" data-review-id="${escapeHtml(item.id)}">
+        <div class="review-admin-card__head">
+          <div class="review-person">
+            <span class="review-avatar">${item.photo ? `<img src="${escapeHtml(item.photo)}" alt="">` : escapeHtml(reviewInitials(item.client))}</span>
+            <div>
+              <strong>${escapeHtml(item.client)}</strong>
+              <span>${escapeHtml(item.city || "Cidade não informada")}</span>
+            </div>
+          </div>
+          <span class="review-status review-status--${escapeHtml(item.status)}">${escapeHtml(reviewStatusText[item.status] || item.status)}</span>
+        </div>
+        <dl class="review-admin-card__meta">
+          <div><dt>Nota</dt><dd><span class="review-stars">${starsText(item.rating)}</span></dd></div>
+          <div><dt>Data</dt><dd>${formatDate(item.date)}</dd></div>
+          <div><dt>Cliente</dt><dd>${escapeHtml(item.client)}</dd></div>
+          <div><dt>Status</dt><dd>${escapeHtml(reviewStatusText[item.status] || item.status)}</dd></div>
+        </dl>
+        ${item.comment ? `<p>${escapeHtml(item.comment)}</p>` : `<p>Cliente não adicionou comentário.</p>`}
+        ${item.reply ? `<div class="review-reply"><strong>Sua resposta</strong><br>${escapeHtml(item.reply)}</div>` : ""}
+        <small>O comentário do cliente é preservado. Você pode responder, ocultar ou denunciar.</small>
+        <div class="review-admin-actions">
+          ${item.status !== "approved" ? `<button class="btn btn--primary btn--sm" type="button" data-review-approve>Aprovar</button>` : ""}
+          ${item.status !== "hidden" ? `<button class="btn btn--ghost btn--sm" type="button" data-review-hide>Ocultar</button>` : ""}
+          <button class="btn btn--ghost btn--sm" type="button" data-review-reply>Responder</button>
+          <button class="btn btn--ghost btn--sm" type="button" data-review-report>Denunciar</button>
+        </div>
+      </article>
+    `).join("");
+  };
+  const reviewForm = $("[data-review-form]");
+  const readReviewPhoto = (file) => new Promise((resolve) => {
+    if (!file) {
+      resolve("");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result || ""));
+    reader.onerror = () => resolve("");
+    reader.readAsDataURL(file);
+  });
+  if (reviewForm) {
+    const dateInput = $("[data-review-date]", reviewForm);
+    if (dateInput) dateInput.value = new Date().toISOString().slice(0, 10);
+    reviewForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData(reviewForm);
+      const file = reviewForm.elements.photo?.files?.[0];
+      const review = {
+        id: "review-" + Date.now(),
+        client: data.get("anonymous") ? "Cliente anônimo" : String(data.get("client") || "").trim(),
+        city: String(data.get("city") || "").trim(),
+        rating: Number(data.get("rating") || 0),
+        comment: String(data.get("comment") || "").trim(),
+        date: String(data.get("date") || new Date().toISOString().slice(0, 10)),
+        status: "pending",
+        photo: await readReviewPhoto(file),
+        reply: "",
+        createdAt: new Date().toISOString(),
+      };
+      writeReviews([review, ...ensureReviews()]);
+      reviewForm.reset();
+      if (dateInput) dateInput.value = new Date().toISOString().slice(0, 10);
+      const success = $("[data-review-success]");
+      if (success) {
+        success.hidden = false;
+        success.classList.remove("is-error");
+        success.innerHTML = `<strong>Avaliação enviada.</strong><span>Ela ficará pendente até a barbearia aprovar no painel.</span>`;
+      }
+      renderPublicReviews();
+      renderAdminReviews();
+    });
+  }
+  const reviewToggle = $("[data-review-toggle]");
+  if (reviewToggle) {
+    reviewToggle.checked = !!readReviewSettings().enabled;
+    const updateToggleNote = () => {
+      const note = $("[data-review-toggle-note]");
+      if (note) note.textContent = reviewToggle.checked
+        ? "Avaliações ativas: a seção aparece na página pública e convites podem ser enviados após o atendimento."
+        : "Avaliações desativadas: a seção pública fica oculta e convites não serão gerados.";
+    };
+    updateToggleNote();
+    reviewToggle.addEventListener("change", () => {
+      writeReviewSettings({ enabled: reviewToggle.checked });
+      updateToggleNote();
+      renderAdminReviews();
+      renderPublicReviews();
+      updateReviewSummary();
+    });
+  }
+  const adminReviews = $("[data-admin-reviews]");
+  if (adminReviews) {
+    renderAdminReviews();
+    ["input", "change"].forEach((evt) => {
+      $("[data-review-search]")?.addEventListener(evt, renderAdminReviews);
+      $("[data-review-rating-filter]")?.addEventListener(evt, renderAdminReviews);
+      $("[data-review-status-filter]")?.addEventListener(evt, renderAdminReviews);
+    });
+    $("[data-seed-review]")?.addEventListener("click", () => {
+      const example = {
+        ...defaultReviews[0],
+        id: "demo-review-" + Date.now(),
+        client: "Cliente Exemplo",
+        status: "pending",
+        date: new Date().toISOString().slice(0, 10),
+        reply: "",
+      };
+      writeReviews([example, ...ensureReviews()]);
+      renderAdminReviews();
+    });
+    adminReviews.addEventListener("click", (e) => {
+      const card = e.target.closest("[data-review-id]");
+      if (!card) return;
+      const id = card.getAttribute("data-review-id");
+      if (e.target.closest("[data-review-approve]")) {
+        updateReview(id, (item) => ({ ...item, status: "approved", moderatedAt: new Date().toISOString() }));
+      }
+      if (e.target.closest("[data-review-hide]")) {
+        updateReview(id, (item) => ({ ...item, status: "hidden", moderatedAt: new Date().toISOString() }));
+      }
+      if (e.target.closest("[data-review-report]")) {
+        updateReview(id, (item) => ({ ...item, status: "reported", reportedAt: new Date().toISOString() }));
+      }
+      if (e.target.closest("[data-review-reply]")) {
+        const current = ensureReviews().find((item) => item.id === id);
+        const reply = window.prompt("Resposta da barbearia:", current?.reply || "Obrigado pela avaliação. Ficamos felizes com sua experiência.") || "";
+        if (reply.trim()) updateReview(id, (item) => ({ ...item, reply: reply.trim(), repliedAt: new Date().toISOString() }));
+      }
+    });
+    window.addEventListener("menuz:reviews-updated", renderAdminReviews);
+  }
+  renderPublicReviews();
+  updateReviewSummary();
+  window.addEventListener("menuz:reviews-updated", () => {
+    renderPublicReviews();
+    updateReviewSummary();
+  });
 
   const lightbox = $("#lightbox");
   const lightboxImage = $("#lightboxImage");
