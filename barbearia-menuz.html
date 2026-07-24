@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0C0A08">
+  <title>Barbearia Menuz</title>
+  <meta name="description" content="Conheça a Barbearia Menuz, veja cortes, serviços e agende pelo WhatsApp.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-5">
+</head>
+<body class="public-page">
+  <main class="public-shell">
+    <section class="public-main">
+      <header class="public-head">
+        <img src="assets/img/logo.svg" alt="" width="62" height="62">
+        <div>
+          <p class="minimal-kicker">Página pública da barbearia</p>
+          <h1>Barbearia Menuz</h1>
+          <span>★ 5.0 · 327 avaliações</span>
+        </div>
+        <a class="btn btn--primary" href="https://wa.me/5531999999999?text=Ol%C3%A1!%20Quero%20agendar%20na%20Barbearia%20Menuz.">Agendar agora</a>
+      </header>
+
+      <div class="public-gallery">
+        <button class="public-photo public-photo--large bg-shop-main" type="button" data-lightbox="Ambiente principal"><span>Ambiente principal</span></button>
+        <button class="public-photo bg-shop-chair" type="button" data-lightbox="Cadeiras"><span>Cadeiras</span></button>
+        <button class="public-photo bg-shop-tools" type="button" data-lightbox="Equipamentos"><span>Equipamentos</span></button>
+        <button class="public-photo bg-shop-cards" type="button" data-lightbox="Galeria"><span>+12 fotos</span></button>
+      </div>
+
+      <nav class="public-tabs">
+        <a href="#servicos">Serviços</a>
+        <a href="#cortes">Cortes</a>
+        <a href="#profissionais">Profissionais</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <section class="quick-service-grid" id="servicos">
+        <article><strong>Corte</strong><span>40 min · R$ 45</span><a href="#contato">Agendar</a></article>
+        <article><strong>Barba</strong><span>30 min · R$ 35</span><a href="#contato">Agendar</a></article>
+        <article><strong>Corte + Barba</strong><span>70 min · R$ 70</span><a href="#contato">Agendar</a></article>
+      </section>
+
+      <section class="quick-cuts-grid" id="cortes">
+        <article class="cp-lowfade"><span>Low Fade</span></article>
+        <article class="cp-midfade"><span>Mid Fade</span></article>
+        <article class="cp-navalha"><span>Navalhado</span></article>
+      </section>
+    </section>
+
+    <aside class="public-side" id="contato">
+      <section>
+        <h2>Localização</h2>
+        <p>Rua Tiradentes, 48 - Centro<br>Igarapé/MG</p>
+      </section>
+      <section>
+        <h2>Horários</h2>
+        <p><span>Terça a sexta</span><strong>09:00 - 19:00</strong></p>
+        <p><span>Sábado</span><strong>09:00 - 18:00</strong></p>
+      </section>
+      <section>
+        <h2>Pagamento</h2>
+        <div><span>PIX</span><span>Dinheiro</span><span>Crédito</span><span>Débito</span></div>
+      </section>
+      <a class="btn btn--primary btn--block" href="https://wa.me/5531999999999?text=Ol%C3%A1!%20Quero%20agendar%20na%20Barbearia%20Menuz.">Chamar no WhatsApp</a>
+    </aside>
+  </main>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="Fechar imagem">×</button>
+    <div class="lightbox__image" id="lightboxImage" role="img"></div>
+    <p id="lightboxCaption"></p>
+  </div>
+  <script src="assets/js/main.js?v=20260724-5" defer></script>
+</body>
+</html>

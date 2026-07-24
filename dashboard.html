@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0C0A08">
+  <title>Dashboard · Menuz</title>
+  <meta name="description" content="Painel Menuz para editar a página pública da barbearia.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-5">
+</head>
+<body class="dashboard-page">
+  <aside class="dash-sidebar" aria-label="Menu do painel">
+    <a class="dash-brand" href="index.html">
+      <img src="assets/img/logo.svg" alt="" width="42" height="42">
+      <span>Menuz</span>
+    </a>
+    <nav>
+      <a href="#visao" class="is-active">Dashboard</a>
+      <a href="#barbearia">Minha Barbearia</a>
+      <a href="#perfil">Meu Perfil</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#cortes">Cortes</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#clientes">Clientes</a>
+    </nav>
+  </aside>
+
+  <main class="dash-main" id="main">
+    <header class="dash-top" id="visao">
+      <div>
+        <p class="minimal-kicker">Painel do barbeiro</p>
+        <h1>Monte a página que seus clientes vão receber.</h1>
+      </div>
+      <a class="btn btn--primary" href="barbearia-menuz.html">Abrir link público</a>
+    </header>
+
+    <section class="public-link-card" aria-label="Link público da barbearia">
+      <div>
+        <span>Link da barbearia</span>
+        <strong>menuz.com.br/barbearia/barbearia-menuz</strong>
+      </div>
+      <button class="btn btn--ghost btn--sm" type="button" data-copy-public>Copiar link</button>
+    </section>
+
+    <section class="dash-grid">
+      <article class="dash-editor-card" id="barbearia">
+        <h2>Minha Barbearia</h2>
+        <label>Nome</label>
+        <input value="Barbearia Menuz">
+        <label>Endereço</label>
+        <input value="Rua Tiradentes, 48 - Centro, Igarapé/MG">
+        <label>WhatsApp</label>
+        <input value="(31) 99999-9999">
+      </article>
+
+      <article class="dash-editor-card" id="perfil">
+        <h2>Meu Perfil</h2>
+        <div class="upload-tile bg-barber-1"><span>Foto do barbeiro</span></div>
+        <label>Especialidade</label>
+        <input value="Fades, navalha e cortes modernos">
+      </article>
+
+      <article class="dash-editor-card" id="servicos">
+        <h2>Serviços</h2>
+        <div class="mini-list">
+          <span>Corte masculino <strong>R$ 45</strong></span>
+          <span>Barba + Navalha <strong>R$ 35</strong></span>
+          <span>Corte + Barba <strong>R$ 70</strong></span>
+        </div>
+      </article>
+
+      <article class="dash-editor-card" id="cortes">
+        <h2>Modelos de Cortes</h2>
+        <div class="cut-strip">
+          <span class="cp-lowfade"></span>
+          <span class="cp-midfade"></span>
+          <span class="cp-navalha"></span>
+        </div>
+        <button class="btn btn--primary btn--block" type="button">Adicionar corte</button>
+      </article>
+    </section>
+
+    <section class="dashboard-preview" aria-label="Prévia da página pública">
+      <div class="preview-head">
+        <div>
+          <p class="minimal-kicker">Prévia do cliente</p>
+          <h2>Barbearia Menuz</h2>
+          <span>★ 5.0 · 327 avaliações</span>
+        </div>
+        <a class="btn btn--primary btn--sm" href="barbearia-menuz.html">Agendar agora</a>
+      </div>
+      <div class="preview-gallery">
+        <div class="preview-photo preview-photo--large bg-shop-main"><span>Ambiente principal</span></div>
+        <div class="preview-photo bg-shop-chair"><span>Cadeiras</span></div>
+        <div class="preview-photo bg-shop-tools"><span>Equipamentos</span></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/main.js?v=20260724-5" defer></script>
+</body>
+</html>

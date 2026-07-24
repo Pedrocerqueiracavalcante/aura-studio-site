@@ -337,6 +337,19 @@
     }
   });
 
+  document.addEventListener("click", async (e) => {
+    const btn = e.target.closest("[data-copy-public]");
+    if (!btn) return;
+    const url = new URL("barbearia-menuz.html", window.location.href).href;
+    try {
+      await navigator.clipboard.writeText(url);
+      btn.textContent = "Link copiado";
+      setTimeout(() => { btn.textContent = "Copiar link"; }, 1600);
+    } catch (_) {
+      window.prompt("Copie o link da barbearia:", url);
+    }
+  });
+
   const lightbox = $("#lightbox");
   const lightboxImage = $("#lightboxImage");
   const lightboxCaption = $("#lightboxCaption");

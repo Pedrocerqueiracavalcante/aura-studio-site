@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0C0A08">
+  <title>Entrar · Menuz</title>
+  <meta name="description" content="Acesse o painel Menuz para editar a página da sua barbearia.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-5">
+</head>
+<body class="minimal-page">
+  <main class="login-page" id="main">
+    <a class="login-brand" href="index.html" aria-label="Voltar para a página inicial">
+      <img src="assets/img/logo.svg" alt="" width="46" height="46">
+      <span>Menuz</span>
+    </a>
+
+    <section class="login-box" aria-labelledby="loginTitle">
+      <p class="minimal-kicker">Login do barbeiro</p>
+      <h1 id="loginTitle">Entre no painel</h1>
+      <form class="clean-login-form" action="dashboard.html">
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" placeholder="barbeiro@menuz.com.br" autocomplete="email" required>
+
+        <label for="password">Senha</label>
+        <input id="password" name="password" type="password" placeholder="Sua senha" autocomplete="current-password" required>
+
+        <button class="btn btn--primary btn--block btn--lg" type="submit">Entrar</button>
+        <a class="btn btn--ghost btn--block btn--lg" href="dashboard.html?new=1">Criar conta</a>
+      </form>
+      <a class="login-help" href="mailto:contato@menuz.com.br">Recuperar senha</a>
+    </section>
+  </main>
+</body>
+</html>
