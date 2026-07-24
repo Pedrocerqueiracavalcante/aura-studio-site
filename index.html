@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0B0912">
+
+  <!-- Primary SEO -->
+  <title>AURA Studio · Cabeleireiro & Beleza de Alto Padrão</title>
+  <meta name="description" content="AURA Studio — cabeleireiro e estúdio de beleza premium. Cortes, coloração, tratamentos e barbearia com atendimento personalizado. Marque o seu horário online.">
+  <meta name="keywords" content="cabeleireiro, salão de beleza, barbearia, corte de cabelo, coloração, tratamento capilar, estúdio de beleza, agendamento online">
+  <meta name="author" content="AURA Studio">
+  <link rel="canonical" href="https://www.aurastudio.example/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AURA Studio · Cabeleireiro & Beleza de Alto Padrão">
+  <meta property="og:description" content="Cortes, coloração e tratamentos premium. Onde o teu estilo ganha vida. Marque o seu horário online.">
+  <meta property="og:image" content="assets/img/logo.svg">
+  <meta property="og:locale" content="pt_PT">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AURA Studio · Cabeleireiro & Beleza de Alto Padrão">
+  <meta name="twitter:description" content="Cortes, coloração e tratamentos premium. Onde o teu estilo ganha vida.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/img/logo.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- Structured data (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "AURA Studio",
+    "description": "Cabeleireiro e estúdio de beleza premium — cortes, coloração, tratamentos e barbearia.",
+    "image": "assets/img/logo.svg",
+    "priceRange": "€€",
+    "telephone": "+351 900 000 000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. da Liberdade, 100",
+      "addressLocality": "Lisboa",
+      "postalCode": "1250-000",
+      "addressCountry": "PT"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "09:00", "closes": "20:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00", "closes": "18:00"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Saltar para o conteúdo</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="siteHeader" data-header>
+    <div class="container header__inner">
+      <a class="brand" href="#hero" aria-label="AURA Studio — página inicial">
+        <img src="assets/img/logo.svg" alt="" width="40" height="40" class="brand__mark">
+        <span class="brand__name">AURA<span class="brand__dot">.</span></span>
+      </a>
+
+      <nav class="nav" id="primaryNav" aria-label="Navegação principal">
+        <ul class="nav__list">
+          <li><a href="#sobre" class="nav__link">Sobre</a></li>
+          <li><a href="#servicos" class="nav__link">Serviços</a></li>
+          <li><a href="#beneficios" class="nav__link">Benefícios</a></li>
+          <li><a href="#galeria" class="nav__link">Galeria</a></li>
+          <li><a href="#depoimentos" class="nav__link">Depoimentos</a></li>
+          <li><a href="#planos" class="nav__link">Planos</a></li>
+          <li><a href="#contato" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <a href="#contato" class="btn btn--primary btn--sm">Agendar horário</a>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <span class="blob blob--1"></span>
+        <span class="blob blob--2"></span>
+        <span class="blob blob--3"></span>
+        <span class="grid-glow"></span>
+      </div>
+
+      <div class="container hero__inner">
+        <div class="hero__content" data-reveal>
+          <span class="eyebrow"><span class="eyebrow__dot"></span> Cabeleireiro & Estúdio de Beleza</span>
+          <h1 class="hero__title">Onde o teu <span class="grad-text">estilo</span> ganha vida.</h1>
+          <p class="hero__lead">Cortes, coloração e tratamentos de alto padrão num espaço pensado ao detalhe. Uma experiência premium, do primeiro contacto ao resultado final.</p>
+
+          <div class="hero__cta">
+            <a href="#contato" class="btn btn--primary btn--lg">
+              Marcar agora
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#servicos" class="btn btn--ghost btn--lg">Ver serviços</a>
+          </div>
+
+          <dl class="hero__stats">
+            <div class="stat"><dt class="stat__num"><span data-count="12">0</span>+</dt><dd class="stat__label">Anos de experiência</dd></div>
+            <div class="stat"><dt class="stat__num"><span data-count="8500">0</span>+</dt><dd class="stat__label">Clientes satisfeitos</dd></div>
+            <div class="stat"><dt class="stat__num"><span data-count="4.9">0</span></dt><dd class="stat__label">Avaliação média</dd></div>
+          </dl>
+        </div>
+
+        <!-- Glass appointment mockup (visual, sem foto protegida) -->
+        <div class="hero__visual" data-reveal data-reveal-delay="150">
+          <div class="glass-card booking">
+            <div class="booking__head">
+              <div>
+                <p class="booking__eyebrow">Próxima disponibilidade</p>
+                <p class="booking__title">Sexta-feira · 16:30</p>
+              </div>
+              <span class="badge badge--live"><span class="badge__pulse"></span> Online</span>
+            </div>
+            <ul class="booking__list">
+              <li><span class="booking__ic">✂️</span> Corte + Styling <span class="booking__meta">45 min</span></li>
+              <li><span class="booking__ic">🎨</span> Coloração premium <span class="booking__meta">90 min</span></li>
+              <li><span class="booking__ic">💆</span> Tratamento capilar <span class="booking__meta">30 min</span></li>
+            </ul>
+            <a href="#contato" class="btn btn--primary btn--block">Confirmar marcação</a>
+          </div>
+
+          <div class="glass-card floaty floaty--rating" aria-hidden="true">
+            <div class="stars">★★★★★</div>
+            <p>“Simplesmente o melhor.”</p>
+          </div>
+          <div class="glass-card floaty floaty--award" aria-hidden="true">
+            <span class="floaty__ic">🏆</span>
+            <p>Top Studio 2025</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE / HIGHLIGHTS ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Corte de autor</span><span class="marquee__sep">✦</span>
+        <span>Coloração & Mechas</span><span class="marquee__sep">✦</span>
+        <span>Barbearia premium</span><span class="marquee__sep">✦</span>
+        <span>Tratamentos capilares</span><span class="marquee__sep">✦</span>
+        <span>Penteados de noiva</span><span class="marquee__sep">✦</span>
+        <span>Consultoria de imagem</span><span class="marquee__sep">✦</span>
+        <span>Corte de autor</span><span class="marquee__sep">✦</span>
+        <span>Coloração & Mechas</span><span class="marquee__sep">✦</span>
+        <span>Barbearia premium</span><span class="marquee__sep">✦</span>
+        <span>Tratamentos capilares</span><span class="marquee__sep">✦</span>
+        <span>Penteados de noiva</span><span class="marquee__sep">✦</span>
+        <span>Consultoria de imagem</span><span class="marquee__sep">✦</span>
+      </div>
+    </div>
+
+    <!-- ============ SOBRE ============ -->
+    <section class="section" id="sobre">
+      <div class="container about">
+        <div class="about__media" data-reveal>
+          <div class="media-frame">
+            <div class="media-frame__img media-frame__img--a" role="img" aria-label="Interior do estúdio AURA">
+              <span class="media-ic">💈</span>
+            </div>
+            <div class="media-frame__img media-frame__img--b" role="img" aria-label="Detalhe de atendimento AURA">
+              <span class="media-ic">💇</span>
+            </div>
+            <div class="media-badge">
+              <strong>100%</strong>
+              <span>Atendimento personalizado</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__content" data-reveal data-reveal-delay="120">
+          <span class="eyebrow"><span class="eyebrow__dot"></span> Sobre o AURA</span>
+          <h2 class="section__title">Beleza feita com <span class="grad-text">precisão</span> e alma.</h2>
+          <p>Nascemos da vontade de elevar a experiência de ir ao cabeleireiro. No AURA Studio unimos técnica apurada, produtos de excelência e um ambiente acolhedor para que cada visita seja um momento só teu.</p>
+          <p>A nossa equipa de profissionais mantém-se em constante formação, acompanhando as tendências internacionais para entregar resultados que respeitam a tua identidade.</p>
+
+          <ul class="check-list">
+            <li><span class="check">✓</span> Profissionais certificados e especializados</li>
+            <li><span class="check">✓</span> Produtos premium e cruelty-free</li>
+            <li><span class="check">✓</span> Higiene e cuidado em cada detalhe</li>
+            <li><span class="check">✓</span> Marcação online rápida e sem filas</li>
+          </ul>
+
+          <a href="#contato" class="btn btn--primary">Conhecer o espaço</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVIÇOS ============ -->
+    <section class="section section--alt" id="servicos">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow"><span class="eyebrow__dot"></span> Serviços</span>
+          <h2 class="section__title">Tudo o que o teu cabelo precisa</h2>
+          <p class="section__sub">Serviços pensados ao pormenor, executados por especialistas apaixonados pela sua arte.</p>
+        </header>
+
+        <div class="grid grid--services">
+          <article class="service-card" data-reveal>
+            <div class="service-card__ic">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 7.5 20 18M8.5 16.5 20 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Corte de autor</h3>
+            <p>Corte personalizado à tua estrutura facial e estilo de vida, com finalização impecável.</p>
+            <span class="service-card__price">desde €25</span>
+          </article>
+
+          <article class="service-card" data-reveal data-reveal-delay="80">
+            <div class="service-card__ic">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><path d="M12 3c4.5 4 7 7 7 10a7 7 0 0 1-14 0c0-3 2.5-6 7-10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Coloração & Mechas</h3>
+            <p>Cor sob medida, balayage e mechas com técnicas que preservam a saúde do fio.</p>
+            <span class="service-card__price">desde €55</span>
+          </article>
+
+          <article class="service-card" data-reveal data-reveal-delay="160">
+            <div class="service-card__ic">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><path d="M4 14c0-4 3.5-8 8-8s8 4 8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M4 14h16M8 14v4M12 14v5M16 14v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Tratamentos capilares</h3>
+            <p>Hidratação, reconstrução e nutrição profunda para devolver brilho e força.</p>
+            <span class="service-card__price">desde €30</span>
+          </article>
+
+          <article class="service-card" data-reveal>
+            <div class="service-card__ic">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><path d="M6 4v9a6 6 0 0 0 12 0V4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 4v3M15 4v3M9 20h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Barbearia premium</h3>
+            <p>Corte, barba e cuidados masculinos com toalha quente e produtos de excelência.</p>
+            <span class="service-card__price">desde €20</span>
+          </article>
+
+          <article class="service-card" data-reveal data-reveal-delay="80">
+            <div class="service-card__ic">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Penteados & Noivas</h3>
+            <p>Penteados para casamentos e eventos especiais, com prova e apoio no grande dia.</p>
+            <span class="service-card__price">sob consulta</span>
+          </article>
+
+          <article class="service-card" data-reveal data-reveal-delay="160">
+            <div class="service-card__ic">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Consultoria de imagem</h3>
+            <p>Análise de visagismo e aconselhamento para valorizar a tua identidade única.</p>
+            <span class="service-card__price">desde €40</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BENEFÍCIOS ============ -->
+    <section class="section" id="beneficios">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow"><span class="eyebrow__dot"></span> Porquê o AURA</span>
+          <h2 class="section__title">Uma experiência acima da média</h2>
+          <p class="section__sub">Detalhes que fazem toda a diferença entre um serviço comum e uma experiência memorável.</p>
+        </header>
+
+        <div class="grid grid--benefits">
+          <article class="benefit" data-reveal>
+            <div class="benefit__ic">⚡</div>
+            <h3>Marcação em segundos</h3>
+            <p>Agenda online 24/7, com confirmação imediata e lembretes automáticos.</p>
+          </article>
+          <article class="benefit" data-reveal data-reveal-delay="60">
+            <div class="benefit__ic">💎</div>
+            <h3>Produtos premium</h3>
+            <p>Trabalhamos apenas com marcas de topo, seguras e sustentáveis.</p>
+          </article>
+          <article class="benefit" data-reveal data-reveal-delay="120">
+            <div class="benefit__ic">🎯</div>
+            <h3>Resultado garantido</h3>
+            <p>Se não ficares 100% satisfeito, ajustamos sem custos adicionais.</p>
+          </article>
+          <article class="benefit" data-reveal>
+            <div class="benefit__ic">🧑‍🎨</div>
+            <h3>Equipa especialista</h3>
+            <p>Profissionais em formação contínua com as tendências internacionais.</p>
+          </article>
+          <article class="benefit" data-reveal data-reveal-delay="60">
+            <div class="benefit__ic">☕</div>
+            <h3>Ambiente acolhedor</h3>
+            <p>Um espaço confortável com bebida de cortesia e música cuidada.</p>
+          </article>
+          <article class="benefit" data-reveal data-reveal-delay="120">
+            <div class="benefit__ic">🛡️</div>
+            <h3>Higiene rigorosa</h3>
+            <p>Protocolos de limpeza e esterilização em todos os utensílios.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GALERIA ============ -->
+    <section class="section section--alt" id="galeria">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow"><span class="eyebrow__dot"></span> Galeria</span>
+          <h2 class="section__title">Transformações que falam por si</h2>
+          <p class="section__sub">Uma amostra do trabalho da nossa equipa. <em>Substitua estes espaços pelas fotos reais do seu estúdio.</em></p>
+        </header>
+
+        <div class="gallery">
+          <figure class="gallery__item gallery__item--tall g-1" data-reveal><span class="gallery__ic">✂️</span><figcaption>Corte & Styling</figcaption></figure>
+          <figure class="gallery__item g-2" data-reveal data-reveal-delay="60"><span class="gallery__ic">🎨</span><figcaption>Coloração</figcaption></figure>
+          <figure class="gallery__item g-3" data-reveal data-reveal-delay="120"><span class="gallery__ic">💇‍♀️</span><figcaption>Mechas</figcaption></figure>
+          <figure class="gallery__item gallery__item--wide g-4" data-reveal><span class="gallery__ic">🧔</span><figcaption>Barbearia</figcaption></figure>
+          <figure class="gallery__item g-5" data-reveal data-reveal-delay="60"><span class="gallery__ic">👰</span><figcaption>Penteados</figcaption></figure>
+          <figure class="gallery__item g-6" data-reveal data-reveal-delay="120"><span class="gallery__ic">💆</span><figcaption>Tratamentos</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DEPOIMENTOS ============ -->
+    <section class="section" id="depoimentos">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow"><span class="eyebrow__dot"></span> Depoimentos</span>
+          <h2 class="section__title">O que dizem os nossos clientes</h2>
+        </header>
+
+        <div class="testimonials" data-reveal>
+          <div class="testimonials__viewport">
+            <ul class="testimonials__track" id="testimonialTrack">
+              <li class="testimonial">
+                <div class="stars">★★★★★</div>
+                <blockquote>“Saí completamente renovada. A atenção ao detalhe e o cuidado com o meu cabelo fizeram toda a diferença. Já é o meu sítio de eleição.”</blockquote>
+                <div class="testimonial__author"><span class="avatar" aria-hidden="true">MC</span><div><strong>Maria Carvalho</strong><span>Coloração & Corte</span></div></div>
+              </li>
+              <li class="testimonial">
+                <div class="stars">★★★★★</div>
+                <blockquote>“Profissionalismo do início ao fim. Marquei online em segundos e fui atendido à hora certa. O melhor corte que já tive.”</blockquote>
+                <div class="testimonial__author"><span class="avatar" aria-hidden="true">JP</span><div><strong>João Pereira</strong><span>Barbearia premium</span></div></div>
+              </li>
+              <li class="testimonial">
+                <div class="stars">★★★★★</div>
+                <blockquote>“Ambiente lindíssimo, equipa simpática e um resultado que superou as expectativas. Recomendo de olhos fechados.”</blockquote>
+                <div class="testimonial__author"><span class="avatar" aria-hidden="true">SR</span><div><strong>Sofia Ribeiro</strong><span>Penteado de noiva</span></div></div>
+              </li>
+              <li class="testimonial">
+                <div class="stars">★★★★★</div>
+                <blockquote>“Fiz um tratamento de reconstrução e o meu cabelo ficou irreconhecível, com um brilho incrível. Voltarei sem dúvida.”</blockquote>
+                <div class="testimonial__author"><span class="avatar" aria-hidden="true">AF</span><div><strong>Ana Fonseca</strong><span>Tratamento capilar</span></div></div>
+              </li>
+            </ul>
+          </div>
+          <div class="testimonials__controls">
+            <button class="tctrl" id="tPrev" aria-label="Depoimento anterior">‹</button>
+            <div class="testimonials__dots" id="tDots" role="tablist" aria-label="Selecionar depoimento"></div>
+            <button class="tctrl" id="tNext" aria-label="Próximo depoimento">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PLANOS ============ -->
+    <section class="section section--alt" id="planos">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow"><span class="eyebrow__dot"></span> Planos</span>
+          <h2 class="section__title">Cuidado contínuo, preço inteligente</h2>
+          <p class="section__sub">Assinaturas mensais para quem quer manter o visual sempre impecável, com vantagens exclusivas.</p>
+        </header>
+
+        <div class="grid grid--plans">
+          <article class="plan" data-reveal>
+            <h3 class="plan__name">Essencial</h3>
+            <p class="plan__desc">O básico bem feito, todos os meses.</p>
+            <p class="plan__price"><span class="plan__cur">€</span>29<span class="plan__per">/mês</span></p>
+            <ul class="plan__feats">
+              <li><span class="check">✓</span> 1 corte por mês</li>
+              <li><span class="check">✓</span> Lavagem + finalização</li>
+              <li><span class="check">✓</span> 10% em produtos</li>
+              <li class="is-off">Tratamento capilar</li>
+              <li class="is-off">Prioridade na agenda</li>
+            </ul>
+            <a href="#contato" class="btn btn--ghost btn--block">Escolher plano</a>
+          </article>
+
+          <article class="plan plan--featured" data-reveal data-reveal-delay="80">
+            <span class="plan__tag">Mais popular</span>
+            <h3 class="plan__name">Premium</h3>
+            <p class="plan__desc">Para quem não abre mão do melhor.</p>
+            <p class="plan__price"><span class="plan__cur">€</span>59<span class="plan__per">/mês</span></p>
+            <ul class="plan__feats">
+              <li><span class="check">✓</span> 2 cortes por mês</li>
+              <li><span class="check">✓</span> Lavagem + finalização</li>
+              <li><span class="check">✓</span> 1 tratamento capilar</li>
+              <li><span class="check">✓</span> 15% em produtos</li>
+              <li><span class="check">✓</span> Prioridade na agenda</li>
+            </ul>
+            <a href="#contato" class="btn btn--primary btn--block">Escolher plano</a>
+          </article>
+
+          <article class="plan" data-reveal data-reveal-delay="160">
+            <h3 class="plan__name">Signature</h3>
+            <p class="plan__desc">A experiência AURA sem limites.</p>
+            <p class="plan__price"><span class="plan__cur">€</span>99<span class="plan__per">/mês</span></p>
+            <ul class="plan__feats">
+              <li><span class="check">✓</span> Cortes ilimitados</li>
+              <li><span class="check">✓</span> Coloração incluída</li>
+              <li><span class="check">✓</span> 2 tratamentos capilares</li>
+              <li><span class="check">✓</span> 20% em produtos</li>
+              <li><span class="check">✓</span> Consultoria de imagem</li>
+            </ul>
+            <a href="#contato" class="btn btn--ghost btn--block">Escolher plano</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="section" id="contato">
+      <div class="container contact">
+        <div class="contact__info" data-reveal>
+          <span class="eyebrow"><span class="eyebrow__dot"></span> Contacto</span>
+          <h2 class="section__title">Vamos marcar o teu momento</h2>
+          <p class="section__sub">Preenche o formulário e entraremos em contacto para confirmar a tua marcação. Ou fala connosco diretamente.</p>
+
+          <ul class="contact__list">
+            <li>
+              <span class="contact__ic">📍</span>
+              <div><strong>Morada</strong><span>Av. da Liberdade, 100 · Lisboa</span></div>
+            </li>
+            <li>
+              <span class="contact__ic">📞</span>
+              <div><strong>Telefone</strong><a href="tel:+351900000000">+351 900 000 000</a></div>
+            </li>
+            <li>
+              <span class="contact__ic">✉️</span>
+              <div><strong>Email</strong><a href="mailto:ola@aurastudio.example">ola@aurastudio.example</a></div>
+            </li>
+            <li>
+              <span class="contact__ic">🕑</span>
+              <div><strong>Horário</strong><span>Ter–Sex 09h–20h · Sáb 09h–18h</span></div>
+            </li>
+          </ul>
+
+          <div class="contact__social">
+            <a href="#" aria-label="Instagram" class="soc"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+            <a href="#" aria-label="Facebook" class="soc"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M14 8h2V5h-2c-2 0-3 1.3-3 3v2H9v3h2v6h3v-6h2l.5-3H14V8.5c0-.3.2-.5.5-.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></a>
+            <a href="#" aria-label="TikTok" class="soc"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M14 4c.4 2.4 2 4 4.5 4.2M14 4v10.5a3.5 3.5 0 1 1-3-3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="contact__form-wrap" data-reveal data-reveal-delay="120">
+          <form class="form glass-card" id="contactForm" novalidate>
+            <div class="field">
+              <label for="cf-name">Nome completo</label>
+              <input type="text" id="cf-name" name="name" placeholder="O teu nome" required autocomplete="name">
+              <small class="field__error" data-error-for="cf-name"></small>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="cf-phone">Telemóvel</label>
+                <input type="tel" id="cf-phone" name="phone" placeholder="+351 …" required autocomplete="tel">
+                <small class="field__error" data-error-for="cf-phone"></small>
+              </div>
+              <div class="field">
+                <label for="cf-email">Email</label>
+                <input type="email" id="cf-email" name="email" placeholder="tu@email.com" required autocomplete="email">
+                <small class="field__error" data-error-for="cf-email"></small>
+              </div>
+            </div>
+            <div class="field">
+              <label for="cf-service">Serviço pretendido</label>
+              <select id="cf-service" name="service">
+                <option value="Corte de autor">Corte de autor</option>
+                <option value="Coloração & Mechas">Coloração & Mechas</option>
+                <option value="Tratamento capilar">Tratamento capilar</option>
+                <option value="Barbearia premium">Barbearia premium</option>
+                <option value="Penteado / Noiva">Penteado / Noiva</option>
+                <option value="Consultoria de imagem">Consultoria de imagem</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="cf-msg">Mensagem</label>
+              <textarea id="cf-msg" name="message" rows="4" placeholder="Conta-nos o que procuras e a tua disponibilidade…"></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--block btn--lg">Enviar pedido de marcação</button>
+            <p class="form__note">Ao enviar, concordas em ser contactado sobre a tua marcação.</p>
+            <p class="form__success" id="formSuccess" role="status" hidden>✓ Pedido enviado! Entraremos em contacto muito em breve.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA BAND ============ -->
+    <section class="cta-band" data-reveal>
+      <div class="container cta-band__inner">
+        <h2>Pronto para uma nova versão de ti?</h2>
+        <p>Marca já o teu horário e vive a experiência AURA.</p>
+        <a href="#contato" class="btn btn--light btn--lg">Marcar horário</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__col footer__col--brand">
+        <a class="brand" href="#hero" aria-label="AURA Studio">
+          <img src="assets/img/logo.svg" alt="" width="38" height="38" class="brand__mark">
+          <span class="brand__name">AURA<span class="brand__dot">.</span></span>
+        </a>
+        <p>Cabeleireiro & estúdio de beleza premium. Onde o teu estilo ganha vida.</p>
+        <div class="contact__social">
+          <a href="#" aria-label="Instagram" class="soc"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="Facebook" class="soc"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M14 8h2V5h-2c-2 0-3 1.3-3 3v2H9v3h2v6h3v-6h2l.5-3H14V8.5c0-.3.2-.5.5-.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></a>
+          <a href="#" aria-label="TikTok" class="soc"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M14 4c.4 2.4 2 4 4.5 4.2M14 4v10.5a3.5 3.5 0 1 1-3-3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#beneficios">Benefícios</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#planos">Planos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#servicos">Corte de autor</a></li>
+          <li><a href="#servicos">Coloração & Mechas</a></li>
+          <li><a href="#servicos">Tratamentos</a></li>
+          <li><a href="#servicos">Barbearia</a></li>
+          <li><a href="#servicos">Penteados</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Contacto</h4>
+        <ul class="footer__contact">
+          <li>Av. da Liberdade, 100 · Lisboa</li>
+          <li><a href="tel:+351900000000">+351 900 000 000</a></li>
+          <li><a href="mailto:ola@aurastudio.example">ola@aurastudio.example</a></li>
+          <li>Ter–Sex 09h–20h · Sáb 09h–18h</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>© <span id="year">2025</span> AURA Studio. Todos os direitos reservados.</p>
+        <p class="footer__credit">Modelo desenvolvido para apresentação · design original inspirado na linguagem visual Menuz.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ FLOATING WHATSAPP ============ -->
+  <a class="wa-float" href="https://wa.me/351900000000?text=Ol%C3%A1!%20Gostaria%20de%20marcar%20um%20hor%C3%A1rio%20no%20AURA%20Studio."
+     target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 32 32" width="30" height="30" fill="currentColor" aria-hidden="true">
+      <path d="M16 3C9 3 3.5 8.5 3.5 15.5c0 2.4.7 4.6 1.9 6.5L4 29l7.2-1.9c1.8 1 3.8 1.5 5.9 1.5 6.9 0 12.5-5.6 12.5-12.5S22.9 3 16 3Zm0 22.7c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-4.3 1.1 1.1-4.2-.2-.4a10 10 0 0 1-1.6-5.5C5.3 9.9 10 5.3 16 5.3s10.7 4.6 10.7 10.2S22 25.7 16 25.7Zm5.9-7.6c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2c-.2.3-.8 1-1 1.2s-.4.2-.7.1c-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.3s0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5s0-.4 0-.6c-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.2 3.3 5.3 4.6.7.3 1.3.5 1.7.7.7.2 1.4.2 1.9.1.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5-.1-.1-.3-.2-.6-.3Z"/>
+    </svg>
+    <span class="wa-float__pulse" aria-hidden="true"></span>
+  </a>
+
+  <!-- ============ BACK TO TOP ============ -->
+  <button class="to-top" id="toTop" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

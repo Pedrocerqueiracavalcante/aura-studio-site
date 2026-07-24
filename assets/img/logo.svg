@@ -1,0 +1,16 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AURA Studio">
+  <defs>
+    <linearGradient id="auraGrad" x1="6" y1="10" x2="58" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E24BD6"/>
+      <stop offset="0.5" stop-color="#8B3FF0"/>
+      <stop offset="1" stop-color="#5B45E8"/>
+    </linearGradient>
+  </defs>
+  <!-- Squircle base -->
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#auraGrad)"/>
+  <!-- Abstract monogram "A" -->
+  <path d="M20 45 L32 19 L44 45" stroke="#FFFFFF" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M25.5 35.5 H38.5" stroke="#FFFFFF" stroke-width="4.4" stroke-linecap="round"/>
+  <!-- Spark accent -->
+  <circle cx="46" cy="20" r="2.6" fill="#FFFFFF" fill-opacity="0.9"/>
+</svg>
