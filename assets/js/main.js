@@ -1,5 +1,5 @@
 /* =====================================================================
-   AURA Studio — Interatividade
+   Barbearia Menuz — Interatividade
    Vanilla JS · sem dependências
    ===================================================================== */
 (function () {
@@ -206,6 +206,97 @@
       }, 1100);
     });
   }
+
+  /* ---------- Carrossel de cortes em destaque (hero) ---------- */
+  const ccTrack = $("#ccTrack");
+  if (ccTrack) {
+    const slides = $$(".cc-slide", ccTrack);
+    const dotsWrap = $("#ccDots");
+    let idx = 0, ccTimer = null;
+
+    slides.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-label", "Corte " + (i + 1));
+      if (i === 0) b.classList.add("is-active");
+      b.addEventListener("click", () => { ccGo(i); ccRestart(); });
+      dotsWrap.appendChild(b);
+    });
+    const ccDots = $$("button", dotsWrap);
+
+    const ccGo = (i) => {
+      idx = (i + slides.length) % slides.length;
+      ccTrack.style.transform = `translateX(-${idx * 100}%)`;
+      ccDots.forEach((d, di) => d.classList.toggle("is-active", di === idx));
+    };
+    const ccNext = () => ccGo(idx + 1);
+    const ccPrev = () => ccGo(idx - 1);
+    $("#ccNext")?.addEventListener("click", () => { ccNext(); ccRestart(); });
+    $("#ccPrev")?.addEventListener("click", () => { ccPrev(); ccRestart(); });
+
+    const ccStart = () => { if (!reduceMotion) ccTimer = setInterval(ccNext, 4500); };
+    const ccStop = () => { if (ccTimer) clearInterval(ccTimer); };
+    const ccRestart = () => { ccStop(); ccStart(); };
+
+    const vp = ccTrack.closest(".cc-viewport") || ccTrack.parentElement;
+    vp.addEventListener("mouseenter", ccStop);
+    vp.addEventListener("mouseleave", ccStart);
+    let ccSx = 0;
+    vp.addEventListener("touchstart", (e) => { ccSx = e.touches[0].clientX; ccStop(); }, { passive: true });
+    vp.addEventListener("touchend", (e) => { const dx = e.changedTouches[0].clientX - ccSx; if (Math.abs(dx) > 40) (dx < 0 ? ccNext() : ccPrev()); ccStart(); }, { passive: true });
+    ccStart();
+  }
+
+  /* ---------- Filtro de cortes por categoria ---------- */
+  const cutsFilter = $("#cutsFilter");
+  const cutsGrid = $("#cutsGrid");
+  if (cutsFilter && cutsGrid) {
+    const cards = $$(".cut", cutsGrid);
+    cutsFilter.addEventListener("click", (e) => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
+      $$(".chip", cutsFilter).forEach((c) => {
+        const on = c === btn;
+        c.classList.toggle("is-active", on);
+        c.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      const f = btn.getAttribute("data-filter");
+      cards.forEach((card) => {
+        card.classList.toggle("is-hidden", !(f === "all" || card.getAttribute("data-cat") === f));
+      });
+    });
+  }
+
+  /* ---------- Seleção de corte → contacto + WhatsApp ---------- */
+  const WA_NUMBER = "351900000000";
+  const cutsSelected = $("#cutsSelected");
+  const formChosen = $("#formChosen");
+  const cfMsg = document.getElementById("cf-msg");
+  const waSend = $("#waSend");
+  const waFloat = $(".wa-float");
+
+  const selectCut = (name, cardEl) => {
+    $$(".cut.is-selected").forEach((c) => c.classList.remove("is-selected"));
+    if (cardEl) cardEl.classList.add("is-selected");
+
+    if (cutsSelected) { cutsSelected.hidden = false; cutsSelected.textContent = "✓ Corte selecionado: " + name + ". Continua para agendar."; }
+    if (formChosen) { formChosen.hidden = false; formChosen.textContent = "✂️ Corte escolhido: " + name; }
+    if (cfMsg) cfMsg.value = "Olá! Quero agendar o corte: " + name + ".";
+
+    const href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Olá! Quero agendar o corte: " + name + " na Barbearia Menuz.")}`;
+    if (waSend) waSend.href = href;
+    if (waFloat) waFloat.href = href;
+
+    document.getElementById("contato")?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  };
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".cut__select");
+    if (!btn) return;
+    const name = btn.getAttribute("data-cut") || btn.closest(".cut")?.querySelector(".cut__name")?.textContent?.trim() || "Corte";
+    selectCut(name, btn.closest(".cut"));
+  });
 
   /* ---------- Back to top ---------- */
   const toTop = $("#toTop");

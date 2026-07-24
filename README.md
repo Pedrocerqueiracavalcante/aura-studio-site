@@ -1,10 +1,10 @@
-# AURA Studio — Modelo de Site para Cabeleireiro / Barbearia
+# Barbearia Menuz — Modelo de Site para Barbearia
 
-Site institucional **premium, responsivo e original**, criado como modelo comercial para revenda a clientes do setor de beleza (cabeleireiros, barbearias, estúdios).
+Site institucional **premium, responsivo e original** para barbearias, com **catálogo de cortes selecionável**: o cliente escolhe o corte pelo telemóvel antes de chegar e envia direto ao barbeiro pelo WhatsApp — reduzindo o tempo de espera e agilizando o atendimento.
 
-- **Estrutura / UX** inspirada em sites de agendamento do setor (referência: appbarber).
-- **Identidade visual** inspirada na linguagem da marca **Menuz** — gradiente violeta → magenta → índigo, fundo escuro sofisticado, tipografia geométrica moderna.
-- **100% original:** nenhum logotipo, imagem, texto ou ícone protegido foi copiado. O logotipo é um **conceito próprio** (monograma "A" em gradiente).
+- **Estrutura / UX** inspirada em sites de agendamento do setor (referência: appbarber) e no coverflow de destaques da **Menuz**.
+- **Identidade visual Menuz:** laranja como cor principal, branco/claro como secundária, sobre base escura elegante. Tipografia geométrica moderna.
+- **100% original:** logótipo é um conceito próprio (monograma "M" em gradiente laranja). Sem cópia de imagens, textos ou ícones de terceiros.
 
 ## Tecnologias
 
@@ -13,129 +13,98 @@ Site institucional **premium, responsivo e original**, criado como modelo comerc
 - **JavaScript** vanilla (sem dependências, sem build)
 - **Google Fonts** — Sora (títulos) + Inter (texto)
 
-> Sem etapa de build: basta abrir o `index.html` ou publicar a pasta em qualquer alojamento estático (Netlify, Vercel, GitHub Pages, cPanel, etc.).
+> Sem etapa de build: abra o `index.html` ou publique a pasta em qualquer alojamento estático.
 
 ## Estrutura de ficheiros
 
 ```
-Projeto Cabeleiro Menuz/
-├─ index.html              → marcação de todas as secções
+Barbearia Menuz/
+├─ index.html              → todas as secções
 ├─ assets/
-│  ├─ css/styles.css       → design system completo
-│  ├─ js/main.js           → nav, reveal, slider, form, contadores
+│  ├─ css/styles.css       → design system (paleta Menuz laranja/branco)
+│  ├─ js/main.js           → nav, carrossel, filtros, seleção de corte, form
 │  └─ img/
-│     ├─ logo.svg          → logótipo (conceito original)
-│     └─ favicon.svg       → ícone do separador
+│     ├─ logo.svg          → logótipo Menuz (conceito original, laranja)
+│     ├─ favicon.svg
+│     └─ cortes/           → (opcional) coloque aqui as fotos reais dos cortes
 └─ README.md
 ```
 
-## Secções incluídas
+## Secções
 
-Hero com CTA · Sobre · Serviços · Benefícios · Galeria · Depoimentos (carrossel) · Planos/Preços · Formulário de contacto (com validação) · Botão flutuante de WhatsApp · Rodapé completo · Botão "voltar ao topo".
+Hero com **carrossel de cortes em destaque** + CTA · **Catálogo de Cortes** (grelha filtrável + botão *Selecionar*) · Sobre · Serviços · Benefícios · Depoimentos · Planos · Formulário de contacto (com validação + envio por WhatsApp) · Botão flutuante de WhatsApp · Rodapé completo.
 
-## Como personalizar para cada cliente (rebrand rápido)
+### Como funciona a escolha do corte
+1. O cliente vê os modelos (Degradê, Fades, Undercut, Navalha, etc.).
+2. Toca em **Selecionar** no corte desejado.
+3. O site marca o corte, pré-preenche o formulário e o botão de WhatsApp com o nome do corte, e leva ao contacto.
+4. O cliente envia — e o barbeiro já sabe o que preparar.
+
+## Personalizar para cada cliente (rebrand rápido)
 
 ### 1. Cores
-Todas as cores estão centralizadas no topo de [`assets/css/styles.css`](assets/css/styles.css) em `:root`. Basta trocar três valores:
+Tudo centralizado no topo de [`assets/css/styles.css`](assets/css/styles.css) em `:root`:
 
 ```css
---magenta: #E24BD6;
---violet:  #8B3FF0;
---indigo:  #5B45E8;
+--brand:       #FF6A00;  /* laranja principal */
+--brand-light: #FF9A3D;  /* laranja claro (gradiente/realces) */
+--brand-deep:  #E8480A;  /* laranja profundo (gradiente) */
 ```
+Gradiente, botões, chips, ícones e realces atualizam automaticamente.
 
-O gradiente, botões, ícones e destaques atualizam automaticamente.
+### 2. Fotos reais dos cortes
+As imagens dos cortes são **placeholders em gradiente**. Para usar fotos reais (ideal proporção **4:5**, vertical):
 
-### 2. Nome, contactos e textos
-- Nome da marca: procure por `AURA` no `index.html` (cabeçalho, rodapé, título).
-- Telefone / email / morada / horário: secção `#contato`, o rodapé e o bloco `application/ld+json` (SEO).
-- **WhatsApp:** no `index.html`, atualize o número em `href="https://wa.me/351900000000..."` (formato internacional, sem `+` nem espaços).
+- Coloque as imagens em `assets/img/cortes/` (ex.: `degrade.jpg`).
+- Em [`assets/css/styles.css`](assets/css/styles.css), troque o `background-image` da classe correspondente. Exemplo:
+  ```css
+  .cp-degrade { background-image: url("../img/cortes/degrade.jpg"); }
+  ```
+  Classes: `.cp-degrade .cp-social .cp-americano .cp-buzz .cp-lowfade .cp-midfade .cp-highfade .cp-taper .cp-mullet .cp-undercut .cp-navalha`
 
-### 3. Logótipo
-Substitua [`assets/img/logo.svg`](assets/img/logo.svg) e `favicon.svg` pelo logótipo do cliente (SVG recomendado). O atual é um conceito próprio, livre de direitos.
+### 3. Nome, contactos e WhatsApp
+- Marca: procure por `Menuz` no `index.html`.
+- **WhatsApp:** atualize o número `351900000000` no `index.html` (WhatsApp flutuante + botão do formulário) e em `assets/js/main.js` (`WA_NUMBER`).
+- Telefone / email / morada / horário: secção `#contato`, rodapé e bloco `application/ld+json`.
 
-### 4. Imagens reais (Galeria / Sobre)
-Os blocos da galeria e da secção "Sobre" usam **placeholders em gradiente com ícones**, prontos a serem trocados por fotografias reais do cliente. Para usar fotos:
-- No CSS, substitua o `background` de `.g-1 … .g-6` (e `.media-frame__img--a/b`) por `background-image: url("...")` com `background-size: cover;`.
+### 4. Logótipo
+Substitua [`assets/img/logo.svg`](assets/img/logo.svg) e `favicon.svg` pelo logótipo oficial do cliente (SVG recomendado).
 
 ### 5. Formulário de contacto
-O envio está **simulado** em [`assets/js/main.js`](assets/js/main.js). Para receber os pedidos, integre um serviço:
-- **Formspree** / **Web3Forms** — apenas alterar o `action`/`fetch`.
-- **EmailJS** — envio direto do browser.
-- Ou uma API própria.
-
-## Boas práticas já implementadas
-
-- **SEO:** `<title>`/`description`, Open Graph, Twitter Card, `canonical`, dados estruturados JSON-LD.
-- **Acessibilidade:** HTML semântico, `skip link`, `aria-*`, foco visível, contraste, suporte a `prefers-reduced-motion`.
-- **Performance:** sem frameworks, CSS/JS leves, `defer`, `preconnect` de fontes, animações via `transform`/`opacity`.
-- **Responsividade:** desktop, tablet e telemóvel (menu lateral em mobile).
-
-## Notas legais
-
-Modelo desenvolvido de forma **original**. A referência de estrutura e a linguagem visual (paleta/estilo) servem apenas de **inspiração** — nenhum ativo protegido por direitos de autor da Menuz ou de terceiros foi reproduzido. Substitua os textos/placeholder de demonstração pelos dados reais do cliente antes de publicar.
-
----
+O envio por formulário está **simulado** em [`assets/js/main.js`](assets/js/main.js). Para receber pedidos: integrar **Formspree**, **Web3Forms** ou **EmailJS**. (O envio por **WhatsApp** já funciona sem backend.)
 
 ## 🚀 Executar localmente
 
-O projeto é **estático** (sem build). Há duas formas:
-
-**A) Abrir diretamente**
-Basta abrir o ficheiro `index.html` no navegador (duplo clique).
-
-**B) Servidor local (recomendado — evita restrições de `file://`)**
 ```bash
-# Com Node instalado
-npx serve .
-# ou
-npx http-server -p 8080
-
-# Ou com Python
-python -m http.server 8080
-```
-Depois abra `http://localhost:8080`.
-
-## 👥 Colaboração (fluxo de trabalho Git)
-
-Repositório partilhado — ambos os colaboradores têm permissão para clonar, criar branches, fazer commit e merge.
-
-**1. Clonar o projeto**
-```bash
-git clone https://github.com/<owner>/<repositorio>.git
-cd <repositorio>
+# Servidor local (recomendado)
+npx serve .            # ou: python -m http.server 8080
+# abrir http://localhost:8080  (ou simplesmente abrir index.html)
 ```
 
-**2. Criar uma branch para a sua alteração**
+## 👥 Colaboração (fluxo Git)
+
 ```bash
+git clone https://github.com/Pedrocerqueiracavalcante/aura-studio-site.git
+cd aura-studio-site
 git checkout -b feature/minha-alteracao
-```
-
-**3. Fazer commit e enviar**
-```bash
-git add .
-git commit -m "feat: descrição clara da alteração"
+git add . && git commit -m "feat: descrição da alteração"
 git push -u origin feature/minha-alteracao
+# abrir Pull Request no GitHub
 ```
-
-**4. Abrir um Pull Request** no GitHub e pedir revisão ao outro colaborador antes do merge para `main`.
-
-> Boa prática: nunca trabalhar diretamente na `main`. Use branches + Pull Requests para manter o histórico limpo e evitar conflitos.
-
-### Convenção de mensagens de commit
-- `feat:` nova funcionalidade
-- `fix:` correção
-- `style:` ajustes visuais/CSS
-- `docs:` documentação
-- `chore:` manutenção/configuração
+Convenção de commits: `feat:` `fix:` `style:` `docs:` `chore:`. Trabalhe sempre em branch + PR, nunca direto na `main`.
 
 ## 🌐 Deploy (GitHub Pages)
 
-O site está preparado para **GitHub Pages** com caminhos relativos (funciona em subpasta `usuario.github.io/repo/`). O ficheiro `.nojekyll` evita o processamento Jekyll.
-
-Para (re)publicar após alterações na `main`, o Pages atualiza automaticamente. Para outros serviços:
+Preparado para GitHub Pages (caminhos relativos + `.nojekyll`). O push para `main` atualiza o site automaticamente.
 - **Netlify / Vercel:** importar o repositório, sem comando de build, pasta de publicação = raiz (`.`).
 
-## 📄 Licença
+## Boas práticas implementadas
 
-Projeto proprietário destinado a revenda/personalização para clientes. Uso e distribuição sob acordo com o autor.
+- **SEO:** `title`/`description`, Open Graph, Twitter Card, `canonical`, JSON-LD.
+- **Acessibilidade:** HTML semântico, `skip link`, `aria-*`, foco visível, `prefers-reduced-motion`.
+- **Performance:** sem frameworks, CSS/JS leves, `defer`, `preconnect`, animações via `transform`/`opacity`.
+- **Responsividade:** desktop, tablet e telemóvel (prioridade mobile; menu lateral).
+
+## Licença
+
+Projeto proprietário destinado a revenda/personalização para clientes. Uso e distribuição sob acordo com o autor. Identidade visual Menuz (laranja & branco).
