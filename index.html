@@ -16,17 +16,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-20">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260724-21">
 </head>
 <body class="landing-page premium-barber-page">
   <a class="skip-link" href="#main">Ir para o conteúdo</a>
 
   <header class="site-header premium-header" data-header>
     <div class="container premium-header__inner">
-      <a class="brand" href="#main" aria-label="Menuz Barber">
-        <img class="brand__mark" src="assets/img/logo.svg" alt="" width="44" height="44">
-        <span class="brand__name">Menuz<span class="brand__dot">.</span></span>
+      <a class="ticket-brand" href="#main" aria-label="Menuz">
+        <span>menuz</span>
+        <small>PT</small>
       </a>
+
+      <form class="ticket-search" role="search" action="#contato">
+        <label class="sr-only" for="ticketSearch">Pesquisar</label>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="m21 21-4.35-4.35"></path>
+          <circle cx="11" cy="11" r="7"></circle>
+        </svg>
+        <input id="ticketSearch" name="q" type="search" placeholder="Pesquisa por artista, evento ou local">
+        <button type="submit">Pesquisar</button>
+      </form>
 
       <nav class="nav premium-nav" id="primaryNav" aria-label="Navegação principal">
         <ul class="nav__list">
@@ -36,8 +46,28 @@
       </nav>
 
       <div class="premium-header__actions">
-        <a class="btn btn--ghost btn--sm" href="login.html">Entrar</a>
-        <a class="btn btn--primary btn--sm" href="#contato">Agendar</a>
+        <a class="ticket-pill ticket-pill--wide" href="dashboard.html" aria-label="Meus bilhetes">
+          <span aria-hidden="true">▦</span>
+          <strong>Meus Bilhetes</strong>
+        </a>
+        <div class="ticket-langs" aria-label="Idioma">
+          <span>🇵🇹</span>
+          <span>🇬🇧</span>
+          <span>🇫🇷</span>
+        </div>
+        <a class="ticket-icon" href="barbearia-menuz.html" aria-label="Carteira">▢</a>
+        <a class="ticket-icon" href="#contato" aria-label="Notificações">⌁</a>
+        <details class="ticket-user">
+          <summary>
+            <span class="ticket-help">?</span>
+            <span><strong>Visitante</strong><small>Clique para entrar</small></span>
+          </summary>
+          <div class="ticket-user__menu">
+            <a href="login.html">Entrar</a>
+            <a href="login.html?mode=signup">Criar conta</a>
+            <a href="#contato">Agendar</a>
+          </div>
+        </details>
         <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="primaryNav">
           <span></span><span></span><span></span>
         </button>
@@ -91,6 +121,6 @@
   </footer>
 
   <button class="to-top" id="toTop" type="button" aria-label="Voltar ao topo">↑</button>
-  <script src="assets/js/main.js?v=20260724-20" defer></script>
+  <script src="assets/js/main.js?v=20260724-21" defer></script>
 </body>
 </html>
