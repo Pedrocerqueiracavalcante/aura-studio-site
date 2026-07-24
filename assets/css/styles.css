@@ -14,17 +14,17 @@
   --grad-soft: linear-gradient(135deg, rgba(255,138,43,.20), rgba(255,106,0,.15));
 
   /* Superfícies escuras (base neutra quente) */
-  --bg:       #0C0A08;
-  --bg-2:     #16100A;
-  --surface:  rgba(255,255,255,.035);
-  --surface-2:rgba(255,255,255,.06);
-  --border:   rgba(255,255,255,.09);
-  --border-2: rgba(255,255,255,.14);
+  --bg:       #FFFFFF;
+  --bg-2:     #F8F9FA;
+  --surface:  rgba(255,255,255,.74);
+  --surface-2:rgba(255,255,255,.92);
+  --border:   rgba(16,24,40,.09);
+  --border-2: rgba(16,24,40,.14);
 
   /* Texto */
-  --text:  #FBF7F2;
-  --muted: #B7ADA2;
-  --dim:   #857A6E;
+  --text:  #15171D;
+  --muted: #667085;
+  --dim:   #98A2B3;
 
   /* Tipografia */
   --font-display: "Sora", system-ui, sans-serif;
@@ -37,8 +37,8 @@
   --radius-pill: 999px;
 
   /* Efeitos */
-  --shadow: 0 24px 60px -20px rgba(0,0,0,.55);
-  --shadow-glow: 0 20px 60px -18px rgba(255,106,0,.5);
+  --shadow: 0 24px 70px -32px rgba(16,24,40,.28);
+  --shadow-glow: 0 20px 60px -24px rgba(255,106,0,.38);
   --ring: 0 0 0 1px var(--border);
 
   /* Layout */
@@ -55,7 +55,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  background: #090705;
+  background: #FFFFFF;
 }
 body {
   font-family: var(--font-body);
@@ -80,19 +80,19 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.12; font-weigh
 body::before {
   content: "";
   position: fixed;
-  inset: -14%;
+  inset: -10%;
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(42rem 34rem at 6% 4%, rgba(255,106,0,.46), rgba(255,106,0,.22) 34%, transparent 72%),
-    radial-gradient(34rem 28rem at 92% 9%, rgba(255,154,61,.26), rgba(255,106,0,.10) 44%, transparent 76%),
-    radial-gradient(36rem 30rem at 78% 82%, rgba(232,72,10,.18), transparent 72%),
-    radial-gradient(28rem 24rem at 22% 78%, rgba(255,195,125,.10), transparent 76%),
-    conic-gradient(from 220deg at 50% 0%, rgba(255,106,0,.18), transparent 24%, rgba(255,154,61,.10) 42%, transparent 66%, rgba(232,72,10,.14), rgba(255,106,0,.18)),
-    linear-gradient(135deg, #1a0b03 0%, #0b0806 36%, #080706 64%, #120904 100%);
-  filter: saturate(112%);
-  transform: translate3d(0, 0, 0) scale(1.02);
-  animation: menuzAuraDrift 32s var(--ease) infinite alternate;
+    radial-gradient(38rem 26rem at -4% 6%, rgba(255,106,0,.16), rgba(255,154,61,.08) 36%, transparent 74%),
+    radial-gradient(34rem 24rem at 104% 2%, rgba(255,154,61,.13), rgba(255,106,0,.055) 42%, transparent 78%),
+    radial-gradient(30rem 22rem at 88% 86%, rgba(232,72,10,.08), transparent 76%),
+    radial-gradient(26rem 20rem at 16% 78%, rgba(242,244,247,.88), transparent 72%),
+    conic-gradient(from 210deg at 50% -8%, rgba(255,255,255,.95), rgba(248,249,250,.82), rgba(255,106,0,.045), rgba(245,245,245,.92), rgba(255,255,255,.98)),
+    linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 34%, #FFFFFF 62%, #F2F4F7 100%);
+  filter: saturate(108%);
+  transform: translate3d(0, 0, 0) scale(1.01);
+  animation: menuzAuraDrift 40s var(--ease) infinite alternate;
 }
 /* Textura sutil de grão */
 body::after {
@@ -101,23 +101,23 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: .78;
+  opacity: .9;
   background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(115deg, transparent 0 43%, rgba(255,106,0,.055) 43.4% 43.8%, transparent 44.2% 58%, rgba(255,255,255,.035) 58.4% 58.7%, transparent 59%),
-    radial-gradient(circle at 12% 18%, rgba(255,255,255,.10) 0 1px, transparent 1.8px),
-    radial-gradient(circle at 82% 24%, rgba(255,154,61,.12) 0 1px, transparent 1.8px),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.032'/%3E%3C/svg%3E");
-  background-size: 58px 58px, 58px 58px, 100% 100%, 180px 180px, 220px 220px, 140px 140px;
+    linear-gradient(rgba(16,24,40,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16,24,40,.035) 1px, transparent 1px),
+    linear-gradient(115deg, transparent 0 44%, rgba(255,106,0,.045) 44.35% 44.65%, transparent 45% 58%, rgba(16,24,40,.026) 58.4% 58.7%, transparent 59%),
+    radial-gradient(circle at 12% 18%, rgba(255,106,0,.10) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 82% 24%, rgba(16,24,40,.085) 0 1px, transparent 1.8px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.022'/%3E%3C/svg%3E");
+  background-size: 64px 64px, 64px 64px, 100% 100%, 180px 180px, 220px 220px, 140px 140px;
   background-position: center, center, center, 0 0, 40px 70px, center;
-  mask-image: radial-gradient(85% 72% at 50% 22%, #000 0%, rgba(0,0,0,.88) 48%, rgba(0,0,0,.32) 78%, transparent 100%);
-  -webkit-mask-image: radial-gradient(85% 72% at 50% 22%, #000 0%, rgba(0,0,0,.88) 48%, rgba(0,0,0,.32) 78%, transparent 100%);
+  mask-image: radial-gradient(92% 76% at 50% 20%, #000 0%, rgba(0,0,0,.78) 50%, rgba(0,0,0,.22) 80%, transparent 100%);
+  -webkit-mask-image: radial-gradient(92% 76% at 50% 20%, #000 0%, rgba(0,0,0,.78) 50%, rgba(0,0,0,.22) 80%, transparent 100%);
 }
 
 @keyframes menuzAuraDrift {
-  0% { transform: translate3d(-1.4%, -1%, 0) scale(1.02); }
-  100% { transform: translate3d(1.6%, 1.2%, 0) scale(1.06); }
+  0% { transform: translate3d(-.9%, -.7%, 0) scale(1.01); }
+  100% { transform: translate3d(1%, .8%, 0) scale(1.035); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -192,7 +192,7 @@ body::after {
   padding-block: 1.1rem;
 }
 .site-header[data-scrolled] {
-  background: rgba(11,9,18,.72);
+  background: rgba(255,255,255,.82);
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   box-shadow: 0 1px 0 var(--border);
@@ -269,10 +269,10 @@ body::after {
   align-items: center;
   gap: .6rem;
   height: 48px;
-  border: 1px solid rgba(255,255,255,.14);
+  border: 1px solid rgba(16,24,40,.10);
   border-radius: 999px;
-  background: rgba(255,255,255,.08);
-  box-shadow: 0 18px 50px -34px rgba(0,0,0,.85);
+  background: rgba(255,255,255,.82);
+  box-shadow: 0 18px 50px -36px rgba(16,24,40,.34);
   padding: .35rem .35rem .35rem 1rem;
   backdrop-filter: blur(14px);
 }
@@ -297,10 +297,10 @@ body::after {
   border: 0;
   outline: 0;
   background: transparent;
-  color: #fff;
+  color: var(--text);
 }
 .menuz-search input::placeholder {
-  color: rgba(251,247,242,.58);
+  color: rgba(102,112,133,.76);
 }
 .menuz-search button {
   height: 36px;
@@ -330,10 +330,10 @@ body::after {
   display: grid;
   place-items: center;
   flex: none;
-  border: 1px solid rgba(255,255,255,.14);
+  border: 1px solid rgba(16,24,40,.10);
   border-radius: 50%;
-  background: rgba(255,255,255,.07);
-  color: #fff;
+  background: rgba(255,255,255,.80);
+  color: var(--text);
   transition: transform .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
 }
 .menuz-icon-btn:hover,
@@ -364,9 +364,9 @@ body::after {
   align-items: center;
   gap: .65rem;
   min-width: 176px;
-  border: 1px solid rgba(255,255,255,.14);
+  border: 1px solid rgba(16,24,40,.10);
   border-radius: 999px;
-  background: rgba(255,255,255,.08);
+  background: rgba(255,255,255,.84);
   padding: .35rem .75rem .35rem .35rem;
   cursor: pointer;
   list-style: none;
@@ -407,7 +407,7 @@ body::after {
   min-width: 220px;
   border: 1px solid var(--border);
   border-radius: 14px;
-  background: rgba(18,15,14,.96);
+  background: rgba(255,255,255,.96);
   box-shadow: var(--shadow);
   padding: .55rem;
   backdrop-filter: blur(16px);
@@ -420,7 +420,7 @@ body::after {
 }
 .menuz-user-dropdown a:hover {
   background: rgba(255,106,0,.16);
-  color: #fff;
+  color: var(--text);
 }
 
 /* ---------- Hero ---------- */
@@ -791,8 +791,8 @@ body::after {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    linear-gradient(rgba(16,24,40,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16,24,40,.035) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: linear-gradient(180deg, #000, transparent 88%);
   -webkit-mask-image: linear-gradient(180deg, #000, transparent 88%);
@@ -834,7 +834,7 @@ body::after {
 .lp-proof article {
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: rgba(255,255,255,.045);
+  background: rgba(255,255,255,.74);
   padding: .9rem;
 }
 .lp-proof strong {
@@ -852,7 +852,7 @@ body::after {
   position: relative;
   border: 1px solid var(--border-2);
   border-radius: 18px;
-  background: linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
+  background: linear-gradient(160deg, rgba(255,255,255,.96), rgba(248,249,250,.78));
   box-shadow: var(--shadow);
   padding: clamp(1rem, 3vw, 1.35rem);
   overflow: hidden;
@@ -874,7 +874,7 @@ body::after {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255,255,255,.22);
+  background: rgba(16,24,40,.16);
 }
 .lp-window-bar span:first-child { background: var(--brand); }
 .lp-dashboard-top,
@@ -897,7 +897,7 @@ body::after {
 .lp-dashboard-grid article {
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: rgba(0,0,0,.2);
+  background: rgba(255,255,255,.76);
   padding: 1rem;
 }
 .lp-dashboard-grid strong {
@@ -950,7 +950,7 @@ body::after {
   gap: .55rem;
   border: 1px solid var(--border);
   border-radius: 14px;
-  background: rgba(0,0,0,.22);
+  background: rgba(255,255,255,.78);
   padding: 1rem;
 }
 .lp-preview-list a,
@@ -973,8 +973,8 @@ body::after {
 .lp-demo-card {
   border: 1px solid var(--border);
   border-radius: 14px;
-  background: rgba(255,255,255,.045);
-  box-shadow: 0 18px 52px -34px rgba(0,0,0,.9);
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 18px 52px -34px rgba(16,24,40,.34);
 }
 .lp-steps article,
 .lp-benefits article,
@@ -1039,7 +1039,7 @@ body::after {
   border-radius: 10px;
   background:
     linear-gradient(135deg, rgba(255,106,0,.16), transparent),
-    rgba(0,0,0,.22);
+    rgba(255,255,255,.82);
 }
 .lp-demo-mini span {
   width: 62px;
@@ -1064,8 +1064,8 @@ body::after {
 .lp-features span {
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: rgba(255,255,255,.045);
-  color: #fff;
+  background: rgba(255,255,255,.78);
+  color: var(--text);
   font-weight: 800;
   padding: .8rem 1rem;
   text-align: center;
