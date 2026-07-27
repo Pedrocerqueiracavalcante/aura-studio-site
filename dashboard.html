@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-04">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-06">
 </head>
 <body class="dashboard-page">
   <aside class="dash-sidebar" aria-label="Menu do painel">
@@ -141,15 +141,19 @@
         <input value="(31) 99999-9999">
         <label>E-mail</label>
         <input value="contato@barbeariamenuz.com">
+        <button class="btn btn--primary btn--block" type="button" data-dashboard-action="Dados da barbearia salvos.">Salvar alterações</button>
       </article>
 
       <article class="dash-editor-card" id="perfil">
         <h2>Meu Perfil</h2>
-        <div class="upload-tile bg-barber-1"><span>Foto do barbeiro</span></div>
+        <div class="upload-tile bg-barber-1" data-profile-photo-preview><span>Foto do barbeiro</span></div>
+        <label>Trocar foto</label>
+        <input type="file" accept="image/*" data-profile-photo-input>
         <label>Especialidade</label>
         <input value="Fades, navalha e cortes modernos">
         <label>Biografia</label>
         <textarea rows="4">Atendimento autoral com foco em acabamento, pontualidade e experiência de barbearia premium.</textarea>
+        <button class="btn btn--primary btn--block" type="button" data-dashboard-action="Perfil do barbeiro salvo.">Salvar perfil</button>
       </article>
 
       <article class="dash-editor-card" id="servicos">
@@ -169,7 +173,7 @@
           <span>Plano Premium <strong>R$ 189</strong></span>
           <span>Plano Executivo <strong>R$ 249</strong></span>
         </div>
-        <button class="btn btn--primary btn--block" type="button">Criar plano</button>
+        <button class="btn btn--primary btn--block" type="button" data-dashboard-action="Plano criado com sucesso.">Criar plano</button>
       </article>
 
       <article class="dash-editor-card">
@@ -202,7 +206,7 @@
           <span class="cp-midfade"></span>
           <span class="cp-navalha"></span>
         </div>
-        <button class="btn btn--primary btn--block" type="button">Adicionar corte</button>
+        <button class="btn btn--primary btn--block" type="button" data-dashboard-action="Modelo de corte adicionado à prévia.">Adicionar corte</button>
       </article>
 
       <article class="dash-editor-card">
@@ -295,6 +299,6 @@
     </section>
   </main>
 
-  <script src="assets/js/main.js?v=20260727-04" defer></script>
+  <script src="assets/js/main.js?v=20260727-06" defer></script>
 </body>
 </html>

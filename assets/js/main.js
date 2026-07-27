@@ -1,6 +1,6 @@
-/* =====================================================================
-   Barbearia Menuz — Interatividade
-   Vanilla JS · sem dependências
+﻿/* =====================================================================
+   Barbearia Menuz â€” Interatividade
+   Vanilla JS Â· sem dependÃªncias
    ===================================================================== */
 (function () {
   "use strict";
@@ -18,37 +18,37 @@
   const i18n = {
     pt: {
       "language.label": "Selecionar idioma",
-      "language.portuguese": "Português",
-      "language.english": "English",
-      "language.spanish": "Español",
-      "language.french": "Français",
+      "language.portuguese": "Português - Portugal",
+      "language.english": "English - United Kingdom",
+      "language.spanish": "Español - España",
+      "language.french": "Français - France",
       "search.label": "Pesquisar",
       "search.placeholder": "Pesquisa por artista, evento ou local",
       "search.button": "Pesquisar",
-      "nav.reviews": "Avaliações",
+      "nav.reviews": "AvaliaÃ§Ãµes",
       "nav.contact": "Contato",
-      "header.notifications": "Notificações",
+      "header.notifications": "NotificaÃ§Ãµes",
       "user.guest": "Visitante",
       "user.loginHint": "Clique para entrar",
       "user.signIn": "Entrar",
       "user.signUp": "Criar conta",
       "user.schedule": "Agendar",
-      "reviews.eyebrow": "Avaliações",
-      "reviews.title": "Confiança antes do primeiro corte.",
+      "reviews.eyebrow": "AvaliaÃ§Ãµes",
+      "reviews.title": "ConfianÃ§a antes do primeiro corte.",
       "reviews.card1": "Atendimento pontual e corte exatamente como escolhi pelo link.",
-      "reviews.card2": "A página é simples, vi os serviços e já cheguei sabendo o valor.",
+      "reviews.card2": "A pÃ¡gina Ã© simples, vi os serviÃ§os e jÃ¡ cheguei sabendo o valor.",
       "reviews.card3": "Ambiente limpo, barbeiro cuidadoso e acabamento muito profissional.",
       "contact.eyebrow": "Contato",
-      "contact.title": "Agende seu próximo horário.",
-      "contact.text": "Envie uma mensagem com o serviço desejado. A equipe confirma o melhor horário disponível.",
+      "contact.title": "Agende seu prÃ³ximo horÃ¡rio.",
+      "contact.text": "Envie uma mensagem com o serviÃ§o desejado. A equipe confirma o melhor horÃ¡rio disponÃ­vel.",
       "contact.whatsapp": "Chamar no WhatsApp",
-      "contact.publicPage": "Ver página pública",
-      "footer.copy": "© 2026 Menuz Barber. Atendimento premium para barbearias modernas.",
+      "contact.publicPage": "Ver pÃ¡gina pÃºblica",
+      "footer.copy": "Â© 2026 Menuz Barber. Atendimento premium para barbearias modernas.",
       "toTop.label": "Voltar ao topo",
-      "app.bannerText": "Agende agora, é rápido",
+      "app.bannerText": "Agende agora, Ã© rÃ¡pido",
       "app.open": "Abrir",
       "app.closeBanner": "Fechar aviso",
-      "app.home": "Início",
+      "app.home": "InÃ­cio",
       "app.search": "Buscar",
       "app.appointments": "Agendamentos",
       "app.profile": "Perfil",
@@ -61,10 +61,10 @@
     },
     en: {
       "language.label": "Select language",
-      "language.portuguese": "Português",
-      "language.english": "English",
-      "language.spanish": "Español",
-      "language.french": "Français",
+      "language.portuguese": "Português - Portugal",
+      "language.english": "English - United Kingdom",
+      "language.spanish": "Español - España",
+      "language.french": "Français - France",
       "search.label": "Search",
       "search.placeholder": "Search by artist, event or place",
       "search.button": "Search",
@@ -86,7 +86,7 @@
       "contact.text": "Send a message with the service you want. The team confirms the best available time.",
       "contact.whatsapp": "Message on WhatsApp",
       "contact.publicPage": "View public page",
-      "footer.copy": "© 2026 Menuz Barber. Premium service for modern barbershops.",
+      "footer.copy": "Â© 2026 Menuz Barber. Premium service for modern barbershops.",
       "toTop.label": "Back to top",
       "app.bannerText": "Book now, it is fast",
       "app.open": "Open",
@@ -104,14 +104,14 @@
     },
     es: {
       "language.label": "Seleccionar idioma",
-      "language.portuguese": "Português",
-      "language.english": "English",
-      "language.spanish": "Español",
-      "language.french": "Français",
+      "language.portuguese": "Português - Portugal",
+      "language.english": "English - United Kingdom",
+      "language.spanish": "Español - España",
+      "language.french": "Français - France",
       "search.label": "Buscar",
       "search.placeholder": "Buscar por artista, evento o lugar",
       "search.button": "Buscar",
-      "nav.reviews": "Reseñas",
+      "nav.reviews": "ReseÃ±as",
       "nav.contact": "Contacto",
       "header.notifications": "Notificaciones",
       "user.guest": "Visitante",
@@ -119,19 +119,19 @@
       "user.signIn": "Entrar",
       "user.signUp": "Crear cuenta",
       "user.schedule": "Agendar",
-      "reviews.eyebrow": "Reseñas",
+      "reviews.eyebrow": "ReseÃ±as",
       "reviews.title": "Confianza antes del primer corte.",
-      "reviews.card1": "Atención puntual y el corte exactamente como lo elegí en el enlace.",
-      "reviews.card2": "La página es simple. Vi los servicios y ya sabía el precio.",
+      "reviews.card1": "AtenciÃ³n puntual y el corte exactamente como lo elegÃ­ en el enlace.",
+      "reviews.card2": "La pÃ¡gina es simple. Vi los servicios y ya sabÃ­a el precio.",
       "reviews.card3": "Ambiente limpio, barbero cuidadoso y acabado muy profesional.",
       "contact.eyebrow": "Contacto",
-      "contact.title": "Agenda tu próximo horario.",
-      "contact.text": "Envía un mensaje con el servicio deseado. El equipo confirma el mejor horario disponible.",
+      "contact.title": "Agenda tu prÃ³ximo horario.",
+      "contact.text": "EnvÃ­a un mensaje con el servicio deseado. El equipo confirma el mejor horario disponible.",
       "contact.whatsapp": "Enviar por WhatsApp",
-      "contact.publicPage": "Ver página pública",
-      "footer.copy": "© 2026 Menuz Barber. Atención premium para barberías modernas.",
+      "contact.publicPage": "Ver pÃ¡gina pÃºblica",
+      "footer.copy": "Â© 2026 Menuz Barber. AtenciÃ³n premium para barberÃ­as modernas.",
       "toTop.label": "Volver arriba",
-      "app.bannerText": "Agenda ahora, es rápido",
+      "app.bannerText": "Agenda ahora, es rÃ¡pido",
       "app.open": "Abrir",
       "app.closeBanner": "Cerrar aviso",
       "app.home": "Inicio",
@@ -141,18 +141,18 @@
       "login.eyebrow": "Login del barbero",
       "login.title": "Entra al panel",
       "login.email": "E-mail",
-      "login.password": "Contraseña",
-      "login.passwordPlaceholder": "Tu contraseña",
-      "login.recover": "Recuperar contraseña",
+      "login.password": "ContraseÃ±a",
+      "login.passwordPlaceholder": "Tu contraseÃ±a",
+      "login.recover": "Recuperar contraseÃ±a",
     },
     fr: {
       "language.label": "Choisir la langue",
-      "language.portuguese": "Português",
-      "language.english": "English",
-      "language.spanish": "Español",
-      "language.french": "Français",
+      "language.portuguese": "Português - Portugal",
+      "language.english": "English - United Kingdom",
+      "language.spanish": "Español - España",
+      "language.french": "Français - France",
       "search.label": "Rechercher",
-      "search.placeholder": "Rechercher un artiste, un événement ou un lieu",
+      "search.placeholder": "Rechercher un artiste, un Ã©vÃ©nement ou un lieu",
       "search.button": "Rechercher",
       "nav.reviews": "Avis",
       "nav.contact": "Contact",
@@ -160,21 +160,21 @@
       "user.guest": "Visiteur",
       "user.loginHint": "Cliquez pour vous connecter",
       "user.signIn": "Connexion",
-      "user.signUp": "Créer un compte",
-      "user.schedule": "Réserver",
+      "user.signUp": "CrÃ©er un compte",
+      "user.schedule": "RÃ©server",
       "reviews.eyebrow": "Avis",
-      "reviews.title": "La confiance avant la première coupe.",
+      "reviews.title": "La confiance avant la premiÃ¨re coupe.",
       "reviews.card1": "Service ponctuel et coupe exactement comme je l'avais choisie via le lien.",
-      "reviews.card2": "La page est simple. J'ai vu les services et je connaissais déjà le prix.",
-      "reviews.card3": "Espace propre, barbier soigneux et finition très professionnelle.",
+      "reviews.card2": "La page est simple. J'ai vu les services et je connaissais dÃ©jÃ  le prix.",
+      "reviews.card3": "Espace propre, barbier soigneux et finition trÃ¨s professionnelle.",
       "contact.eyebrow": "Contact",
-      "contact.title": "Réservez votre prochain créneau.",
-      "contact.text": "Envoyez un message avec le service souhaité. L'équipe confirme le meilleur créneau disponible.",
+      "contact.title": "RÃ©servez votre prochain crÃ©neau.",
+      "contact.text": "Envoyez un message avec le service souhaitÃ©. L'Ã©quipe confirme le meilleur crÃ©neau disponible.",
       "contact.whatsapp": "Envoyer sur WhatsApp",
       "contact.publicPage": "Voir la page publique",
-      "footer.copy": "© 2026 Menuz Barber. Service premium pour barbershops modernes.",
+      "footer.copy": "Â© 2026 Menuz Barber. Service premium pour barbershops modernes.",
       "toTop.label": "Retour en haut",
-      "app.bannerText": "Réservez maintenant, c'est rapide",
+      "app.bannerText": "RÃ©servez maintenant, c'est rapide",
       "app.open": "Ouvrir",
       "app.closeBanner": "Fermer l'avis",
       "app.home": "Accueil",
@@ -182,15 +182,15 @@
       "app.appointments": "Rendez-vous",
       "app.profile": "Profil",
       "login.eyebrow": "Connexion barbier",
-      "login.title": "Accéder au tableau de bord",
+      "login.title": "AccÃ©der au tableau de bord",
       "login.email": "E-mail",
       "login.password": "Mot de passe",
       "login.passwordPlaceholder": "Votre mot de passe",
-      "login.recover": "Récupérer le mot de passe",
+      "login.recover": "RÃ©cupÃ©rer le mot de passe",
     },
   };
 
-  /* ---------- App shell: banner + tab bar + ondas (todas as páginas) ---------- */
+  /* ---------- App shell: banner + tab bar + ondas (todas as pÃ¡ginas) ---------- */
   const getStoredLanguage = () => {
     try {
       return localStorage.getItem(LANG_KEY);
@@ -259,15 +259,15 @@
     waves.setAttribute("aria-hidden", "true");
     document.body.prepend(waves);
 
-    // Banner superior (dispensável por sessão)
+    // Banner superior (dispensÃ¡vel por sessÃ£o)
     if (sessionStorage.getItem("menuzBannerClosed") !== "1") {
       const banner = document.createElement("div");
       banner.className = "app-banner";
       banner.innerHTML =
         '<img class="app-banner__logo" src="assets/img/logo.svg" alt="">' +
-        '<div class="app-banner__txt"><strong>Menuz</strong><span>Agende agora, é rápido</span></div>' +
+        '<div class="app-banner__txt"><strong>Menuz</strong><span>Agende agora, Ã© rÃ¡pido</span></div>' +
         '<a class="btn btn--primary btn--sm app-banner__cta" href="barbearia-menuz.html#agendamento">Abrir</a>' +
-        '<button class="app-banner__close" type="button" aria-label="Fechar aviso">×</button>';
+        '<button class="app-banner__close" type="button" aria-label="Fechar aviso">Ã—</button>';
       $(".app-banner__txt span", banner)?.setAttribute("data-i18n", "app.bannerText");
       $(".app-banner__txt span", banner) && ($(".app-banner__txt span", banner).textContent = t("app.bannerText"));
       $(".app-banner__cta", banner)?.setAttribute("data-i18n", "app.open");
@@ -283,14 +283,14 @@
 
     // Tab bar inferior
     const tabs = [
-      { label: "Início", href: "index.html", match: ["index.html", ""], icon: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>' },
+      { label: "InÃ­cio", href: "index.html", match: ["index.html", ""], icon: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>' },
       { key: "app.search", label: "Buscar", href: "index.html#buscar", match: ["buscar"], icon: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>' },
       { key: "app.appointments", label: "Agendamentos", href: "barbearia-menuz.html#agendamento", match: ["barbearia-menuz.html"], icon: '<rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/>' },
       { key: "app.profile", label: "Perfil", href: "login.html", match: ["login.html", "dashboard.html"], icon: '<circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3.5-6 7-6s7 2 7 6"/>' },
     ];
     const bar = document.createElement("nav");
     bar.className = "app-tabbar";
-    bar.setAttribute("aria-label", "Navegação principal do app");
+    bar.setAttribute("aria-label", "NavegaÃ§Ã£o principal do app");
     bar.innerHTML = tabs.map((t) => {
       const active = t.match.includes(page) ? " is-active" : "";
       return '<a class="app-tab' + active + '" href="' + t.href + '"' + (active ? ' aria-current="page"' : '') +
@@ -303,7 +303,7 @@
   initLanguageSelector();
   applyI18n();
 
-  /* ---------- Ano no rodapé ---------- */
+  /* ---------- Ano no rodapÃ© ---------- */
   const yearEl = $("#year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
@@ -384,7 +384,7 @@
     revealEls.forEach((el) => io.observe(el));
   }
 
-  /* ---------- Nav ativa por secção ---------- */
+  /* ---------- Nav ativa por secÃ§Ã£o ---------- */
   const sections = $$("main section[id]");
   const navLinks = $$(".nav__link");
   if ("IntersectionObserver" in window && sections.length) {
@@ -399,7 +399,7 @@
     sections.forEach((s) => spy.observe(s));
   }
 
-  /* ---------- Contador de estatísticas ---------- */
+  /* ---------- Contador de estatÃ­sticas ---------- */
   const counters = $$("[data-count]");
   const animateCount = (el) => {
     const target = parseFloat(el.getAttribute("data-count"));
@@ -478,15 +478,15 @@
     start();
   }
 
-  /* ---------- Validação do formulário ---------- */
+  /* ---------- ValidaÃ§Ã£o do formulÃ¡rio ---------- */
   const form = $("#contactForm");
   if (form) {
     const success = $("#formSuccess");
 
     const validators = {
       name: (v) => v.trim().length >= 2 || "Informe seu nome.",
-      phone: (v) => /[0-9]{6,}/.test(v.replace(/\s/g, "")) || "Indica um telemóvel válido.",
-      email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Indica um email válido.",
+      phone: (v) => /[0-9]{6,}/.test(v.replace(/\s/g, "")) || "Indica um telemÃ³vel vÃ¡lido.",
+      email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Indica um email vÃ¡lido.",
     };
 
     const showError = (input, msg) => {
@@ -516,10 +516,10 @@
       ["name", "phone", "email"].forEach((n) => { if (!validateField(form.elements[n])) ok = false; });
       if (!ok) { form.querySelector(".field--invalid input")?.focus(); return; }
 
-      // Simulação de envio (substituir por integração real: Formspree, EmailJS, API…)
+      // SimulaÃ§Ã£o de envio (substituir por integraÃ§Ã£o real: Formspree, EmailJS, APIâ€¦)
       const btn = form.querySelector('button[type="submit"]');
       const original = btn.textContent;
-      btn.disabled = true; btn.textContent = "A enviar…";
+      btn.disabled = true; btn.textContent = "A enviarâ€¦";
       setTimeout(() => {
         btn.disabled = false; btn.textContent = original;
         form.reset();
@@ -602,7 +602,7 @@
     });
   }
 
-  /* ---------- Seleção de corte → contato + WhatsApp ---------- */
+  /* ---------- SeleÃ§Ã£o de corte â†’ contato + WhatsApp ---------- */
   const WA_NUMBER = "5531999999999";
   const cutsSelected = $("#cutsSelected");
   const formChosen = $("#formChosen");
@@ -614,11 +614,11 @@
     $$(".cut.is-selected").forEach((c) => c.classList.remove("is-selected"));
     if (cardEl) cardEl.classList.add("is-selected");
 
-    if (cutsSelected) { cutsSelected.hidden = false; cutsSelected.textContent = "✓ Corte selecionado: " + name + ". Continua para agendar."; }
-    if (formChosen) { formChosen.hidden = false; formChosen.textContent = "✂️ Corte escolhido: " + name; }
-    if (cfMsg) cfMsg.value = "Olá! Quero agendar o corte: " + name + ".";
+    if (cutsSelected) { cutsSelected.hidden = false; cutsSelected.textContent = "âœ“ Corte selecionado: " + name + ". Continua para agendar."; }
+    if (formChosen) { formChosen.hidden = false; formChosen.textContent = "âœ‚ï¸ Corte escolhido: " + name; }
+    if (cfMsg) cfMsg.value = "OlÃ¡! Quero agendar o corte: " + name + ".";
 
-    const href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Olá! Quero agendar o corte: " + name + " na Barbearia Menuz.")}`;
+    const href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("OlÃ¡! Quero agendar o corte: " + name + " na Barbearia Menuz.")}`;
     if (waSend) waSend.href = href;
     if (waFloat) waFloat.href = href;
 
@@ -643,11 +643,11 @@
     if (!btn) return;
     const shareData = {
       title: "Barbearia Menuz",
-      text: "Conheça a Barbearia Menuz, escolha seu corte e agende pelo link.",
+      text: "ConheÃ§a a Barbearia Menuz, escolha seu corte e agende pelo link.",
       url: window.location.href.split("#")[0],
     };
     if (navigator.share) {
-      try { await navigator.share(shareData); } catch (_) { /* usuário cancelou */ }
+      try { await navigator.share(shareData); } catch (_) { /* usuÃ¡rio cancelou */ }
       return;
     }
     try {
@@ -678,6 +678,56 @@
     window.location.href = "dashboard.html";
   });
 
+  const showDashboardToast = (message, type = "success") => {
+    let toast = $("[data-dashboard-toast]");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.className = "dashboard-toast";
+      toast.setAttribute("data-dashboard-toast", "");
+      toast.setAttribute("role", "status");
+      toast.setAttribute("aria-live", "polite");
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.dataset.type = type;
+    toast.classList.add("is-visible");
+    window.clearTimeout(showDashboardToast.timer);
+    showDashboardToast.timer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
+  };
+
+  document.addEventListener("click", (event) => {
+    const action = event.target.closest("[data-dashboard-action]");
+    const uiFeedback = event.target.closest("[data-ui-feedback]");
+    const favorite = event.target.closest("[data-favorite-profile]");
+    if (action) showDashboardToast(action.getAttribute("data-dashboard-action") || "Alteracoes salvas.");
+    if (uiFeedback) showDashboardToast(uiFeedback.getAttribute("data-ui-feedback") || "Informacao atualizada.");
+    if (favorite) {
+      const active = favorite.getAttribute("aria-pressed") === "true";
+      favorite.setAttribute("aria-pressed", String(!active));
+      favorite.textContent = active ? "♡" : "♥";
+      showDashboardToast(active ? "Perfil removido dos favoritos." : "Perfil salvo nos favoritos.");
+    }
+  });
+
+  const profilePhotoInput = $("[data-profile-photo-input]");
+  const profilePhotoPreview = $("[data-profile-photo-preview]");
+  profilePhotoInput?.addEventListener("change", () => {
+    const file = profilePhotoInput.files?.[0];
+    if (!file || !profilePhotoPreview) return;
+    if (!file.type.startsWith("image/")) {
+      showDashboardToast("Escolha um arquivo de imagem vÃ¡lido.", "error");
+      profilePhotoInput.value = "";
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      profilePhotoPreview.style.backgroundImage = `url("${reader.result}")`;
+      showDashboardToast("PrÃ©via da foto atualizada.");
+    };
+    reader.onerror = () => showDashboardToast("NÃ£o foi possÃ­vel carregar a imagem.", "error");
+    reader.readAsDataURL(file);
+  });
+
   /* ---------- Agendamento: cliente -> painel -> mensagem automatica ---------- */
   const APPOINTMENTS_KEY = "menuzAppointments";
   let memoryAppointments = [];
@@ -693,7 +743,7 @@
     }
   })();
   const statusText = {
-    pending: "Aguardando Confirmação",
+    pending: "Aguardando ConfirmaÃ§Ã£o",
     confirmed: "Confirmado",
     cancelled: "Cancelado",
     finished: "Finalizado",
@@ -703,12 +753,12 @@
     "Corte masculino": 40,
     "Barba + Navalha": 30,
     "Corte + Barba": 70,
-    "Pigmentação": 45,
+    "PigmentaÃ§Ã£o": 45,
   };
   const tenantProfile = {
     slug: "barbearia-menuz",
     name: "Barbearia Menuz",
-    address: "Rua Tiradentes, 48 - Centro - Igarapé/MG",
+    address: "Rua Tiradentes, 48 - Centro - IgarapÃ©/MG",
     availability: {
       days: [2, 3, 4, 5, 6],
       start: "09:00",
@@ -724,7 +774,7 @@
       { name: "Corte masculino", price: 45, minutes: 40 },
       { name: "Barba + Navalha", price: 35, minutes: 30 },
       { name: "Corte + Barba", price: 70, minutes: 70 },
-      { name: "Pigmentação", price: 55, minutes: 45 },
+      { name: "PigmentaÃ§Ã£o", price: 55, minutes: 45 },
     ],
     plans: [
       { name: "Plano Mensal", price: 129, service: "Corte masculino" },
@@ -772,17 +822,17 @@
     {
       id: "demo-review-1",
       client: "Marcos Lima",
-      city: "Igarapé/MG",
+      city: "IgarapÃ©/MG",
       rating: 5,
-      comment: "Atendimento rápido, corte bem explicado e resultado exatamente como escolhi na página.",
+      comment: "Atendimento rÃ¡pido, corte bem explicado e resultado exatamente como escolhi na pÃ¡gina.",
       date: "2026-07-20",
       status: "approved",
       photo: "",
-      reply: "Obrigado pela confiança, Marcos. Será sempre bem-vindo.",
+      reply: "Obrigado pela confianÃ§a, Marcos. SerÃ¡ sempre bem-vindo.",
     },
     {
       id: "demo-review-2",
-      client: "André Souza",
+      client: "AndrÃ© Souza",
       city: "Belo Horizonte/MG",
       rating: 5,
       comment: "Gostei de ver os modelos antes de chegar. Facilitou muito para explicar o corte.",
@@ -793,7 +843,7 @@
     },
     {
       id: "demo-review-3",
-      client: "Cliente anônimo",
+      client: "Cliente anÃ´nimo",
       city: "Contagem/MG",
       rating: 4,
       comment: "Ambiente organizado e barbeiro pontual. Voltarei mais vezes.",
@@ -864,7 +914,7 @@
     writeReviews(defaultReviews);
     return defaultReviews;
   };
-  const starsText = (rating) => "★★★★★".slice(0, Number(rating || 0)) + "☆☆☆☆☆".slice(0, 5 - Number(rating || 0));
+  const starsText = (rating) => "â˜…â˜…â˜…â˜…â˜…".slice(0, Number(rating || 0)) + "â˜†â˜†â˜†â˜†â˜†".slice(0, 5 - Number(rating || 0));
   const reviewInitials = (name) => String(name || "Cliente")
     .split(/\s+/)
     .filter(Boolean)
@@ -889,13 +939,13 @@
     const settings = readReviewSettings();
     const section = $("[data-public-reviews-section]");
     if (section && !settings.enabled) {
-      section.innerHTML = `<div class="reviews-disabled">As avaliações desta barbearia estão desativadas no momento.</div>`;
+      section.innerHTML = `<div class="reviews-disabled">As avaliaÃ§Ãµes desta barbearia estÃ£o desativadas no momento.</div>`;
     }
     const items = ensureReviews();
     const stats = reviewStats(items);
     const averageText = stats.average ? stats.average.toFixed(1).replace(".", ",") : "0,0";
     $$("[data-review-summary]").forEach((el) => {
-      el.textContent = settings.enabled ? `★ ${averageText} · ${stats.total} avaliações · ${stats.five}% nota 5` : "Avaliações desativadas";
+      el.textContent = settings.enabled ? `â˜… ${averageText} Â· ${stats.total} avaliaÃ§Ãµes Â· ${stats.five}% nota 5` : "AvaliaÃ§Ãµes desativadas";
     });
     $$("[data-review-average]").forEach((el) => { el.textContent = averageText; });
     $$("[data-review-total]").forEach((el) => { el.textContent = stats.total; });
@@ -940,60 +990,60 @@
   const appointmentMessage = (item, type = "confirmed") => {
     if (type === "cancelled") {
       return [
-        `Olá, ${item.client}.`,
+        `OlÃ¡, ${item.client}.`,
         "",
-        "Infelizmente não será possível realizar seu atendimento no horário solicitado.",
-        item.reason ? `Motivo: ${item.reason}` : "Motivo: horário indisponível.",
+        "Infelizmente nÃ£o serÃ¡ possÃ­vel realizar seu atendimento no horÃ¡rio solicitado.",
+        item.reason ? `Motivo: ${item.reason}` : "Motivo: horÃ¡rio indisponÃ­vel.",
         "",
-        "Por favor, escolha um novo horário disponível.",
-        "Obrigado pela compreensão.",
+        "Por favor, escolha um novo horÃ¡rio disponÃ­vel.",
+        "Obrigado pela compreensÃ£o.",
       ].join("\n");
     }
     if (type === "reminder") {
       return [
-        `Olá, ${item.client}.`,
+        `OlÃ¡, ${item.client}.`,
         "",
-        "Este é um lembrete do seu agendamento.",
-        `Data: ${formatDate(item.date)} às ${item.time}.`,
-        `Serviço: ${item.service}`,
+        "Este Ã© um lembrete do seu agendamento.",
+        `Data: ${formatDate(item.date)} Ã s ${item.time}.`,
+        `ServiÃ§o: ${item.service}`,
         "Barbearia Menuz",
         "",
-        "Esperamos você.",
+        "Esperamos vocÃª.",
       ].join("\n");
     }
     if (type === "review") {
       const reviewUrl = new URL("barbearia-menuz.html", window.location.href).href + "#avaliar";
       return [
-        `Olá, ${item.client}.`,
+        `OlÃ¡, ${item.client}.`,
         "",
         "Obrigado por escolher a Barbearia Menuz.",
-        "Seu atendimento foi finalizado e gostaríamos de saber como foi sua experiência.",
+        "Seu atendimento foi finalizado e gostarÃ­amos de saber como foi sua experiÃªncia.",
         "",
         "Avalie pelo link:",
         reviewUrl,
         "",
-        "Sua opinião ajuda outros clientes e valoriza o trabalho do barbeiro.",
+        "Sua opiniÃ£o ajuda outros clientes e valoriza o trabalho do barbeiro.",
       ].join("\n");
     }
     return [
-      `Olá, ${item.client}!`,
+      `OlÃ¡, ${item.client}!`,
       "",
       "Seu agendamento foi confirmado com sucesso.",
       "",
       "Barbearia: Barbearia Menuz",
       `Profissional: ${item.barber}`,
       item.plan ? `Plano: ${item.plan}` : "",
-      `Serviço: ${item.service}`,
+      `ServiÃ§o: ${item.service}`,
       item.cut ? `Modelo de corte: ${item.cut}` : "",
       `Data: ${formatDate(item.date)}`,
-      `Horário: ${item.time}`,
+      `HorÃ¡rio: ${item.time}`,
       `Valor: ${formatCurrency(item.price)}`,
       `Forma de pagamento: ${item.payment}`,
       "",
-      "Endereço: Rua Tiradentes, 48 - Centro - Igarapé/MG",
-      "Pedimos que chegue com 5 minutos de antecedência.",
+      "EndereÃ§o: Rua Tiradentes, 48 - Centro - IgarapÃ©/MG",
+      "Pedimos que chegue com 5 minutos de antecedÃªncia.",
       "",
-      "Agradecemos pela preferência e esperamos você!",
+      "Agradecemos pela preferÃªncia e esperamos vocÃª!",
     ].filter(Boolean).join("\n");
   };
   const timeToMinutes = (time) => {
@@ -1068,10 +1118,10 @@
     const meta = selectedServiceMeta(formEl);
     const summary = {
       barber: formEl.elements.barber?.value || "Escolha um profissional",
-      service: formEl.elements.service?.value || "Escolha um serviço",
+      service: formEl.elements.service?.value || "Escolha um serviÃ§o",
       plan: plan || "Sem plano selecionado",
       date: date ? formatDate(date) : "Selecione uma data",
-      time: formEl.elements.time?.value || "Selecione um horário",
+      time: formEl.elements.time?.value || "Selecione um horÃ¡rio",
       price: formatCurrency(planByName[plan]?.price || meta.price || 0),
     };
     Object.entries(summary).forEach(([key, value]) => {
@@ -1100,13 +1150,13 @@
     }
     if (!barber || !service || !date) {
       timeField.value = "";
-      slotWrap.innerHTML = `<span class="time-slot-empty">Escolha profissional, serviço e data para ver a agenda.</span>`;
+      slotWrap.innerHTML = `<span class="time-slot-empty">Escolha profissional, serviÃ§o e data para ver a agenda.</span>`;
       updateBookingSummary(formEl);
       return;
     }
     if (isUnavailableDay(date)) {
       timeField.value = "";
-      slotWrap.innerHTML = `<span class="time-slot-empty">Este profissional não atende nesta data.</span>`;
+      slotWrap.innerHTML = `<span class="time-slot-empty">Este profissional nÃ£o atende nesta data.</span>`;
       updateBookingSummary(formEl);
       return;
     }
@@ -1114,7 +1164,7 @@
     if (!slots.includes(timeField.value)) timeField.value = "";
     slotWrap.innerHTML = slots.length ? slots.map((time) => `
       <button type="button" class="${timeField.value === time ? "is-selected" : ""}" data-time-choice="${escapeHtml(time)}">${escapeHtml(time)}</button>
-    `).join("") : `<span class="time-slot-empty">Nenhum horário disponível para esta combinação.</span>`;
+    `).join("") : `<span class="time-slot-empty">Nenhum horÃ¡rio disponÃ­vel para esta combinaÃ§Ã£o.</span>`;
     updateBookingSummary(formEl);
   };
   const setBookingField = (name, value, shouldScroll = true) => {
@@ -1175,7 +1225,7 @@
         if (success) {
           success.hidden = false;
           success.classList.add("is-error");
-          success.textContent = "Preencha profissional, serviço, data, horário e seus dados para confirmar.";
+          success.textContent = "Preencha profissional, serviÃ§o, data, horÃ¡rio e seus dados para confirmar.";
         }
         return;
       }
@@ -1183,7 +1233,7 @@
         if (success) {
           success.hidden = false;
           success.classList.add("is-error");
-          success.textContent = "Este horário acabou de ficar indisponível. Escolha outro horário.";
+          success.textContent = "Este horÃ¡rio acabou de ficar indisponÃ­vel. Escolha outro horÃ¡rio.";
         }
         updateBlockedTimes(bookingForm);
         return;
@@ -1194,7 +1244,7 @@
       if (success) {
         success.hidden = false;
         success.classList.remove("is-error");
-        success.innerHTML = `<strong>Solicitação enviada.</strong><span>Status: ${statusText.pending}. O barbeiro foi notificado no painel e você receberá a confirmação automática.</span>`;
+        success.innerHTML = `<strong>SolicitaÃ§Ã£o enviada.</strong><span>Status: ${statusText.pending}. O barbeiro foi notificado no painel e vocÃª receberÃ¡ a confirmaÃ§Ã£o automÃ¡tica.</span>`;
       }
     });
   }
@@ -1232,13 +1282,13 @@
         <div class="appointment-card__main">
           <span class="status-pill status-pill--${escapeHtml(item.status)}">${escapeHtml(statusText[item.status] || item.status)}</span>
           <h3>${escapeHtml(item.client)}</h3>
-          <p>${escapeHtml(item.phone)} · ${escapeHtml(item.payment)}</p>
+          <p>${escapeHtml(item.phone)} Â· ${escapeHtml(item.payment)}</p>
           <dl>
-            <div><dt>Serviço</dt><dd>${escapeHtml(item.service)}</dd></div>
+            <div><dt>ServiÃ§o</dt><dd>${escapeHtml(item.service)}</dd></div>
             <div><dt>Profissional</dt><dd>${escapeHtml(item.barber)}</dd></div>
             <div><dt>Plano</dt><dd>${escapeHtml(item.plan || "Sem plano")}</dd></div>
             <div><dt>Data</dt><dd>${formatDate(item.date)}</dd></div>
-            <div><dt>Horário</dt><dd>${escapeHtml(item.time)}</dd></div>
+            <div><dt>HorÃ¡rio</dt><dd>${escapeHtml(item.time)}</dd></div>
             <div><dt>Valor</dt><dd>${formatCurrency(item.price)}</dd></div>
             <div><dt>Corte</dt><dd>${escapeHtml(item.cut || "Opcional")}</dd></div>
           </dl>
@@ -1291,7 +1341,7 @@
         if (item) showMessagePreview(item, "confirmed");
       }
       if (e.target.closest("[data-appointment-cancel]")) {
-        const reason = window.prompt("Motivo da recusa (opcional):", "O profissional já possui outro compromisso nesse horário.") || "";
+        const reason = window.prompt("Motivo da recusa (opcional):", "O profissional jÃ¡ possui outro compromisso nesse horÃ¡rio.") || "";
         const item = updateAppointment(id, (current) => ({ ...current, status: "cancelled", reason, cancelledAt: new Date().toISOString() }));
         if (item) showMessagePreview(item, "cancelled");
       }
@@ -1335,7 +1385,7 @@
       (status === "all" || item.status === status)
     ));
     if (!filtered.length) {
-      wrap.innerHTML = `<div class="empty-state">Nenhuma avaliação encontrada com estes filtros.</div>`;
+      wrap.innerHTML = `<div class="empty-state">Nenhuma avaliaÃ§Ã£o encontrada com estes filtros.</div>`;
       return;
     }
     wrap.innerHTML = filtered.map((item) => `
@@ -1345,7 +1395,7 @@
             <span class="review-avatar">${item.photo ? `<img src="${escapeHtml(item.photo)}" alt="">` : escapeHtml(reviewInitials(item.client))}</span>
             <div>
               <strong>${escapeHtml(item.client)}</strong>
-              <span>${escapeHtml(item.city || "Cidade não informada")}</span>
+              <span>${escapeHtml(item.city || "Cidade nÃ£o informada")}</span>
             </div>
           </div>
           <span class="review-status review-status--${escapeHtml(item.status)}">${escapeHtml(reviewStatusText[item.status] || item.status)}</span>
@@ -1356,9 +1406,9 @@
           <div><dt>Cliente</dt><dd>${escapeHtml(item.client)}</dd></div>
           <div><dt>Status</dt><dd>${escapeHtml(reviewStatusText[item.status] || item.status)}</dd></div>
         </dl>
-        ${item.comment ? `<p>${escapeHtml(item.comment)}</p>` : `<p>Cliente não adicionou comentário.</p>`}
+        ${item.comment ? `<p>${escapeHtml(item.comment)}</p>` : `<p>Cliente nÃ£o adicionou comentÃ¡rio.</p>`}
         ${item.reply ? `<div class="review-reply"><strong>Sua resposta</strong><br>${escapeHtml(item.reply)}</div>` : ""}
-        <small>O comentário do cliente é preservado. Você pode responder, ocultar ou denunciar.</small>
+        <small>O comentÃ¡rio do cliente Ã© preservado. VocÃª pode responder, ocultar ou denunciar.</small>
         <div class="review-admin-actions">
           ${item.status !== "approved" ? `<button class="btn btn--primary btn--sm" type="button" data-review-approve>Aprovar</button>` : ""}
           ${item.status !== "hidden" ? `<button class="btn btn--ghost btn--sm" type="button" data-review-hide>Ocultar</button>` : ""}
@@ -1388,7 +1438,7 @@
       const file = reviewForm.elements.photo?.files?.[0];
       const review = {
         id: "review-" + Date.now(),
-        client: data.get("anonymous") ? "Cliente anônimo" : String(data.get("client") || "").trim(),
+        client: data.get("anonymous") ? "Cliente anÃ´nimo" : String(data.get("client") || "").trim(),
         city: String(data.get("city") || "").trim(),
         rating: Number(data.get("rating") || 0),
         comment: String(data.get("comment") || "").trim(),
@@ -1405,7 +1455,7 @@
       if (success) {
         success.hidden = false;
         success.classList.remove("is-error");
-        success.innerHTML = `<strong>Avaliação enviada.</strong><span>Ela ficará pendente até a barbearia aprovar no painel.</span>`;
+        success.innerHTML = `<strong>AvaliaÃ§Ã£o enviada.</strong><span>Ela ficarÃ¡ pendente atÃ© a barbearia aprovar no painel.</span>`;
       }
       renderPublicReviews();
       renderAdminReviews();
@@ -1417,8 +1467,8 @@
     const updateToggleNote = () => {
       const note = $("[data-review-toggle-note]");
       if (note) note.textContent = reviewToggle.checked
-        ? "Avaliações ativas: a seção aparece na página pública e convites podem ser enviados após o atendimento."
-        : "Avaliações desativadas: a seção pública fica oculta e convites não serão gerados.";
+        ? "AvaliaÃ§Ãµes ativas: a seÃ§Ã£o aparece na pÃ¡gina pÃºblica e convites podem ser enviados apÃ³s o atendimento."
+        : "AvaliaÃ§Ãµes desativadas: a seÃ§Ã£o pÃºblica fica oculta e convites nÃ£o serÃ£o gerados.";
     };
     updateToggleNote();
     reviewToggle.addEventListener("change", () => {
@@ -1464,7 +1514,7 @@
       }
       if (e.target.closest("[data-review-reply]")) {
         const current = ensureReviews().find((item) => item.id === id);
-        const reply = window.prompt("Resposta da barbearia:", current?.reply || "Obrigado pela avaliação. Ficamos felizes com sua experiência.") || "";
+        const reply = window.prompt("Resposta da barbearia:", current?.reply || "Obrigado pela avaliaÃ§Ã£o. Ficamos felizes com sua experiÃªncia.") || "";
         if (reply.trim()) updateReview(id, (item) => ({ ...item, reply: reply.trim(), repliedAt: new Date().toISOString() }));
       }
     });

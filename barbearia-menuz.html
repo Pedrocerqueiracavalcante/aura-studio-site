@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#070708">
+  <meta name="theme-color" content="#FFFFFF">
   <title>Barbearia Menuz</title>
   <meta name="description" content="Perfil público premium da Barbearia Menuz com serviços, planos, profissionais, galeria e agendamento online.">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-05">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-06">
 </head>
-<body class="public-page public-valhalla">
+<body class="public-page public-premium-profile">
   <main class="public-shell">
     <section class="public-main">
       <header class="public-head public-head--profile">
@@ -20,14 +20,41 @@
           <img src="assets/img/logo.svg" alt="" width="62" height="62">
         </div>
         <div class="public-profile-copy">
-          <h1>VALHALLA BARBEARIA</h1>
+          <h1>Barbearia Menuz</h1>
           <div class="public-rating-line">
             <span aria-hidden="true">★</span>
-            <strong>5.0</strong>
+            <strong data-review-summary>4,9 · 327 avaliações</strong>
           </div>
         </div>
-        <button class="public-favorite" type="button" aria-label="Favoritar perfil">♡</button>
+        <button class="public-favorite" type="button" aria-label="Favoritar perfil" aria-pressed="false" data-favorite-profile>♡</button>
         <div class="public-head__actions">
+          <div class="language-selector language-selector--compact" data-language-selector>
+            <button class="language-selector__button" type="button" aria-haspopup="true" aria-expanded="false" data-language-trigger data-i18n-aria-label="language.label">
+              <span class="language-flag language-flag--pt" data-language-current-flag aria-hidden="true"></span>
+              <span class="language-selector__code" data-language-current-code>PT</span>
+              <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                <path d="m5 7.5 5 5 5-5"></path>
+              </svg>
+            </button>
+            <div class="language-selector__menu" role="menu" data-language-menu>
+              <button type="button" role="menuitemradio" aria-checked="true" data-language-option data-lang="pt">
+                <span class="language-flag language-flag--pt" aria-hidden="true"></span>
+                <span data-i18n="language.portuguese">Português</span>
+              </button>
+              <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-lang="en">
+                <span class="language-flag language-flag--en" aria-hidden="true"></span>
+                <span data-i18n="language.english">English</span>
+              </button>
+              <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-lang="es">
+                <span class="language-flag language-flag--es" aria-hidden="true"></span>
+                <span data-i18n="language.spanish">Español</span>
+              </button>
+              <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-lang="fr">
+                <span class="language-flag language-flag--fr" aria-hidden="true"></span>
+                <span data-i18n="language.french">Français</span>
+              </button>
+            </div>
+          </div>
           <a class="btn btn--primary" href="#agendamento">Agendar agora</a>
         </div>
       </header>
@@ -42,11 +69,10 @@
       <nav class="public-tabs">
         <a href="#servicos">Serviços</a>
         <a href="#profissionais">Profissionais</a>
-        <a href="#fidelidade">Fidelidade</a>
-        <a href="#produtos">Produtos</a>
-        <a href="#pacotes">Pacotes</a>
-        <a href="#planos">Assinaturas</a>
+        <a href="#planos">Planos</a>
+        <a href="#agendamento">Agendamento</a>
         <a href="#avaliacoes">Avaliações</a>
+        <a href="#contato">Contato</a>
       </nav>
 
       <section class="amenities-section" id="servicos" aria-labelledby="amenitiesTitle">
@@ -55,14 +81,14 @@
           <p>Clique no item para obter informações</p>
         </div>
         <div class="amenities-grid">
-          <button type="button"><span aria-hidden="true">⌁</span><strong>Wi-fi</strong></button>
-          <button type="button"><span aria-hidden="true">▣</span><strong>Estacionamento</strong></button>
+          <button type="button" data-ui-feedback="Wi-fi disponível para clientes."><span aria-hidden="true">⌁</span><strong>Wi-fi</strong></button>
+          <button type="button" data-ui-feedback="Estacionamento disponível próximo ao endereço."><span aria-hidden="true">▣</span><strong>Estacionamento</strong></button>
           <button type="button" disabled><span aria-hidden="true">♿</span><strong>Acessibilidade</strong></button>
-          <button type="button"><span aria-hidden="true">☻</span><strong>Atende crianças</strong></button>
+          <button type="button" data-ui-feedback="A barbearia atende crianças com acompanhamento."><span aria-hidden="true">☻</span><strong>Atende crianças</strong></button>
         </div>
       </section>
 
-      <div class="valhalla-sections">
+      <div class="public-profile-sections">
       <section class="quick-service-grid" id="servicos-lista">
         <article><strong>Corte masculino</strong><span>40 min · R$ 45 · Fades e acabamento</span><a href="#agendamento" data-pick-service="Corte masculino">Agendar</a></article>
         <article><strong>Barba + Navalha</strong><span>30 min · R$ 35 · Toalha quente</span><a href="#agendamento" data-pick-service="Barba + Navalha">Agendar</a></article>
@@ -331,6 +357,6 @@
     <div class="lightbox__image" id="lightboxImage" role="img"></div>
     <p id="lightboxCaption"></p>
   </div>
-  <script src="assets/js/main.js?v=20260727-05" defer></script>
+  <script src="assets/js/main.js?v=20260727-06" defer></script>
 </body>
 </html>
