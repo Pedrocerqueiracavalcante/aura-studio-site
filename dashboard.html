@@ -22,15 +22,11 @@
       <a href="#visao" class="is-active">Dashboard</a>
       <a href="#barbearia">Minha Barbearia</a>
       <a href="#perfil">Meu Perfil</a>
-      <a href="#galeria">Galeria</a>
-      <a href="#produtos-admin">Produtos</a>
       <a href="#servicos">Serviços</a>
       <a href="#planos">Planos</a>
       <a href="#cortes">Cortes</a>
-      <a href="#agenda">Agendamentos</a>
       <a href="#avaliacoes">Avaliações</a>
       <a href="#configuracoes">Configurações</a>
-      <a href="#clientes">Clientes</a>
     </nav>
   </aside>
 
@@ -58,7 +54,7 @@
       <article><span>4</span><strong>Publicar</strong><small>Perfil, planos e agenda ativos</small></article>
     </section>
 
-    <section class="tenant-overview" aria-label="Arquitetura da barbearia">
+    <section class="tenant-overview" id="barbearia" aria-label="Arquitetura da barbearia">
       <article>
         <span>Tenant ativo</span>
         <strong>barbearia-menuz</strong>
@@ -76,113 +72,12 @@
       </article>
     </section>
 
-    <section class="profile-manager" id="perfil" aria-labelledby="profileManagerTitle">
+    <section class="profile-manager appointments-panel" id="perfil" aria-labelledby="profileManagerTitle">
       <div class="appointments-head">
         <div>
-          <p class="minimal-kicker">Central do perfil</p>
-          <h2 id="profileManagerTitle">Perfil publico totalmente editavel</h2>
-          <span>Organize identidade, fotos, produtos, contato e configuracoes do barbeiro em um fluxo unico.</span>
-        </div>
-        <button class="btn btn--primary btn--sm" type="button" data-dashboard-action="Perfil atualizado e publicado na previa publica.">Salvar e publicar</button>
-      </div>
-
-      <div class="profile-manager-grid">
-        <article class="profile-manager-card profile-manager-card--wide" id="barbearia">
-          <div class="profile-card-head">
-            <span>01</span>
-            <div>
-              <h3>Identidade da barbearia</h3>
-              <p>Dados principais exibidos no link publico e nas mensagens automaticas.</p>
-            </div>
-          </div>
-          <div class="profile-form-grid">
-            <label>Nome da barbearia<input value="Barbearia Menuz" data-profile-field="businessName"></label>
-            <label>Nome profissional<input value="Pedro Menuz" data-profile-field="professionalName"></label>
-            <label>Especialidades<input value="Fades, navalha e cortes modernos" data-profile-field="specialties"></label>
-            <label>Tempo de experiencia<input value="8 anos" data-profile-field="experience"></label>
-            <label class="profile-form-grid__wide">Biografia<textarea rows="4" data-profile-field="bio">Atendimento autoral com foco em acabamento, pontualidade e experiencia de barbearia premium.</textarea></label>
-          </div>
-        </article>
-
-        <article class="profile-manager-card">
-          <div class="profile-card-head">
-            <span>02</span>
-            <div>
-              <h3>Fotos principais</h3>
-              <p>Pre-visualizacao antes de salvar, sem alterar a pagina ate publicar.</p>
-            </div>
-          </div>
-          <div class="profile-photo-stack">
-            <div class="upload-tile bg-barber-1" data-profile-photo-preview><span>Foto do barbeiro</span></div>
-            <label>Foto de perfil<input type="file" accept="image/*" data-profile-photo-input></label>
-            <label>Foto de capa<input type="file" accept="image/*" data-cover-photo-input></label>
-          </div>
-        </article>
-
-        <article class="profile-manager-card">
-          <div class="profile-card-head">
-            <span>03</span>
-            <div>
-              <h3>Contato e localizacao</h3>
-              <p>Informacoes usadas no card lateral publico e em confirmacoes.</p>
-            </div>
-          </div>
-          <div class="profile-form-grid profile-form-grid--single">
-            <label>Endereco completo<input value="Rua Tiradentes, 48 - Centro" data-profile-field="address"></label>
-            <label>Cidade<input value="Igarape" data-profile-field="city"></label>
-            <label>Estado<input value="MG" data-profile-field="state"></label>
-            <label>CEP<input value="32900-000" data-profile-field="zip"></label>
-            <label>WhatsApp<input value="(31) 99999-9999" data-profile-field="whatsapp"></label>
-            <label>Telefone<input value="(31) 3333-3333" data-profile-field="phone"></label>
-            <label>E-mail<input value="contato@barbeariamenuz.com" data-profile-field="email"></label>
-            <label>Link de agendamento<input value="barbearia-menuz.html#agendamento" data-profile-field="bookingLink"></label>
-          </div>
-        </article>
-
-        <article class="profile-manager-card profile-manager-card--wide" id="galeria">
-          <div class="profile-card-head">
-            <span>04</span>
-            <div>
-              <h3>Galeria da barbearia</h3>
-              <p>Adicione varias imagens, reorganize, defina a principal e remova fotos antes de publicar.</p>
-            </div>
-          </div>
-          <label class="gallery-uploader">
-            <input type="file" accept="image/*" multiple data-gallery-input>
-            <span>Adicionar imagens</span>
-            <small>Fachada, ambiente, equipe, cortes, antes e depois, produtos e equipamentos.</small>
-          </label>
-          <div class="gallery-preview-grid" data-gallery-preview aria-live="polite"></div>
-        </article>
-
-        <article class="profile-manager-card profile-manager-card--wide" id="produtos-admin">
-          <div class="profile-card-head">
-            <span>05</span>
-            <div>
-              <h3>Produtos utilizados</h3>
-              <p>Cadastre os produtos usados nos atendimentos e exiba uma vitrine elegante no perfil publico.</p>
-            </div>
-          </div>
-          <form class="product-form" data-product-form>
-            <label>Nome<input name="name" placeholder="Pomada Matte" required></label>
-            <label>Marca<input name="brand" placeholder="Menuz Pro" required></label>
-            <label>Categoria<input name="category" placeholder="Pomada, oleo, maquina" required></label>
-            <label>Status<select name="status"><option value="active">Ativo</option><option value="inactive">Inativo</option></select></label>
-            <label class="product-form__wide">Descricao<textarea name="description" rows="3" placeholder="Acabamento seco, fixacao forte e visual natural." required></textarea></label>
-            <label class="product-form__wide">Link opcional para compra<input name="link" type="url" placeholder="https://"></label>
-            <button class="btn btn--primary btn--block" type="submit">Adicionar produto</button>
-          </form>
-          <div class="product-admin-list" data-products-list aria-live="polite"></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="appointments-panel" id="agenda" aria-labelledby="appointmentsTitle">
-      <div class="appointments-head">
-        <div>
-          <p class="minimal-kicker">Confirmação automática</p>
-          <h2 id="appointmentsTitle">Agendamentos recebidos</h2>
-          <span>Confirme, recuse e gere a mensagem automática para o cliente.</span>
+          <p class="minimal-kicker">Área de perfil</p>
+          <h2 id="profileManagerTitle">Agendamentos recebidos</h2>
+          <span>Confirme, recuse e gere a mensagem automática para o cliente diretamente no perfil.</span>
         </div>
         <button class="btn btn--ghost btn--sm" type="button" data-seed-booking>Adicionar exemplo</button>
       </div>
