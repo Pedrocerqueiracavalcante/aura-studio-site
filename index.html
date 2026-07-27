@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-01">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-02">
 </head>
 <body class="landing-page premium-barber-page">
   <a class="skip-link" href="#main">Ir para o conteúdo</a>
@@ -29,43 +29,60 @@
       </a>
 
       <form class="ticket-search" role="search" action="#contato">
-        <label class="sr-only" for="ticketSearch">Pesquisar</label>
+        <label class="sr-only" for="ticketSearch" data-i18n="search.label">Pesquisar</label>
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="m21 21-4.35-4.35"></path>
           <circle cx="11" cy="11" r="7"></circle>
         </svg>
-        <input id="ticketSearch" name="q" type="search" placeholder="Pesquisa por artista, evento ou local">
-        <button type="submit">Pesquisar</button>
+        <input id="ticketSearch" name="q" type="search" placeholder="Pesquisa por artista, evento ou local" data-i18n-placeholder="search.placeholder">
+        <button type="submit" data-i18n="search.button">Pesquisar</button>
       </form>
 
       <nav class="nav premium-nav" id="primaryNav" aria-label="Navegação principal">
         <ul class="nav__list">
-          <li><a class="nav__link" href="#avaliacoes">Avaliações</a></li>
-          <li><a class="nav__link" href="#contato">Contato</a></li>
+          <li><a class="nav__link" href="#avaliacoes" data-i18n="nav.reviews">Avaliações</a></li>
+          <li><a class="nav__link" href="#contato" data-i18n="nav.contact">Contato</a></li>
         </ul>
       </nav>
 
       <div class="premium-header__actions">
-        <a class="ticket-pill ticket-pill--wide" href="dashboard.html" aria-label="Meus bilhetes">
-          <span aria-hidden="true">▦</span>
-          <strong>Meus Bilhetes</strong>
-        </a>
-        <div class="ticket-langs" aria-label="Idioma">
-          <span>🇵🇹</span>
-          <span>🇬🇧</span>
-          <span>🇫🇷</span>
+        <div class="language-selector" data-language-selector>
+          <button class="language-selector__button" type="button" aria-haspopup="true" aria-expanded="false" data-language-trigger data-i18n-aria-label="language.label">
+            <span class="language-flag language-flag--pt" data-language-current-flag aria-hidden="true"></span>
+            <span class="language-selector__code" data-language-current-code>PT</span>
+            <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+              <path d="m5 7.5 5 5 5-5"></path>
+            </svg>
+          </button>
+          <div class="language-selector__menu" role="menu" data-language-menu>
+            <button type="button" role="menuitemradio" aria-checked="true" data-language-option data-lang="pt">
+              <span class="language-flag language-flag--pt" aria-hidden="true"></span>
+              <span data-i18n="language.portuguese">Português</span>
+            </button>
+            <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-lang="en">
+              <span class="language-flag language-flag--en" aria-hidden="true"></span>
+              <span data-i18n="language.english">English</span>
+            </button>
+            <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-lang="es">
+              <span class="language-flag language-flag--es" aria-hidden="true"></span>
+              <span data-i18n="language.spanish">Español</span>
+            </button>
+            <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-lang="fr">
+              <span class="language-flag language-flag--fr" aria-hidden="true"></span>
+              <span data-i18n="language.french">Français</span>
+            </button>
+          </div>
         </div>
-        <a class="ticket-icon" href="barbearia-menuz.html" aria-label="Carteira">▢</a>
-        <a class="ticket-icon" href="#contato" aria-label="Notificações">⌁</a>
+        <a class="ticket-icon" href="#contato" aria-label="Notificações" data-i18n-aria-label="header.notifications">⌁</a>
         <details class="ticket-user">
           <summary>
             <span class="ticket-help">?</span>
-            <span><strong>Visitante</strong><small>Clique para entrar</small></span>
+            <span><strong data-i18n="user.guest">Visitante</strong><small data-i18n="user.loginHint">Clique para entrar</small></span>
           </summary>
           <div class="ticket-user__menu">
-            <a href="login.html">Entrar</a>
-            <a href="login.html?mode=signup">Criar conta</a>
-            <a href="#contato">Agendar</a>
+            <a href="login.html" data-i18n="user.signIn">Entrar</a>
+            <a href="login.html?mode=signup" data-i18n="user.signUp">Criar conta</a>
+            <a href="#contato" data-i18n="user.schedule">Agendar</a>
           </div>
         </details>
         <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="primaryNav">
@@ -79,13 +96,13 @@
     <section class="premium-section premium-section--first" id="avaliacoes">
       <div class="container">
         <div class="premium-section__head" data-reveal>
-          <p class="premium-eyebrow">Avaliações</p>
-          <h2>Confiança antes do primeiro corte.</h2>
+          <p class="premium-eyebrow" data-i18n="reviews.eyebrow">Avaliações</p>
+          <h2 data-i18n="reviews.title">Confiança antes do primeiro corte.</h2>
         </div>
         <div class="premium-grid premium-grid--three">
-          <article class="review-card" data-reveal><span>★★★★★</span><p>Atendimento pontual e corte exatamente como escolhi pelo link.</p><strong>Marcos Lima</strong></article>
-          <article class="review-card" data-reveal><span>★★★★★</span><p>A página é simples, vi os serviços e já cheguei sabendo o valor.</p><strong>André Souza</strong></article>
-          <article class="review-card" data-reveal><span>★★★★★</span><p>Ambiente limpo, barbeiro cuidadoso e acabamento muito profissional.</p><strong>João Pedro</strong></article>
+          <article class="review-card" data-reveal><span>★★★★★</span><p data-i18n="reviews.card1">Atendimento pontual e corte exatamente como escolhi pelo link.</p><strong>Marcos Lima</strong></article>
+          <article class="review-card" data-reveal><span>★★★★★</span><p data-i18n="reviews.card2">A página é simples, vi os serviços e já cheguei sabendo o valor.</p><strong>André Souza</strong></article>
+          <article class="review-card" data-reveal><span>★★★★★</span><p data-i18n="reviews.card3">Ambiente limpo, barbeiro cuidadoso e acabamento muito profissional.</p><strong>João Pedro</strong></article>
         </div>
       </div>
     </section>
@@ -94,13 +111,13 @@
       <div class="container">
         <div class="contact-panel" data-reveal>
           <div>
-            <p class="premium-eyebrow">Contato</p>
-            <h2>Agende seu próximo horário.</h2>
-            <p>Envie uma mensagem com o serviço desejado. A equipe confirma o melhor horário disponível.</p>
+            <p class="premium-eyebrow" data-i18n="contact.eyebrow">Contato</p>
+            <h2 data-i18n="contact.title">Agende seu próximo horário.</h2>
+            <p data-i18n="contact.text">Envie uma mensagem com o serviço desejado. A equipe confirma o melhor horário disponível.</p>
           </div>
           <div class="contact-panel__actions">
-            <a class="btn btn--primary btn--lg" href="https://wa.me/5531999999999?text=Olá! Quero agendar um horário na Barbearia Menuz.">Chamar no WhatsApp</a>
-            <a class="btn btn--ghost btn--lg" href="barbearia-menuz.html">Ver página pública</a>
+            <a class="btn btn--primary btn--lg" href="https://wa.me/5531999999999?text=Olá! Quero agendar um horário na Barbearia Menuz." data-i18n="contact.whatsapp">Chamar no WhatsApp</a>
+            <a class="btn btn--ghost btn--lg" href="barbearia-menuz.html" data-i18n="contact.publicPage">Ver página pública</a>
           </div>
         </div>
       </div>
@@ -113,14 +130,14 @@
         <img class="brand__mark" src="assets/img/logo.svg" alt="" width="40" height="40">
         <span class="brand__name">Menuz<span class="brand__dot">.</span></span>
       </a>
-      <p>© 2026 Menuz Barber. Atendimento premium para barbearias modernas.</p>
+      <p data-i18n="footer.copy">© 2026 Menuz Barber. Atendimento premium para barbearias modernas.</p>
       <div class="premium-footer__links">
-        <a href="#contato">Contato</a>
+        <a href="#contato" data-i18n="nav.contact">Contato</a>
       </div>
     </div>
   </footer>
 
-  <button class="to-top" id="toTop" type="button" aria-label="Voltar ao topo">↑</button>
-  <script src="assets/js/main.js?v=20260724-21" defer></script>
+  <button class="to-top" id="toTop" type="button" aria-label="Voltar ao topo" data-i18n-aria-label="toTop.label">↑</button>
+  <script src="assets/js/main.js?v=20260727-02" defer></script>
 </body>
 </html>

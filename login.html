@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-01">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-02">
 </head>
 <body class="minimal-page">
   <main class="login-page" id="main">
@@ -20,21 +20,21 @@
     </a>
 
     <section class="login-box" aria-labelledby="loginTitle">
-      <p class="minimal-kicker">Login do barbeiro</p>
-      <h1 id="loginTitle">Entre no painel</h1>
+      <p class="minimal-kicker" data-i18n="login.eyebrow">Login do barbeiro</p>
+      <h1 id="loginTitle" data-i18n="login.title">Entre no painel</h1>
       <form class="clean-login-form" data-clean-login onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
-        <label for="email">E-mail</label>
+        <label for="email" data-i18n="login.email">E-mail</label>
         <input id="email" type="email" placeholder="barbeiro@menuz.com.br" autocomplete="email" required>
 
-        <label for="password">Senha</label>
-        <input id="password" type="password" placeholder="Sua senha" autocomplete="current-password" required>
+        <label for="password" data-i18n="login.password">Senha</label>
+        <input id="password" type="password" placeholder="Sua senha" autocomplete="current-password" required data-i18n-placeholder="login.passwordPlaceholder">
 
-        <button class="btn btn--primary btn--block btn--lg" type="submit">Entrar</button>
-        <a class="btn btn--ghost btn--block btn--lg" href="dashboard.html?new=1">Criar conta</a>
+        <button class="btn btn--primary btn--block btn--lg" type="submit" data-i18n="user.signIn">Entrar</button>
+        <a class="btn btn--ghost btn--block btn--lg" href="dashboard.html?new=1" data-i18n="user.signUp">Criar conta</a>
       </form>
-      <a class="login-help" href="mailto:contato@menuz.com.br">Recuperar senha</a>
+      <a class="login-help" href="mailto:contato@menuz.com.br" data-i18n="login.recover">Recuperar senha</a>
     </section>
   </main>
-  <script src="assets/js/main.js?v=20260724-21" defer></script>
+  <script src="assets/js/main.js?v=20260727-02" defer></script>
 </body>
 </html>

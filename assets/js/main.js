@@ -8,8 +8,247 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $  = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => c ? Array.from(c.querySelectorAll(s)) : [];
+  const LANG_KEY = "menuzLanguage";
+  const languages = {
+    pt: { code: "PT", flagClass: "language-flag--pt", htmlLang: "pt-BR" },
+    en: { code: "EN", flagClass: "language-flag--en", htmlLang: "en" },
+    es: { code: "ES", flagClass: "language-flag--es", htmlLang: "es" },
+    fr: { code: "FR", flagClass: "language-flag--fr", htmlLang: "fr" },
+  };
+  const i18n = {
+    pt: {
+      "language.label": "Selecionar idioma",
+      "language.portuguese": "Português",
+      "language.english": "English",
+      "language.spanish": "Español",
+      "language.french": "Français",
+      "search.label": "Pesquisar",
+      "search.placeholder": "Pesquisa por artista, evento ou local",
+      "search.button": "Pesquisar",
+      "nav.reviews": "Avaliações",
+      "nav.contact": "Contato",
+      "header.notifications": "Notificações",
+      "user.guest": "Visitante",
+      "user.loginHint": "Clique para entrar",
+      "user.signIn": "Entrar",
+      "user.signUp": "Criar conta",
+      "user.schedule": "Agendar",
+      "reviews.eyebrow": "Avaliações",
+      "reviews.title": "Confiança antes do primeiro corte.",
+      "reviews.card1": "Atendimento pontual e corte exatamente como escolhi pelo link.",
+      "reviews.card2": "A página é simples, vi os serviços e já cheguei sabendo o valor.",
+      "reviews.card3": "Ambiente limpo, barbeiro cuidadoso e acabamento muito profissional.",
+      "contact.eyebrow": "Contato",
+      "contact.title": "Agende seu próximo horário.",
+      "contact.text": "Envie uma mensagem com o serviço desejado. A equipe confirma o melhor horário disponível.",
+      "contact.whatsapp": "Chamar no WhatsApp",
+      "contact.publicPage": "Ver página pública",
+      "footer.copy": "© 2026 Menuz Barber. Atendimento premium para barbearias modernas.",
+      "toTop.label": "Voltar ao topo",
+      "app.bannerText": "Agende agora, é rápido",
+      "app.open": "Abrir",
+      "app.closeBanner": "Fechar aviso",
+      "app.home": "Início",
+      "app.search": "Buscar",
+      "app.appointments": "Agendamentos",
+      "app.profile": "Perfil",
+      "login.eyebrow": "Login do barbeiro",
+      "login.title": "Entre no painel",
+      "login.email": "E-mail",
+      "login.password": "Senha",
+      "login.passwordPlaceholder": "Sua senha",
+      "login.recover": "Recuperar senha",
+    },
+    en: {
+      "language.label": "Select language",
+      "language.portuguese": "Português",
+      "language.english": "English",
+      "language.spanish": "Español",
+      "language.french": "Français",
+      "search.label": "Search",
+      "search.placeholder": "Search by artist, event or place",
+      "search.button": "Search",
+      "nav.reviews": "Reviews",
+      "nav.contact": "Contact",
+      "header.notifications": "Notifications",
+      "user.guest": "Guest",
+      "user.loginHint": "Click to sign in",
+      "user.signIn": "Sign in",
+      "user.signUp": "Create account",
+      "user.schedule": "Book",
+      "reviews.eyebrow": "Reviews",
+      "reviews.title": "Confidence before the first cut.",
+      "reviews.card1": "On-time service and the exact cut I selected through the link.",
+      "reviews.card2": "The page is simple. I saw the services and already knew the price.",
+      "reviews.card3": "Clean space, careful barber and a very professional finish.",
+      "contact.eyebrow": "Contact",
+      "contact.title": "Book your next appointment.",
+      "contact.text": "Send a message with the service you want. The team confirms the best available time.",
+      "contact.whatsapp": "Message on WhatsApp",
+      "contact.publicPage": "View public page",
+      "footer.copy": "© 2026 Menuz Barber. Premium service for modern barbershops.",
+      "toTop.label": "Back to top",
+      "app.bannerText": "Book now, it is fast",
+      "app.open": "Open",
+      "app.closeBanner": "Close notice",
+      "app.home": "Home",
+      "app.search": "Search",
+      "app.appointments": "Appointments",
+      "app.profile": "Profile",
+      "login.eyebrow": "Barber login",
+      "login.title": "Enter the dashboard",
+      "login.email": "Email",
+      "login.password": "Password",
+      "login.passwordPlaceholder": "Your password",
+      "login.recover": "Recover password",
+    },
+    es: {
+      "language.label": "Seleccionar idioma",
+      "language.portuguese": "Português",
+      "language.english": "English",
+      "language.spanish": "Español",
+      "language.french": "Français",
+      "search.label": "Buscar",
+      "search.placeholder": "Buscar por artista, evento o lugar",
+      "search.button": "Buscar",
+      "nav.reviews": "Reseñas",
+      "nav.contact": "Contacto",
+      "header.notifications": "Notificaciones",
+      "user.guest": "Visitante",
+      "user.loginHint": "Haz clic para entrar",
+      "user.signIn": "Entrar",
+      "user.signUp": "Crear cuenta",
+      "user.schedule": "Agendar",
+      "reviews.eyebrow": "Reseñas",
+      "reviews.title": "Confianza antes del primer corte.",
+      "reviews.card1": "Atención puntual y el corte exactamente como lo elegí en el enlace.",
+      "reviews.card2": "La página es simple. Vi los servicios y ya sabía el precio.",
+      "reviews.card3": "Ambiente limpio, barbero cuidadoso y acabado muy profesional.",
+      "contact.eyebrow": "Contacto",
+      "contact.title": "Agenda tu próximo horario.",
+      "contact.text": "Envía un mensaje con el servicio deseado. El equipo confirma el mejor horario disponible.",
+      "contact.whatsapp": "Enviar por WhatsApp",
+      "contact.publicPage": "Ver página pública",
+      "footer.copy": "© 2026 Menuz Barber. Atención premium para barberías modernas.",
+      "toTop.label": "Volver arriba",
+      "app.bannerText": "Agenda ahora, es rápido",
+      "app.open": "Abrir",
+      "app.closeBanner": "Cerrar aviso",
+      "app.home": "Inicio",
+      "app.search": "Buscar",
+      "app.appointments": "Agendamientos",
+      "app.profile": "Perfil",
+      "login.eyebrow": "Login del barbero",
+      "login.title": "Entra al panel",
+      "login.email": "E-mail",
+      "login.password": "Contraseña",
+      "login.passwordPlaceholder": "Tu contraseña",
+      "login.recover": "Recuperar contraseña",
+    },
+    fr: {
+      "language.label": "Choisir la langue",
+      "language.portuguese": "Português",
+      "language.english": "English",
+      "language.spanish": "Español",
+      "language.french": "Français",
+      "search.label": "Rechercher",
+      "search.placeholder": "Rechercher un artiste, un événement ou un lieu",
+      "search.button": "Rechercher",
+      "nav.reviews": "Avis",
+      "nav.contact": "Contact",
+      "header.notifications": "Notifications",
+      "user.guest": "Visiteur",
+      "user.loginHint": "Cliquez pour vous connecter",
+      "user.signIn": "Connexion",
+      "user.signUp": "Créer un compte",
+      "user.schedule": "Réserver",
+      "reviews.eyebrow": "Avis",
+      "reviews.title": "La confiance avant la première coupe.",
+      "reviews.card1": "Service ponctuel et coupe exactement comme je l'avais choisie via le lien.",
+      "reviews.card2": "La page est simple. J'ai vu les services et je connaissais déjà le prix.",
+      "reviews.card3": "Espace propre, barbier soigneux et finition très professionnelle.",
+      "contact.eyebrow": "Contact",
+      "contact.title": "Réservez votre prochain créneau.",
+      "contact.text": "Envoyez un message avec le service souhaité. L'équipe confirme le meilleur créneau disponible.",
+      "contact.whatsapp": "Envoyer sur WhatsApp",
+      "contact.publicPage": "Voir la page publique",
+      "footer.copy": "© 2026 Menuz Barber. Service premium pour barbershops modernes.",
+      "toTop.label": "Retour en haut",
+      "app.bannerText": "Réservez maintenant, c'est rapide",
+      "app.open": "Ouvrir",
+      "app.closeBanner": "Fermer l'avis",
+      "app.home": "Accueil",
+      "app.search": "Recherche",
+      "app.appointments": "Rendez-vous",
+      "app.profile": "Profil",
+      "login.eyebrow": "Connexion barbier",
+      "login.title": "Accéder au tableau de bord",
+      "login.email": "E-mail",
+      "login.password": "Mot de passe",
+      "login.passwordPlaceholder": "Votre mot de passe",
+      "login.recover": "Récupérer le mot de passe",
+    },
+  };
 
   /* ---------- App shell: banner + tab bar + ondas (todas as páginas) ---------- */
+  const getStoredLanguage = () => {
+    try {
+      return localStorage.getItem(LANG_KEY);
+    } catch (_) {
+      return null;
+    }
+  };
+  let currentLanguage = languages[getStoredLanguage()] ? getStoredLanguage() : "pt";
+  const t = (key) => i18n[currentLanguage]?.[key] || i18n.pt[key] || key;
+  const applyI18n = () => {
+    const lang = languages[currentLanguage] || languages.pt;
+    document.documentElement.lang = lang.htmlLang;
+    $$("[data-i18n]").forEach((el) => { el.textContent = t(el.getAttribute("data-i18n")); });
+    $$("[data-i18n-placeholder]").forEach((el) => { el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder"))); });
+    $$("[data-i18n-aria-label]").forEach((el) => { el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria-label"))); });
+    $$("[data-language-current-flag]").forEach((el) => {
+      el.classList.remove("language-flag--pt", "language-flag--en", "language-flag--es", "language-flag--fr");
+      el.classList.add(lang.flagClass);
+    });
+    $$("[data-language-current-code]").forEach((el) => { el.textContent = lang.code; });
+    $$("[data-language-option]").forEach((option) => {
+      const selected = option.getAttribute("data-lang") === currentLanguage;
+      option.setAttribute("aria-checked", String(selected));
+      option.classList.toggle("is-selected", selected);
+    });
+  };
+  const setLanguage = (lang) => {
+    if (!languages[lang]) return;
+    currentLanguage = lang;
+    try { localStorage.setItem(LANG_KEY, lang); } catch (_) { /* storage unavailable */ }
+    applyI18n();
+  };
+  const initLanguageSelector = () => {
+    $$("[data-language-selector]").forEach((selector) => {
+      const trigger = $("[data-language-trigger]", selector);
+      const menu = $("[data-language-menu]", selector);
+      if (!trigger || !menu) return;
+      const setOpen = (open) => {
+        selector.classList.toggle("is-open", open);
+        trigger.setAttribute("aria-expanded", String(open));
+      };
+      trigger.addEventListener("click", () => setOpen(!selector.classList.contains("is-open")));
+      $$("[data-language-option]", selector).forEach((option) => {
+        option.addEventListener("click", () => {
+          setLanguage(option.getAttribute("data-lang"));
+          setOpen(false);
+        });
+      });
+      document.addEventListener("click", (event) => {
+        if (!selector.contains(event.target)) setOpen(false);
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") setOpen(false);
+      });
+    });
+  };
+  window.MenuzI18n = { languages, setLanguage, translate: applyI18n, t: (key) => t(key) };
+
   (function appShell() {
     if (!document.body) return;
     const page = (location.pathname.split("/").pop() || "index.html").toLowerCase() || "index.html";
@@ -29,6 +268,12 @@
         '<div class="app-banner__txt"><strong>Menuz</strong><span>Agende agora, é rápido</span></div>' +
         '<a class="btn btn--primary btn--sm app-banner__cta" href="barbearia-menuz.html#agendamento">Abrir</a>' +
         '<button class="app-banner__close" type="button" aria-label="Fechar aviso">×</button>';
+      $(".app-banner__txt span", banner)?.setAttribute("data-i18n", "app.bannerText");
+      $(".app-banner__txt span", banner) && ($(".app-banner__txt span", banner).textContent = t("app.bannerText"));
+      $(".app-banner__cta", banner)?.setAttribute("data-i18n", "app.open");
+      $(".app-banner__cta", banner) && ($(".app-banner__cta", banner).textContent = t("app.open"));
+      $(".app-banner__close", banner)?.setAttribute("data-i18n-aria-label", "app.closeBanner");
+      $(".app-banner__close", banner)?.setAttribute("aria-label", t("app.closeBanner"));
       document.body.prepend(banner);
       banner.querySelector(".app-banner__close").addEventListener("click", () => {
         banner.hidden = true;
@@ -39,9 +284,9 @@
     // Tab bar inferior
     const tabs = [
       { label: "Início", href: "index.html", match: ["index.html", ""], icon: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>' },
-      { label: "Buscar", href: "index.html#buscar", match: ["buscar"], icon: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>' },
-      { label: "Agendamentos", href: "barbearia-menuz.html#agendamento", match: ["barbearia-menuz.html"], icon: '<rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/>' },
-      { label: "Perfil", href: "login.html", match: ["login.html", "dashboard.html"], icon: '<circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3.5-6 7-6s7 2 7 6"/>' },
+      { key: "app.search", label: "Buscar", href: "index.html#buscar", match: ["buscar"], icon: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>' },
+      { key: "app.appointments", label: "Agendamentos", href: "barbearia-menuz.html#agendamento", match: ["barbearia-menuz.html"], icon: '<rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/>' },
+      { key: "app.profile", label: "Perfil", href: "login.html", match: ["login.html", "dashboard.html"], icon: '<circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3.5-6 7-6s7 2 7 6"/>' },
     ];
     const bar = document.createElement("nav");
     bar.className = "app-tabbar";
@@ -50,11 +295,13 @@
       const active = t.match.includes(page) ? " is-active" : "";
       return '<a class="app-tab' + active + '" href="' + t.href + '"' + (active ? ' aria-current="page"' : '') +
         '><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-        t.icon + '</svg>' + t.label + '</a>';
+        t.icon + '</svg><span data-i18n="' + (t.key || "app.home") + '">' + window.MenuzI18n.t(t.key || "app.home") + '</span></a>';
     }).join("");
     document.body.appendChild(bar);
     document.body.classList.add("has-tabbar");
   })();
+  initLanguageSelector();
+  applyI18n();
 
   /* ---------- Ano no rodapé ---------- */
   const yearEl = $("#year");

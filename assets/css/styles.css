@@ -2804,7 +2804,6 @@ body::after {
 }
 .ticket-pill,
 .ticket-icon,
-.ticket-langs,
 .ticket-user summary {
   min-height: 42px;
   display: inline-flex;
@@ -2829,13 +2828,117 @@ body::after {
   color: #475467;
   font-weight: 900;
 }
-.ticket-langs {
-  gap: .28rem;
-  padding-inline: .55rem;
+.language-selector {
+  position: relative;
+  flex: none;
 }
-.ticket-langs span {
-  font-size: 1rem;
-  line-height: 1;
+.language-selector__button {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 999px;
+  background: #fff;
+  color: #111827;
+  box-shadow: 0 14px 34px -30px rgba(16,24,40,.36);
+  padding: .28rem .72rem .28rem .34rem;
+  transition: transform .24s var(--ease), border-color .24s var(--ease), box-shadow .24s var(--ease), background .24s var(--ease);
+}
+.language-selector__button:hover,
+.language-selector.is-open .language-selector__button {
+  transform: translateY(-1px);
+  border-color: rgba(184,138,50,.30);
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 18px 42px -32px rgba(16,24,40,.42);
+}
+.language-selector__button svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform .24s var(--ease);
+}
+.language-selector.is-open .language-selector__button svg {
+  transform: rotate(180deg);
+}
+.language-flag {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(16,24,40,.08);
+  border-radius: 9px;
+  background: #fff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.88);
+  overflow: hidden;
+}
+.language-flag--pt {
+  background:
+    radial-gradient(circle at 43% 50%, #F8D24E 0 10%, #D7263D 10.5% 16%, transparent 16.5%),
+    linear-gradient(90deg, #046A38 0 42%, #DA291C 42% 100%);
+}
+.language-flag--en {
+  background:
+    linear-gradient(90deg, transparent 0 43%, #CE1126 43% 57%, transparent 57% 100%),
+    linear-gradient(0deg, transparent 0 43%, #CE1126 43% 57%, transparent 57% 100%),
+    #fff;
+}
+.language-flag--es {
+  background: linear-gradient(180deg, #AA151B 0 25%, #F1BF00 25% 75%, #AA151B 75% 100%);
+}
+.language-flag--fr {
+  background: linear-gradient(90deg, #0055A4 0 33.33%, #fff 33.33% 66.66%, #EF4135 66.66% 100%);
+}
+.language-selector__code {
+  font-family: var(--font-display);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .03em;
+}
+.language-selector__menu {
+  position: absolute;
+  top: calc(100% + .55rem);
+  right: 0;
+  z-index: 130;
+  display: grid;
+  min-width: 210px;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 28px 76px -46px rgba(16,24,40,.38);
+  padding: .45rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(.98);
+  transform-origin: top right;
+  transition: opacity .2s var(--ease), transform .2s var(--ease), visibility .2s var(--ease);
+}
+.language-selector.is-open .language-selector__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+.language-selector__menu button {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: center;
+  gap: .65rem;
+  border-radius: 11px;
+  color: #475467;
+  font-weight: 800;
+  padding: .58rem .65rem;
+  text-align: left;
+  transition: background .2s var(--ease), color .2s var(--ease);
+}
+.language-selector__menu button:hover {
+  background: rgba(16,24,40,.045);
+  color: #111827;
+}
+.language-selector__menu button[aria-checked="true"] {
+  background: rgba(184,138,50,.10);
+  color: #7A561E;
 }
 .ticket-user {
   position: relative;
@@ -3425,10 +3528,19 @@ body::after {
     width: 100%;
   }
   .ticket-pill,
-  .ticket-langs,
   .ticket-icon,
   .ticket-user summary > span:last-child {
     display: none;
+  }
+  .language-selector__button {
+    min-height: 40px;
+    padding-inline: .28rem .5rem;
+  }
+  .language-selector__code {
+    display: none;
+  }
+  .language-selector__menu {
+    right: -.55rem;
   }
   .ticket-user summary {
     min-width: 42px;
