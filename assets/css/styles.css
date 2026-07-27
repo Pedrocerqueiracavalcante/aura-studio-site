@@ -1595,6 +1595,328 @@ body::after {
   min-height: 40px;
   padding-right: .62rem;
 }
+
+/* Perfil publico escuro no formato de barbearia */
+.public-valhalla {
+  --text: #F4F4F5;
+  --muted: #B7B9C4;
+  --border: rgba(255,255,255,.10);
+  --shadow: none;
+  background: #070708;
+  color: var(--text);
+}
+.public-valhalla::before,
+.public-valhalla::after,
+.public-valhalla .app-bg-waves,
+.public-valhalla .app-banner,
+.public-valhalla .app-tabbar {
+  display: none !important;
+}
+.public-valhalla.has-tabbar {
+  padding-bottom: 0;
+}
+.public-valhalla .public-shell {
+  grid-template-columns: minmax(0, 768px) minmax(320px, 400px);
+  align-items: start;
+  gap: 3.5rem;
+  width: min(100%, 1084px);
+  padding: 1.05rem 0 0;
+}
+.public-valhalla .public-main {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+.public-valhalla .public-head {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 42px auto;
+  align-items: center;
+  gap: .85rem;
+  min-height: 72px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+.public-valhalla .public-profile-mark {
+  width: 56px;
+  height: 56px;
+  border: 2px solid #3256ff;
+  border-radius: 50%;
+  background: #111;
+  box-shadow: 0 0 0 2px rgba(132,54,255,.75);
+  overflow: hidden;
+}
+.public-valhalla .public-profile-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.public-valhalla .public-profile-copy {
+  gap: .08rem;
+}
+.public-valhalla .public-profile-copy h1 {
+  color: #F2F2F4;
+  font-size: clamp(1.55rem, 2.4vw, 2.05rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.05;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.public-valhalla .public-rating-line {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  color: #D6D7DE;
+  font-size: 1rem;
+}
+.public-valhalla .public-rating-line span {
+  color: #FFB000;
+  font-size: 1rem;
+}
+.public-valhalla .public-rating-line strong {
+  font-weight: 500;
+}
+.public-valhalla .public-favorite {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #1C1D21;
+  color: #FF314F;
+  font-size: 1.75rem;
+  line-height: 1;
+}
+.public-valhalla .public-head__actions {
+  margin-left: 0;
+}
+.public-valhalla .public-head__actions .btn {
+  min-height: 46px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 9px;
+  background: linear-gradient(180deg, #FFAA4A, #FF9830);
+  color: #25242A;
+  box-shadow: 0 5px 14px -7px rgba(255,152,48,.85);
+  font-size: 1.05rem;
+  font-weight: 800;
+  padding-inline: 1rem;
+}
+.public-valhalla .public-gallery {
+  grid-template-columns: minmax(0, 2fr) minmax(214px, 1fr);
+  grid-template-rows: repeat(3, 145px);
+  gap: .5rem;
+  margin-top: .45rem;
+}
+.public-valhalla .public-photo {
+  min-height: 0;
+  border: 0;
+  border-radius: 7px;
+  background-size: cover;
+  background-position: center;
+}
+.public-valhalla .public-photo::after {
+  background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.42));
+}
+.public-valhalla .public-photo--large {
+  grid-row: 1 / span 3;
+}
+.public-valhalla .public-photo--large span {
+  max-width: 70%;
+  color: #fff;
+  font-size: 1.7rem;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.public-valhalla .public-photo:not(.public-photo--large) span {
+  left: 0;
+  right: 0;
+  bottom: 50%;
+  text-align: center;
+  transform: translateY(50%);
+  color: #fff;
+  font-size: .95rem;
+}
+.public-valhalla .public-tabs {
+  gap: 1.45rem;
+  margin-top: .95rem;
+  padding: 0 0 1rem;
+  border-bottom: 1px solid rgba(255,255,255,.13);
+}
+.public-valhalla .public-tabs a {
+  position: relative;
+  color: #D7D8DE;
+  font-family: var(--font-body);
+  font-size: .86rem;
+  font-weight: 800;
+  padding-bottom: .6rem;
+}
+.public-valhalla .public-tabs a:first-child {
+  color: #fff;
+}
+.public-valhalla .public-tabs a:first-child::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  border-radius: 999px;
+  background: #00A7FF;
+}
+.public-valhalla .amenities-section {
+  display: grid;
+  gap: 1.45rem;
+  margin-top: 2.9rem;
+}
+.public-valhalla .amenities-section h2 {
+  color: #F5F5F6;
+  font-size: 1.35rem;
+}
+.public-valhalla .amenities-section p {
+  color: #AEB0BB;
+  margin-top: .35rem;
+}
+.public-valhalla .amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.public-valhalla .amenities-grid button {
+  display: grid;
+  place-items: center;
+  gap: .75rem;
+  min-height: 82px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 11px;
+  background: #18191D;
+  color: #F2F3F5;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.04);
+}
+.public-valhalla .amenities-grid button:disabled {
+  opacity: .45;
+}
+.public-valhalla .amenities-grid span {
+  color: #BFC1CB;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.public-valhalla .amenities-grid strong {
+  font-size: .88rem;
+  font-weight: 600;
+}
+.public-valhalla .valhalla-sections {
+  margin-top: 1.5rem;
+}
+.public-valhalla .quick-service-grid,
+.public-valhalla .cut-plan-grid,
+.public-valhalla .quick-cuts-grid,
+.public-valhalla .public-barbers,
+.public-valhalla .booking-steps,
+.public-valhalla .schedule-card,
+.public-valhalla .reviews-section {
+  border-color: rgba(255,255,255,.10);
+  background: #18191D;
+  color: #F4F4F5;
+}
+.public-valhalla .quick-service-grid article,
+.public-valhalla .plan-options article,
+.public-valhalla .public-barbers article,
+.public-valhalla .booking-step-card,
+.public-valhalla .booking-summary,
+.public-valhalla .review-card,
+.public-valhalla .review-form-card,
+.public-valhalla .review-summary-grid article {
+  border-color: rgba(255,255,255,.10);
+  background: #1A1B1F;
+  color: #F4F4F5;
+}
+.public-valhalla .public-side {
+  position: sticky;
+  top: 1.05rem;
+  max-height: calc(100vh - 2.1rem);
+  overflow-y: auto;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 20px 20px 0 0;
+  background: #191A1E;
+  box-shadow: none;
+  padding: 1.45rem 1rem;
+}
+.public-valhalla .public-side section {
+  display: grid;
+  gap: .95rem;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding: 1.35rem 0;
+}
+.public-valhalla .public-side section:first-child {
+  padding-top: .2rem;
+}
+.public-valhalla .public-side h2 {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+}
+.public-valhalla .public-side p {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #C1C4D0;
+  font-size: .86rem;
+  line-height: 1.55;
+}
+.public-valhalla .public-side p span {
+  color: #B8BBC8;
+}
+.public-valhalla .public-side p strong {
+  color: #C4C8D3;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.public-valhalla .public-side section > div:not(.public-socials):not(.side-heading-row) {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+.public-valhalla .public-side section > div:not(.public-socials):not(.side-heading-row) span {
+  border-radius: 999px;
+  background: #25262B;
+  color: #C8CAD4;
+  font-size: .84rem;
+  padding: .55rem .72rem;
+}
+.public-valhalla .side-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.public-valhalla .side-map-action {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.15rem;
+}
+.public-valhalla .public-side .public-socials {
+  gap: .9rem;
+}
+.public-valhalla .public-side .public-socials a {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  background: #25262B;
+  color: #fff;
+  font-size: 1.25rem;
+  box-shadow: none;
+}
 .public-tabs {
   display: flex;
   gap: 1rem;

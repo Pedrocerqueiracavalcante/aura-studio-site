@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#070708">
   <title>Barbearia Menuz</title>
   <meta name="description" content="Perfil público premium da Barbearia Menuz com serviços, planos, profissionais, galeria e agendamento online.">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-04">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-05">
 </head>
-<body class="public-page">
+<body class="public-page public-valhalla">
   <main class="public-shell">
     <section class="public-main">
       <header class="public-head public-head--profile">
@@ -20,49 +20,20 @@
           <img src="assets/img/logo.svg" alt="" width="62" height="62">
         </div>
         <div class="public-profile-copy">
-          <p class="minimal-kicker">@barbearia-menuz</p>
-          <h1>Barbearia Menuz</h1>
-          <span data-review-summary>★ 4,9 · 327 avaliações · 92% nota 5</span>
-          <div class="public-profile-meta" aria-label="Resumo do perfil">
-            <span>Igarapé/MG</span>
-            <span>Ter-Sáb</span>
-            <span>2 profissionais</span>
+          <h1>VALHALLA BARBEARIA</h1>
+          <div class="public-rating-line">
+            <span aria-hidden="true">★</span>
+            <strong>5.0</strong>
           </div>
         </div>
+        <button class="public-favorite" type="button" aria-label="Favoritar perfil">♡</button>
         <div class="public-head__actions">
-          <div class="language-selector language-selector--compact" data-language-selector>
-            <button class="language-selector__button" type="button" aria-haspopup="true" aria-expanded="false" data-language-trigger data-i18n-aria-label="language.label">
-              <span class="language-flag language-flag--pt" data-language-current-flag aria-hidden="true"></span>
-              <span class="language-selector__code" data-language-current-code>PT</span>
-              <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
-                <path d="m5 7.5 5 5 5-5"></path>
-              </svg>
-            </button>
-            <div class="language-selector__menu" role="menu" data-language-menu>
-              <button type="button" role="menuitemradio" aria-checked="true" data-language-option data-lang="pt">
-                <span class="language-flag language-flag--pt" aria-hidden="true"></span>
-                <span data-i18n="language.portuguese">Português</span>
-              </button>
-              <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-lang="en">
-                <span class="language-flag language-flag--en" aria-hidden="true"></span>
-                <span data-i18n="language.english">English</span>
-              </button>
-              <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-lang="es">
-                <span class="language-flag language-flag--es" aria-hidden="true"></span>
-                <span data-i18n="language.spanish">Español</span>
-              </button>
-              <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-lang="fr">
-                <span class="language-flag language-flag--fr" aria-hidden="true"></span>
-                <span data-i18n="language.french">Français</span>
-              </button>
-            </div>
-          </div>
           <a class="btn btn--primary" href="#agendamento">Agendar agora</a>
         </div>
       </header>
 
       <div class="public-gallery">
-        <button class="public-photo public-photo--large bg-shop-main" type="button" data-lightbox="Ambiente principal"><span>Ambiente principal</span></button>
+        <button class="public-photo public-photo--large bg-shop-main" type="button" data-lightbox="Ambiente principal"><span>Rua: Tiradentes, 48<br>Centro - Igarapé</span></button>
         <button class="public-photo bg-shop-chair" type="button" data-lightbox="Cadeiras"><span>Cadeiras</span></button>
         <button class="public-photo bg-shop-tools" type="button" data-lightbox="Equipamentos"><span>Equipamentos</span></button>
         <button class="public-photo bg-shop-cards" type="button" data-lightbox="Galeria"><span>+12 fotos</span></button>
@@ -70,15 +41,29 @@
 
       <nav class="public-tabs">
         <a href="#servicos">Serviços</a>
-        <a href="#planos">Planos</a>
-        <a href="#cortes">Cortes</a>
         <a href="#profissionais">Profissionais</a>
-        <a href="#agendamento">Agendamento</a>
+        <a href="#fidelidade">Fidelidade</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#pacotes">Pacotes</a>
+        <a href="#planos">Assinaturas</a>
         <a href="#avaliacoes">Avaliações</a>
-        <a href="#contato">Contato</a>
       </nav>
 
-      <section class="quick-service-grid" id="servicos">
+      <section class="amenities-section" id="servicos" aria-labelledby="amenitiesTitle">
+        <div>
+          <h2 id="amenitiesTitle">Comodidades</h2>
+          <p>Clique no item para obter informações</p>
+        </div>
+        <div class="amenities-grid">
+          <button type="button"><span aria-hidden="true">⌁</span><strong>Wi-fi</strong></button>
+          <button type="button"><span aria-hidden="true">▣</span><strong>Estacionamento</strong></button>
+          <button type="button" disabled><span aria-hidden="true">♿</span><strong>Acessibilidade</strong></button>
+          <button type="button"><span aria-hidden="true">☻</span><strong>Atende crianças</strong></button>
+        </div>
+      </section>
+
+      <div class="valhalla-sections">
+      <section class="quick-service-grid" id="servicos-lista">
         <article><strong>Corte masculino</strong><span>40 min · R$ 45 · Fades e acabamento</span><a href="#agendamento" data-pick-service="Corte masculino">Agendar</a></article>
         <article><strong>Barba + Navalha</strong><span>30 min · R$ 35 · Toalha quente</span><a href="#agendamento" data-pick-service="Barba + Navalha">Agendar</a></article>
         <article><strong>Corte + Barba</strong><span>70 min · R$ 70 · Pacote premium</span><a href="#agendamento" data-pick-service="Corte + Barba">Agendar</a></article>
@@ -305,33 +290,39 @@
           <div class="booking-success" data-review-success hidden></div>
         </article>
       </section>
+      </div>
     </section>
 
     <aside class="public-side" id="contato">
       <section>
-        <h2>Localização</h2>
-        <p>Rua Tiradentes, 48 - Centro<br>Igarapé/MG</p>
+        <div class="side-heading-row">
+          <h2>Localização</h2>
+          <a class="side-map-action" href="https://maps.google.com/?q=Rua%20Tiradentes%2048%20Igarape%20MG" target="_blank" rel="noopener" aria-label="Abrir localização no mapa">➤</a>
+        </div>
+        <p>Rua Tiradentes, 46 - 32900-000 Centro -<br>Igarapé/MG</p>
       </section>
       <section>
-        <h2>Horários</h2>
-        <p><span>Terça a sexta</span><strong>09:00 - 19:00</strong></p>
+        <h2>Horário de atendimento</h2>
+        <p><span>Terça-Feira</span><strong>09:00 - 19:00</strong></p>
+        <p><span>Quarta-Feira</span><strong>09:00 - 19:00</strong></p>
+        <p><span>Quinta-Feira</span><strong>09:00 - 19:00</strong></p>
+        <p><span>Sexta-Feira</span><strong>09:00 - 19:00</strong></p>
         <p><span>Sábado</span><strong>09:00 - 18:00</strong></p>
       </section>
       <section>
-        <h2>Pagamento</h2>
-        <div><span>PIX</span><span>Dinheiro</span><span>Crédito</span><span>Débito</span></div>
+        <h2>Formas de pagamento</h2>
+        <div><span>Dinheiro</span><span>Cartão de Crédito</span><span>Cartão de Débito</span><span>PIX</span></div>
       </section>
       <section>
-        <h2>Redes</h2>
+        <h2>Redes Sociais</h2>
         <div class="public-socials" aria-label="Redes sociais da barbearia">
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-          <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
-          <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
-          <a href="https://wa.me/5531999999999" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+          <a href="https://wa.me/5531999999999" target="_blank" rel="noopener" aria-label="WhatsApp">☏</a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">▣</a>
         </div>
       </section>
-      <a class="btn btn--ghost btn--block" href="encontrar-barbearias.html">Encontrar barbearias</a>
-      <a class="btn btn--primary btn--block" href="#agendamento">Solicitar agendamento</a>
+      <section>
+        <h2>Contato</h2>
+      </section>
     </aside>
   </main>
 
@@ -340,6 +331,6 @@
     <div class="lightbox__image" id="lightboxImage" role="img"></div>
     <p id="lightboxCaption"></p>
   </div>
-  <script src="assets/js/main.js?v=20260727-04" defer></script>
+  <script src="assets/js/main.js?v=20260727-05" defer></script>
 </body>
 </html>
