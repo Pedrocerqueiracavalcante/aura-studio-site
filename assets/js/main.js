@@ -727,6 +727,17 @@
     reader.onerror = () => showDashboardToast("NÃ£o foi possÃ­vel carregar a imagem.", "error");
     reader.readAsDataURL(file);
   });
+  const coverPhotoInput = $("[data-cover-photo-input]");
+  coverPhotoInput?.addEventListener("change", () => {
+    const file = coverPhotoInput.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      showDashboardToast("Escolha um arquivo de imagem valido.", "error");
+      coverPhotoInput.value = "";
+      return;
+    }
+    showDashboardToast("Foto de capa pronta para publicacao.");
+  });
 
   /* ---------- Agendamento: cliente -> painel -> mensagem automatica ---------- */
   const APPOINTMENTS_KEY = "menuzAppointments";
@@ -810,8 +821,18 @@
   ];
   const REVIEWS_KEY = "menuzReviews";
   const REVIEW_SETTINGS_KEY = "menuzReviewSettings";
+  const PRODUCTS_KEY = "menuzProducts";
+  const GALLERY_KEY = "menuzGallery";
   let memoryReviews = [];
   let memoryReviewSettings = { enabled: true };
+  let memoryProducts = [];
+  const defaultGalleryItems = [
+    { id: "gallery-shop-main", label: "Ambiente principal", src: "", main: true },
+    { id: "gallery-shop-chair", label: "Cadeiras", src: "", main: false },
+    { id: "gallery-shop-tools", label: "Equipamentos", src: "", main: false },
+  ];
+  let memoryGallery = defaultGalleryItems;
+  let galleryItems = defaultGalleryItems;
   const reviewStatusText = {
     pending: "Pendente",
     approved: "Aprovada",
@@ -824,6 +845,7 @@
       client: "Marcos Lima",
       city: "IgarapÃ©/MG",
       rating: 5,
+      service: "Corte masculino",
       comment: "Atendimento rÃ¡pido, corte bem explicado e resultado exatamente como escolhi na pÃ¡gina.",
       date: "2026-07-20",
       status: "approved",
@@ -835,6 +857,7 @@
       client: "AndrÃ© Souza",
       city: "Belo Horizonte/MG",
       rating: 5,
+      service: "Corte + Barba",
       comment: "Gostei de ver os modelos antes de chegar. Facilitou muito para explicar o corte.",
       date: "2026-07-18",
       status: "approved",
@@ -846,11 +869,41 @@
       client: "Cliente anÃ´nimo",
       city: "Contagem/MG",
       rating: 4,
+      service: "Barba + Navalha",
       comment: "Ambiente organizado e barbeiro pontual. Voltarei mais vezes.",
       date: "2026-07-16",
       status: "approved",
       photo: "",
       reply: "",
+    },
+  ];
+  const defaultProducts = [
+    {
+      id: "product-1",
+      name: "Pomada Matte",
+      brand: "Menuz Pro",
+      category: "Pomada",
+      description: "Fixacao forte, acabamento seco e visual natural para cortes com textura.",
+      link: "",
+      status: "active",
+    },
+    {
+      id: "product-2",
+      name: "Oleo de Barba",
+      brand: "Barber Care",
+      category: "Barba",
+      description: "Hidratacao leve para finalizar barba com brilho controlado e toque macio.",
+      link: "",
+      status: "active",
+    },
+    {
+      id: "product-3",
+      name: "Maquina Pro Fade",
+      brand: "Precision Tools",
+      category: "Equipamento",
+      description: "Equipamento de acabamento usado para linhas precisas, degradês e detalhes.",
+      link: "",
+      status: "active",
     },
   ];
   const readAppointments = () => {
@@ -895,6 +948,35 @@
     else memoryReviewSettings = next;
     window.dispatchEvent(new CustomEvent("menuz:reviews-updated"));
   };
+  const readProducts = () => {
+    if (!appointmentsStorage) return memoryProducts;
+    try {
+      const parsed = JSON.parse(appointmentsStorage.getItem(PRODUCTS_KEY) || "[]");
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (_) {
+      return [];
+    }
+  };
+  const writeProducts = (items) => {
+    if (appointmentsStorage) appointmentsStorage.setItem(PRODUCTS_KEY, JSON.stringify(items));
+    else memoryProducts = items;
+    window.dispatchEvent(new CustomEvent("menuz:products-updated"));
+  };
+  const readGallery = () => {
+    if (!appointmentsStorage) return memoryGallery;
+    try {
+      const parsed = JSON.parse(appointmentsStorage.getItem(GALLERY_KEY) || "[]");
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (_) {
+      return [];
+    }
+  };
+  const writeGallery = (items) => {
+    galleryItems = items;
+    if (appointmentsStorage) appointmentsStorage.setItem(GALLERY_KEY, JSON.stringify(items));
+    else memoryGallery = items;
+    window.dispatchEvent(new CustomEvent("menuz:gallery-updated"));
+  };
   const formatDate = (date) => {
     if (!date) return "";
     const [year, month, day] = date.split("-");
@@ -914,6 +996,21 @@
     writeReviews(defaultReviews);
     return defaultReviews;
   };
+  const ensureProducts = () => {
+    const current = readProducts();
+    if (current.length) return current;
+    writeProducts(defaultProducts);
+    return defaultProducts;
+  };
+  const ensureGallery = () => {
+    const current = readGallery();
+    if (current.length) {
+      galleryItems = current;
+      return current;
+    }
+    writeGallery(defaultGalleryItems);
+    return defaultGalleryItems;
+  };
   const starsText = (rating) => "â˜…â˜…â˜…â˜…â˜…".slice(0, Number(rating || 0)) + "â˜†â˜†â˜†â˜†â˜†".slice(0, 5 - Number(rating || 0));
   const reviewInitials = (name) => String(name || "Cliente")
     .split(/\s+/)
@@ -927,12 +1024,19 @@
     const total = base.length;
     const average = total ? base.reduce((sum, item) => sum + Number(item.rating || 0), 0) / total : 0;
     const five = total ? Math.round((base.filter((item) => Number(item.rating) === 5).length / total) * 100) : 0;
+    const satisfaction = total ? Math.round((base.filter((item) => Number(item.rating) >= 4).length / total) * 100) : 0;
+    const distribution = [5, 4, 3, 2, 1].map((rating) => {
+      const count = base.filter((item) => Number(item.rating) === rating).length;
+      return { rating, count, percent: total ? Math.round((count / total) * 100) : 0 };
+    });
     return {
       total,
       approved: approved.length,
       pending: items.filter((item) => item.status === "pending").length,
       average,
       five,
+      satisfaction,
+      distribution,
     };
   };
   const updateReviewSummary = () => {
@@ -950,9 +1054,83 @@
     $$("[data-review-average]").forEach((el) => { el.textContent = averageText; });
     $$("[data-review-total]").forEach((el) => { el.textContent = stats.total; });
     $$("[data-review-five]").forEach((el) => { el.textContent = `${stats.five}%`; });
+    $$("[data-review-satisfaction]").forEach((el) => { el.textContent = `${stats.satisfaction}%`; });
     $$("[data-admin-review-average]").forEach((el) => { el.textContent = averageText; });
     $$("[data-admin-review-total]").forEach((el) => { el.textContent = items.length; });
     $$("[data-admin-review-pending]").forEach((el) => { el.textContent = stats.pending; });
+    const distribution = $("[data-review-distribution]");
+    if (distribution) {
+      distribution.innerHTML = stats.distribution.map((item) => `
+        <div class="review-distribution__row">
+          <span>${item.rating} estrelas</span>
+          <span class="review-distribution__bar"><span style="width:${item.percent}%"></span></span>
+          <span>${item.percent}%</span>
+        </div>
+      `).join("");
+    }
+  };
+  const renderProducts = () => {
+    const items = ensureProducts();
+    const adminList = $("[data-products-list]");
+    if (adminList) {
+      adminList.innerHTML = items.map((item) => `
+        <article class="product-admin-card" data-product-id="${escapeHtml(item.id)}">
+          <div>
+            <small>${escapeHtml(item.category)} · ${escapeHtml(item.brand)}</small>
+            <h4>${escapeHtml(item.name)}</h4>
+            <p>${escapeHtml(item.description)}</p>
+            <span class="product-status ${item.status === "inactive" ? "is-inactive" : ""}">${item.status === "active" ? "Ativo" : "Inativo"}</span>
+          </div>
+          <div class="product-admin-actions">
+            <button type="button" data-product-toggle>${item.status === "active" ? "Inativar" : "Ativar"}</button>
+            <button type="button" data-product-remove>Excluir</button>
+          </div>
+        </article>
+      `).join("");
+    }
+    const publicGrid = $("[data-public-products]");
+    if (publicGrid) {
+      const active = items.filter((item) => item.status === "active");
+      publicGrid.innerHTML = active.map((item) => `
+        <article class="public-product-card">
+          <div class="public-product-card__image" aria-hidden="true">${escapeHtml(item.category.slice(0, 2).toUpperCase())}</div>
+          <small>${escapeHtml(item.brand)} · ${escapeHtml(item.category)}</small>
+          <h3>${escapeHtml(item.name)}</h3>
+          <p>${escapeHtml(item.description)}</p>
+          ${item.link ? `<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener">Ver produto</a>` : ""}
+        </article>
+      `).join("");
+    }
+  };
+  const renderGallery = () => {
+    const wrap = $("[data-gallery-preview]");
+    ensureGallery();
+    if (!wrap) return;
+    wrap.innerHTML = galleryItems.map((item, index) => `
+      <article class="gallery-admin-item ${item.main ? "is-main" : ""}" data-gallery-id="${escapeHtml(item.id)}">
+        <figure>
+          ${item.src ? `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.label)}">` : `<span class="upload-tile ${index === 0 ? "bg-shop-main" : index === 1 ? "bg-shop-chair" : "bg-shop-tools"}"><span>${escapeHtml(item.label)}</span></span>`}
+        </figure>
+        <div class="gallery-admin-actions">
+          <button type="button" data-gallery-main>Principal</button>
+          <button type="button" data-gallery-up>Subir</button>
+          <button type="button" data-gallery-down>Descer</button>
+          <button type="button" data-gallery-remove>Excluir</button>
+        </div>
+      </article>
+    `).join("");
+  };
+  const renderPublicGallery = () => {
+    const photos = $$(".public-gallery [data-lightbox]");
+    if (!photos.length) return;
+    const items = ensureGallery();
+    items.slice(0, photos.length).forEach((item, index) => {
+      const photo = photos[index];
+      if (item.src) photo.style.backgroundImage = `url("${item.src}")`;
+      const label = $("span", photo);
+      if (label && item.label) label.textContent = index === 0 && item.main ? item.label : item.label;
+      photo.setAttribute("data-lightbox", item.label || "Galeria");
+    });
   };
   const renderPublicReviews = () => {
     const wrap = $("[data-public-reviews]");
@@ -962,7 +1140,20 @@
       updateReviewSummary();
       return;
     }
-    const approved = ensureReviews().filter((item) => item.status === "approved");
+    const ratingFilter = $("[data-public-review-rating]")?.value || "all";
+    const order = $("[data-public-review-order]")?.value || "recent";
+    const approved = ensureReviews()
+      .filter((item) => item.status === "approved")
+      .filter((item) => ratingFilter === "all" || Number(item.rating) === Number(ratingFilter))
+      .sort((a, b) => {
+        if (order === "best") return Number(b.rating || 0) - Number(a.rating || 0);
+        return String(b.date || "").localeCompare(String(a.date || ""));
+      });
+    if (!approved.length) {
+      wrap.innerHTML = `<div class="empty-state">Nenhuma avaliacao encontrada com este filtro.</div>`;
+      updateReviewSummary();
+      return;
+    }
     wrap.innerHTML = approved.map((item) => `
       <article class="review-card">
         <div class="review-card__head">
@@ -975,6 +1166,7 @@
           </div>
           <span class="review-stars" aria-label="${escapeHtml(String(item.rating))} de 5 estrelas">${starsText(item.rating)}</span>
         </div>
+        <small class="review-service">${escapeHtml(item.service || "Atendimento premium")}</small>
         ${item.comment ? `<blockquote>${escapeHtml(item.comment)}</blockquote>` : ""}
         ${item.reply ? `<div class="review-reply"><strong>Resposta da barbearia</strong><br>${escapeHtml(item.reply)}</div>` : ""}
         <time datetime="${escapeHtml(item.date)}">${formatDate(item.date)}</time>
@@ -1360,6 +1552,106 @@
     window.addEventListener("menuz:appointments-updated", renderAppointments);
   }
 
+  const galleryInput = $("[data-gallery-input]");
+  galleryInput?.addEventListener("change", () => {
+    const files = Array.from(galleryInput.files || []).filter((file) => file.type.startsWith("image/")).slice(0, 8);
+    if (!files.length) {
+      showDashboardToast("Selecione imagens validas para a galeria.", "error");
+      galleryInput.value = "";
+      return;
+    }
+    Promise.all(files.map((file, index) => new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve({
+        id: `gallery-${Date.now()}-${index}`,
+        label: file.name.replace(/\.[^.]+$/, "").slice(0, 42) || "Imagem da galeria",
+        src: String(reader.result || ""),
+        main: false,
+      });
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(file);
+    }))).then((items) => {
+      const next = [...ensureGallery(), ...items.filter(Boolean)].slice(0, 12);
+      if (!next.some((item) => item.main) && next[0]) next[0].main = true;
+      writeGallery(next);
+      renderGallery();
+      renderPublicGallery();
+      showDashboardToast("Previa da galeria atualizada.");
+      galleryInput.value = "";
+    });
+  });
+  const galleryPreview = $("[data-gallery-preview]");
+  galleryPreview?.addEventListener("click", (e) => {
+    const card = e.target.closest("[data-gallery-id]");
+    if (!card) return;
+    const id = card.getAttribute("data-gallery-id");
+    const items = [...ensureGallery()];
+    const index = items.findIndex((item) => item.id === id);
+    if (index === -1) return;
+    if (e.target.closest("[data-gallery-main]")) {
+      writeGallery(items.map((item) => ({ ...item, main: item.id === id })));
+      showDashboardToast("Foto principal definida.");
+    }
+    if (e.target.closest("[data-gallery-up]") && index > 0) {
+      [items[index - 1], items[index]] = [items[index], items[index - 1]];
+      writeGallery(items);
+      showDashboardToast("Imagem reposicionada.");
+    }
+    if (e.target.closest("[data-gallery-down]") && index < items.length - 1) {
+      [items[index + 1], items[index]] = [items[index], items[index + 1]];
+      writeGallery(items);
+      showDashboardToast("Imagem reposicionada.");
+    }
+    if (e.target.closest("[data-gallery-remove]")) {
+      if (!window.confirm("Excluir esta imagem da galeria?")) return;
+      const next = items.filter((item) => item.id !== id);
+      if (items[index].main && next[0]) next[0].main = true;
+      writeGallery(next);
+      showDashboardToast("Imagem removida da galeria.");
+    }
+    renderGallery();
+    renderPublicGallery();
+  });
+
+  const productForm = $("[data-product-form]");
+  productForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = new FormData(productForm);
+    const product = {
+      id: "product-" + Date.now(),
+      name: String(data.get("name") || "").trim(),
+      brand: String(data.get("brand") || "").trim(),
+      category: String(data.get("category") || "").trim(),
+      description: String(data.get("description") || "").trim(),
+      link: String(data.get("link") || "").trim(),
+      status: String(data.get("status") || "active"),
+    };
+    if (!product.name || !product.brand || !product.category || !product.description) {
+      showDashboardToast("Preencha nome, marca, categoria e descricao.", "error");
+      return;
+    }
+    writeProducts([product, ...ensureProducts()]);
+    productForm.reset();
+    renderProducts();
+    showDashboardToast("Produto adicionado e refletido na vitrine publica.");
+  });
+  $("[data-products-list]")?.addEventListener("click", (e) => {
+    const card = e.target.closest("[data-product-id]");
+    if (!card) return;
+    const id = card.getAttribute("data-product-id");
+    const items = ensureProducts();
+    if (e.target.closest("[data-product-toggle]")) {
+      writeProducts(items.map((item) => item.id === id ? { ...item, status: item.status === "active" ? "inactive" : "active" } : item));
+      showDashboardToast("Status do produto atualizado.");
+    }
+    if (e.target.closest("[data-product-remove]")) {
+      if (!window.confirm("Excluir este produto da vitrine?")) return;
+      writeProducts(items.filter((item) => item.id !== id));
+      showDashboardToast("Produto removido.");
+    }
+    renderProducts();
+  });
+
   const updateReview = (id, updater) => {
     const items = ensureReviews();
     const index = items.findIndex((item) => item.id === id);
@@ -1520,8 +1812,20 @@
     });
     window.addEventListener("menuz:reviews-updated", renderAdminReviews);
   }
+  ["change", "input"].forEach((evt) => {
+    $("[data-public-review-rating]")?.addEventListener(evt, renderPublicReviews);
+    $("[data-public-review-order]")?.addEventListener(evt, renderPublicReviews);
+  });
+  renderProducts();
+  renderGallery();
+  renderPublicGallery();
   renderPublicReviews();
   updateReviewSummary();
+  window.addEventListener("menuz:products-updated", renderProducts);
+  window.addEventListener("menuz:gallery-updated", () => {
+    renderGallery();
+    renderPublicGallery();
+  });
   window.addEventListener("menuz:reviews-updated", () => {
     renderPublicReviews();
     updateReviewSummary();

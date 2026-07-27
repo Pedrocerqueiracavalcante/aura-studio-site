@@ -7,11 +7,11 @@
 /* ---------- Design Tokens ---------- */
 :root {
   /* Brand — gradiente assinatura Menuz-like */
-  --brand-light: #D9B86F;
-  --brand:  #B88A32;
-  --brand-deep:  #8A6424;
+  --brand-light: #FB923C;
+  --brand: #F97316;
+  --brand-deep: #EA580C;
   --grad: linear-gradient(135deg, var(--brand-light) 0%, var(--brand) 50%, var(--brand-deep) 100%);
-  --grad-soft: linear-gradient(135deg, rgba(255,138,43,.20), rgba(255,106,0,.15));
+  --grad-soft: linear-gradient(135deg, rgba(249,115,22,.18), rgba(251,146,60,.14));
 
   /* Superfícies escuras (base neutra quente) */
   --bg:       #FFFFFF;
@@ -51,7 +51,7 @@
 
   /* Efeitos */
   --shadow: 0 26px 80px -46px rgba(16,24,40,.24);
-  --shadow-glow: 0 20px 60px -24px rgba(255,106,0,.38);
+  --shadow-glow: 0 20px 60px -24px rgba(249,115,22,.34);
   --ring: 0 0 0 1px var(--border);
 
   /* Layout */
@@ -1408,7 +1408,7 @@ body::after {
   border: 1px solid rgba(255,106,0,.24);
   border-radius: 999px;
   background: rgba(255,106,0,.12);
-  color: #7A561E;
+  color: #9A3412;
   font-weight: 900;
   padding: .45rem .65rem;
 }
@@ -1428,6 +1428,8 @@ body::after {
   color: #fff;
 }
 .dashboard-page .public-link-card,
+.dashboard-page .profile-manager,
+.dashboard-page .profile-manager-card,
 .dashboard-page .appointments-panel,
 .dashboard-page .dash-editor-card,
 .dashboard-page .reviews-admin-panel,
@@ -1442,6 +1444,7 @@ body::after {
 }
 .dashboard-page .appointment-stats article,
 .dashboard-page .appointment-card,
+.dashboard-page .product-admin-card,
 .dashboard-page .review-admin-stats article,
 .dashboard-page .review-admin-card,
 .dashboard-page .message-preview pre,
@@ -1457,6 +1460,9 @@ body::after {
 }
 .dashboard-page .dash-editor-card input,
 .dashboard-page .dash-editor-card textarea,
+.dashboard-page .profile-manager input,
+.dashboard-page .profile-manager select,
+.dashboard-page .profile-manager textarea,
 .dashboard-page .appointments-filters input,
 .dashboard-page .appointments-filters select,
 .dashboard-page .reviews-filters input,
@@ -1466,11 +1472,231 @@ body::after {
   color: #111827;
 }
 .dashboard-page .dash-editor-card label,
+.dashboard-page .profile-manager label,
 .dashboard-page .appointments-filters label,
 .dashboard-page .reviews-filters label,
 .dashboard-page .appointment-stats span,
 .dashboard-page .message-preview span {
   color: #667085;
+}
+.profile-manager {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.profile-manager > *,
+.profile-manager-card,
+.profile-manager-card * {
+  min-width: 0;
+}
+.profile-manager .appointments-head {
+  width: 100%;
+}
+.profile-manager-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.profile-manager-card {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 14px;
+}
+.profile-manager-card--wide {
+  grid-column: 1 / -1;
+}
+.profile-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: .85rem;
+}
+.profile-card-head > span {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  border-radius: 10px;
+  background: #FFF7ED;
+  color: var(--brand-deep);
+  font-weight: 900;
+}
+.profile-card-head h3 {
+  color: #111827;
+  font-size: 1.05rem;
+  margin-bottom: .25rem;
+}
+.profile-card-head p {
+  color: #667085;
+  font-size: .9rem;
+  line-height: 1.55;
+}
+.profile-form-grid,
+.product-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem;
+}
+.profile-form-grid--single {
+  grid-template-columns: 1fr;
+}
+.profile-form-grid label,
+.product-form label,
+.profile-photo-stack label {
+  display: grid;
+  gap: .45rem;
+  font-size: .86rem;
+  font-weight: 800;
+}
+.profile-form-grid__wide,
+.product-form__wide {
+  grid-column: 1 / -1;
+}
+.profile-photo-stack {
+  display: grid;
+  gap: .8rem;
+}
+.gallery-uploader {
+  display: grid;
+  gap: .4rem;
+  border: 1px dashed rgba(249,115,22,.35);
+  border-radius: 14px;
+  background: #FFF7ED;
+  padding: 1rem;
+  cursor: pointer;
+}
+.gallery-uploader input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+.gallery-uploader span {
+  color: #111827;
+  font-weight: 900;
+}
+.gallery-uploader small {
+  color: #667085;
+  line-height: 1.5;
+}
+.gallery-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .8rem;
+}
+.gallery-admin-item {
+  display: grid;
+  gap: .55rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  background: #fff;
+  padding: .6rem;
+  box-shadow: 0 18px 42px -38px rgba(15,23,42,.32);
+}
+.gallery-admin-item figure {
+  position: relative;
+  min-height: 128px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #F8F9FA;
+}
+.gallery-admin-item img {
+  width: 100%;
+  height: 100%;
+  min-height: 128px;
+  object-fit: cover;
+  display: block;
+}
+.gallery-admin-item .upload-tile {
+  display: block;
+  min-height: 128px;
+  border-radius: 10px;
+}
+.gallery-admin-item.is-main figure::after {
+  content: "Principal";
+  position: absolute;
+  left: .55rem;
+  top: .55rem;
+  border-radius: 999px;
+  background: var(--brand);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 900;
+  padding: .28rem .48rem;
+}
+.gallery-admin-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .4rem;
+}
+.gallery-admin-actions button,
+.product-admin-actions button {
+  min-height: 34px;
+  border: 1px solid #E5E7EB;
+  border-radius: 9px;
+  background: #fff;
+  color: #344054;
+  font-weight: 800;
+  cursor: pointer;
+}
+.gallery-admin-actions button:hover,
+.product-admin-actions button:hover {
+  border-color: rgba(249,115,22,.34);
+  color: var(--brand-deep);
+  background: #FFF7ED;
+}
+.product-admin-list {
+  display: grid;
+  gap: .75rem;
+}
+.product-admin-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .8rem;
+  align-items: start;
+  border-radius: 12px;
+  padding: .85rem;
+}
+.product-admin-card h4 {
+  color: #111827;
+  font-size: 1rem;
+  margin-bottom: .25rem;
+}
+.product-admin-card p {
+  color: #667085;
+  line-height: 1.55;
+}
+.product-admin-card small,
+.product-status {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 900;
+  padding: .3rem .5rem;
+}
+.product-admin-card small {
+  background: #F8F9FA;
+  color: #475467;
+  margin-bottom: .45rem;
+}
+.product-status {
+  background: #ECFDF3;
+  color: #067647;
+}
+.product-status.is-inactive {
+  background: #F2F4F7;
+  color: #667085;
+}
+.product-admin-actions {
+  display: grid;
+  gap: .45rem;
+  min-width: 120px;
 }
 .dashboard-toast {
   position: fixed;
@@ -1886,6 +2112,7 @@ body::after {
 .public-premium-profile .cut-plan-grid,
 .public-premium-profile .quick-cuts-grid,
 .public-premium-profile .public-barbers,
+.public-premium-profile .public-products,
 .public-premium-profile .booking-steps,
 .public-premium-profile .schedule-card,
 .public-premium-profile .reviews-section {
@@ -1897,6 +2124,7 @@ body::after {
 .public-premium-profile .quick-service-grid article,
 .public-premium-profile .plan-options article,
 .public-premium-profile .public-barbers article,
+.public-premium-profile .public-product-card,
 .public-premium-profile .booking-step-card,
 .public-premium-profile .booking-summary,
 .public-premium-profile .review-card,
@@ -1905,6 +2133,116 @@ body::after {
   border-color: var(--border);
   background: #fff;
   color: #111827;
+}
+.public-products {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255,255,255,.86);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+.public-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .85rem;
+}
+.public-product-card {
+  display: grid;
+  gap: .75rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+.public-product-card__image {
+  display: grid;
+  place-items: center;
+  min-height: 118px;
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(249,115,22,.12), transparent 40%),
+    linear-gradient(135deg, #FFF7ED, #FFFFFF);
+  color: var(--brand-deep);
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+.public-product-card h3 {
+  color: #111827;
+  font-size: 1.02rem;
+}
+.public-product-card p {
+  color: #667085;
+  line-height: 1.55;
+}
+.public-product-card small {
+  color: #475467;
+  font-weight: 800;
+}
+.public-product-card a {
+  color: var(--brand-deep);
+  font-weight: 900;
+}
+.review-service {
+  display: inline-flex;
+  width: fit-content;
+  border: 1px solid #E5E7EB;
+  border-radius: 999px;
+  background: #F8F9FA;
+  color: #475467;
+  font-size: .76rem;
+  font-weight: 900;
+  padding: .32rem .52rem;
+}
+.review-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+.review-toolbar label {
+  display: grid;
+  gap: .4rem;
+  color: #667085;
+  font-size: .82rem;
+  font-weight: 800;
+}
+.review-toolbar select {
+  min-height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: #111827;
+  padding: 0 .8rem;
+}
+.review-distribution {
+  display: grid;
+  gap: .55rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  padding: .9rem;
+}
+.review-distribution__row {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: .75rem;
+  color: #667085;
+  font-size: .84rem;
+  font-weight: 800;
+}
+.review-distribution__bar {
+  height: 8px;
+  border-radius: 999px;
+  background: #F2F4F7;
+  overflow: hidden;
+}
+.review-distribution__bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--brand);
 }
 .public-premium-profile .public-side {
   position: sticky;
@@ -2114,7 +2452,7 @@ body::after {
   justify-self: start;
   border-radius: 999px;
   background: rgba(255,106,0,.12);
-  color: #7A561E;
+  color: #9A3412;
   font-weight: 900;
   padding: .65rem .9rem;
 }
@@ -2162,7 +2500,7 @@ body::after {
   justify-self: start;
   border-radius: 999px;
   background: rgba(255,106,0,.18);
-  color: #7A561E;
+  color: #9A3412;
   font-weight: 800;
   padding: .55rem .8rem;
 }
@@ -3778,7 +4116,7 @@ body::after {
 .language-selector__button:hover,
 .language-selector.is-open .language-selector__button {
   transform: translateY(-1px);
-  border-color: rgba(184,138,50,.30);
+  border-color: rgba(249,115,22,.30);
   background: rgba(255,255,255,.96);
   box-shadow: 0 18px 42px -32px rgba(16,24,40,.42);
 }
@@ -3867,8 +4205,8 @@ body::after {
   color: #111827;
 }
 .language-selector__menu button[aria-checked="true"] {
-  background: rgba(184,138,50,.10);
-  color: #7A561E;
+  background: rgba(249,115,22,.10);
+  color: #9A3412;
 }
 .ticket-user {
   position: relative;
@@ -3929,8 +4267,8 @@ body::after {
   color: #111827;
 }
 .premium-barber-page .btn--primary {
-  background: linear-gradient(135deg, #E8D39A, #B88A32 52%, #7A561E);
-  box-shadow: 0 18px 46px -22px rgba(138,100,36,.55);
+  background: linear-gradient(135deg, #FB923C, #F97316 52%, #EA580C);
+  box-shadow: 0 18px 46px -22px rgba(249,115,22,.42);
 }
 .premium-barber-page .btn--ghost {
   background: rgba(255,255,255,.78);
@@ -4005,7 +4343,7 @@ body::after {
     rgba(255,255,255,.72);
   box-shadow:
     0 42px 120px -62px rgba(16,24,40,.55),
-    0 22px 50px -42px rgba(184,138,50,.68),
+    0 22px 50px -42px rgba(249,115,22,.42),
     inset 0 1px 0 rgba(255,255,255,.86);
   backdrop-filter: blur(24px) saturate(132%);
   -webkit-backdrop-filter: blur(24px) saturate(132%);
@@ -4020,7 +4358,7 @@ body::after {
   pointer-events: none;
   background:
     radial-gradient(circle at 18% 12%, rgba(255,255,255,.9), transparent 28%),
-    radial-gradient(circle at 92% 8%, rgba(217,184,111,.28), transparent 30%),
+    radial-gradient(circle at 92% 8%, rgba(249,115,22,.18), transparent 30%),
     linear-gradient(135deg, rgba(255,255,255,.42), transparent 52%);
 }
 .barber-hero-card > * {
@@ -4032,10 +4370,10 @@ body::after {
   top: 1rem;
   right: 1rem;
   z-index: 2;
-  border: 1px solid rgba(184,138,50,.18);
+  border: 1px solid rgba(249,115,22,.18);
   border-radius: 999px;
   background: rgba(255,255,255,.76);
-  color: #7A561E;
+  color: #9A3412;
   font-family: var(--font-display);
   font-size: .72rem;
   font-weight: 800;
@@ -4056,7 +4394,7 @@ body::after {
 }
 .barber-hero-card__kicker,
 .premium-eyebrow {
-  color: #8A6424;
+  color: #9A3412;
   font-family: var(--font-display);
   font-size: .76rem;
   font-weight: 800;
@@ -4082,7 +4420,7 @@ body::after {
   margin-top: .85rem;
 }
 .barber-rating span {
-  color: #B88A32;
+  color: #F97316;
   letter-spacing: .08em;
 }
 .barber-rating small,
@@ -4170,7 +4508,7 @@ body::after {
 }
 .premium-card span,
 .plan-card span {
-  color: #8A6424;
+  color: #9A3412;
   font-family: var(--font-display);
   font-size: .78rem;
   font-weight: 800;
@@ -4216,7 +4554,7 @@ body::after {
   margin-top: .2rem;
 }
 .review-card span {
-  color: #B88A32;
+  color: #F97316;
   letter-spacing: .08em;
 }
 .review-card strong {
@@ -4258,11 +4596,11 @@ body::after {
 .plan-card a {
   display: inline-flex;
   margin-top: 1rem;
-  color: #8A6424;
+  color: #9A3412;
   font-weight: 800;
 }
 .plan-card--featured {
-  border-color: rgba(184,138,50,.24);
+  border-color: rgba(249,115,22,.24);
   background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(250,247,239,.82));
 }
 .premium-contact {
@@ -4367,8 +4705,8 @@ body::after {
    CORTES — cards, catálogo, carrossel e filtros (Barbearia Menuz)
    ===================================================================== */
 
-/* Estrela dourada no eyebrow do hero */
-.eyebrow__star { color: #FFC24B; }
+/* Estrela de destaque no eyebrow do hero */
+.eyebrow__star { color: #F97316; }
 
 /* ---------- Card de corte (partilhado hero + grelha) ---------- */
 .cut { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease); }
@@ -4625,6 +4963,9 @@ body::after {
   .public-side { position: static; }
   .publish-flow { grid-template-columns: repeat(2, 1fr); }
   .appointments-filters { grid-template-columns: 1fr 1fr; }
+  .profile-manager-grid { grid-template-columns: 1fr; }
+  .gallery-preview-grid,
+  .public-products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .appointment-card { grid-template-columns: 1fr; }
   .appointment-card__actions {
     min-width: 0;
@@ -4708,6 +5049,10 @@ body::after {
   .review-admin-stats,
   .appointments-filters,
   .reviews-filters,
+  .profile-form-grid,
+  .product-form,
+  .gallery-preview-grid,
+  .public-products-grid,
   .review-form,
   .review-admin-card__meta,
   .appointment-card dl,
@@ -4721,6 +5066,18 @@ body::after {
   .quick-cuts-grid,
   .public-barbers,
   .booking-steps { grid-template-columns: 1fr; }
+  .product-admin-card {
+    grid-template-columns: 1fr;
+  }
+  .product-admin-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .review-toolbar {
+    justify-content: stretch;
+  }
+  .review-toolbar label {
+    width: 100%;
+  }
   .appointments-head,
   .review-card__head,
   .review-admin-card__head,
@@ -4881,7 +5238,7 @@ body::after {
 }
 
 /* =====================================================================
-   TEMA ESCURO (app-like) + acento Menuz dourado  ·  html.theme-dark
+   TEMA ESCURO (app-like) + acento Menuz laranja  ·  html.theme-dark
    ===================================================================== */
 html.theme-dark {
   --bg: #0C0E12;
@@ -4900,8 +5257,8 @@ html.theme-dark {
 html.theme-dark body { background: transparent; color: var(--text); }
 html.theme-dark body::before {
   background:
-    radial-gradient(60% 45% at 14% 0%, rgba(217,184,111,.10), transparent 60%),
-    radial-gradient(55% 45% at 100% 8%, rgba(217,184,111,.06), transparent 60%),
+    radial-gradient(60% 45% at 14% 0%, rgba(249,115,22,.10), transparent 60%),
+    radial-gradient(55% 45% at 100% 8%, rgba(249,115,22,.06), transparent 60%),
     #0C0E12;
 }
 html.theme-dark body::after { opacity: .16; }
@@ -4973,7 +5330,7 @@ html.theme-dark .barber-hero-card__barber,
 html.theme-dark .barber-rating small,
 html.theme-dark .barber-metrics span { color: var(--muted); }
 html.theme-dark .barber-tags span { background: rgba(255,255,255,.06); border-color: var(--border); color: var(--text); }
-html.theme-dark .premium-badge { background: rgba(255,255,255,.08); border-color: rgba(217,184,111,.35); color: var(--brand-light); }
+html.theme-dark .premium-badge { background: rgba(255,255,255,.08); border-color: rgba(249,115,22,.35); color: var(--brand-light); }
 
 /* Campos de formulário */
 html.theme-dark input,
@@ -5052,7 +5409,7 @@ html:not(.theme-dark) .app-bg-waves { display: none; }
 .app-tab svg { width: 22px; height: 22px; }
 .app-tab:hover { color: var(--text); background: rgba(16,24,40,.045); }
 .app-tab.is-active { color: var(--brand-light); }
-.app-tab.is-active svg { filter: drop-shadow(0 0 10px rgba(217,184,111,.55)); }
+.app-tab.is-active svg { filter: drop-shadow(0 0 10px rgba(249,115,22,.42)); }
 
 body.has-tabbar { padding-bottom: 84px; }
 body.has-tabbar .to-top { bottom: calc(84px + 1rem); }

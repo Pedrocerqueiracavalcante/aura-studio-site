@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-06">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-07">
 </head>
 <body class="public-page public-premium-profile">
   <main class="public-shell">
@@ -70,6 +70,7 @@
         <a href="#servicos">Serviços</a>
         <a href="#profissionais">Profissionais</a>
         <a href="#planos">Planos</a>
+        <a href="#produtos">Produtos</a>
         <a href="#agendamento">Agendamento</a>
         <a href="#avaliacoes">Avaliações</a>
         <a href="#contato">Contato</a>
@@ -141,6 +142,15 @@
           <p><strong>Rafael</strong><span>Barba e navalha</span></p>
           <button type="button" data-pick-barber="Rafael">Agendar</button>
         </article>
+      </section>
+
+      <section class="public-products" id="produtos" aria-labelledby="productsTitle">
+        <div class="section-heading section-heading--compact">
+          <p class="minimal-kicker">Produtos utilizados</p>
+          <h2 id="productsTitle">Vitrine dos produtos do atendimento</h2>
+          <span>Itens ativos cadastrados pelo barbeiro para dar mais transparência ao serviço.</span>
+        </div>
+        <div class="public-products-grid" data-public-products></div>
       </section>
 
       <section class="booking-steps" aria-label="Agendamento rápido">
@@ -264,6 +274,30 @@
           <article><strong data-review-average>4,9</strong><span>Nota média</span></article>
           <article><strong data-review-total>327</strong><span>Avaliações</span></article>
           <article><strong data-review-five>92%</strong><span>Notas 5 estrelas</span></article>
+          <article><strong data-review-satisfaction>100%</strong><span>Satisfação</span></article>
+        </div>
+
+        <div class="review-distribution" data-review-distribution aria-label="Distribuição por estrelas"></div>
+
+        <div class="review-toolbar" aria-label="Filtros de avaliações">
+          <label>
+            Filtrar nota
+            <select data-public-review-rating>
+              <option value="all">Todas as notas</option>
+              <option value="5">5 estrelas</option>
+              <option value="4">4 estrelas</option>
+              <option value="3">3 estrelas</option>
+              <option value="2">2 estrelas</option>
+              <option value="1">1 estrela</option>
+            </select>
+          </label>
+          <label>
+            Ordenar
+            <select data-public-review-order>
+              <option value="recent">Mais recentes</option>
+              <option value="best">Melhor avaliação</option>
+            </select>
+          </label>
         </div>
 
         <div class="reviews-grid" data-public-reviews></div>
@@ -357,6 +391,6 @@
     <div class="lightbox__image" id="lightboxImage" role="img"></div>
     <p id="lightboxCaption"></p>
   </div>
-  <script src="assets/js/main.js?v=20260727-06" defer></script>
+  <script src="assets/js/main.js?v=20260727-07" defer></script>
 </body>
 </html>
