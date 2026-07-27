@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-03">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-04">
 </head>
 <body class="public-page">
   <main class="public-shell">
@@ -20,20 +20,44 @@
           <img src="assets/img/logo.svg" alt="" width="62" height="62">
         </div>
         <div class="public-profile-copy">
-          <p class="minimal-kicker">Perfil público independente · @barbearia-menuz</p>
+          <p class="minimal-kicker">@barbearia-menuz</p>
           <h1>Barbearia Menuz</h1>
           <span data-review-summary>★ 4,9 · 327 avaliações · 92% nota 5</span>
-          <p>Fades, barba na navalha e planos recorrentes em uma experiência de agendamento rápida, clara e premium.</p>
-          <div class="public-socials" aria-label="Redes sociais da barbearia">
-            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
-            <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
-            <a href="https://wa.me/5531999999999" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+          <div class="public-profile-meta" aria-label="Resumo do perfil">
+            <span>Igarapé/MG</span>
+            <span>Ter-Sáb</span>
+            <span>2 profissionais</span>
           </div>
         </div>
         <div class="public-head__actions">
+          <div class="language-selector language-selector--compact" data-language-selector>
+            <button class="language-selector__button" type="button" aria-haspopup="true" aria-expanded="false" data-language-trigger data-i18n-aria-label="language.label">
+              <span class="language-flag language-flag--pt" data-language-current-flag aria-hidden="true"></span>
+              <span class="language-selector__code" data-language-current-code>PT</span>
+              <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                <path d="m5 7.5 5 5 5-5"></path>
+              </svg>
+            </button>
+            <div class="language-selector__menu" role="menu" data-language-menu>
+              <button type="button" role="menuitemradio" aria-checked="true" data-language-option data-lang="pt">
+                <span class="language-flag language-flag--pt" aria-hidden="true"></span>
+                <span data-i18n="language.portuguese">Português</span>
+              </button>
+              <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-lang="en">
+                <span class="language-flag language-flag--en" aria-hidden="true"></span>
+                <span data-i18n="language.english">English</span>
+              </button>
+              <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-lang="es">
+                <span class="language-flag language-flag--es" aria-hidden="true"></span>
+                <span data-i18n="language.spanish">Español</span>
+              </button>
+              <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-lang="fr">
+                <span class="language-flag language-flag--fr" aria-hidden="true"></span>
+                <span data-i18n="language.french">Français</span>
+              </button>
+            </div>
+          </div>
           <a class="btn btn--primary" href="#agendamento">Agendar agora</a>
-          <a class="btn btn--ghost" href="encontrar-barbearias.html">Encontrar barbearias</a>
         </div>
       </header>
 
@@ -297,6 +321,16 @@
         <h2>Pagamento</h2>
         <div><span>PIX</span><span>Dinheiro</span><span>Crédito</span><span>Débito</span></div>
       </section>
+      <section>
+        <h2>Redes</h2>
+        <div class="public-socials" aria-label="Redes sociais da barbearia">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+          <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
+          <a href="https://wa.me/5531999999999" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+        </div>
+      </section>
+      <a class="btn btn--ghost btn--block" href="encontrar-barbearias.html">Encontrar barbearias</a>
       <a class="btn btn--primary btn--block" href="#agendamento">Solicitar agendamento</a>
     </aside>
   </main>
@@ -306,6 +340,6 @@
     <div class="lightbox__image" id="lightboxImage" role="img"></div>
     <p id="lightboxCaption"></p>
   </div>
-  <script src="assets/js/main.js?v=20260727-03" defer></script>
+  <script src="assets/js/main.js?v=20260727-04" defer></script>
 </body>
 </html>

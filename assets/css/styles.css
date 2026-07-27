@@ -1510,34 +1510,50 @@ body::after {
 .public-head img { width: 62px; height: 62px; }
 .public-head h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); }
 .public-head--profile {
-  align-items: flex-start;
+  align-items: center;
   border: 1px solid rgba(17,24,39,.08);
-  border-radius: 14px;
+  border-radius: 12px;
   background:
-    radial-gradient(circle at 0% 0%, rgba(255,255,255,.96), rgba(255,255,255,.72) 48%, transparent 72%),
-    linear-gradient(135deg, rgba(255,255,255,.94), rgba(250,250,250,.82));
-  box-shadow: 0 28px 70px -58px rgba(15,23,42,.46);
-  padding: clamp(1rem, 2vw, 1.35rem);
+    radial-gradient(circle at 0% 0%, rgba(255,255,255,.98), transparent 58%),
+    linear-gradient(180deg, rgba(255,255,255,.94), rgba(250,250,250,.84));
+  box-shadow: 0 22px 56px -50px rgba(15,23,42,.42);
+  padding: .95rem;
 }
 .public-profile-mark {
-  width: 72px;
-  height: 72px;
+  width: 62px;
+  height: 62px;
   display: grid;
   place-items: center;
   flex: none;
   border: 1px solid rgba(17,24,39,.08);
-  border-radius: 16px;
+  border-radius: 14px;
   background: #fff;
-  box-shadow: 0 20px 42px -34px rgba(15,23,42,.44);
+  box-shadow: 0 16px 34px -30px rgba(15,23,42,.34);
 }
 .public-profile-copy {
   display: grid;
-  gap: .35rem;
+  gap: .25rem;
 }
 .public-profile-copy p {
   max-width: 650px;
   color: var(--muted);
   line-height: 1.6;
+}
+.public-profile-meta {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  flex-wrap: wrap;
+  margin-top: .15rem;
+}
+.public-profile-meta span {
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 999px;
+  background: rgba(255,255,255,.82);
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 800;
+  padding: .32rem .55rem;
 }
 .public-head__actions {
   display: flex;
@@ -1545,6 +1561,7 @@ body::after {
   gap: .6rem;
   flex-wrap: wrap;
   justify-content: flex-end;
+  margin-left: auto;
 }
 .public-socials {
   display: flex;
@@ -1570,6 +1587,13 @@ body::after {
   transform: translateY(-2px);
   border-color: rgba(255,106,0,.28);
   box-shadow: 0 20px 36px -28px rgba(255,106,0,.32);
+}
+.public-side .public-socials {
+  margin-top: 0;
+}
+.language-selector--compact .language-selector__button {
+  min-height: 40px;
+  padding-right: .62rem;
 }
 .public-tabs {
   display: flex;
