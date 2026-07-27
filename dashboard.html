@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-02">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-03">
 </head>
 <body class="dashboard-page">
   <aside class="dash-sidebar" aria-label="Menu do painel">
@@ -23,6 +23,7 @@
       <a href="#barbearia">Minha Barbearia</a>
       <a href="#perfil">Meu Perfil</a>
       <a href="#servicos">Serviços</a>
+      <a href="#planos">Planos</a>
       <a href="#cortes">Cortes</a>
       <a href="#agenda">Agendamentos</a>
       <a href="#avaliacoes">Avaliações</a>
@@ -35,7 +36,7 @@
     <header class="dash-top" id="visao">
       <div>
         <p class="minimal-kicker">Painel do barbeiro</p>
-        <h1>Monte a página que seus clientes vão receber.</h1>
+        <h1>Gerencie perfil, agenda e serviços em uma base pronta para escalar.</h1>
       </div>
       <a class="btn btn--primary" href="barbearia-menuz.html">Abrir link público</a>
     </header>
@@ -51,8 +52,26 @@
     <section class="publish-flow" aria-label="Passos para publicar">
       <article class="is-done"><span>1</span><strong>Dados</strong><small>Nome, endereço e WhatsApp</small></article>
       <article class="is-done"><span>2</span><strong>Fotos</strong><small>Ambiente, cortes e perfil</small></article>
-      <article><span>3</span><strong>Serviços</strong><small>Preços, tempo e categorias</small></article>
-      <article><span>4</span><strong>Publicar</strong><small>Gerar link para clientes</small></article>
+      <article class="is-done"><span>3</span><strong>Serviços</strong><small>Preços, tempo e categorias</small></article>
+      <article><span>4</span><strong>Publicar</strong><small>Perfil, planos e agenda ativos</small></article>
+    </section>
+
+    <section class="tenant-overview" aria-label="Arquitetura da barbearia">
+      <article>
+        <span>Tenant ativo</span>
+        <strong>barbearia-menuz</strong>
+        <small>Dados isolados por perfil público.</small>
+      </article>
+      <article>
+        <span>Agenda</span>
+        <strong>Ter-Sáb · 09h-19h</strong>
+        <small>Slots gerados automaticamente.</small>
+      </article>
+      <article>
+        <span>Link público</span>
+        <strong>/@barbearia-menuz</strong>
+        <small>Pronto para QR Code e redes sociais.</small>
+      </article>
     </section>
 
     <section class="appointments-panel" id="agenda" aria-labelledby="appointmentsTitle">
@@ -114,10 +133,14 @@
         <h2>Minha Barbearia</h2>
         <label>Nome</label>
         <input value="Barbearia Menuz">
+        <label>Slogan</label>
+        <input value="Cortes precisos, agenda simples e experiência premium">
         <label>Endereço</label>
         <input value="Rua Tiradentes, 48 - Centro, Igarapé/MG">
         <label>WhatsApp</label>
         <input value="(31) 99999-9999">
+        <label>E-mail</label>
+        <input value="contato@barbeariamenuz.com">
       </article>
 
       <article class="dash-editor-card" id="perfil">
@@ -125,6 +148,8 @@
         <div class="upload-tile bg-barber-1"><span>Foto do barbeiro</span></div>
         <label>Especialidade</label>
         <input value="Fades, navalha e cortes modernos">
+        <label>Biografia</label>
+        <textarea rows="4">Atendimento autoral com foco em acabamento, pontualidade e experiência de barbearia premium.</textarea>
       </article>
 
       <article class="dash-editor-card" id="servicos">
@@ -133,7 +158,41 @@
           <span>Corte masculino <strong>R$ 45</strong></span>
           <span>Barba + Navalha <strong>R$ 35</strong></span>
           <span>Corte + Barba <strong>R$ 70</strong></span>
+          <span>Pigmentação <strong>R$ 55</strong></span>
         </div>
+      </article>
+
+      <article class="dash-editor-card" id="planos">
+        <h2>Planos de Corte</h2>
+        <div class="mini-list">
+          <span>Plano Mensal <strong>R$ 129</strong></span>
+          <span>Plano Premium <strong>R$ 189</strong></span>
+          <span>Plano Executivo <strong>R$ 249</strong></span>
+        </div>
+        <button class="btn btn--primary btn--block" type="button">Criar plano</button>
+      </article>
+
+      <article class="dash-editor-card">
+        <h2>Agenda Inteligente</h2>
+        <div class="admin-schedule-grid">
+          <label>Início<input value="09:00"></label>
+          <label>Fim<input value="19:00"></label>
+          <label>Intervalo<input value="15 min"></label>
+          <label>Pausa<input value="12:00 - 14:00"></label>
+        </div>
+        <div class="availability-days" aria-label="Dias de atendimento">
+          <span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+        </div>
+      </article>
+
+      <article class="dash-editor-card">
+        <h2>Redes Sociais</h2>
+        <label>Instagram</label>
+        <input value="https://instagram.com/barbearia-menuz">
+        <label>TikTok</label>
+        <input value="https://tiktok.com/@barbearia-menuz">
+        <label>Site próprio</label>
+        <input value="https://pedrocerqueiracavalcante.github.io/aura-studio-site/">
       </article>
 
       <article class="dash-editor-card" id="cortes">
@@ -144,6 +203,17 @@
           <span class="cp-navalha"></span>
         </div>
         <button class="btn btn--primary btn--block" type="button">Adicionar corte</button>
+      </article>
+
+      <article class="dash-editor-card">
+        <h2>Localização e Descoberta</h2>
+        <label>Cidade</label>
+        <input value="Igarapé">
+        <label>Estado</label>
+        <input value="MG">
+        <label>Serviços destacados</label>
+        <input value="Corte, Barba, Pigmentação">
+        <a class="btn btn--ghost btn--block" href="encontrar-barbearias.html">Ver página Encontrar Barbearias</a>
       </article>
     </section>
 
@@ -225,6 +295,6 @@
     </section>
   </main>
 
-  <script src="assets/js/main.js?v=20260727-02" defer></script>
+  <script src="assets/js/main.js?v=20260727-03" defer></script>
 </body>
 </html>

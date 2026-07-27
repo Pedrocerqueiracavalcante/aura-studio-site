@@ -1223,6 +1223,30 @@ body::after {
 .publish-flow small,
 .booking-steps strong { display: block; }
 .publish-flow small { color: var(--muted); margin-top: .2rem; line-height: 1.4; }
+.tenant-overview {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .8rem;
+  margin-top: 1rem;
+}
+.tenant-overview article {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(255,255,255,.74);
+  box-shadow: 0 24px 56px -50px rgba(15,23,42,.46);
+  padding: 1rem;
+}
+.tenant-overview span,
+.tenant-overview small {
+  display: block;
+  color: var(--muted);
+}
+.tenant-overview strong {
+  display: block;
+  font-family: var(--font-display);
+  margin-block: .25rem;
+  overflow-wrap: anywhere;
+}
 .appointments-panel { margin-top: 1rem; }
 .appointments-head,
 .message-preview > div {
@@ -1355,6 +1379,39 @@ body::after {
   gap: .75rem;
   padding: 1rem;
 }
+.dash-editor-card textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(0,0,0,.28);
+  color: #fff;
+  padding: .8rem .9rem;
+  resize: vertical;
+}
+.admin-schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+}
+.admin-schedule-grid label {
+  display: grid;
+  gap: .4rem;
+  color: var(--muted);
+  font-weight: 800;
+}
+.availability-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+}
+.availability-days span {
+  border: 1px solid rgba(255,106,0,.24);
+  border-radius: 999px;
+  background: rgba(255,106,0,.12);
+  color: #7A561E;
+  font-weight: 900;
+  padding: .45rem .65rem;
+}
 .dash-editor-card h2,
 .dashboard-preview h2 { font-size: 1.2rem; }
 .upload-tile,
@@ -1452,6 +1509,68 @@ body::after {
 }
 .public-head img { width: 62px; height: 62px; }
 .public-head h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); }
+.public-head--profile {
+  align-items: flex-start;
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255,255,255,.96), rgba(255,255,255,.72) 48%, transparent 72%),
+    linear-gradient(135deg, rgba(255,255,255,.94), rgba(250,250,250,.82));
+  box-shadow: 0 28px 70px -58px rgba(15,23,42,.46);
+  padding: clamp(1rem, 2vw, 1.35rem);
+}
+.public-profile-mark {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 20px 42px -34px rgba(15,23,42,.44);
+}
+.public-profile-copy {
+  display: grid;
+  gap: .35rem;
+}
+.public-profile-copy p {
+  max-width: 650px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.public-head__actions {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.public-socials {
+  display: flex;
+  gap: .45rem;
+  flex-wrap: wrap;
+  margin-top: .25rem;
+}
+.public-socials a {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(17,24,39,.10);
+  border-radius: 999px;
+  background: rgba(255,255,255,.86);
+  color: var(--text);
+  font-size: .72rem;
+  font-weight: 900;
+  box-shadow: 0 16px 34px -30px rgba(15,23,42,.46);
+  transition: transform .22s var(--ease), border-color .22s var(--ease), box-shadow .22s var(--ease);
+}
+.public-socials a:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,106,0,.28);
+  box-shadow: 0 20px 36px -28px rgba(255,106,0,.32);
+}
 .public-tabs {
   display: flex;
   gap: 1rem;
@@ -1469,7 +1588,7 @@ body::after {
 .quick-service-grid,
 .quick-cuts-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: .8rem;
   margin-top: 1rem;
 }
@@ -1483,6 +1602,56 @@ body::after {
 }
 .quick-service-grid span { color: var(--muted); }
 .quick-service-grid a { color: var(--brand-light); font-weight: 800; }
+.cut-plan-grid {
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 12px;
+  background: rgba(255,255,255,.74);
+  box-shadow: 0 24px 56px -50px rgba(15,23,42,.42);
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.plan-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .8rem;
+  margin-top: 1rem;
+}
+.plan-options article {
+  display: grid;
+  gap: .65rem;
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(250,250,250,.9));
+  padding: 1rem;
+}
+.plan-options article.is-featured {
+  border-color: rgba(255,106,0,.22);
+  box-shadow: 0 28px 60px -48px rgba(255,106,0,.34);
+}
+.plan-options span {
+  color: var(--muted);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .76rem;
+}
+.plan-options strong {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+}
+.plan-options p {
+  color: var(--muted);
+  line-height: 1.5;
+}
+.plan-options button {
+  justify-self: start;
+  border-radius: 999px;
+  background: rgba(255,106,0,.12);
+  color: #7A561E;
+  font-weight: 900;
+  padding: .65rem .9rem;
+}
+.plan-options button:hover { background: var(--brand); color: #fff; }
 .quick-cuts-grid article {
   min-height: 220px;
   position: relative;
@@ -1547,6 +1716,11 @@ body::after {
   margin-top: 1rem;
   padding: 1rem;
 }
+.schedule-card {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255,255,255,.98), transparent 46%),
+    linear-gradient(180deg, rgba(255,255,255,.9), rgba(250,250,250,.82));
+}
 .section-heading--compact h2,
 .appointments-head h2 {
   font-size: clamp(1.45rem, 3vw, 2rem);
@@ -1584,6 +1758,154 @@ body::after {
 .schedule-form option,
 .appointments-filters option { color: #121217; }
 .schedule-form .btn { align-self: end; min-height: 46px; }
+.booking-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+  gap: 1rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+.booking-flow__main {
+  display: grid;
+  gap: .85rem;
+  min-width: 0;
+}
+.booking-step-card {
+  display: grid;
+  gap: .8rem;
+  min-width: 0;
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 12px;
+  background: rgba(255,255,255,.84);
+  padding: 1rem;
+}
+.booking-step-card legend {
+  padding-inline: .25rem;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 900;
+}
+.booking-step-card--inline {
+  grid-template-columns: minmax(180px, .45fr) minmax(0, 1fr);
+  align-items: start;
+}
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .7rem;
+}
+.choice-grid button {
+  display: grid;
+  gap: .35rem;
+  min-height: 96px;
+  text-align: left;
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  padding: .9rem;
+  box-shadow: 0 18px 42px -38px rgba(15,23,42,.38);
+}
+.choice-grid button:hover,
+.choice-grid button.is-selected,
+.time-slot-grid button:hover,
+.time-slot-grid button.is-selected {
+  border-color: rgba(255,106,0,.32);
+  background: rgba(255,106,0,.08);
+  transform: translateY(-1px);
+}
+.choice-grid strong,
+.choice-grid small { display: block; }
+.choice-grid small { color: var(--muted); line-height: 1.45; }
+.choice-grid--barbers button {
+  grid-template-columns: 56px minmax(0, 1fr);
+  align-items: center;
+}
+.choice-grid--barbers small { grid-column: 2; }
+.choice-avatar {
+  width: 56px;
+  height: 56px;
+  grid-row: span 2;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+}
+.time-slot-wrap {
+  display: grid;
+  gap: .55rem;
+}
+.time-slot-wrap > span,
+.booking-summary dt {
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: .82rem;
+  font-weight: 800;
+}
+.time-slot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(76px, 1fr));
+  gap: .5rem;
+}
+.time-slot-grid button {
+  min-height: 42px;
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--text);
+  font-weight: 900;
+  transition: transform .22s var(--ease), border-color .22s var(--ease), background .22s var(--ease);
+}
+.time-slot-empty {
+  display: block;
+  border: 1px dashed rgba(17,24,39,.14);
+  border-radius: 10px;
+  color: var(--muted);
+  padding: .9rem;
+  text-align: center;
+}
+.schedule-form--embedded {
+  margin-top: 0;
+}
+.schedule-card .schedule-form input,
+.schedule-card .schedule-form select,
+.booking-step-card input,
+.booking-step-card select {
+  background: #fff;
+  color: var(--text);
+  border-color: rgba(17,24,39,.10);
+}
+.booking-summary {
+  position: sticky;
+  top: 1rem;
+  display: grid;
+  gap: .9rem;
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 12px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 26px 64px -50px rgba(15,23,42,.42);
+  padding: 1rem;
+}
+.booking-summary dl {
+  display: grid;
+  gap: .7rem;
+}
+.booking-summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: .8rem;
+  border-bottom: 1px solid rgba(17,24,39,.07);
+  padding-bottom: .55rem;
+}
+.booking-summary dd {
+  margin: 0;
+  color: var(--text);
+  font-weight: 900;
+  text-align: right;
+}
+.booking-summary p {
+  color: var(--muted);
+  line-height: 1.5;
+}
 .booking-success {
   display: grid;
   gap: .2rem;
@@ -1599,6 +1921,147 @@ body::after {
   border-color: rgba(255,106,0,.45);
   background: rgba(255,106,0,.12);
   color: #fff;
+}
+.discover-shell {
+  width: min(100%, 1240px);
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+.discover-hero {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255,255,255,.98), transparent 52%),
+    linear-gradient(180deg, rgba(255,255,255,.92), rgba(250,250,250,.82));
+  box-shadow: 0 28px 70px -58px rgba(15,23,42,.46);
+  padding: clamp(1rem, 2.4vw, 1.5rem);
+}
+.discover-hero h1 {
+  max-width: 780px;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+}
+.discover-hero span,
+.discover-card p,
+.discover-card dt { color: var(--muted); }
+.discover-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.discover-filters,
+.discover-results,
+.discover-card {
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 12px;
+  background: rgba(255,255,255,.86);
+  box-shadow: 0 24px 60px -52px rgba(15,23,42,.44);
+}
+.discover-filters {
+  position: sticky;
+  top: 1rem;
+  display: grid;
+  align-content: start;
+  gap: .8rem;
+  padding: 1rem;
+}
+.discover-filters label {
+  display: grid;
+  gap: .45rem;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: .84rem;
+  font-weight: 800;
+}
+.discover-filters input,
+.discover-filters select {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid rgba(17,24,39,.10);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  padding: .8rem .9rem;
+}
+.discover-results {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+.discover-map {
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 12px;
+  background:
+    linear-gradient(rgba(17,24,39,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17,24,39,.045) 1px, transparent 1px),
+    radial-gradient(circle at 28% 34%, rgba(255,106,0,.12), transparent 18%),
+    radial-gradient(circle at 76% 64%, rgba(17,24,39,.08), transparent 20%),
+    #fbfbfb;
+  background-size: 42px 42px, 42px 42px, auto, auto, auto;
+}
+.map-pin {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  border: 1px solid rgba(17,24,39,.10);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--text);
+  font-weight: 900;
+  box-shadow: 0 24px 54px -36px rgba(15,23,42,.44);
+  padding: .45rem .75rem;
+}
+.map-pin--primary { left: 20%; top: 32%; border-color: rgba(255,106,0,.32); }
+.map-pin--alt { right: 18%; top: 24%; }
+.map-pin--soft { right: 28%; bottom: 22%; }
+.discover-card-list {
+  display: grid;
+  gap: .85rem;
+}
+.discover-card {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+}
+.discover-card__photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+}
+.discover-card h3 {
+  font-size: 1.2rem;
+  margin-top: .45rem;
+}
+.discover-card dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .65rem;
+  margin-top: .7rem;
+}
+.discover-card dt {
+  font-size: .75rem;
+  font-weight: 800;
+}
+.discover-card dd {
+  margin: 0;
+  font-weight: 900;
+}
+.discover-card__actions {
+  display: grid;
+  gap: .5rem;
+  min-width: 120px;
 }
 .reviews-section,
 .reviews-admin-panel,
@@ -3771,6 +4234,7 @@ body::after {
   .public-link-card .btn { width: 100%; }
   .dash-sidebar nav,
   .dash-grid,
+  .tenant-overview,
   .publish-flow,
   .appointment-stats,
   .review-summary-grid,
@@ -3780,6 +4244,11 @@ body::after {
   .review-form,
   .review-admin-card__meta,
   .appointment-card dl,
+  .booking-flow,
+  .booking-step-card--inline,
+  .choice-grid,
+  .plan-options,
+  .discover-layout,
   .schedule-form,
   .quick-service-grid,
   .quick-cuts-grid,
@@ -3789,6 +4258,26 @@ body::after {
   .review-card__head,
   .review-admin-card__head,
   .message-preview > div { flex-direction: column; }
+  .public-head__actions {
+    justify-content: stretch;
+    width: 100%;
+  }
+  .public-head__actions .btn { width: 100%; }
+  .booking-summary,
+  .discover-filters {
+    position: static;
+  }
+  .discover-hero,
+  .discover-card {
+    grid-template-columns: 1fr;
+  }
+  .discover-card__photo {
+    width: 100%;
+    height: 190px;
+  }
+  .discover-card__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .appointments-head .btn,
   .appointment-card__actions .btn,
   .review-admin-actions .btn,
@@ -3854,6 +4343,13 @@ body::after {
   .workspace-menu { grid-template-columns: 1fr; }
   .workspace-stats { grid-template-columns: 1fr; }
   .admin-menu { grid-template-columns: 1fr; }
+  .admin-schedule-grid,
+  .discover-card dl,
+  .discover-card__actions { grid-template-columns: 1fr; }
+  .public-profile-mark {
+    width: 62px;
+    height: 62px;
+  }
   .header__actions [data-login-open] { display: none; }
 }
 
@@ -3966,6 +4462,15 @@ html.theme-dark .appointment-card,
 html.theme-dark .dash-editor-card,
 html.theme-dark .dashboard-preview,
 html.theme-dark .schedule-card,
+html.theme-dark .booking-step-card,
+html.theme-dark .booking-summary,
+html.theme-dark .cut-plan-grid,
+html.theme-dark .plan-options article,
+html.theme-dark .tenant-overview article,
+html.theme-dark .discover-hero,
+html.theme-dark .discover-filters,
+html.theme-dark .discover-results,
+html.theme-dark .discover-card,
 html.theme-dark .review-form-card,
 html.theme-dark .public-side,
 html.theme-dark .quick-service-grid article,
@@ -3979,6 +4484,18 @@ html.theme-dark .public-tabs {
   box-shadow: 0 26px 60px -46px rgba(0,0,0,.8);
 }
 html.theme-dark .public-side strong { color: var(--text); }
+html.theme-dark .choice-grid button,
+html.theme-dark .time-slot-grid button,
+html.theme-dark .discover-filters input,
+html.theme-dark .discover-filters select,
+html.theme-dark .schedule-card .schedule-form input,
+html.theme-dark .schedule-card .schedule-form select,
+html.theme-dark .booking-step-card input,
+html.theme-dark .booking-step-card select {
+  background: rgba(255,255,255,.055);
+  border-color: var(--border-2);
+  color: var(--text);
+}
 
 /* Card do hero da barbearia — vidro escuro */
 html.theme-dark .barber-hero-card {

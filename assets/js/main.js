@@ -703,7 +703,43 @@
     "Corte masculino": 40,
     "Barba + Navalha": 30,
     "Corte + Barba": 70,
+    "Pigmentação": 45,
   };
+  const tenantProfile = {
+    slug: "barbearia-menuz",
+    name: "Barbearia Menuz",
+    address: "Rua Tiradentes, 48 - Centro - Igarapé/MG",
+    availability: {
+      days: [2, 3, 4, 5, 6],
+      start: "09:00",
+      end: "19:00",
+      interval: 15,
+      breaks: [{ start: "12:00", end: "14:00" }],
+      manualBlocks: [
+        { barber: "Pedro", date: "2026-07-29", time: "10:30" },
+        { barber: "Rafael", date: "2026-07-30", time: "15:00" },
+      ],
+    },
+    services: [
+      { name: "Corte masculino", price: 45, minutes: 40 },
+      { name: "Barba + Navalha", price: 35, minutes: 30 },
+      { name: "Corte + Barba", price: 70, minutes: 70 },
+      { name: "Pigmentação", price: 55, minutes: 45 },
+    ],
+    plans: [
+      { name: "Plano Mensal", price: 129, service: "Corte masculino" },
+      { name: "Plano Premium", price: 189, service: "Corte + Barba" },
+      { name: "Plano Executivo", price: 249, service: "Corte + Barba" },
+    ],
+  };
+  const serviceByName = tenantProfile.services.reduce((acc, service) => {
+    acc[service.name] = service;
+    return acc;
+  }, {});
+  const planByName = tenantProfile.plans.reduce((acc, plan) => {
+    acc[plan.name] = plan;
+    return acc;
+  }, {});
   const defaultAppointments = [
     {
       id: "demo-appointment-1",
@@ -946,6 +982,7 @@
       "",
       "Barbearia: Barbearia Menuz",
       `Profissional: ${item.barber}`,
+      item.plan ? `Plano: ${item.plan}` : "",
       `Serviço: ${item.service}`,
       item.cut ? `Modelo de corte: ${item.cut}` : "",
       `Data: ${formatDate(item.date)}`,
@@ -959,72 +996,190 @@
       "Agradecemos pela preferência e esperamos você!",
     ].filter(Boolean).join("\n");
   };
-  const isSlotBlocked = (candidate, ignoreId = "") => readAppointments().some((item) => (
-    item.id !== ignoreId &&
+  const timeToMinutes = (time) => {
+    const [hours, minutes] = String(time || "0:0").split(":").map(Number);
+    return (hours * 60) + (minutes || 0);
+  };
+  const minutesToTime = (minutes) => `${String(Math.floor(minutes / 60)).padStart(2, "0")}:${String(minutes % 60).padStart(2, "0")}`;
+  const parseLocalDate = (date) => {
+    const [year, month, day] = String(date || "").split("-").map(Number);
+    if (!year || !month || !day) return null;
+    return new Date(year, month - 1, day);
+  };
+  const isSameIsoDate = (date) => date === new Date().toISOString().slice(0, 10);
+  const isUnavailableDay = (date) => {
+    const parsed = parseLocalDate(date);
+    return !parsed || !tenantProfile.availability.days.includes(parsed.getDay());
+  };
+  const rangesOverlap = (startA, endA, startB, endB) => startA < endB && startB < endA;
+  const isManualBlock = (candidate) => tenantProfile.availability.manualBlocks.some((item) => (
     item.barber === candidate.barber &&
     item.date === candidate.date &&
-    item.time === candidate.time &&
-    ["pending", "confirmed"].includes(item.status)
+    item.time === candidate.time
   ));
+  const isSlotBlocked = (candidate, ignoreId = "") => {
+    const candidateStart = timeToMinutes(candidate.time);
+    const candidateEnd = candidateStart + Number(candidate.minutes || serviceByName[candidate.service]?.minutes || 40);
+    return readAppointments().some((item) => {
+      if (
+        item.id === ignoreId ||
+        item.barber !== candidate.barber ||
+        item.date !== candidate.date ||
+        !["pending", "confirmed"].includes(item.status)
+      ) return false;
+      const itemStart = timeToMinutes(item.time);
+      const itemEnd = itemStart + Number(item.minutes || serviceByName[item.service]?.minutes || 40);
+      return rangesOverlap(candidateStart, candidateEnd, itemStart, itemEnd);
+    });
+  };
+  const availableSlotsFor = ({ barber, service, date }) => {
+    if (!barber || !service || !date || isUnavailableDay(date)) return [];
+    const config = tenantProfile.availability;
+    const duration = serviceByName[service]?.minutes || serviceMinutes[service] || 40;
+    const start = timeToMinutes(config.start);
+    const end = timeToMinutes(config.end);
+    const now = new Date();
+    const todayMinutes = (now.getHours() * 60) + now.getMinutes();
+    const slots = [];
+    for (let cursor = start; cursor + duration <= end; cursor += config.interval) {
+      const time = minutesToTime(cursor);
+      const blockedByBreak = config.breaks.some((item) => rangesOverlap(cursor, cursor + duration, timeToMinutes(item.start), timeToMinutes(item.end)));
+      const blockedByPast = isSameIsoDate(date) && cursor <= todayMinutes;
+      const candidate = { barber, service, date, time, minutes: duration };
+      if (!blockedByBreak && !blockedByPast && !isManualBlock(candidate) && !isSlotBlocked(candidate)) {
+        slots.push(time);
+      }
+    }
+    return slots;
+  };
+  const selectedServiceMeta = (formEl) => serviceByName[formEl?.elements.service?.value] || { price: 0, minutes: 40 };
+  const updateBookingChoices = (formEl) => {
+    if (!formEl) return;
+    $$("[data-choice-field]", formEl).forEach((button) => {
+      const field = button.getAttribute("data-choice-field");
+      const value = button.getAttribute("data-choice-value");
+      button.classList.toggle("is-selected", formEl.elements[field]?.value === value);
+    });
+  };
+  const updateBookingSummary = (formEl) => {
+    if (!formEl) return;
+    const date = formEl.elements.date?.value || "";
+    const plan = formEl.elements.plan?.value || "";
+    const meta = selectedServiceMeta(formEl);
+    const summary = {
+      barber: formEl.elements.barber?.value || "Escolha um profissional",
+      service: formEl.elements.service?.value || "Escolha um serviço",
+      plan: plan || "Sem plano selecionado",
+      date: date ? formatDate(date) : "Selecione uma data",
+      time: formEl.elements.time?.value || "Selecione um horário",
+      price: formatCurrency(planByName[plan]?.price || meta.price || 0),
+    };
+    Object.entries(summary).forEach(([key, value]) => {
+      const el = $(`[data-summary-${key}]`, formEl);
+      if (el) el.textContent = value;
+    });
+    updateBookingChoices(formEl);
+  };
   const updateBlockedTimes = (formEl) => {
     const barber = formEl?.elements.barber?.value;
+    const service = formEl?.elements.service?.value;
     const date = formEl?.elements.date?.value;
-    const timeSelect = formEl?.elements.time;
-    if (!barber || !date || !timeSelect) return;
-    const current = timeSelect.value;
-    Array.from(timeSelect.options).forEach((option) => {
-      if (!option.value) return;
-      option.disabled = isSlotBlocked({ barber, date, time: option.value });
-    });
-    if (current && timeSelect.selectedOptions[0]?.disabled) timeSelect.value = "";
+    const timeField = formEl?.elements.time;
+    const slotWrap = $("[data-time-slots]", formEl);
+    if (!timeField || !slotWrap) {
+      if (formEl && timeField && barber && date) {
+        const current = timeField.value;
+        Array.from(timeField.options || []).forEach((option) => {
+          if (!option.value) return;
+          option.disabled = isSlotBlocked({ barber, date, time: option.value });
+        });
+        if (current && timeField.selectedOptions?.[0]?.disabled) timeField.value = "";
+      }
+      updateBookingSummary(formEl);
+      return;
+    }
+    if (!barber || !service || !date) {
+      timeField.value = "";
+      slotWrap.innerHTML = `<span class="time-slot-empty">Escolha profissional, serviço e data para ver a agenda.</span>`;
+      updateBookingSummary(formEl);
+      return;
+    }
+    if (isUnavailableDay(date)) {
+      timeField.value = "";
+      slotWrap.innerHTML = `<span class="time-slot-empty">Este profissional não atende nesta data.</span>`;
+      updateBookingSummary(formEl);
+      return;
+    }
+    const slots = availableSlotsFor({ barber, service, date });
+    if (!slots.includes(timeField.value)) timeField.value = "";
+    slotWrap.innerHTML = slots.length ? slots.map((time) => `
+      <button type="button" class="${timeField.value === time ? "is-selected" : ""}" data-time-choice="${escapeHtml(time)}">${escapeHtml(time)}</button>
+    `).join("") : `<span class="time-slot-empty">Nenhum horário disponível para esta combinação.</span>`;
+    updateBookingSummary(formEl);
   };
-  const setBookingField = (name, value) => {
+  const setBookingField = (name, value, shouldScroll = true) => {
     const formEl = $("[data-booking-form]");
     const field = formEl?.elements[name];
     if (!field) return;
     field.value = value;
     field.dispatchEvent(new Event("change", { bubbles: true }));
-    document.getElementById("agendamento")?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    if (shouldScroll) document.getElementById("agendamento")?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
   };
 
   document.addEventListener("click", (e) => {
     const service = e.target.closest("[data-pick-service]");
     const cut = e.target.closest("[data-pick-cut]");
     const barber = e.target.closest("[data-pick-barber]");
+    const plan = e.target.closest("[data-pick-plan]");
+    const choice = e.target.closest("[data-choice-field]");
+    const timeChoice = e.target.closest("[data-time-choice]");
     if (service) setBookingField("service", service.getAttribute("data-pick-service"));
     if (cut) setBookingField("cut", cut.getAttribute("data-pick-cut"));
     if (barber) setBookingField("barber", barber.getAttribute("data-pick-barber"));
+    if (plan) setBookingField("plan", plan.getAttribute("data-pick-plan"));
+    if (choice) setBookingField(choice.getAttribute("data-choice-field"), choice.getAttribute("data-choice-value"), false);
+    if (timeChoice) setBookingField("time", timeChoice.getAttribute("data-time-choice"), false);
   });
 
   const bookingForm = $("[data-booking-form]");
   if (bookingForm) {
     const todayIso = new Date().toISOString().slice(0, 10);
     if (bookingForm.elements.date) bookingForm.elements.date.min = todayIso;
-    ["barber", "date"].forEach((name) => bookingForm.elements[name]?.addEventListener("change", () => updateBlockedTimes(bookingForm)));
+    ["barber", "service", "date", "time", "plan"].forEach((name) => bookingForm.elements[name]?.addEventListener("change", () => updateBlockedTimes(bookingForm)));
+    ["client", "phone", "payment", "cut"].forEach((name) => bookingForm.elements[name]?.addEventListener("input", () => updateBookingSummary(bookingForm)));
     updateBlockedTimes(bookingForm);
     bookingForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const data = new FormData(bookingForm);
-      const serviceSelect = bookingForm.elements.service;
-      const selectedService = serviceSelect.selectedOptions[0];
+      const serviceMeta = serviceByName[data.get("service")] || {};
+      const planMeta = planByName[data.get("plan")] || {};
       const appointment = {
         id: "appointment-" + Date.now(),
-        client: data.get("client").trim(),
-        phone: data.get("phone").trim(),
+        client: String(data.get("client") || "").trim(),
+        phone: String(data.get("phone") || "").trim(),
         barber: data.get("barber"),
         service: data.get("service"),
         cut: data.get("cut"),
+        plan: data.get("plan"),
         date: data.get("date"),
         time: data.get("time"),
         payment: data.get("payment"),
-        price: Number(selectedService?.dataset.price || 0),
-        minutes: serviceMinutes[data.get("service")] || 40,
+        price: Number(planMeta.price || serviceMeta.price || 0),
+        minutes: Number(serviceMeta.minutes || serviceMinutes[data.get("service")] || 40),
         status: "pending",
         createdAt: new Date().toISOString(),
         reminders: ["24 horas antes", "2 horas antes", "30 minutos antes"],
       };
+      const success = $("[data-booking-success]");
+      if (!appointment.client || !appointment.phone || !appointment.barber || !appointment.service || !appointment.date || !appointment.time || !appointment.payment) {
+        if (success) {
+          success.hidden = false;
+          success.classList.add("is-error");
+          success.textContent = "Preencha profissional, serviço, data, horário e seus dados para confirmar.";
+        }
+        return;
+      }
       if (isSlotBlocked(appointment)) {
-        const success = $("[data-booking-success]");
         if (success) {
           success.hidden = false;
           success.classList.add("is-error");
@@ -1036,7 +1191,6 @@
       writeAppointments([appointment, ...readAppointments()]);
       bookingForm.reset();
       updateBlockedTimes(bookingForm);
-      const success = $("[data-booking-success]");
       if (success) {
         success.hidden = false;
         success.classList.remove("is-error");
@@ -1082,6 +1236,7 @@
           <dl>
             <div><dt>Serviço</dt><dd>${escapeHtml(item.service)}</dd></div>
             <div><dt>Profissional</dt><dd>${escapeHtml(item.barber)}</dd></div>
+            <div><dt>Plano</dt><dd>${escapeHtml(item.plan || "Sem plano")}</dd></div>
             <div><dt>Data</dt><dd>${formatDate(item.date)}</dd></div>
             <div><dt>Horário</dt><dd>${escapeHtml(item.time)}</dd></div>
             <div><dt>Valor</dt><dd>${formatCurrency(item.price)}</dd></div>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Encontrar Barbearias · Menuz</title>
+  <meta name="description" content="Encontre barbearias afiliadas, filtre por localização, serviços, avaliação e agende pelo perfil público.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-03">
+</head>
+<body class="public-page discover-page">
+  <main class="discover-shell">
+    <header class="discover-hero">
+      <a class="dash-brand" href="index.html">
+        <img src="assets/img/logo.svg" alt="" width="42" height="42">
+        <span>Menuz</span>
+      </a>
+      <div>
+        <p class="minimal-kicker">Encontrar Barbearias</p>
+        <h1>Descubra profissionais próximos e agende em poucos cliques.</h1>
+        <span>Base preparada para geolocalização, filtros inteligentes e perfis públicos independentes.</span>
+      </div>
+      <a class="btn btn--primary" href="barbearia-menuz.html#agendamento">Agendar na Menuz</a>
+    </header>
+
+    <section class="discover-layout">
+      <aside class="discover-filters" aria-label="Filtros de busca">
+        <label>
+          CEP, bairro ou cidade
+          <input type="search" value="Igarapé, MG" aria-label="Pesquisar por localização">
+        </label>
+        <label>
+          Serviço
+          <select aria-label="Filtrar por serviço">
+            <option>Todos os serviços</option>
+            <option>Corte masculino</option>
+            <option>Barba + Navalha</option>
+            <option>Corte + Barba</option>
+            <option>Pigmentação</option>
+          </select>
+        </label>
+        <label>
+          Distância
+          <select aria-label="Filtrar por distância">
+            <option>Até 5 km</option>
+            <option>Até 10 km</option>
+            <option>Até 25 km</option>
+          </select>
+        </label>
+        <label>
+          Avaliação
+          <select aria-label="Filtrar por avaliação">
+            <option>4 estrelas ou mais</option>
+            <option>4,5 estrelas ou mais</option>
+            <option>Atendimento imediato</option>
+          </select>
+        </label>
+        <button class="btn btn--ghost btn--block" type="button">Usar localização atual</button>
+      </aside>
+
+      <section class="discover-results" aria-labelledby="resultsTitle">
+        <div class="discover-map" role="img" aria-label="Mapa visual com barbearias próximas">
+          <span class="map-pin map-pin--primary">Menuz</span>
+          <span class="map-pin map-pin--alt">Centro</span>
+          <span class="map-pin map-pin--soft">Premium</span>
+        </div>
+
+        <div class="appointments-head">
+          <div>
+            <p class="minimal-kicker">Resultados próximos</p>
+            <h2 id="resultsTitle">Barbearias afiliadas</h2>
+            <span>Cards prontos para receber distância real, disponibilidade imediata e integração com mapa.</span>
+          </div>
+        </div>
+
+        <div class="discover-card-list">
+          <article class="discover-card">
+            <div class="discover-card__photo bg-shop-main"></div>
+            <div>
+              <span class="status-pill status-pill--confirmed">Aberto agora</span>
+              <h3>Barbearia Menuz</h3>
+              <p>Rua Tiradentes, 48 - Centro · Igarapé/MG</p>
+              <dl>
+                <div><dt>Distância</dt><dd>1,2 km</dd></div>
+                <div><dt>Avaliação</dt><dd>4,9</dd></div>
+                <div><dt>Profissionais</dt><dd>2</dd></div>
+              </dl>
+            </div>
+            <div class="discover-card__actions">
+              <a class="btn btn--ghost btn--sm" href="barbearia-menuz.html">Ver perfil</a>
+              <a class="btn btn--primary btn--sm" href="barbearia-menuz.html#agendamento">Agendar</a>
+            </div>
+          </article>
+
+          <article class="discover-card">
+            <div class="discover-card__photo bg-shop-chair"></div>
+            <div>
+              <span class="status-pill">Em breve</span>
+              <h3>Studio Premium Centro</h3>
+              <p>Praça Central, 120 · Igarapé/MG</p>
+              <dl>
+                <div><dt>Distância</dt><dd>2,8 km</dd></div>
+                <div><dt>Avaliação</dt><dd>4,7</dd></div>
+                <div><dt>Profissionais</dt><dd>4</dd></div>
+              </dl>
+            </div>
+            <div class="discover-card__actions">
+              <button class="btn btn--ghost btn--sm" type="button">Ver perfil</button>
+              <button class="btn btn--primary btn--sm" type="button">Agendar</button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="assets/js/main.js?v=20260727-03" defer></script>
+</body>
+</html>

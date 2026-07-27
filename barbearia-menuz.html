@@ -5,24 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#FFFFFF">
   <title>Barbearia Menuz</title>
-  <meta name="description" content="Conheça a Barbearia Menuz, veja cortes, serviços e solicite seu agendamento online.">
+  <meta name="description" content="Perfil público premium da Barbearia Menuz com serviços, planos, profissionais, galeria e agendamento online.">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-02">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260727-03">
 </head>
 <body class="public-page">
   <main class="public-shell">
     <section class="public-main">
-      <header class="public-head">
-        <img src="assets/img/logo.svg" alt="" width="62" height="62">
-        <div>
-          <p class="minimal-kicker">Página pública da barbearia</p>
+      <header class="public-head public-head--profile">
+        <div class="public-profile-mark">
+          <img src="assets/img/logo.svg" alt="" width="62" height="62">
+        </div>
+        <div class="public-profile-copy">
+          <p class="minimal-kicker">Perfil público independente · @barbearia-menuz</p>
           <h1>Barbearia Menuz</h1>
           <span data-review-summary>★ 4,9 · 327 avaliações · 92% nota 5</span>
+          <p>Fades, barba na navalha e planos recorrentes em uma experiência de agendamento rápida, clara e premium.</p>
+          <div class="public-socials" aria-label="Redes sociais da barbearia">
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+            <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
+            <a href="https://wa.me/5531999999999" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+          </div>
         </div>
-        <a class="btn btn--primary" href="#agendamento">Agendar agora</a>
+        <div class="public-head__actions">
+          <a class="btn btn--primary" href="#agendamento">Agendar agora</a>
+          <a class="btn btn--ghost" href="encontrar-barbearias.html">Encontrar barbearias</a>
+        </div>
       </header>
 
       <div class="public-gallery">
@@ -34,6 +46,7 @@
 
       <nav class="public-tabs">
         <a href="#servicos">Serviços</a>
+        <a href="#planos">Planos</a>
         <a href="#cortes">Cortes</a>
         <a href="#profissionais">Profissionais</a>
         <a href="#agendamento">Agendamento</a>
@@ -42,9 +55,38 @@
       </nav>
 
       <section class="quick-service-grid" id="servicos">
-        <article><strong>Corte</strong><span>40 min · R$ 45</span><a href="#agendamento" data-pick-service="Corte masculino">Agendar</a></article>
-        <article><strong>Barba</strong><span>30 min · R$ 35</span><a href="#agendamento" data-pick-service="Barba + Navalha">Agendar</a></article>
-        <article><strong>Corte + Barba</strong><span>70 min · R$ 70</span><a href="#agendamento" data-pick-service="Corte + Barba">Agendar</a></article>
+        <article><strong>Corte masculino</strong><span>40 min · R$ 45 · Fades e acabamento</span><a href="#agendamento" data-pick-service="Corte masculino">Agendar</a></article>
+        <article><strong>Barba + Navalha</strong><span>30 min · R$ 35 · Toalha quente</span><a href="#agendamento" data-pick-service="Barba + Navalha">Agendar</a></article>
+        <article><strong>Corte + Barba</strong><span>70 min · R$ 70 · Pacote premium</span><a href="#agendamento" data-pick-service="Corte + Barba">Agendar</a></article>
+        <article><strong>Pigmentação</strong><span>45 min · R$ 55 · Cobertura natural</span><a href="#agendamento" data-pick-service="Pigmentação">Agendar</a></article>
+      </section>
+
+      <section class="cut-plan-grid" id="planos" aria-labelledby="plansTitle">
+        <div class="section-heading section-heading--compact">
+          <p class="minimal-kicker">Planos de corte</p>
+          <h2 id="plansTitle">Recorrência para clientes frequentes</h2>
+          <span>Planos configuráveis por barbeiro, com benefícios, validade e contratação pelo fluxo de agendamento.</span>
+        </div>
+        <div class="plan-options">
+          <article>
+            <span>Mensal</span>
+            <strong>R$ 129</strong>
+            <p>3 cortes no mês, prioridade na agenda e acabamento incluso.</p>
+            <button type="button" data-pick-plan="Plano Mensal" data-pick-service="Corte masculino">Contratar</button>
+          </article>
+          <article class="is-featured">
+            <span>Premium</span>
+            <strong>R$ 189</strong>
+            <p>4 cortes, 2 barbas, lembretes automáticos e horários preferenciais.</p>
+            <button type="button" data-pick-plan="Plano Premium" data-pick-service="Corte + Barba">Contratar</button>
+          </article>
+          <article>
+            <span>Executivo</span>
+            <strong>R$ 249</strong>
+            <p>Atendimento recorrente, pacote completo e encaixe prioritário.</p>
+            <button type="button" data-pick-plan="Plano Executivo" data-pick-service="Corte + Barba">Contratar</button>
+          </article>
+        </div>
       </section>
 
       <section class="quick-cuts-grid" id="cortes">
@@ -67,84 +109,111 @@
       </section>
 
       <section class="booking-steps" aria-label="Agendamento rápido">
-        <article><span>1</span><strong>Escolha serviço</strong></article>
-        <article><span>2</span><strong>Escolha barbeiro</strong></article>
-        <article><span>3</span><strong>Receba confirmação</strong></article>
+        <article><span>1</span><strong>Escolha profissional e serviço</strong></article>
+        <article><span>2</span><strong>Veja horários disponíveis</strong></article>
+        <article><span>3</span><strong>Confirme e receba retorno</strong></article>
       </section>
 
       <section class="schedule-card" id="agendamento" aria-labelledby="scheduleTitle">
         <div class="section-heading section-heading--compact">
-          <p class="minimal-kicker">Agendamento online</p>
-          <h2 id="scheduleTitle">Solicite seu horário</h2>
-          <span>O barbeiro confirma no painel e você recebe a mensagem automática.</span>
+          <p class="minimal-kicker">Agenda inteligente</p>
+          <h2 id="scheduleTitle">Escolha um horário disponível</h2>
+          <span>Os horários são calculados pela disponibilidade do profissional e bloqueiam conflitos automaticamente.</span>
         </div>
 
-        <form class="schedule-form" data-booking-form>
-          <label>
-            Nome do cliente
-            <input name="client" type="text" placeholder="Seu nome" autocomplete="name" required>
-          </label>
-          <label>
-            WhatsApp
-            <input name="phone" type="tel" placeholder="(31) 99999-9999" autocomplete="tel" required>
-          </label>
-          <label>
-            Barbeiro
-            <select name="barber" required>
-              <option value="">Escolha</option>
-              <option>Pedro</option>
-              <option>Rafael</option>
-            </select>
-          </label>
-          <label>
-            Serviço
-            <select name="service" required>
-              <option value="">Escolha</option>
-              <option value="Corte masculino" data-price="45">Corte masculino - R$ 45</option>
-              <option value="Barba + Navalha" data-price="35">Barba + Navalha - R$ 35</option>
-              <option value="Corte + Barba" data-price="70">Corte + Barba - R$ 70</option>
-            </select>
-          </label>
-          <label>
-            Modelo de corte
-            <select name="cut">
-              <option value="">Opcional</option>
-              <option>Low Fade</option>
-              <option>Mid Fade</option>
-              <option>High Fade</option>
-              <option>Buzz Cut</option>
-              <option>Navalhado</option>
-            </select>
-          </label>
-          <label>
-            Data
-            <input name="date" type="date" required>
-          </label>
-          <label>
-            Horário
-            <select name="time" required data-time-select>
-              <option value="">Escolha</option>
-              <option>09:00</option>
-              <option>10:00</option>
-              <option>11:00</option>
-              <option>14:00</option>
-              <option>15:00</option>
-              <option>16:00</option>
-              <option>17:00</option>
-              <option>18:00</option>
-            </select>
-          </label>
-          <label>
-            Pagamento
-            <select name="payment" required>
-              <option value="">Escolha</option>
-              <option>PIX</option>
-              <option>Dinheiro</option>
-              <option>Cartão de Crédito</option>
-              <option>Cartão de Débito</option>
-            </select>
-          </label>
-          <button class="btn btn--primary btn--block" type="submit">Confirmar Agendamento</button>
+        <form class="booking-flow" data-booking-form>
+          <div class="booking-flow__main">
+            <fieldset class="booking-step-card">
+              <legend>Profissional</legend>
+              <div class="choice-grid choice-grid--barbers">
+                <button type="button" data-choice-field="barber" data-choice-value="Pedro">
+                  <span class="choice-avatar bg-barber-1"></span>
+                  <strong>Pedro</strong>
+                  <small>Fades, navalha e cortes modernos</small>
+                </button>
+                <button type="button" data-choice-field="barber" data-choice-value="Rafael">
+                  <span class="choice-avatar bg-barber-2"></span>
+                  <strong>Rafael</strong>
+                  <small>Barba, acabamento e pacotes premium</small>
+                </button>
+              </div>
+            </fieldset>
+
+            <fieldset class="booking-step-card">
+              <legend>Serviço</legend>
+              <div class="choice-grid" data-service-choices>
+                <button type="button" data-choice-field="service" data-choice-value="Corte masculino" data-price="45" data-minutes="40"><strong>Corte masculino</strong><small>40 min · R$ 45</small></button>
+                <button type="button" data-choice-field="service" data-choice-value="Barba + Navalha" data-price="35" data-minutes="30"><strong>Barba + Navalha</strong><small>30 min · R$ 35</small></button>
+                <button type="button" data-choice-field="service" data-choice-value="Corte + Barba" data-price="70" data-minutes="70"><strong>Corte + Barba</strong><small>70 min · R$ 70</small></button>
+                <button type="button" data-choice-field="service" data-choice-value="Pigmentação" data-price="55" data-minutes="45"><strong>Pigmentação</strong><small>45 min · R$ 55</small></button>
+              </div>
+            </fieldset>
+
+            <fieldset class="booking-step-card booking-step-card--inline">
+              <legend>Data e horário</legend>
+              <label>
+                Data
+                <input name="date" type="date" required>
+              </label>
+              <div class="time-slot-wrap">
+                <span>Horários disponíveis</span>
+                <div class="time-slot-grid" data-time-slots aria-live="polite"></div>
+              </div>
+            </fieldset>
+
+            <fieldset class="booking-step-card">
+              <legend>Seus dados</legend>
+              <div class="schedule-form schedule-form--embedded">
+                <label>
+                  Nome do cliente
+                  <input name="client" type="text" placeholder="Seu nome" autocomplete="name" required>
+                </label>
+                <label>
+                  WhatsApp
+                  <input name="phone" type="tel" placeholder="(31) 99999-9999" autocomplete="tel" required>
+                </label>
+                <label>
+                  Modelo de corte
+                  <select name="cut">
+                    <option value="">Opcional</option>
+                    <option>Low Fade</option>
+                    <option>Mid Fade</option>
+                    <option>High Fade</option>
+                    <option>Buzz Cut</option>
+                    <option>Navalhado</option>
+                  </select>
+                </label>
+                <label>
+                  Pagamento
+                  <select name="payment" required>
+                    <option value="">Escolha</option>
+                    <option>PIX</option>
+                    <option>Dinheiro</option>
+                    <option>Cartão de Crédito</option>
+                    <option>Cartão de Débito</option>
+                  </select>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+
+          <aside class="booking-summary" aria-label="Resumo do agendamento">
+            <span class="minimal-kicker">Resumo</span>
+            <dl data-booking-summary>
+              <div><dt>Profissional</dt><dd data-summary-barber>Escolha um profissional</dd></div>
+              <div><dt>Serviço</dt><dd data-summary-service>Escolha um serviço</dd></div>
+              <div><dt>Plano</dt><dd data-summary-plan>Sem plano selecionado</dd></div>
+              <div><dt>Data</dt><dd data-summary-date>Selecione uma data</dd></div>
+              <div><dt>Horário</dt><dd data-summary-time>Selecione um horário</dd></div>
+              <div><dt>Valor</dt><dd data-summary-price>R$ 0,00</dd></div>
+            </dl>
+            <input name="barber" type="hidden" required>
+            <input name="service" type="hidden" required>
+            <input name="time" type="hidden" required data-time-select>
+            <input name="plan" type="hidden">
+            <button class="btn btn--primary btn--block" type="submit">Confirmar agendamento</button>
+            <p>Após enviar, o pedido aparece no painel do barbeiro para confirmação e mensagem automática.</p>
+          </aside>
         </form>
         <div class="booking-success" data-booking-success hidden></div>
       </section>
@@ -237,6 +306,6 @@
     <div class="lightbox__image" id="lightboxImage" role="img"></div>
     <p id="lightboxCaption"></p>
   </div>
-  <script src="assets/js/main.js?v=20260727-02" defer></script>
+  <script src="assets/js/main.js?v=20260727-03" defer></script>
 </body>
 </html>
