@@ -3982,7 +3982,25 @@ body::after {
    Landing premium minimalista para barbearia
    ===================================================================== */
 .premium-barber-page {
+  position: relative;
+  min-height: 100vh;
+  background-color: #fff;
+  background-image:
+    radial-gradient(circle at 12% 4%, rgba(249,115,22,.10), transparent 34%),
+    radial-gradient(circle at 88% 12%, rgba(16,24,40,.045), transparent 30%),
+    linear-gradient(180deg, #fff 0%, #FAFAFA 52%, #fff 100%);
   color: var(--text);
+}
+.premium-barber-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .055;
+  background-image: url("data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23101728' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M34 44l38 38M34 82l38-38'/%3E%3Ccircle cx='29' cy='39' r='9'/%3E%3Ccircle cx='29' cy='87' r='9'/%3E%3Cpath d='M106 36h42M106 48h42M106 60h42M106 72h42M106 84h42M108 30v62M148 30v62'/%3E%3Cpath d='M38 132c20-13 40-13 60 0 20 13 40 13 60 0'/%3E%3Cpath d='M52 116h62c8 0 16 6 16 14v10H68c-8 0-16-6-16-14z'/%3E%3C/g%3E%3Cg fill='%23F97316' fill-opacity='.38'%3E%3Ccircle cx='90' cy='90' r='4'/%3E%3Ccircle cx='162' cy='18' r='3'/%3E%3Ccircle cx='18' cy='156' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  background-position: 24px 28px;
 }
 .premium-header {
   padding-block: .55rem;
@@ -5753,7 +5771,38 @@ body.has-tabbar .to-top { bottom: calc(84px + 1rem); }
 /* =====================================================================
    HOME (estilo app) — boas-vindas, busca, carrossel, GPS, cards
    ===================================================================== */
-.home { padding: clamp(5.5rem, 9vw, 7.5rem) 0 clamp(2rem, 5vw, 3.5rem); }
+.home {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5.5rem, 9vw, 7.5rem) 0 clamp(2rem, 5vw, 3.5rem);
+}
+.home::before,
+.home::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.home::before {
+  width: min(56vw, 720px);
+  height: min(56vw, 720px);
+  top: clamp(2rem, 6vw, 5rem);
+  right: -18vw;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(249,115,22,.13), transparent 62%),
+    repeating-linear-gradient(135deg, rgba(249,115,22,.16) 0 9px, rgba(255,255,255,0) 9px 22px);
+  filter: blur(.2px);
+  opacity: .62;
+}
+.home::after {
+  width: min(42vw, 520px);
+  height: min(42vw, 520px);
+  left: -20vw;
+  top: 38%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16,24,40,.06), transparent 64%);
+}
 .home__welcome { margin-bottom: 1.3rem; }
 .home__welcome h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 800; letter-spacing: -.02em; }
 .home__date { color: var(--muted); margin-top: .25rem; font-size: .95rem; text-transform: capitalize; }
