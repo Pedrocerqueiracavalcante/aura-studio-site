@@ -5843,7 +5843,6 @@ body.has-tabbar .to-top { bottom: calc(84px + 1rem); }
 .promo-card p { color: rgba(255,255,255,.86); font-size: clamp(1rem, 1.7vw, 1.12rem); font-weight: 700; }
 .promo-card--a { --promo-photo: url("https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1400&q=82"); }
 .promo-card--b { --promo-photo: url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1400&q=82"); }
-.promo-card--c { --promo-photo: url("https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1400&q=82"); }
 .promo-card--d { --promo-photo: url("https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1600&q=82"); }
 .promo-card--e { --promo-photo: url("https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?auto=format&fit=crop&w=1400&q=82"); }
 .promo-dots { display: flex; justify-content: center; gap: .5rem; margin-top: .9rem; }
