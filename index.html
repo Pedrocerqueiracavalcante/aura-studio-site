@@ -28,20 +28,21 @@
         <small>PT</small>
       </a>
 
-      <form class="ticket-search" role="search" action="#contato">
+      <form class="ticket-search" role="search" action="encontrar-barbearias.html">
         <label class="sr-only" for="ticketSearch" data-i18n="search.label">Pesquisar</label>
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="m21 21-4.35-4.35"></path>
           <circle cx="11" cy="11" r="7"></circle>
         </svg>
-        <input id="ticketSearch" name="q" type="search" placeholder="Pesquisa por artista, evento ou local" data-i18n-placeholder="search.placeholder">
+        <input id="ticketSearch" name="q" type="search" placeholder="Buscar barbearia, serviço ou bairro">
         <button type="submit" data-i18n="search.button">Pesquisar</button>
       </form>
 
       <nav class="nav premium-nav" id="primaryNav" aria-label="Navegação principal">
         <ul class="nav__list">
+          <li><a class="nav__link" href="#buscar" data-i18n="app.search">Buscar</a></li>
+          <li><a class="nav__link" href="#estabelecimentos">Barbearias</a></li>
           <li><a class="nav__link" href="#avaliacoes" data-i18n="nav.reviews">Avaliações</a></li>
-          <li><a class="nav__link" href="#contato" data-i18n="nav.contact">Contato</a></li>
         </ul>
       </nav>
 
@@ -73,7 +74,6 @@
             </button>
           </div>
         </div>
-        <a class="ticket-icon" href="#contato" aria-label="Notificações" data-i18n-aria-label="header.notifications">⌁</a>
         <details class="ticket-user">
           <summary>
             <span class="ticket-help">?</span>
@@ -82,7 +82,7 @@
           <div class="ticket-user__menu">
             <a href="login.html" data-i18n="user.signIn">Entrar</a>
             <a href="login.html?mode=signup" data-i18n="user.signUp">Criar conta</a>
-            <a href="#contato" data-i18n="user.schedule">Agendar</a>
+            <a href="barbearia-menuz.html#area" data-i18n="user.schedule">Agendar</a>
           </div>
         </details>
         <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="primaryNav">
@@ -93,7 +93,101 @@
   </header>
 
   <main id="main">
-    <section class="premium-section premium-section--first" id="avaliacoes">
+    <section class="home-hero" id="buscar" aria-labelledby="homeHeroTitle">
+      <div class="container">
+        <div class="home-hero__grid">
+          <div class="home-hero__copy" data-reveal>
+            <p class="premium-eyebrow">Menuz Barber</p>
+            <h1 id="homeHeroTitle">Encontre sua barbearia e agende com poucos cliques.</h1>
+            <p>Perfis profissionais, serviços claros, avaliações reais e acesso rápido aos horários disponíveis.</p>
+
+            <form class="home-search" role="search" action="encontrar-barbearias.html">
+              <label class="sr-only" for="homeSearch">Buscar barbearias</label>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m21 21-4.35-4.35"></path>
+                <circle cx="11" cy="11" r="7"></circle>
+              </svg>
+              <input id="homeSearch" name="q" type="search" placeholder="Buscar por barbearia, serviço ou bairro">
+              <button class="btn btn--primary" type="submit">Buscar</button>
+            </form>
+
+            <div class="home-location" aria-label="Localização atual">
+              <span>Localização</span>
+              <strong>Igarapé, MG</strong>
+              <a href="encontrar-barbearias.html">Alterar</a>
+            </div>
+          </div>
+
+          <aside class="home-feature-card" data-reveal aria-label="Barbearia em destaque">
+            <div class="home-feature-card__media bg-shop-main"></div>
+            <div class="home-feature-card__body">
+              <span class="status-pill status-pill--confirmed">Aberto agora</span>
+              <h2>Barbearia Menuz</h2>
+              <p>Rua Tiradentes, 48 - Centro · Igarapé/MG</p>
+              <dl>
+                <div><dt>Avaliação</dt><dd>4,9</dd></div>
+                <div><dt>Serviços</dt><dd>4+</dd></div>
+                <div><dt>Horário</dt><dd>09h-19h</dd></div>
+              </dl>
+              <div class="home-feature-card__actions">
+                <a class="btn btn--primary btn--sm" href="barbearia-menuz.html#area">Abrir Área</a>
+                <a class="btn btn--ghost btn--sm" href="barbearia-menuz.html">Ver perfil</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="premium-section home-results" id="estabelecimentos" aria-labelledby="homeResultsTitle">
+      <div class="container">
+        <div class="premium-section__head" data-reveal>
+          <p class="premium-eyebrow">Perto de você</p>
+          <h2 id="homeResultsTitle">Estabelecimentos em destaque</h2>
+          <span>Compare localização, reputação e disponibilidade antes de abrir o perfil.</span>
+        </div>
+
+        <div class="home-card-list">
+          <article class="home-barber-card" data-reveal>
+            <div class="home-barber-card__photo bg-shop-main"></div>
+            <div>
+              <span class="status-pill status-pill--confirmed">Aberto agora</span>
+              <h3>Barbearia Menuz</h3>
+              <p>Centro · Igarapé/MG</p>
+              <dl>
+                <div><dt>Nota</dt><dd>4,9</dd></div>
+                <div><dt>Distância</dt><dd>1,2 km</dd></div>
+                <div><dt>Especialidade</dt><dd>Corte e barba</dd></div>
+              </dl>
+            </div>
+            <div class="home-barber-card__actions">
+              <a class="btn btn--ghost btn--sm" href="barbearia-menuz.html">Perfil</a>
+              <a class="btn btn--primary btn--sm" href="barbearia-menuz.html#area">Área</a>
+            </div>
+          </article>
+
+          <article class="home-barber-card" data-reveal>
+            <div class="home-barber-card__photo bg-shop-chair"></div>
+            <div>
+              <span class="status-pill">Em breve</span>
+              <h3>Studio Premium Centro</h3>
+              <p>Centro · Igarapé/MG</p>
+              <dl>
+                <div><dt>Nota</dt><dd>4,7</dd></div>
+                <div><dt>Distância</dt><dd>2,8 km</dd></div>
+                <div><dt>Especialidade</dt><dd>Atendimento premium</dd></div>
+              </dl>
+            </div>
+            <div class="home-barber-card__actions">
+              <button class="btn btn--ghost btn--sm" type="button">Perfil</button>
+              <button class="btn btn--primary btn--sm" type="button">Área</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="premium-section home-reviews" id="avaliacoes">
       <div class="container">
         <div class="premium-section__head" data-reveal>
           <p class="premium-eyebrow" data-i18n="reviews.eyebrow">Avaliações</p>

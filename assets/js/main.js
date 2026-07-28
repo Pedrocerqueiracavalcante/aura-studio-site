@@ -25,32 +25,32 @@
       "search.label": "Pesquisar",
       "search.placeholder": "Pesquisa por artista, evento ou local",
       "search.button": "Pesquisar",
-      "nav.reviews": "AvaliaÃ§Ãµes",
+      "nav.reviews": "Avaliações",
       "nav.contact": "Contato",
-      "header.notifications": "NotificaÃ§Ãµes",
+      "header.notifications": "Notificações",
       "user.guest": "Visitante",
       "user.loginHint": "Clique para entrar",
       "user.signIn": "Entrar",
       "user.signUp": "Criar conta",
       "user.schedule": "Agendar",
-      "reviews.eyebrow": "AvaliaÃ§Ãµes",
-      "reviews.title": "ConfianÃ§a antes do primeiro corte.",
+      "reviews.eyebrow": "Avaliações",
+      "reviews.title": "Confiança antes do primeiro corte.",
       "reviews.card1": "Atendimento pontual e corte exatamente como escolhi pelo link.",
-      "reviews.card2": "A pÃ¡gina Ã© simples, vi os serviÃ§os e jÃ¡ cheguei sabendo o valor.",
+      "reviews.card2": "A página é simples, vi os serviços e já cheguei sabendo o valor.",
       "reviews.card3": "Ambiente limpo, barbeiro cuidadoso e acabamento muito profissional.",
       "contact.eyebrow": "Contato",
-      "contact.title": "Agende seu prÃ³ximo horÃ¡rio.",
-      "contact.text": "Envie uma mensagem com o serviÃ§o desejado. A equipe confirma o melhor horÃ¡rio disponÃ­vel.",
+      "contact.title": "Agende seu próximo horário.",
+      "contact.text": "Envie uma mensagem com o serviço desejado. A equipe confirma o melhor horário disponível.",
       "contact.whatsapp": "Chamar no WhatsApp",
-      "contact.publicPage": "Ver pÃ¡gina pÃºblica",
-      "footer.copy": "Â© 2026 Menuz Barber. Atendimento premium para barbearias modernas.",
+      "contact.publicPage": "Ver página pública",
+      "footer.copy": "© 2026 Menuz Barber. Atendimento premium para barbearias modernas.",
       "toTop.label": "Voltar ao topo",
-      "app.bannerText": "Agende agora, Ã© rÃ¡pido",
+      "app.bannerText": "Acesse a Área de atendimento",
       "app.open": "Abrir",
       "app.closeBanner": "Fechar aviso",
-      "app.home": "InÃ­cio",
+      "app.home": "Início",
       "app.search": "Buscar",
-      "app.appointments": "Agendamentos",
+      "app.appointments": "Área",
       "app.profile": "Perfil",
       "login.eyebrow": "Login do barbeiro",
       "login.title": "Entre no painel",
@@ -88,12 +88,12 @@
       "contact.publicPage": "View public page",
       "footer.copy": "Â© 2026 Menuz Barber. Premium service for modern barbershops.",
       "toTop.label": "Back to top",
-      "app.bannerText": "Book now, it is fast",
+      "app.bannerText": "Open the service area",
       "app.open": "Open",
       "app.closeBanner": "Close notice",
       "app.home": "Home",
       "app.search": "Search",
-      "app.appointments": "Appointments",
+      "app.appointments": "Area",
       "app.profile": "Profile",
       "login.eyebrow": "Barber login",
       "login.title": "Enter the dashboard",
@@ -131,12 +131,12 @@
       "contact.publicPage": "Ver pÃ¡gina pÃºblica",
       "footer.copy": "Â© 2026 Menuz Barber. AtenciÃ³n premium para barberÃ­as modernas.",
       "toTop.label": "Volver arriba",
-      "app.bannerText": "Agenda ahora, es rÃ¡pido",
+      "app.bannerText": "Accede al área de atención",
       "app.open": "Abrir",
       "app.closeBanner": "Cerrar aviso",
       "app.home": "Inicio",
       "app.search": "Buscar",
-      "app.appointments": "Agendamientos",
+      "app.appointments": "Área",
       "app.profile": "Perfil",
       "login.eyebrow": "Login del barbero",
       "login.title": "Entra al panel",
@@ -174,12 +174,12 @@
       "contact.publicPage": "Voir la page publique",
       "footer.copy": "Â© 2026 Menuz Barber. Service premium pour barbershops modernes.",
       "toTop.label": "Retour en haut",
-      "app.bannerText": "RÃ©servez maintenant, c'est rapide",
+      "app.bannerText": "Ouvrir l'espace de service",
       "app.open": "Ouvrir",
       "app.closeBanner": "Fermer l'avis",
       "app.home": "Accueil",
       "app.search": "Recherche",
-      "app.appointments": "Rendez-vous",
+      "app.appointments": "Espace",
       "app.profile": "Profil",
       "login.eyebrow": "Connexion barbier",
       "login.title": "AccÃ©der au tableau de bord",
@@ -200,6 +200,15 @@
   };
   let currentLanguage = languages[getStoredLanguage()] ? getStoredLanguage() : "pt";
   const t = (key) => i18n[currentLanguage]?.[key] || i18n.pt[key] || key;
+  const BOOKING_AREA_ID = "area";
+  const scrollToBookingArea = (behavior = reduceMotion ? "auto" : "smooth") => {
+    document.getElementById(BOOKING_AREA_ID)?.scrollIntoView({ behavior, block: "start" });
+  };
+  const normalizeLegacyBookingHash = () => {
+    if (window.location.hash !== "#agendamento" || !document.getElementById(BOOKING_AREA_ID)) return;
+    window.history.replaceState(null, "", window.location.pathname + window.location.search + "#" + BOOKING_AREA_ID);
+    requestAnimationFrame(() => scrollToBookingArea("auto"));
+  };
   const applyI18n = () => {
     const lang = languages[currentLanguage] || languages.pt;
     document.documentElement.lang = lang.htmlLang;
@@ -248,6 +257,8 @@
     });
   };
   window.MenuzI18n = { languages, setLanguage, translate: applyI18n, t: (key) => t(key) };
+  normalizeLegacyBookingHash();
+  window.addEventListener("hashchange", normalizeLegacyBookingHash);
 
   (function appShell() {
     if (!document.body) return;
@@ -265,8 +276,8 @@
       banner.className = "app-banner";
       banner.innerHTML =
         '<img class="app-banner__logo" src="assets/img/logo.svg" alt="">' +
-        '<div class="app-banner__txt"><strong>Menuz</strong><span>Agende agora, Ã© rÃ¡pido</span></div>' +
-        '<a class="btn btn--primary btn--sm app-banner__cta" href="barbearia-menuz.html#agendamento">Abrir</a>' +
+        '<div class="app-banner__txt"><strong>Menuz</strong><span>Acesse a Área de atendimento</span></div>' +
+        '<a class="btn btn--primary btn--sm app-banner__cta" href="barbearia-menuz.html#area">Abrir</a>' +
         '<button class="app-banner__close" type="button" aria-label="Fechar aviso">Ã—</button>';
       $(".app-banner__txt span", banner)?.setAttribute("data-i18n", "app.bannerText");
       $(".app-banner__txt span", banner) && ($(".app-banner__txt span", banner).textContent = t("app.bannerText"));
@@ -285,7 +296,7 @@
     const tabs = [
       { label: "InÃ­cio", href: "index.html", match: ["index.html", ""], icon: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>' },
       { key: "app.search", label: "Buscar", href: "index.html#buscar", match: ["buscar"], icon: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>' },
-      { key: "app.appointments", label: "Agendamentos", href: "barbearia-menuz.html#agendamento", match: ["barbearia-menuz.html"], icon: '<rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/>' },
+      { key: "app.appointments", label: "Área", href: "barbearia-menuz.html#area", match: ["barbearia-menuz.html"], icon: '<rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/>' },
       { key: "app.profile", label: "Perfil", href: "login.html", match: ["login.html", "dashboard.html"], icon: '<circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3.5-6 7-6s7 2 7 6"/>' },
     ];
     const bar = document.createElement("nav");
@@ -739,7 +750,7 @@
     showDashboardToast("Foto de capa pronta para publicacao.");
   });
 
-  /* ---------- Agendamento: cliente -> painel -> mensagem automatica ---------- */
+  /* ---------- Area: cliente -> painel -> mensagem automatica ---------- */
   const APPOINTMENTS_KEY = "menuzAppointments";
   let memoryAppointments = [];
   const appointmentsStorage = (() => {
@@ -1164,7 +1175,6 @@
               <span>${escapeHtml(item.city || "Cliente Menuz")}</span>
             </div>
           </div>
-          <span class="review-stars" aria-label="${escapeHtml(String(item.rating))} de 5 estrelas">${starsText(item.rating)}</span>
         </div>
         <small class="review-service">${escapeHtml(item.service || "Atendimento premium")}</small>
         ${item.comment ? `<blockquote>${escapeHtml(item.comment)}</blockquote>` : ""}
@@ -1365,7 +1375,7 @@
     if (!field) return;
     field.value = value;
     field.dispatchEvent(new Event("change", { bubbles: true }));
-    if (shouldScroll) document.getElementById("agendamento")?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    if (shouldScroll) scrollToBookingArea();
   };
 
   document.addEventListener("click", (e) => {
