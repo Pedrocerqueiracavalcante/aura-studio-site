@@ -297,7 +297,7 @@
       { label: "InÃ­cio", href: "index.html", match: ["index.html", ""], icon: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>' },
       { key: "app.search", label: "Buscar", href: "index.html#buscar", match: ["buscar"], icon: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>' },
       { key: "app.appointments", label: "Área", href: "barbearia-menuz.html#area", match: ["barbearia-menuz.html"], icon: '<rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/>' },
-      { key: "app.profile", label: "Perfil", href: "login.html", match: ["login.html", "dashboard.html"], icon: '<circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3.5-6 7-6s7 2 7 6"/>' },
+      { key: "app.profile", label: "Perfil", href: "perfil.html", match: ["perfil.html", "login.html", "dashboard.html"], icon: '<circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3.5-6 7-6s7 2 7 6"/>' },
     ];
     const bar = document.createElement("nav");
     bar.className = "app-tabbar";
@@ -383,12 +383,13 @@
 
     let userPos = null, query = "";
 
-    // Carrossel premium de barbearias em destaque (coverflow)
+    // Carrossel premium de barbearias em destaque (coverflow, loop infinito)
     let updateHsDist = () => {};
     (function highlightCarousel() {
       const track = $("[data-hs-track]"); if (!track) return;
       const stage = $("[data-hs-stage]"), dotsWrap = $("[data-hs-dots]");
-      track.innerHTML = shops.map((s) =>
+      const N = shops.length; if (!N) return;
+      const cardHTML = (s) =>
         '<li class="hs-slide"><article class="hs-card">' +
           '<div class="hs-card__ph ' + s.photo + '"></div><div class="hs-card__grad"></div>' +
           '<span class="hs-card__tag">' + s.city + '</span>' +
@@ -396,13 +397,27 @@
             '<div class="hs-card__rating">★ ' + String(s.rating).replace(".", ",") + ' <small>(' + s.reviews + ')</small><span class="hs-card__dist" data-hs-dist="' + s.id + '"></span></div>' +
             '<h3>' + s.name + '</h3><p>' + s.services + ' · ' + s.price + '</p>' +
             '<div class="hs-card__actions"><a class="btn btn--primary btn--sm" href="' + s.url + '">Agendar Agora</a><a class="btn btn--ghost btn--sm" href="barbearia-menuz.html">Ver Perfil</a></div>' +
-          '</div></article></li>').join("");
+          '</div></article></li>';
+      // triplicado para rolagem infinita sem "salto" visível
+      track.innerHTML = shops.concat(shops, shops).map(cardHTML).join("");
       const slides = $$(".hs-slide", track);
-      if (!slides.length) return;
-      let active = Math.min(1, slides.length - 1), t = null;
-      slides.forEach((_, i) => { const d = document.createElement("button"); d.type = "button"; d.setAttribute("aria-label", "Barbearia " + (i + 1)); d.addEventListener("click", () => { go(i); restart(); }); dotsWrap.appendChild(d); });
+      for (let k = 0; k < N; k++) { const d = document.createElement("button"); d.type = "button"; d.setAttribute("aria-label", "Barbearia " + (k + 1)); d.addEventListener("click", () => { go(N + k); restart(); }); dotsWrap.appendChild(d); }
       const dots = $$("button", dotsWrap);
-      const go = (i) => { active = (i + slides.length) % slides.length; slides.forEach((s, k) => s.classList.toggle("is-active", k === active)); dots.forEach((d, k) => d.classList.toggle("is-active", k === active)); const s = slides[active]; track.style.transform = "translateX(" + (stage.clientWidth / 2 - (s.offsetLeft + s.offsetWidth / 2)) + "px)"; };
+
+      let active = N + Math.min(1, N - 1), t = null, jumpTimer = null;
+      const position = (anim) => {
+        if (!anim) track.style.transition = "none";
+        slides.forEach((s, k) => s.classList.toggle("is-active", k === active));
+        dots.forEach((d, k) => d.classList.toggle("is-active", k === (((active % N) + N) % N)));
+        const s = slides[active];
+        track.style.transform = "translateX(" + (stage.clientWidth / 2 - (s.offsetLeft + s.offsetWidth / 2)) + "px)";
+        if (!anim) { void track.offsetHeight; track.style.transition = ""; }
+      };
+      const go = (i) => {
+        active = i; position(true);
+        clearTimeout(jumpTimer);
+        jumpTimer = setTimeout(() => { if (active < N) { active += N; position(false); } else if (active >= 2 * N) { active -= N; position(false); } }, 600);
+      };
       const next = () => go(active + 1), prev = () => go(active - 1);
       const nb = $("[data-hs-next]"), pb = $("[data-hs-prev]");
       if (nb) nb.addEventListener("click", () => { next(); restart(); });
@@ -412,10 +427,10 @@
       let sx = 0, drag = false;
       stage.addEventListener("pointerdown", (e) => { sx = e.clientX; drag = true; stop(); });
       window.addEventListener("pointerup", (e) => { if (!drag) return; drag = false; const dx = e.clientX - sx; if (Math.abs(dx) > 50) (dx < 0 ? next() : prev()); start(); });
-      let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => go(active), 120); });
-      window.addEventListener("load", () => go(active));
-      updateHsDist = () => { if (!userPos) return; shops.forEach((s) => { const el = track.querySelector('[data-hs-dist="' + s.id + '"]'); if (el) el.textContent = " · " + fmtKm(haversine(userPos, s)); }); };
-      requestAnimationFrame(() => go(active)); start();
+      let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => position(false), 120); });
+      window.addEventListener("load", () => position(false));
+      updateHsDist = () => { if (!userPos) return; shops.forEach((s) => { const d = " · " + fmtKm(haversine(userPos, s)); track.querySelectorAll('[data-hs-dist="' + s.id + '"]').forEach((el) => { el.textContent = d; }); }); };
+      requestAnimationFrame(() => position(false)); start();
     })();
 
     const render = () => {
