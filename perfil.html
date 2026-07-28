@@ -3,226 +3,271 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#FFFFFF">
-  <title>Meu Perfil | Menuz</title>
-  <meta name="description" content="Área de perfil Menuz: dados, agendamentos, favoritos, avaliações, notificações e configurações da conta.">
+  <meta name="theme-color" content="#0C0E12">
+  <title>Área do Cliente | Menuz</title>
+  <meta name="description" content="Área do cliente Menuz: agendamentos, favoritos, notificações e conta.">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="apple-touch-icon" href="assets/img/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-01">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-02">
+  <style>
+    /* Tema escuro garantido só para a área do cliente + esconde app-shell global */
+    html { background: #0C0E12; }
+    body.client-page {
+      --bg: #0C0E12; --bg-2: #14171D;
+      --surface: rgba(255,255,255,.05); --surface-2: rgba(255,255,255,.08);
+      --border: rgba(255,255,255,.10); --border-2: rgba(255,255,255,.17);
+      --text: #F4F5F7; --muted: #9AA1AD; --dim: #6C7280;
+      background: #0C0E12 !important; color: #F4F5F7 !important; min-height: 100vh;
+    }
+    body.client-page .app-banner,
+    body.client-page .app-tabbar,
+    body.client-page .app-bg-waves { display: none !important; }
+    body.client-page.has-tabbar { padding-bottom: 0 !important; }
+  </style>
 </head>
-<body class="landing-page premium-barber-page">
-  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+<body class="client-page">
 
-  <header class="site-header premium-header" data-header>
-    <div class="container premium-header__inner premium-header__inner--simple">
-      <a class="ticket-brand" href="index.html" aria-label="Menuz"><span>menuz</span><small>PT</small></a>
-      <nav class="nav premium-nav" aria-label="Navegação">
-        <ul class="nav__list">
-          <li><a class="nav__link" href="index.html">Início</a></li>
-          <li><a class="nav__link" href="index.html#estabelecimentos">Buscar</a></li>
-          <li><a class="nav__link is-active" href="perfil.html" aria-current="page">Perfil</a></li>
-        </ul>
-      </nav>
-      <a class="btn btn--ghost btn--sm" href="login.html" data-logout>Sair</a>
+  <!-- ============ LOGIN GATE (não autenticado) ============ -->
+  <section class="ca-gate" data-gate>
+    <div class="ca-gate__bg" aria-hidden="true"><span></span><span></span></div>
+    <div class="ca-gate__inner">
+      <a class="ca-gate__brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="46" height="46"><span>Menuz</span></a>
+      <h1>Faça login para continuar</h1>
+      <p>Agende horários, acompanhe seus agendamentos, favorite barbearias e tenha acesso a todos os recursos da plataforma.</p>
+      <button class="btn btn--primary btn--lg" type="button" data-login>Entrar</button>
+      <a class="ca-gate__alt" href="index.html">Voltar ao início</a>
     </div>
-  </header>
+  </section>
 
-  <main id="main">
-    <section class="profile">
-      <div class="container profile__layout">
+  <!-- ============ APP DO CLIENTE (autenticado) ============ -->
+  <div class="ca-app" data-app hidden>
+    <header class="ca-topbar">
+      <a class="ca-topbar__brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="34" height="34"><span>Menuz</span></a>
+      <button class="ca-menu-toggle" type="button" data-menu-toggle aria-label="Menu"><span></span><span></span><span></span></button>
+      <div class="ca-topbar__user">
+        <span class="ca-avatar ca-avatar--sm" data-avatar>AM</span>
+        <div><strong data-name>André Menuz</strong><small data-email>andre.menuz@email.com</small></div>
+      </div>
+    </header>
 
-        <!-- ===== Sidebar ===== -->
-        <aside class="profile-side">
-          <div class="profile-card">
-            <div class="profile-card__avatar" data-profile-avatar aria-hidden="true">AM</div>
-            <h1 class="profile-card__name" data-profile-name>André Menuz</h1>
-            <p class="profile-card__email" data-profile-email>andre.menuz@email.com</p>
-            <span class="profile-card__since">Cliente desde jul 2024</span>
+    <div class="ca-shell">
+      <!-- Menu lateral -->
+      <aside class="ca-side" data-side>
+        <div class="ca-side__user">
+          <span class="ca-avatar" data-avatar>AM</span>
+          <strong data-name>André Menuz</strong>
+          <small data-email>andre.menuz@email.com</small>
+          <small data-phone>(31) 99999-0000</small>
+        </div>
+        <nav class="ca-nav" data-nav aria-label="Menu do cliente">
+          <button type="button" class="is-active" data-tab="dash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Painel</button>
+          <button type="button" data-tab="appts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Meus Agendamentos</button>
+          <button type="button" data-tab="favs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"/></svg>Favoritos</button>
+          <button type="button" data-tab="notifs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg>Notificações<span class="ca-badge">2</span></button>
+          <button type="button" data-tab="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3.5-6 7-6s7 2 7 6"/></svg>Minha Conta</button>
+          <button type="button" data-tab="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.5-2.4 1a7 7 0 0 0-1.7-1L14.5 2h-4l-.3 2.5a7 7 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.5 2.4-1a7 7 0 0 0 1.7 1l.3 2.5h4l.3-2.5a7 7 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5c.1-.3.1-.7.1-1Z"/></svg>Configurações</button>
+          <button type="button" data-tab="password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Alterar Senha</button>
+        </nav>
+        <button type="button" class="ca-logout" data-logout><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>Sair</button>
+      </aside>
+
+      <main class="ca-content" data-content>
+
+        <!-- ===== Painel ===== -->
+        <section class="ca-panel is-active" data-panel="dash">
+          <div class="ca-hi"><h1>Olá, André 👋</h1><p>Bem-vindo de volta. Aqui está o resumo da sua conta.</p></div>
+
+          <div class="ca-banner" data-banner>
+            <ul class="ca-banner__track" data-banner-track>
+              <li class="ca-banner__slide bn-a"><span>Promoção</span><h3>Combo Corte + Barba</h3><p>20% OFF esta semana</p></li>
+              <li class="ca-banner__slide bn-b"><span>Novidade</span><h3>Novas barbearias</h3><p>Recém-chegadas perto de você</p></li>
+              <li class="ca-banner__slide bn-c"><span>Cupom</span><h3>1º corte com desconto</h3><p>Use o app e economize</p></li>
+            </ul>
+            <div class="ca-banner__dots" data-banner-dots></div>
           </div>
 
-          <nav class="profile-nav" data-profile-nav aria-label="Seções do perfil">
-            <button type="button" class="is-active" data-tab="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Visão geral</button>
-            <button type="button" data-tab="appointments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Agendamentos</button>
-            <button type="button" data-tab="favorites"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"/></svg>Favoritos</button>
-            <button type="button" data-tab="reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 21l1.1-6.5L2.6 9.8l6.5-.9Z"/></svg>Avaliações</button>
-            <button type="button" data-tab="notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg>Notificações<span class="profile-nav__badge">2</span></button>
-            <button type="button" data-tab="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H1a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 2.6 7Z"/></svg>Configurações</button>
-          </nav>
+          <div class="ca-quick">
+            <a href="index.html#estabelecimentos"><span>🗓️</span>Agendar</a>
+            <button type="button" data-tab="appts"><span>📋</span>Agendamentos</button>
+            <button type="button" data-tab="favs"><span>❤️</span>Favoritos</button>
+            <a href="index.html"><span>🔍</span>Buscar</a>
+          </div>
 
-          <button type="button" class="profile-logout" data-logout><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>Sair da conta</button>
-        </aside>
+          <div class="ca-grid">
+            <article class="ca-card">
+              <div class="ca-card__head"><h2>Próximos agendamentos</h2><button type="button" class="ca-link" data-tab="appts">Ver todos</button></div>
+              <div class="ca-appt ca-appt--mini"><div class="ca-appt__d"><strong>01</strong><span>ago</span></div><div class="ca-appt__i"><h3>Corte + Barba</h3><p>Barbearia Menuz · Pedro · 16:30</p></div><span class="ca-status ca-status--ok">Confirmado</span></div>
+              <div class="ca-appt ca-appt--mini"><div class="ca-appt__d"><strong>09</strong><span>ago</span></div><div class="ca-appt__i"><h3>Corte masculino</h3><p>Classic Barber Club · Rafael · 10:00</p></div><span class="ca-status">Pendente</span></div>
+            </article>
 
-        <!-- ===== Conteúdo ===== -->
-        <div class="profile-content">
+            <article class="ca-card">
+              <div class="ca-card__head"><h2>Barbearias favoritas</h2><button type="button" class="ca-link" data-tab="favs">Ver todas</button></div>
+              <div class="ca-fav-mini" data-fav-mini></div>
+            </article>
 
-          <!-- Visão geral -->
-          <section class="profile-panel is-active" data-panel="overview" aria-label="Visão geral">
-            <div class="profile-stats">
-              <article class="stat-card"><strong>12</strong><span>Agendamentos</span></article>
-              <article class="stat-card"><strong data-fav-count>4</strong><span>Favoritos</span></article>
-              <article class="stat-card"><strong>7</strong><span>Avaliações</span></article>
-              <article class="stat-card"><strong>4,9</strong><span>Nota média dada</span></article>
-            </div>
+            <article class="ca-card">
+              <div class="ca-card__head"><h2>Serviços mais usados</h2></div>
+              <div class="ca-chips"><span>Corte masculino</span><span>Barba</span><span>Corte + Barba</span><span>Navalhado</span></div>
+            </article>
 
-            <article class="profile-block profile-block--next">
-              <div class="profile-block__head"><h2>Próximo agendamento</h2><span class="status-pill status-pill--confirmed">Confirmado</span></div>
-              <div class="next-appt">
-                <div class="next-appt__date"><strong>01</strong><span>ago</span></div>
-                <div class="next-appt__info">
-                  <h3>Corte + Barba</h3>
-                  <p>Barbearia Menuz · com Pedro</p>
-                  <p class="next-appt__time">Sexta-feira · 16:30</p>
-                </div>
-                <div class="next-appt__actions">
-                  <a class="btn btn--primary btn--sm" href="barbearia-menuz.html#area">Ver detalhes</a>
-                  <button class="btn btn--ghost btn--sm" type="button">Reagendar</button>
-                </div>
+            <article class="ca-card">
+              <div class="ca-card__head"><h2>Últimas novidades</h2></div>
+              <ul class="ca-news"><li><strong>Programa de fidelidade</strong><p>Junte pontos a cada corte e troque por serviços.</p></li><li><strong>Pagamento por PIX</strong><p>Agora aceite no app com confirmação instantânea.</p></li></ul>
+            </article>
+          </div>
+        </section>
+
+        <!-- ===== Meus Agendamentos ===== -->
+        <section class="ca-panel" data-panel="appts" hidden>
+          <div class="ca-hi"><h1>Meus Agendamentos</h1></div>
+          <div class="ca-subtabs" data-subtabs>
+            <button type="button" class="is-active" data-sub="next">Próximos</button>
+            <button type="button" data-sub="today">Hoje</button>
+            <button type="button" data-sub="done">Concluídos</button>
+            <button type="button" data-sub="cancel">Cancelados</button>
+          </div>
+
+          <div class="ca-appts" data-sublist="next">
+            <article class="ca-appt ca-appt--full">
+              <div class="ca-appt__photo bg-shop-main"></div>
+              <div class="ca-appt__main">
+                <div class="ca-appt__top"><h3>Barbearia Menuz</h3><span class="ca-status ca-status--ok">Confirmado</span></div>
+                <p class="ca-appt__svc">Corte + Barba · com Pedro</p>
+                <ul class="ca-appt__meta"><li>📅 01 ago 2026</li><li>🕒 16:30</li><li>💰 R$ 70</li></ul>
+                <p class="ca-appt__addr">Rua Tiradentes, 48 - Centro · Igarapé/MG</p>
+                <div class="ca-appt__actions"><button class="btn btn--primary btn--sm" type="button">Detalhes</button><button class="btn btn--ghost btn--sm" type="button">Reagendar</button><button class="btn btn--danger btn--sm" type="button">Cancelar</button></div>
               </div>
             </article>
-
-            <article class="profile-block">
-              <div class="profile-block__head"><h2>Meus dados</h2><button class="btn btn--ghost btn--sm" type="button" data-goto="settings">Editar</button></div>
-              <dl class="data-list">
-                <div><dt>Nome completo</dt><dd data-profile-name>André Menuz</dd></div>
-                <div><dt>E-mail</dt><dd data-profile-email>andre.menuz@email.com</dd></div>
-                <div><dt>Telefone</dt><dd data-profile-phone>(31) 99999-0000</dd></div>
-                <div><dt>Cidade / Estado</dt><dd data-profile-city>Igarapé / MG</dd></div>
-                <div><dt>Membro desde</dt><dd>15 jul 2024</dd></div>
-                <div><dt>Plano</dt><dd>Cliente</dd></div>
-              </dl>
+            <article class="ca-appt ca-appt--full">
+              <div class="ca-appt__photo bg-shop-chair"></div>
+              <div class="ca-appt__main">
+                <div class="ca-appt__top"><h3>Classic Barber Club</h3><span class="ca-status">Pendente</span></div>
+                <p class="ca-appt__svc">Corte masculino · com Rafael</p>
+                <ul class="ca-appt__meta"><li>📅 09 ago 2026</li><li>🕒 10:00</li><li>💰 R$ 45</li></ul>
+                <p class="ca-appt__addr">São Benedito · Igarapé/MG</p>
+                <div class="ca-appt__actions"><button class="btn btn--primary btn--sm" type="button">Detalhes</button><button class="btn btn--ghost btn--sm" type="button">Reagendar</button><button class="btn btn--danger btn--sm" type="button">Cancelar</button></div>
+              </div>
             </article>
-          </section>
+          </div>
 
-          <!-- Agendamentos -->
-          <section class="profile-panel" data-panel="appointments" aria-label="Agendamentos" hidden>
-            <div class="profile-block__head"><h2>Meus agendamentos</h2></div>
-            <div class="sub-tabs" data-subtabs>
-              <button type="button" class="is-active" data-sub="future">Futuros</button>
-              <button type="button" data-sub="done">Concluídos</button>
-              <button type="button" data-sub="cancel">Cancelados</button>
-            </div>
+          <div class="ca-appts" data-sublist="today" hidden>
+            <p class="ca-empty">Nenhum agendamento para hoje.</p>
+          </div>
 
-            <div class="appt-list" data-sublist="future">
-              <article class="appt-card"><div class="appt-card__d"><strong>01</strong><span>ago</span></div><div class="appt-card__i"><h3>Corte + Barba</h3><p>Barbearia Menuz · com Pedro · 16:30</p></div><span class="status-pill status-pill--confirmed">Confirmado</span></article>
-              <article class="appt-card"><div class="appt-card__d"><strong>09</strong><span>ago</span></div><div class="appt-card__i"><h3>Corte masculino</h3><p>Classic Barber Club · com Rafael · 10:00</p></div><span class="status-pill">Pendente</span></article>
-            </div>
-            <div class="appt-list" data-sublist="done" hidden>
-              <article class="appt-card"><div class="appt-card__d"><strong>18</strong><span>jul</span></div><div class="appt-card__i"><h3>Corte + Barba</h3><p>Barbearia Menuz · com Pedro</p></div><a class="btn btn--ghost btn--sm" href="barbearia-menuz.html#avaliar">Avaliar</a></article>
-              <article class="appt-card"><div class="appt-card__d"><strong>02</strong><span>jul</span></div><div class="appt-card__i"><h3>Navalhado</h3><p>Navalha de Ouro</p></div><span class="status-pill status-pill--confirmed">Concluído</span></article>
-            </div>
-            <div class="appt-list" data-sublist="cancel" hidden>
-              <article class="appt-card"><div class="appt-card__d"><strong>24</strong><span>jun</span></div><div class="appt-card__i"><h3>Corte masculino</h3><p>Studio Premium Centro</p></div><span class="status-pill status-pill--cancelled">Cancelado</span></article>
-            </div>
-          </section>
-
-          <!-- Favoritos -->
-          <section class="profile-panel" data-panel="favorites" aria-label="Favoritos" hidden>
-            <div class="profile-block__head"><h2>Barbearias favoritas</h2></div>
-            <div class="fav-grid" data-fav-shops></div>
-
-            <div class="profile-block__head" style="margin-top:2rem"><h2>Barbeiros favoritos</h2></div>
-            <div class="fav-grid">
-              <article class="fav-card"><div class="fav-card__ph bg-barber-1"></div><div><h3>Pedro</h3><p>Barbearia Menuz</p><span>★ 4,9</span></div><button class="fav-heart is-fav" type="button" aria-label="Remover">♥</button></article>
-              <article class="fav-card"><div class="fav-card__ph bg-barber-2"></div><div><h3>Rafael</h3><p>Classic Barber Club</p><span>★ 4,8</span></div><button class="fav-heart is-fav" type="button" aria-label="Remover">♥</button></article>
-            </div>
-          </section>
-
-          <!-- Avaliações -->
-          <section class="profile-panel" data-panel="reviews" aria-label="Avaliações realizadas" hidden>
-            <div class="profile-block__head"><h2>Minhas avaliações</h2></div>
-            <div class="review-list">
-              <article class="my-review"><div class="my-review__top"><strong>Barbearia Menuz</strong><span class="stars">★★★★★</span></div><p>Atendimento pontual e corte exatamente como escolhi. Recomendo!</p><time>18 jul 2026</time></article>
-              <article class="my-review"><div class="my-review__top"><strong>Navalha de Ouro</strong><span class="stars">★★★★☆</span></div><p>Ótimo acabamento à navalha, ambiente agradável.</p><time>02 jul 2026</time></article>
-              <article class="my-review"><div class="my-review__top"><strong>Classic Barber Club</strong><span class="stars">★★★★★</span></div><p>Profissionais atenciosos e resultado impecável.</p><time>21 jun 2026</time></article>
-            </div>
-          </section>
-
-          <!-- Notificações -->
-          <section class="profile-panel" data-panel="notifications" aria-label="Notificações" hidden>
-            <div class="profile-block__head"><h2>Notificações</h2><button class="btn btn--ghost btn--sm" type="button" data-notif-clear>Marcar como lidas</button></div>
-            <div class="notif-list" data-notif-list>
-              <article class="notif-item is-unread"><span class="notif-item__dot"></span><div><strong>Agendamento confirmado</strong><p>Barbearia Menuz confirmou o teu corte de 01 ago às 16:30.</p><time>há 2 h</time></div></article>
-              <article class="notif-item is-unread"><span class="notif-item__dot"></span><div><strong>Promoção perto de ti</strong><p>Combo Corte + Barba com 20% OFF esta semana.</p><time>há 1 dia</time></div></article>
-              <article class="notif-item"><span class="notif-item__dot"></span><div><strong>Avaliação registada</strong><p>Obrigado por avaliar a Navalha de Ouro.</p><time>há 5 dias</time></div></article>
-            </div>
-
-            <article class="profile-block" style="margin-top:1.5rem">
-              <div class="profile-block__head"><h3>Preferências de notificação</h3></div>
-              <ul class="pref-list">
-                <li><span>Notificações por e-mail</span><label class="switch"><input type="checkbox" checked><span></span></label></li>
-                <li><span>Notificações push</span><label class="switch"><input type="checkbox" checked><span></span></label></li>
-                <li><span>Promoções e novidades</span><label class="switch"><input type="checkbox"><span></span></label></li>
-              </ul>
+          <div class="ca-appts" data-sublist="done" hidden>
+            <article class="ca-appt ca-appt--full">
+              <div class="ca-appt__photo bg-shop-main"></div>
+              <div class="ca-appt__main">
+                <div class="ca-appt__top"><h3>Barbearia Menuz</h3><span class="ca-status ca-status--ok">Concluído</span></div>
+                <p class="ca-appt__svc">Corte + Barba · com Pedro</p>
+                <ul class="ca-appt__meta"><li>📅 18 jul 2026</li><li>🕒 15:00</li><li>💰 R$ 70</li></ul>
+                <p class="ca-appt__addr">Rua Tiradentes, 48 - Centro · Igarapé/MG</p>
+                <div class="ca-appt__actions"><button class="btn btn--primary btn--sm" type="button">Detalhes</button><a class="btn btn--ghost btn--sm" href="barbearia-menuz.html#avaliar">Avaliar</a></div>
+              </div>
             </article>
-          </section>
+          </div>
 
-          <!-- Configurações -->
-          <section class="profile-panel" data-panel="settings" aria-label="Configurações da conta" hidden>
-            <article class="profile-block">
-              <div class="profile-block__head"><h2>Informações pessoais</h2></div>
-              <form class="profile-form" data-form-personal>
-                <label>Nome completo<input type="text" name="name" value="André Menuz" autocomplete="name"></label>
-                <label>E-mail<input type="email" name="email" value="andre.menuz@email.com" autocomplete="email"></label>
-                <label>Telefone<input type="tel" name="phone" value="(31) 99999-0000" autocomplete="tel"></label>
-                <label>Cidade / Estado<input type="text" name="city" value="Igarapé / MG"></label>
-                <div class="profile-form__actions"><button class="btn btn--primary" type="submit">Guardar alterações</button><span class="form-ok" data-ok hidden>✓ Guardado</span></div>
-              </form>
+          <div class="ca-appts" data-sublist="cancel" hidden>
+            <article class="ca-appt ca-appt--full">
+              <div class="ca-appt__photo bg-shop-tools"></div>
+              <div class="ca-appt__main">
+                <div class="ca-appt__top"><h3>Studio Premium Centro</h3><span class="ca-status ca-status--bad">Cancelado</span></div>
+                <p class="ca-appt__svc">Corte masculino</p>
+                <ul class="ca-appt__meta"><li>📅 24 jun 2026</li><li>🕒 11:00</li><li>💰 R$ 50</li></ul>
+                <p class="ca-appt__addr">Centro · Igarapé/MG</p>
+                <div class="ca-appt__actions"><button class="btn btn--ghost btn--sm" type="button">Reagendar</button></div>
+              </div>
             </article>
+          </div>
+        </section>
 
-            <article class="profile-block">
-              <div class="profile-block__head"><h2>Alterar senha</h2></div>
-              <form class="profile-form" data-form-password>
-                <label>Senha atual<input type="password" name="current" autocomplete="current-password"></label>
-                <label>Nova senha<input type="password" name="new" autocomplete="new-password"></label>
-                <label>Confirmar nova senha<input type="password" name="confirm" autocomplete="new-password"></label>
-                <div class="profile-form__actions"><button class="btn btn--primary" type="submit">Atualizar senha</button><span class="form-ok" data-ok hidden>✓ Atualizada</span></div>
-              </form>
-            </article>
+        <!-- ===== Favoritos ===== -->
+        <section class="ca-panel" data-panel="favs" hidden>
+          <div class="ca-hi"><h1>Favoritos</h1></div>
+          <h2 class="ca-subhead">Barbearias</h2>
+          <div class="ca-fav-grid" data-fav-shops></div>
+          <h2 class="ca-subhead">Barbeiros</h2>
+          <div class="ca-fav-grid">
+            <article class="ca-fav"><div class="ca-fav__ph bg-barber-1"></div><div class="ca-fav__i"><h3>Pedro</h3><p>Barbearia Menuz · ★ 4,9</p></div><button class="ca-heart is-fav" type="button" aria-label="Remover">♥</button></article>
+            <article class="ca-fav"><div class="ca-fav__ph bg-barber-2"></div><div class="ca-fav__i"><h3>Rafael</h3><p>Classic Barber Club · ★ 4,8</p></div><button class="ca-heart is-fav" type="button" aria-label="Remover">♥</button></article>
+          </div>
+        </section>
 
-            <article class="profile-block">
-              <div class="profile-block__head"><h2>Preferências</h2></div>
-              <ul class="pref-list">
-                <li><span>Perfil público</span><label class="switch"><input type="checkbox" checked><span></span></label></li>
-                <li><span>Guardar histórico de buscas</span><label class="switch"><input type="checkbox" checked><span></span></label></li>
-                <li><span>Mostrar minha localização às barbearias</span><label class="switch"><input type="checkbox"><span></span></label></li>
-              </ul>
-            </article>
+        <!-- ===== Notificações ===== -->
+        <section class="ca-panel" data-panel="notifs" hidden>
+          <div class="ca-hi"><h1>Notificações</h1><button class="ca-link" type="button" data-notif-clear>Marcar como lidas</button></div>
+          <div class="ca-notifs" data-notif-list>
+            <article class="ca-notif is-unread"><span class="ca-notif__dot"></span><div><strong>Agendamento confirmado</strong><p>Barbearia Menuz confirmou o corte de 01 ago às 16:30.</p><time>há 2 h</time></div></article>
+            <article class="ca-notif is-unread"><span class="ca-notif__dot"></span><div><strong>Promoção perto de você</strong><p>Combo Corte + Barba com 20% OFF esta semana.</p><time>há 1 dia</time></div></article>
+            <article class="ca-notif"><span class="ca-notif__dot"></span><div><strong>Avaliação registada</strong><p>Obrigado por avaliar a Navalha de Ouro.</p><time>há 5 dias</time></div></article>
+          </div>
+        </section>
 
-            <article class="profile-block profile-block--danger">
-              <div class="profile-block__head"><h2>Zona de perigo</h2></div>
-              <p>Ao excluir a conta, todos os teus dados, agendamentos e favoritos serão removidos permanentemente.</p>
-              <button class="btn btn--danger" type="button" data-delete-account>Excluir minha conta</button>
-            </article>
-          </section>
-        </div>
-      </div>
-    </section>
-  </main>
+        <!-- ===== Minha Conta (simples) ===== -->
+        <section class="ca-panel" data-panel="account" hidden>
+          <div class="ca-hi"><h1>Minha Conta</h1></div>
+          <article class="ca-card ca-account">
+            <div class="ca-account__photo">
+              <span class="ca-avatar ca-avatar--lg" data-avatar>AM</span>
+              <label class="ca-photo-btn">Alterar foto<input type="file" accept="image/*" data-photo hidden></label>
+            </div>
+            <form class="ca-form" data-form-account>
+              <label>Nome<input type="text" name="name" value="André Menuz" autocomplete="name"></label>
+              <label>E-mail<input type="email" name="email" value="andre.menuz@email.com" autocomplete="email"></label>
+              <label>Telefone<input type="tel" name="phone" value="(31) 99999-0000" autocomplete="tel"></label>
+              <div class="ca-form__actions"><button class="btn btn--primary" type="submit">Guardar</button><span class="ca-ok" data-ok hidden>✓ Guardado</span></div>
+            </form>
+          </article>
+        </section>
 
-  <!-- Modal de confirmação de exclusão -->
-  <div class="confirm-modal" data-confirm hidden>
-    <div class="confirm-modal__backdrop" data-confirm-cancel></div>
-    <div class="confirm-modal__box" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
-      <h3 id="confirmTitle">Excluir conta?</h3>
-      <p>Esta ação é permanente e não pode ser desfeita. Tens a certeza?</p>
-      <div class="confirm-modal__actions">
-        <button class="btn btn--ghost" type="button" data-confirm-cancel>Cancelar</button>
-        <button class="btn btn--danger" type="button" data-confirm-ok>Sim, excluir</button>
-      </div>
+        <!-- ===== Configurações ===== -->
+        <section class="ca-panel" data-panel="settings" hidden>
+          <div class="ca-hi"><h1>Configurações</h1></div>
+          <article class="ca-card">
+            <ul class="ca-prefs">
+              <li><span>Notificações por e-mail</span><label class="switch"><input type="checkbox" checked><span></span></label></li>
+              <li><span>Notificações push</span><label class="switch"><input type="checkbox" checked><span></span></label></li>
+              <li><span>Promoções e novidades</span><label class="switch"><input type="checkbox"><span></span></label></li>
+              <li><span>Mostrar localização às barbearias</span><label class="switch"><input type="checkbox"><span></span></label></li>
+            </ul>
+          </article>
+          <article class="ca-card ca-danger">
+            <h2>Excluir conta</h2>
+            <p>Esta ação é permanente e remove todos os seus dados.</p>
+            <button class="btn btn--danger" type="button" data-delete-account>Excluir minha conta</button>
+          </article>
+        </section>
+
+        <!-- ===== Alterar Senha ===== -->
+        <section class="ca-panel" data-panel="password" hidden>
+          <div class="ca-hi"><h1>Alterar Senha</h1></div>
+          <article class="ca-card">
+            <form class="ca-form ca-form--one" data-form-password>
+              <label>Senha atual<input type="password" name="current" autocomplete="current-password"></label>
+              <label>Nova senha<input type="password" name="new" autocomplete="new-password"></label>
+              <label>Confirmar nova senha<input type="password" name="confirm" autocomplete="new-password"></label>
+              <div class="ca-form__actions"><button class="btn btn--primary" type="submit">Atualizar senha</button><span class="ca-ok" data-ok hidden>✓ Atualizada</span></div>
+            </form>
+          </article>
+        </section>
+
+      </main>
     </div>
   </div>
 
-  <footer class="footer premium-footer">
-    <div class="container premium-footer__inner">
-      <a class="brand" href="index.html" aria-label="Menuz"><img class="brand__mark" src="assets/img/logo.svg" alt="" width="40" height="40"><span class="brand__name">Menuz<span class="brand__dot">.</span></span></a>
-      <p>© 2026 Menuz. Atendimento premium para barbearias modernas.</p>
-      <div class="premium-footer__links"><a href="index.html">Início</a></div>
+  <!-- Modal excluir conta -->
+  <div class="confirm-modal" data-confirm hidden>
+    <div class="confirm-modal__backdrop" data-confirm-cancel></div>
+    <div class="confirm-modal__box" role="dialog" aria-modal="true" aria-labelledby="cmT">
+      <h3 id="cmT">Excluir conta?</h3>
+      <p>Esta ação é permanente e não pode ser desfeita.</p>
+      <div class="confirm-modal__actions"><button class="btn btn--ghost" type="button" data-confirm-cancel>Cancelar</button><button class="btn btn--danger" type="button" data-confirm-ok>Sim, excluir</button></div>
     </div>
-  </footer>
+  </div>
 
-  <script src="assets/js/main.js?v=20260728-01" defer></script>
+  <script src="assets/js/main.js?v=20260728-02" defer></script>
 </body>
 </html>

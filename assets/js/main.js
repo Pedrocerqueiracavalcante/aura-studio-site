@@ -520,6 +520,92 @@
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") setModal(false); });
   })();
 
+  /* ---------- Área do Cliente (perfil.html) ---------- */
+  (function clientArea() {
+    const gate = $("[data-gate]");
+    const app = $("[data-app]");
+    if (!gate && !app) return;
+
+    const AUTH = "menuzClientAuth";
+    const applyAuth = (logged) => { if (gate) gate.hidden = logged; if (app) app.hidden = !logged; };
+    const isLogged = () => !!localStorage.getItem(AUTH) || location.hash === "#app";
+    $$("[data-login]").forEach((b) => b.addEventListener("click", () => { localStorage.setItem(AUTH, "1"); applyAuth(true); }));
+    $$("[data-logout]").forEach((b) => b.addEventListener("click", (e) => { if (b.tagName === "BUTTON") e.preventDefault(); localStorage.removeItem(AUTH); if (location.hash === "#app") location.hash = ""; applyAuth(false); window.scrollTo(0, 0); }));
+    applyAuth(isLogged());
+
+    // Navegação por abas
+    const nav = $("[data-nav]");
+    const panels = $$(".ca-panel");
+    const side = $("[data-side]");
+    const showTab = (name) => {
+      if (nav) $$("button", nav).forEach((b) => b.classList.toggle("is-active", b.dataset.tab === name));
+      panels.forEach((p) => { p.hidden = p.dataset.panel !== name; });
+      if (side) side.classList.remove("is-open");
+      const c = $("[data-content]"); if (c) c.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    };
+    $$("[data-tab]").forEach((b) => b.addEventListener("click", () => showTab(b.dataset.tab)));
+
+    const mt = $("[data-menu-toggle]");
+    if (mt && side) mt.addEventListener("click", () => side.classList.toggle("is-open"));
+
+    const sub = $("[data-subtabs]");
+    if (sub) sub.addEventListener("click", (e) => { const b = e.target.closest("button[data-sub]"); if (!b) return; $$("button", sub).forEach((x) => x.classList.toggle("is-active", x === b)); $$("[data-sublist]").forEach((l) => { l.hidden = l.dataset.sublist !== b.dataset.sub; }); });
+
+    // Banner rotativo
+    const bt = $("[data-banner-track]");
+    if (bt) {
+      const slides = $$(".ca-banner__slide", bt), dw = $("[data-banner-dots]"), bn = $("[data-banner]");
+      let i = 0, t = null;
+      slides.forEach((_, k) => { const d = document.createElement("button"); d.type = "button"; d.setAttribute("aria-label", "Slide " + (k + 1)); if (k === 0) d.classList.add("is-active"); d.addEventListener("click", () => { go(k); restart(); }); dw.appendChild(d); });
+      const dots = $$("button", dw);
+      const go = (k) => { i = (k + slides.length) % slides.length; bt.style.transform = "translateX(-" + i * 100 + "%)"; dots.forEach((d, di) => d.classList.toggle("is-active", di === i)); };
+      const start = () => { if (!reduceMotion) t = setInterval(() => go(i + 1), 4000); };
+      const stop = () => { if (t) clearInterval(t); };
+      const restart = () => { stop(); start(); };
+      bn.addEventListener("mouseenter", stop); bn.addEventListener("mouseleave", start); start();
+    }
+
+    // Favoritos
+    const meta = { menuz: { name: "Barbearia Menuz", city: "Igarapé/MG", rating: "4,9", photo: "bg-shop-main" }, studio: { name: "Studio Premium Centro", city: "Igarapé/MG", rating: "4,7", photo: "bg-shop-chair" }, classic: { name: "Classic Barber Club", city: "Igarapé/MG", rating: "4,8", photo: "bg-shop-tools" }, navalha: { name: "Navalha de Ouro", city: "Igarapé/MG", rating: "4,6", photo: "bg-shop-cards" } };
+    let favs = []; try { favs = JSON.parse(localStorage.getItem("menuzFavShops") || "[]"); } catch (e) {}
+    if (!favs.length) favs = ["menuz", "classic"];
+    const favGrid = $("[data-fav-shops]"), favMini = $("[data-fav-mini]");
+    const renderFavs = () => {
+      const full = (id) => { const s = meta[id]; return s ? '<article class="ca-fav"><div class="ca-fav__ph ' + s.photo + '"></div><div class="ca-fav__i"><h3>' + s.name + '</h3><p>' + s.city + ' · ★ ' + s.rating + '</p></div><button class="ca-heart is-fav" type="button" data-unfav="' + id + '" aria-label="Remover">♥</button></article>' : ""; };
+      const mini = (id) => { const s = meta[id]; return s ? '<div class="ca-appt ca-appt--mini"><div class="ca-fav__ph ' + s.photo + '" style="width:44px;height:44px;border-radius:12px"></div><div class="ca-appt__i"><h3>' + s.name + '</h3><p>' + s.city + ' · ★ ' + s.rating + '</p></div></div>' : ""; };
+      if (favGrid) { favGrid.innerHTML = favs.map(full).join("") || '<p class="ca-empty">Sem barbearias favoritas.</p>'; $$("[data-unfav]", favGrid).forEach((b) => b.addEventListener("click", () => { favs = favs.filter((x) => x !== b.dataset.unfav); localStorage.setItem("menuzFavShops", JSON.stringify(favs)); renderFavs(); })); }
+      if (favMini) favMini.innerHTML = favs.slice(0, 3).map(mini).join("") || '<p class="ca-empty">Sem favoritos.</p>';
+    };
+    renderFavs();
+
+    // Foto de perfil
+    const photoInput = $("[data-photo]");
+    if (photoInput) photoInput.addEventListener("change", (e) => { const f = e.target.files[0]; if (!f) return; const url = URL.createObjectURL(f); $$("[data-avatar]").forEach((a) => { a.style.backgroundImage = "url(" + url + ")"; a.textContent = ""; }); });
+
+    // Formulários
+    $$("[data-form-account],[data-form-password]").forEach((form) => form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (form.hasAttribute("data-form-account")) {
+        const n = form.elements.name.value, em = form.elements.email.value, ph = form.elements.phone.value;
+        $$("[data-name]").forEach((el) => el.textContent = n); $$("[data-email]").forEach((el) => el.textContent = em); $$("[data-phone]").forEach((el) => el.textContent = ph);
+        $$("[data-avatar]").forEach((a) => { if (!a.style.backgroundImage) a.textContent = n.trim().split(/\s+/).map((w) => w[0]).slice(0, 2).join("").toUpperCase(); });
+      }
+      const ok = form.querySelector("[data-ok]"); if (ok) { ok.hidden = false; setTimeout(() => { ok.hidden = true; }, 2500); }
+      if (form.hasAttribute("data-form-password")) form.reset();
+    }));
+
+    // Notificações
+    const nc = $("[data-notif-clear]");
+    if (nc) nc.addEventListener("click", () => { $$(".ca-notif.is-unread").forEach((x) => x.classList.remove("is-unread")); const b = $(".ca-badge"); if (b) b.remove(); });
+
+    // Excluir conta
+    const modal = $("[data-confirm]"); const sm = (o) => { if (modal) modal.hidden = !o; };
+    $$("[data-delete-account]").forEach((b) => b.addEventListener("click", () => sm(true)));
+    $$("[data-confirm-cancel]").forEach((b) => b.addEventListener("click", () => sm(false)));
+    const okB = $("[data-confirm-ok]"); if (okB) okB.addEventListener("click", () => { localStorage.removeItem(AUTH); window.location.href = "index.html"; });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") sm(false); });
+  })();
+
   const yearEl = $("#year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
