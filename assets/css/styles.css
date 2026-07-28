@@ -5749,3 +5749,92 @@ html:not(.theme-dark) .app-bg-waves { display: none; }
 
 body.has-tabbar { padding-bottom: 84px; }
 body.has-tabbar .to-top { bottom: calc(84px + 1rem); }
+
+/* =====================================================================
+   HOME (estilo app) — boas-vindas, busca, carrossel, GPS, cards
+   ===================================================================== */
+.home { padding: clamp(5.5rem, 9vw, 7.5rem) 0 clamp(2rem, 5vw, 3.5rem); }
+.home__welcome { margin-bottom: 1.3rem; }
+.home__welcome h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 800; letter-spacing: -.02em; }
+.home__date { color: var(--muted); margin-top: .25rem; font-size: .95rem; text-transform: capitalize; }
+
+/* Busca destacada */
+.home-find { position: relative; display: flex; align-items: center; gap: .75rem;
+  background: var(--surface); border: 1px solid var(--border-2); border-radius: var(--radius);
+  padding: .1rem .1rem .1rem 1.1rem; margin-bottom: clamp(1.4rem, 4vw, 2rem);
+  transition: border-color .25s var(--ease), box-shadow .25s var(--ease); }
+.home-find:focus-within { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(198,160,70,.16); }
+.home-find svg { width: 22px; height: 22px; flex: none; stroke: var(--muted); fill: none; stroke-width: 2; stroke-linecap: round; }
+.home-find input { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-size: 1.02rem; padding: 1rem .2rem; }
+.home-find input::placeholder { color: var(--dim); }
+
+/* Carrossel de destaques */
+.promo-carousel { margin-bottom: clamp(1.8rem, 4vw, 2.6rem); overflow: hidden; padding-bottom: .2rem; }
+.promo-carousel .promo-track { display: flex; list-style: none; padding: 0; margin: 0; transition: transform .6s var(--ease); }
+.promo-card { flex: 0 0 100%; min-height: clamp(140px, 26vw, 190px); border-radius: var(--radius-lg);
+  padding: clamp(1.2rem, 3vw, 1.8rem); display: flex; flex-direction: column; justify-content: flex-end; gap: .25rem;
+  color: #fff; position: relative; overflow: hidden; box-shadow: 0 24px 50px -30px rgba(0,0,0,.7); }
+.promo-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(0,0,0,.15), rgba(0,0,0,.45)); z-index: 0; }
+.promo-card > * { position: relative; z-index: 1; }
+.promo-card__tag { align-self: flex-start; font-family: var(--font-display); font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.25); padding: .3rem .7rem; border-radius: 999px; margin-bottom: .4rem; }
+.promo-card h3 { font-size: clamp(1.25rem, 3.2vw, 1.7rem); font-weight: 800; }
+.promo-card p { color: rgba(255,255,255,.85); font-size: .95rem; }
+.promo-card--a { background: linear-gradient(130deg, #C6A046, #8A6424); }
+.promo-card--b { background: linear-gradient(130deg, #23262d, #0f1114); }
+.promo-card--c { background: linear-gradient(130deg, #8A6424, #4a3618); }
+.promo-card--d { background: linear-gradient(130deg, #2b2f37, #14171d); }
+.promo-card--e { background: linear-gradient(130deg, #D9B86F, #B88A32); }
+.promo-dots { display: flex; justify-content: center; gap: .5rem; margin-top: .9rem; }
+.promo-dots button { width: 8px; height: 8px; border-radius: 50%; background: var(--border-2); border: none; padding: 0; cursor: pointer; transition: width .3s var(--ease), background .3s var(--ease); }
+.promo-dots button.is-active { width: 22px; border-radius: 999px; background: var(--grad); }
+
+/* Empresas próximas */
+.nearby { margin-top: .5rem; }
+.nearby__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.2rem; }
+.nearby__head h2 { font-size: clamp(1.3rem, 3vw, 1.7rem); }
+.nearby__refresh { font-size: .85rem; font-weight: 600; color: var(--brand-light); background: var(--surface); border: 1px solid var(--border); padding: .5rem .9rem; border-radius: 999px; cursor: pointer; }
+.nearby__refresh:hover { background: var(--surface-2); }
+.nearby__note { color: var(--dim); font-size: .85rem; margin-top: 1rem; text-align: center; }
+
+/* Estado: habilitar localização */
+.geo-empty { text-align: center; max-width: 460px; margin: clamp(1.5rem, 5vw, 3rem) auto; display: grid; justify-items: center; gap: .5rem; }
+.geo-pin { color: var(--brand); filter: drop-shadow(0 12px 24px rgba(198,160,70,.4)); animation: geoFloat 3s ease-in-out infinite; }
+.geo-pin svg { width: 68px; height: 68px; }
+@keyframes geoFloat { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-8px);} }
+.geo-empty h3 { font-size: 1.3rem; margin-top: .4rem; }
+.geo-empty p { color: var(--muted); }
+.geo-empty .btn { margin-top: .8rem; }
+.geo-manual { background: none; border: none; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font-size: .9rem; margin-top: .3rem; }
+.geo-manual:hover { color: var(--text); }
+
+/* Grelha e cards de barbearia */
+.nearby__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; }
+.shop-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); animation: fadeInUp .5s var(--ease) both; }
+.shop-card:hover { transform: translateY(-5px); border-color: var(--border-2); box-shadow: 0 30px 60px -40px rgba(0,0,0,.8); }
+.shop-card__photo { position: relative; aspect-ratio: 16/10; background-size: cover; background-position: center; }
+.shop-card__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(6,8,12,.82)); }
+.shop-card__status { position: absolute; top: .8rem; left: .8rem; z-index: 2; font-family: var(--font-display); font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: .3rem .65rem; border-radius: 999px; background: rgba(0,0,0,.5); backdrop-filter: blur(6px); }
+.shop-card__status.is-open { color: #7DF0B0; border: 1px solid rgba(125,240,176,.35); }
+.shop-card__status.is-closed { color: #ff9a9a; border: 1px solid rgba(255,154,154,.3); }
+.shop-card__fav { position: absolute; top: .7rem; right: .7rem; z-index: 2; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.18); color: #fff; font-size: 1.1rem; cursor: pointer; transition: transform .25s var(--ease), background .25s var(--ease); }
+.shop-card__fav:hover { transform: scale(1.1); }
+.shop-card__fav.is-fav { color: #ff5a7a; background: rgba(255,90,122,.16); border-color: rgba(255,90,122,.4); }
+.shop-card__body { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .45rem; flex: 1; }
+.shop-card__top { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; }
+.shop-card__top h3 { font-size: 1.15rem; }
+.shop-card__rating { color: var(--brand-light); font-weight: 700; font-size: .92rem; white-space: nowrap; }
+.shop-card__rating small { color: var(--dim); font-weight: 500; }
+.shop-card__meta { color: var(--muted); font-size: .88rem; }
+.shop-card__dist { display: flex; align-items: center; gap: .4rem; color: var(--text); font-size: .9rem; font-weight: 600; }
+.shop-card__dist svg { width: 15px; height: 15px; color: var(--brand-light); }
+.shop-card__actions { margin-top: .6rem; display: flex; gap: .5rem; }
+.shop-card__actions .btn { flex: 1; }
+.shop-card--skeleton { min-height: 300px; border-color: var(--border); background:
+  linear-gradient(100deg, transparent 30%, rgba(255,255,255,.05) 50%, transparent 70%) var(--surface);
+  background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 560px) {
+  .nearby__grid { grid-template-columns: 1fr; }
+}

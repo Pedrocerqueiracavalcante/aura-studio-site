@@ -93,97 +93,63 @@
   </header>
 
   <main id="main">
-    <section class="home-hero" id="buscar" aria-labelledby="homeHeroTitle">
+    <section class="home" id="buscar" aria-labelledby="homeHeroTitle">
       <div class="container">
-        <div class="home-hero__grid">
-          <div class="home-hero__copy" data-reveal>
-            <p class="premium-eyebrow">Menuz Barber</p>
-            <h1 id="homeHeroTitle">Encontre sua barbearia e agende com poucos cliques.</h1>
-            <p>Perfis profissionais, serviços claros, avaliações reais e acesso rápido aos horários disponíveis.</p>
+        <div class="home__welcome" data-reveal>
+          <h1 id="homeHeroTitle">Seja bem-vindo(a)</h1>
+          <p class="home__date" data-today>—</p>
+        </div>
 
-            <form class="home-search" role="search" action="encontrar-barbearias.html">
-              <label class="sr-only" for="homeSearch">Buscar barbearias</label>
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="m21 21-4.35-4.35"></path>
-                <circle cx="11" cy="11" r="7"></circle>
-              </svg>
-              <input id="homeSearch" name="q" type="search" placeholder="Buscar por barbearia, serviço ou bairro">
-              <button class="btn btn--primary" type="submit">Buscar</button>
-            </form>
+        <form class="home-find" role="search" data-estab-form>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m21 21-4.35-4.35"></path>
+            <circle cx="11" cy="11" r="7"></circle>
+          </svg>
+          <label class="sr-only" for="homeSearch">Encontre um estabelecimento</label>
+          <input id="homeSearch" name="q" type="search" placeholder="Encontre um estabelecimento" data-estab-search autocomplete="off">
+        </form>
 
-            <div class="home-location" aria-label="Localização atual">
-              <span>Localização</span>
-              <strong>Igarapé, MG</strong>
-              <a href="encontrar-barbearias.html">Alterar</a>
-            </div>
+        <!-- Carrossel de destaques (auto) -->
+        <section class="promo-carousel" data-promo-carousel aria-label="Destaques">
+          <ul class="promo-track" data-promo-track>
+            <li class="promo-card promo-card--a"><span class="promo-card__tag">Promoção</span><h3>Combo Corte + Barba</h3><p>20% OFF esta semana</p></li>
+            <li class="promo-card promo-card--b"><span class="promo-card__tag">Em alta</span><h3>Fades &amp; Undercut</h3><p>Os cortes mais pedidos</p></li>
+            <li class="promo-card promo-card--c"><span class="promo-card__tag">Premium</span><h3>Barba &amp; Navalha</h3><p>Toalha quente e acabamento</p></li>
+            <li class="promo-card promo-card--d"><span class="promo-card__tag">Novidade</span><h3>Novas barbearias</h3><p>Recém-chegadas perto de você</p></li>
+            <li class="promo-card promo-card--e"><span class="promo-card__tag">Cupom</span><h3>1º corte com desconto</h3><p>Use o app e economize</p></li>
+          </ul>
+          <div class="promo-dots" data-promo-dots role="tablist" aria-label="Selecionar destaque"></div>
+        </section>
+
+        <!-- Empresas próximas + GPS em tempo real -->
+        <section class="nearby" id="estabelecimentos" data-nearby aria-labelledby="nearbyTitle">
+          <div class="nearby__head" data-reveal>
+            <h2 id="nearbyTitle">Empresas próximas</h2>
+            <button class="nearby__refresh" type="button" data-geo-enable hidden>Atualizar localização</button>
           </div>
 
-          <aside class="home-feature-card" data-reveal aria-label="Barbearia em destaque">
-            <div class="home-feature-card__media bg-shop-main"></div>
-            <div class="home-feature-card__body">
-              <span class="status-pill status-pill--confirmed">Aberto agora</span>
-              <h2>Barbearia Menuz</h2>
-              <p>Rua Tiradentes, 48 - Centro · Igarapé/MG</p>
-              <dl>
-                <div><dt>Avaliação</dt><dd>4,9</dd></div>
-                <div><dt>Serviços</dt><dd>4+</dd></div>
-                <div><dt>Horário</dt><dd>09h-19h</dd></div>
-              </dl>
-              <div class="home-feature-card__actions">
-                <a class="btn btn--primary btn--sm" href="barbearia-menuz.html#area">Abrir Área</a>
-                <a class="btn btn--ghost btn--sm" href="barbearia-menuz.html">Ver perfil</a>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
+          <!-- Estado inicial: pedir localização -->
+          <div class="geo-empty" data-geo-empty>
+            <span class="geo-pin" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z" fill="currentColor"/><circle cx="12" cy="10" r="2.6" fill="#0C0E12"/></svg>
+            </span>
+            <h3>Habilitar localização</h3>
+            <p>Habilite o acesso à localização para encontrarmos as barbearias afiliadas mais próximas de você.</p>
+            <button class="btn btn--primary" type="button" data-geo-enable>Permitir localização</button>
+            <button class="geo-manual" type="button" data-geo-manual>Ou ver todas as barbearias</button>
+          </div>
 
-    <section class="premium-section home-results" id="estabelecimentos" aria-labelledby="homeResultsTitle">
-      <div class="container">
-        <div class="premium-section__head" data-reveal>
-          <p class="premium-eyebrow">Perto de você</p>
-          <h2 id="homeResultsTitle">Estabelecimentos em destaque</h2>
-          <span>Compare localização, reputação e disponibilidade antes de abrir o perfil.</span>
-        </div>
+          <!-- Estado carregando (skeleton) -->
+          <div class="nearby__grid" data-geo-loading hidden aria-hidden="true">
+            <div class="shop-card shop-card--skeleton"></div>
+            <div class="shop-card shop-card--skeleton"></div>
+            <div class="shop-card shop-card--skeleton"></div>
+          </div>
 
-        <div class="home-card-list">
-          <article class="home-barber-card" data-reveal>
-            <div class="home-barber-card__photo bg-shop-main"></div>
-            <div>
-              <span class="status-pill status-pill--confirmed">Aberto agora</span>
-              <h3>Barbearia Menuz</h3>
-              <p>Centro · Igarapé/MG</p>
-              <dl>
-                <div><dt>Nota</dt><dd>4,9</dd></div>
-                <div><dt>Distância</dt><dd>1,2 km</dd></div>
-                <div><dt>Especialidade</dt><dd>Corte e barba</dd></div>
-              </dl>
-            </div>
-            <div class="home-barber-card__actions">
-              <a class="btn btn--ghost btn--sm" href="barbearia-menuz.html">Perfil</a>
-              <a class="btn btn--primary btn--sm" href="barbearia-menuz.html#area">Área</a>
-            </div>
-          </article>
-
-          <article class="home-barber-card" data-reveal>
-            <div class="home-barber-card__photo bg-shop-chair"></div>
-            <div>
-              <span class="status-pill">Em breve</span>
-              <h3>Studio Premium Centro</h3>
-              <p>Centro · Igarapé/MG</p>
-              <dl>
-                <div><dt>Nota</dt><dd>4,7</dd></div>
-                <div><dt>Distância</dt><dd>2,8 km</dd></div>
-                <div><dt>Especialidade</dt><dd>Atendimento premium</dd></div>
-              </dl>
-            </div>
-            <div class="home-barber-card__actions">
-              <button class="btn btn--ghost btn--sm" type="button">Perfil</button>
-              <button class="btn btn--primary btn--sm" type="button">Área</button>
-            </div>
-          </article>
-        </div>
+          <!-- Resultados -->
+          <div class="nearby__grid" data-geo-results hidden></div>
+          <p class="nearby__note" data-geo-note hidden></p>
+        </section>
       </div>
     </section>
 

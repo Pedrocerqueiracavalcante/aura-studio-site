@@ -315,6 +315,135 @@
   applyI18n();
 
   /* ---------- Ano no rodapÃ© ---------- */
+  /* ---------- Home: data, carrossel de destaques, GPS e cards ---------- */
+  (function homePage() {
+    const promoTrack = $("[data-promo-track]");
+    const nearby = $("[data-nearby]");
+    if (!promoTrack && !nearby) return;
+
+    const todayEl = $("[data-today]");
+    if (todayEl) {
+      todayEl.textContent = new Date().toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "short", year: "numeric" }).replace(/\./g, "");
+    }
+
+    // Carrossel de destaques
+    if (promoTrack) {
+      const cards = $$(".promo-card", promoTrack);
+      const dotsWrap = $("[data-promo-dots]");
+      const carEl = $("[data-promo-carousel]");
+      let pi = 0, ptimer = null;
+      cards.forEach((_, i) => {
+        const b = document.createElement("button");
+        b.type = "button"; b.setAttribute("role", "tab"); b.setAttribute("aria-label", "Destaque " + (i + 1));
+        if (i === 0) b.classList.add("is-active");
+        b.addEventListener("click", () => { pgo(i); prestart(); });
+        dotsWrap.appendChild(b);
+      });
+      const pdots = $$("button", dotsWrap);
+      const pgo = (i) => { pi = (i + cards.length) % cards.length; promoTrack.style.transform = "translateX(-" + pi * 100 + "%)"; pdots.forEach((d, di) => d.classList.toggle("is-active", di === pi)); };
+      const pstart = () => { if (!reduceMotion) ptimer = setInterval(() => pgo(pi + 1), 4200); };
+      const pstop = () => { if (ptimer) clearInterval(ptimer); };
+      const prestart = () => { pstop(); pstart(); };
+      carEl.addEventListener("mouseenter", pstop);
+      carEl.addEventListener("mouseleave", pstart);
+      let psx = 0;
+      carEl.addEventListener("touchstart", (e) => { psx = e.touches[0].clientX; pstop(); }, { passive: true });
+      carEl.addEventListener("touchend", (e) => { const dx = e.changedTouches[0].clientX - psx; if (Math.abs(dx) > 40) pgo(dx < 0 ? pi + 1 : pi - 1); pstart(); }, { passive: true });
+      pstart();
+    }
+
+    if (!nearby) { const y0 = $("#year"); if (y0) y0.textContent = new Date().getFullYear(); return; }
+    const emptyEl = nearby.querySelector("[data-geo-empty]");
+    const loadingEl = nearby.querySelector("[data-geo-loading]");
+    const resultsEl = nearby.querySelector("[data-geo-results]");
+    const noteEl = nearby.querySelector("[data-geo-note]");
+    const refreshBtn = nearby.querySelector(".nearby__refresh");
+    const homeSearch = $("[data-estab-search]");
+
+    // Barbearias afiliadas (mock — trocar por API/base real)
+    const shops = [
+      { id: "menuz", name: "Barbearia Menuz", city: "Centro · Igarapé/MG", lat: -20.0708, lng: -44.3028, rating: 4.9, reviews: 327, price: "R$ 45–70", services: "Corte, Barba, Navalha", open: 9, close: 19, photo: "bg-shop-main", url: "barbearia-menuz.html#area" },
+      { id: "studio", name: "Studio Premium Centro", city: "Centro · Igarapé/MG", lat: -20.0725, lng: -44.2990, rating: 4.7, reviews: 184, price: "R$ 50–90", services: "Corte, Sobrancelha", open: 9, close: 20, photo: "bg-shop-chair", url: "barbearia-menuz.html#area" },
+      { id: "classic", name: "Classic Barber Club", city: "São Benedito · Igarapé/MG", lat: -20.0665, lng: -44.3075, rating: 4.8, reviews: 256, price: "R$ 40–75", services: "Corte, Barba, Pigmentação", open: 8, close: 19, photo: "bg-shop-tools", url: "barbearia-menuz.html#area" },
+      { id: "navalha", name: "Navalha de Ouro", city: "Nova Igarapé · MG", lat: -20.0600, lng: -44.2950, rating: 4.6, reviews: 98, price: "R$ 35–60", services: "Corte, Navalha", open: 10, close: 20, photo: "bg-shop-cards", url: "barbearia-menuz.html#area" },
+    ];
+
+    const FAV_KEY = "menuzFavShops";
+    const getFavs = () => { try { return JSON.parse(localStorage.getItem(FAV_KEY) || "[]"); } catch (e) { return []; } };
+    const setFavs = (arr) => localStorage.setItem(FAV_KEY, JSON.stringify(arr));
+
+    const haversine = (a, b) => {
+      const R = 6371, toRad = (x) => x * Math.PI / 180;
+      const dLat = toRad(b.lat - a.lat), dLng = toRad(b.lng - a.lng);
+      const s = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng / 2) ** 2;
+      return 2 * R * Math.asin(Math.sqrt(s));
+    };
+    const fmtKm = (km) => km < 1 ? Math.round(km * 1000) + " m" : km.toFixed(1).replace(".", ",") + " km";
+    const driveMin = (km) => Math.max(1, Math.round(km / 25 * 60));
+
+    let userPos = null, query = "";
+
+    const render = () => {
+      const favs = getFavs();
+      let list = shops.map((s) => ({ ...s, dist: userPos ? haversine(userPos, s) : null }));
+      if (userPos) list.sort((a, b) => a.dist - b.dist);
+      if (query) { const q = query.toLowerCase(); list = list.filter((s) => (s.name + " " + s.services + " " + s.city).toLowerCase().includes(q)); }
+      const nowH = new Date().getHours();
+      resultsEl.innerHTML = list.map((s) => {
+        const isOpen = nowH >= s.open && nowH < s.close;
+        const fav = favs.includes(s.id);
+        const dist = s.dist != null
+          ? '<p class="shop-card__dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z"/><circle cx="12" cy="10" r="2.4"/></svg>' + fmtKm(s.dist) + " · ~" + driveMin(s.dist) + " min</p>"
+          : "";
+        return '<article class="shop-card">' +
+          '<div class="shop-card__photo ' + s.photo + '">' +
+            '<span class="shop-card__status ' + (isOpen ? "is-open" : "is-closed") + '">' + (isOpen ? "Aberto" : "Fechado") + '</span>' +
+            '<button class="shop-card__fav ' + (fav ? "is-fav" : "") + '" type="button" data-fav="' + s.id + '" aria-label="Favoritar" aria-pressed="' + fav + '">' + (fav ? "♥" : "♡") + '</button>' +
+          '</div>' +
+          '<div class="shop-card__body">' +
+            '<div class="shop-card__top"><h3>' + s.name + '</h3><span class="shop-card__rating">★ ' + String(s.rating).replace(".", ",") + ' <small>(' + s.reviews + ')</small></span></div>' +
+            '<p class="shop-card__meta">' + s.services + ' · ' + s.price + '</p>' +
+            '<p class="shop-card__meta">' + s.city + ' · ' + s.open + 'h–' + s.close + 'h</p>' +
+            dist +
+            '<div class="shop-card__actions"><a class="btn btn--primary btn--sm" href="' + s.url + '">Agendar</a></div>' +
+          '</div></article>';
+      }).join("") || '<p class="nearby__note" style="grid-column:1/-1">Nenhuma barbearia encontrada.</p>';
+
+      $$("[data-fav]", resultsEl).forEach((btn) => btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-fav"); const f = getFavs();
+        const i = f.indexOf(id); if (i >= 0) f.splice(i, 1); else f.push(id);
+        setFavs(f); render();
+      }));
+    };
+
+    const showResults = () => { emptyEl.hidden = true; loadingEl.hidden = true; resultsEl.hidden = false; if (refreshBtn) refreshBtn.hidden = false; };
+    const showLoading = () => { emptyEl.hidden = true; resultsEl.hidden = true; loadingEl.hidden = false; };
+    const setNote = (t) => { if (noteEl) { noteEl.hidden = false; noteEl.textContent = t; } };
+
+    const locate = () => {
+      if (!("geolocation" in navigator)) { userPos = null; showResults(); render(); setNote("Localização indisponível — a mostrar todas as barbearias afiliadas."); return; }
+      showLoading();
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          userPos = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+          showResults(); render();
+          setNote("Ordenado pela distância a partir da tua localização atual.");
+          if (!reduceMotion) navigator.geolocation.watchPosition((p) => { userPos = { lat: p.coords.latitude, lng: p.coords.longitude }; render(); }, () => {}, { enableHighAccuracy: true, maximumAge: 15000 });
+        },
+        () => { userPos = null; showResults(); render(); setNote("Sem acesso à localização — a mostrar todas as barbearias afiliadas."); },
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 30000 }
+      );
+    };
+
+    $$("[data-geo-enable]").forEach((b) => b.addEventListener("click", locate));
+    const manualBtn = nearby.querySelector("[data-geo-manual]");
+    if (manualBtn) manualBtn.addEventListener("click", () => { userPos = null; showResults(); render(); setNote("A mostrar todas as barbearias afiliadas."); });
+
+    if (homeSearch) homeSearch.addEventListener("input", (e) => { query = e.target.value.trim(); if (resultsEl.hidden) showResults(); render(); });
+    const estabForm = $("[data-estab-form]");
+    if (estabForm) estabForm.addEventListener("submit", (e) => { e.preventDefault(); if (resultsEl.hidden) showResults(); render(); });
+  })();
+
   const yearEl = $("#year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
