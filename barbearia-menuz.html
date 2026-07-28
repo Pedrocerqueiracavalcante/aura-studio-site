@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-06">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-07">
 </head>
 <body class="public-page public-premium-profile">
   <main class="public-shell">
@@ -55,6 +55,7 @@
               </button>
             </div>
           </div>
+          <a class="btn btn--ghost" href="#link-cliente">Link do cliente</a>
           <a class="btn btn--primary" href="#area">Abrir Área</a>
         </div>
       </header>
@@ -153,17 +154,39 @@
         <div class="public-products-grid" data-public-products></div>
       </section>
 
+      <section class="client-link-panel" id="link-cliente" aria-labelledby="clientLinkTitle">
+        <div class="client-link-panel__main">
+          <p class="minimal-kicker">Link para cliente</p>
+          <h2 id="clientLinkTitle">Uma área pronta para enviar</h2>
+          <span>O cliente entra, escolhe profissional, serviço, data e horário. O barbeiro recebe o pedido organizado no painel.</span>
+          <div class="client-link-copy">
+            <code data-public-link>barbearia-menuz.html#area</code>
+            <button type="button" data-copy-public-link>Copiar link</button>
+          </div>
+        </div>
+        <div class="client-link-panel__side">
+          <strong>Experiência do cliente</strong>
+          <p>Visual limpo, escolhas guiadas, resumo em tempo real e confirmação simples.</p>
+          <a class="btn btn--primary btn--block" href="#" data-whatsapp-share>Enviar pelo WhatsApp</a>
+        </div>
+      </section>
+
       <section class="booking-steps" aria-label="Área de atendimento">
-        <article><span>1</span><strong>Escolha profissional e serviço</strong></article>
-        <article><span>2</span><strong>Veja horários disponíveis</strong></article>
-        <article><span>3</span><strong>Confirme e receba retorno</strong></article>
+        <article><span>1</span><div><strong>Cliente escolhe pelo link</strong><small>Profissional, serviço e plano ficam em cartões claros.</small></div></article>
+        <article><span>2</span><div><strong>Agenda sem conflito</strong><small>Os horários aparecem conforme disponibilidade real.</small></div></article>
+        <article><span>3</span><div><strong>Pedido chega organizado</strong><small>O barbeiro confirma no painel e envia a resposta.</small></div></article>
       </section>
 
       <section class="schedule-card" id="area" aria-labelledby="scheduleTitle">
         <div class="section-heading section-heading--compact">
-          <p class="minimal-kicker">Área</p>
-          <h2 id="scheduleTitle">Escolha um horário disponível</h2>
-          <span>Os horários são calculados pela disponibilidade do profissional e bloqueiam conflitos automaticamente.</span>
+          <p class="minimal-kicker">Área do cliente</p>
+          <h2 id="scheduleTitle">Agendamento claro e profissional</h2>
+          <span>Uma experiência guiada para o cliente pedir horário sem dúvida e para o barbeiro receber tudo pronto.</span>
+        </div>
+        <div class="booking-helper-strip" aria-label="Benefícios do agendamento">
+          <span>Horários sem conflito</span>
+          <span>Resumo em tempo real</span>
+          <span>Mensagem automática</span>
         </div>
 
         <form class="booking-flow" data-booking-form>
@@ -243,7 +266,8 @@
           </div>
 
           <aside class="booking-summary" aria-label="Resumo do agendamento">
-            <span class="minimal-kicker">Resumo</span>
+            <span class="minimal-kicker">Resumo do pedido</span>
+            <h3>Pronto para confirmar</h3>
             <dl data-booking-summary>
               <div><dt>Profissional</dt><dd data-summary-barber>Escolha um profissional</dd></div>
               <div><dt>Serviço</dt><dd data-summary-service>Escolha um serviço</dd></div>
@@ -256,8 +280,8 @@
             <input name="service" type="hidden" required>
             <input name="time" type="hidden" required data-time-select>
             <input name="plan" type="hidden">
-            <button class="btn btn--primary btn--block" type="submit">Confirmar agendamento</button>
-            <p>Após enviar, o pedido aparece no painel do barbeiro para confirmação e mensagem automática.</p>
+            <button class="btn btn--primary btn--block" type="submit">Enviar pedido ao barbeiro</button>
+            <p>O cliente envia a solicitação. O barbeiro confirma no painel e a mensagem automática fica pronta.</p>
           </aside>
         </form>
         <div class="booking-success" data-booking-success hidden></div>
@@ -391,6 +415,6 @@
     <div class="lightbox__image" id="lightboxImage" role="img"></div>
     <p id="lightboxCaption"></p>
   </div>
-  <script src="assets/js/main.js?v=20260728-06" defer></script>
+  <script src="assets/js/main.js?v=20260728-07" defer></script>
 </body>
 </html>

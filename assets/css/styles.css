@@ -2744,6 +2744,293 @@ body.premium-barber-page::after {
   background: rgba(255,106,0,.12);
   color: #fff;
 }
+
+/* Área pública premium: link do cliente, agendamento e avaliações */
+.public-premium-profile .client-link-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+  gap: 1rem;
+  align-items: stretch;
+  border: 1px solid rgba(249,115,22,.18);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,247,237,.88)),
+    radial-gradient(circle at 96% 4%, rgba(249,115,22,.18), transparent 42%);
+  box-shadow: 0 34px 90px -64px rgba(15,23,42,.52);
+  margin-top: 1rem;
+  padding: 1.15rem;
+}
+.client-link-panel__main,
+.client-link-panel__side {
+  display: grid;
+  align-content: center;
+  gap: .75rem;
+}
+.client-link-panel__main h2 {
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+}
+.client-link-panel__main > span,
+.client-link-panel__side p {
+  color: #667085;
+  max-width: 62ch;
+}
+.client-link-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .55rem;
+  border: 1px solid rgba(17,24,39,.09);
+  border-radius: 999px;
+  background: rgba(255,255,255,.88);
+  padding: .42rem .42rem .42rem .9rem;
+}
+.client-link-copy code {
+  min-width: 0;
+  overflow: hidden;
+  color: #344054;
+  font-family: var(--font-body);
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.client-link-copy button {
+  border-radius: 999px;
+  background: var(--grad);
+  color: #fff;
+  font-weight: 900;
+  padding: .72rem .98rem;
+}
+.client-link-panel__side {
+  border: 1px solid rgba(249,115,22,.16);
+  border-radius: 16px;
+  background: #fff;
+  padding: 1rem;
+  box-shadow: 0 20px 58px -48px rgba(15,23,42,.5);
+}
+.client-link-panel__side strong,
+.public-premium-profile .booking-summary h3 {
+  color: #111827;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+.public-premium-profile .booking-steps {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-radius: 18px;
+  padding: .9rem;
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 28px 74px -60px rgba(15,23,42,.46);
+}
+.public-premium-profile .booking-steps article {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: start;
+  gap: .8rem;
+  min-height: 96px;
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 14px;
+  background: #fff;
+  padding: .95rem;
+}
+.public-premium-profile .booking-steps span {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--grad);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 900;
+}
+.public-premium-profile .booking-steps strong,
+.public-premium-profile .booking-steps small {
+  display: block;
+}
+.public-premium-profile .booking-steps small {
+  color: #667085;
+  line-height: 1.45;
+  margin-top: .22rem;
+}
+.public-premium-profile .schedule-card {
+  border-radius: 22px;
+  padding: clamp(1rem, 2.5vw, 1.45rem);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.88)),
+    radial-gradient(circle at 0 0, rgba(249,115,22,.12), transparent 42%);
+  box-shadow: 0 40px 110px -78px rgba(15,23,42,.58);
+}
+.booking-helper-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: 1rem;
+}
+.booking-helper-strip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  border: 1px solid rgba(249,115,22,.18);
+  border-radius: 999px;
+  background: #FFF7ED;
+  color: #9A3412;
+  font-size: .84rem;
+  font-weight: 900;
+  padding: .4rem .78rem;
+}
+.public-premium-profile .booking-flow {
+  grid-template-columns: minmax(0, 1.18fr) minmax(320px, .82fr);
+  gap: 1.15rem;
+  margin-top: 1.15rem;
+}
+.public-premium-profile .booking-flow__main {
+  gap: 1rem;
+}
+.public-premium-profile .booking-step-card {
+  border-radius: 18px;
+  padding: 1.1rem;
+  box-shadow: 0 22px 58px -50px rgba(15,23,42,.45);
+}
+.public-premium-profile .booking-step-card legend {
+  position: relative;
+  padding: .25rem .75rem;
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 999px;
+  background: #fff;
+}
+.public-premium-profile .choice-grid button {
+  min-height: 112px;
+  border-radius: 14px;
+  padding: 1rem;
+}
+.public-premium-profile .choice-grid button.is-selected {
+  box-shadow: 0 18px 46px -34px rgba(249,115,22,.7);
+}
+.public-premium-profile .choice-grid--barbers button {
+  min-height: 120px;
+}
+.public-premium-profile .time-slot-grid {
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+}
+.public-premium-profile .time-slot-grid button {
+  min-height: 46px;
+}
+.public-premium-profile .time-slot-empty {
+  min-height: 112px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fff, #F8F9FA);
+}
+.public-premium-profile .booking-summary {
+  top: 1.2rem;
+  border-radius: 18px;
+  padding: 1.15rem;
+  background:
+    linear-gradient(180deg, #fff, rgba(255,247,237,.56)),
+    radial-gradient(circle at 100% 0, rgba(249,115,22,.16), transparent 40%);
+}
+.public-premium-profile .booking-summary div {
+  align-items: baseline;
+  padding-block: .72rem;
+}
+.public-premium-profile .booking-summary .btn {
+  min-height: 54px;
+}
+.public-premium-profile .reviews-section {
+  border-radius: 22px;
+  padding: clamp(1rem, 2.5vw, 1.45rem);
+  background: rgba(255,255,255,.88);
+}
+.public-premium-profile .review-summary-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.public-premium-profile .review-summary-grid article {
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, #fff, #F8F9FA);
+  box-shadow: 0 20px 52px -48px rgba(15,23,42,.45);
+}
+.public-premium-profile .review-distribution {
+  border-radius: 14px;
+  margin-top: .8rem;
+}
+.public-premium-profile .review-toolbar {
+  align-items: end;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+.public-premium-profile .reviews-grid {
+  gap: 1rem;
+}
+.public-premium-profile .review-card {
+  min-height: 0;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, #fff, #F8F9FA);
+  box-shadow: 0 24px 70px -58px rgba(15,23,42,.52);
+}
+.public-premium-profile .review-card blockquote {
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 14px;
+  background: #fff;
+  color: #344054;
+  padding: .85rem;
+}
+.public-premium-profile .review-reply {
+  background: #FFF7ED;
+  color: #344054;
+}
+.public-premium-profile .review-form-card {
+  grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr);
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, #fff, rgba(255,247,237,.72));
+}
+.public-premium-profile .review-form-card > div {
+  align-content: start;
+  display: grid;
+  gap: .35rem;
+  padding: .3rem;
+}
+.public-premium-profile .review-form input,
+.public-premium-profile .review-form textarea,
+.public-premium-profile .review-toolbar select {
+  background: #fff;
+  color: #111827;
+  border-color: rgba(17,24,39,.10);
+}
+.public-premium-profile .review-form input::placeholder,
+.public-premium-profile .review-form textarea::placeholder {
+  color: #98A2B3;
+}
+
+@media (max-width: 900px) {
+  .public-premium-profile .client-link-panel,
+  .public-premium-profile .booking-flow,
+  .public-premium-profile .review-form-card {
+    grid-template-columns: 1fr;
+  }
+  .public-premium-profile .booking-summary {
+    position: static;
+  }
+  .public-premium-profile .review-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 620px) {
+  .client-link-copy {
+    grid-template-columns: 1fr;
+    border-radius: 16px;
+    padding: .75rem;
+  }
+  .client-link-copy button {
+    width: 100%;
+  }
+  .public-premium-profile .booking-steps,
+  .public-premium-profile .review-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
 .discover-shell {
   width: min(100%, 1240px);
   margin: 0 auto;

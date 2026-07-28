@@ -1207,18 +1207,18 @@
     {
       id: "demo-review-1",
       client: "Marcos Lima",
-      city: "IgarapÃ©/MG",
+      city: "Igarapé/MG",
       rating: 5,
       service: "Corte masculino",
-      comment: "Atendimento rÃ¡pido, corte bem explicado e resultado exatamente como escolhi na pÃ¡gina.",
+      comment: "Atendimento rápido, corte bem explicado e resultado exatamente como escolhi na página.",
       date: "2026-07-20",
       status: "approved",
       photo: "",
-      reply: "Obrigado pela confianÃ§a, Marcos. SerÃ¡ sempre bem-vindo.",
+      reply: "Obrigado pela confiança, Marcos. Será sempre bem-vindo.",
     },
     {
       id: "demo-review-2",
-      client: "AndrÃ© Souza",
+      client: "André Souza",
       city: "Belo Horizonte/MG",
       rating: 5,
       service: "Corte + Barba",
@@ -1230,7 +1230,7 @@
     },
     {
       id: "demo-review-3",
-      client: "Cliente anÃ´nimo",
+      client: "Cliente anônimo",
       city: "Contagem/MG",
       rating: 4,
       service: "Barba + Navalha",
@@ -1347,7 +1347,13 @@
     return `${day}/${month}/${year}`;
   };
   const formatCurrency = (value) => Number(value || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-  const escapeHtml = (value) => String(value || "").replace(/[&<>"']/g, (char) => ({
+  const repairText = (value) => String(value || "")
+    .replaceAll("Ã¡", "á").replaceAll("Ã ", "à").replaceAll("Ã¢", "â").replaceAll("Ã£", "ã")
+    .replaceAll("Ã©", "é").replaceAll("Ãª", "ê").replaceAll("Ã­", "í").replaceAll("Ã³", "ó")
+    .replaceAll("Ã´", "ô").replaceAll("Ãµ", "õ").replaceAll("Ãº", "ú").replaceAll("Ã§", "ç")
+    .replaceAll("Ã‰", "É").replaceAll("Ã‡", "Ç").replaceAll("Â·", "·").replaceAll("Â©", "©")
+    .replaceAll("â˜…", "★").replaceAll("â˜†", "☆").replaceAll("â€”", "—").replaceAll("â€“", "–");
+  const escapeHtml = (value) => repairText(value).replace(/[&<>"']/g, (char) => ({
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
@@ -1375,7 +1381,7 @@
     writeGallery(defaultGalleryItems);
     return defaultGalleryItems;
   };
-  const starsText = (rating) => "â˜…â˜…â˜…â˜…â˜…".slice(0, Number(rating || 0)) + "â˜†â˜†â˜†â˜†â˜†".slice(0, 5 - Number(rating || 0));
+  const starsText = (rating) => "★★★★★".slice(0, Number(rating || 0)) + "☆☆☆☆☆".slice(0, 5 - Number(rating || 0));
   const reviewInitials = (name) => String(name || "Cliente")
     .split(/\s+/)
     .filter(Boolean)
@@ -1407,13 +1413,13 @@
     const settings = readReviewSettings();
     const section = $("[data-public-reviews-section]");
     if (section && !settings.enabled) {
-      section.innerHTML = `<div class="reviews-disabled">As avaliaÃ§Ãµes desta barbearia estÃ£o desativadas no momento.</div>`;
+      section.innerHTML = `<div class="reviews-disabled">As avaliações desta barbearia estão desativadas no momento.</div>`;
     }
     const items = ensureReviews();
     const stats = reviewStats(items);
     const averageText = stats.average ? stats.average.toFixed(1).replace(".", ",") : "0,0";
     $$("[data-review-summary]").forEach((el) => {
-      el.textContent = settings.enabled ? `â˜… ${averageText} Â· ${stats.total} avaliaÃ§Ãµes Â· ${stats.five}% nota 5` : "AvaliaÃ§Ãµes desativadas";
+      el.textContent = settings.enabled ? `★ ${averageText} · ${stats.total} avaliações · ${stats.five}% nota 5` : "Avaliações desativadas";
     });
     $$("[data-review-average]").forEach((el) => { el.textContent = averageText; });
     $$("[data-review-total]").forEach((el) => { el.textContent = stats.total; });
@@ -1514,7 +1520,7 @@
         return String(b.date || "").localeCompare(String(a.date || ""));
       });
     if (!approved.length) {
-      wrap.innerHTML = `<div class="empty-state">Nenhuma avaliacao encontrada com este filtro.</div>`;
+      wrap.innerHTML = `<div class="empty-state">Nenhuma avaliação encontrada com este filtro.</div>`;
       updateReviewSummary();
       return;
     }
@@ -1528,6 +1534,7 @@
               <span>${escapeHtml(item.city || "Cliente Menuz")}</span>
             </div>
           </div>
+          <span class="review-stars">${starsText(item.rating)}</span>
         </div>
         <small class="review-service">${escapeHtml(item.service || "Atendimento premium")}</small>
         ${item.comment ? `<blockquote>${escapeHtml(item.comment)}</blockquote>` : ""}
@@ -1547,10 +1554,10 @@
       return [
         `OlÃ¡, ${item.client}.`,
         "",
-        "Infelizmente nÃ£o serÃ¡ possÃ­vel realizar seu atendimento no horÃ¡rio solicitado.",
-        item.reason ? `Motivo: ${item.reason}` : "Motivo: horÃ¡rio indisponÃ­vel.",
+        "Infelizmente não será possível realizar seu atendimento no horário solicitado.",
+        item.reason ? `Motivo: ${item.reason}` : "Motivo: horário indisponível.",
         "",
-        "Por favor, escolha um novo horÃ¡rio disponÃ­vel.",
+        "Por favor, escolha um novo horário disponível.",
         "Obrigado pela compreensÃ£o.",
       ].join("\n");
     }
@@ -1673,10 +1680,10 @@
     const meta = selectedServiceMeta(formEl);
     const summary = {
       barber: formEl.elements.barber?.value || "Escolha um profissional",
-      service: formEl.elements.service?.value || "Escolha um serviÃ§o",
+      service: formEl.elements.service?.value || "Escolha um serviço",
       plan: plan || "Sem plano selecionado",
       date: date ? formatDate(date) : "Selecione uma data",
-      time: formEl.elements.time?.value || "Selecione um horÃ¡rio",
+      time: formEl.elements.time?.value || "Selecione um horário",
       price: formatCurrency(planByName[plan]?.price || meta.price || 0),
     };
     Object.entries(summary).forEach(([key, value]) => {
@@ -1705,13 +1712,13 @@
     }
     if (!barber || !service || !date) {
       timeField.value = "";
-      slotWrap.innerHTML = `<span class="time-slot-empty">Escolha profissional, serviÃ§o e data para ver a agenda.</span>`;
+      slotWrap.innerHTML = `<span class="time-slot-empty">Escolha profissional, serviço e data para ver a agenda.</span>`;
       updateBookingSummary(formEl);
       return;
     }
     if (isUnavailableDay(date)) {
       timeField.value = "";
-      slotWrap.innerHTML = `<span class="time-slot-empty">Este profissional nÃ£o atende nesta data.</span>`;
+      slotWrap.innerHTML = `<span class="time-slot-empty">Este profissional não atende nesta data.</span>`;
       updateBookingSummary(formEl);
       return;
     }
@@ -1719,7 +1726,7 @@
     if (!slots.includes(timeField.value)) timeField.value = "";
     slotWrap.innerHTML = slots.length ? slots.map((time) => `
       <button type="button" class="${timeField.value === time ? "is-selected" : ""}" data-time-choice="${escapeHtml(time)}">${escapeHtml(time)}</button>
-    `).join("") : `<span class="time-slot-empty">Nenhum horÃ¡rio disponÃ­vel para esta combinaÃ§Ã£o.</span>`;
+    `).join("") : `<span class="time-slot-empty">Nenhum horário disponível para esta combinação.</span>`;
     updateBookingSummary(formEl);
   };
   const setBookingField = (name, value, shouldScroll = true) => {
@@ -1730,6 +1737,21 @@
     field.dispatchEvent(new Event("change", { bubbles: true }));
     if (shouldScroll) scrollToBookingArea();
   };
+  const getPublicClientLink = () => {
+    const url = new URL("barbearia-menuz.html", window.location.href);
+    url.hash = "area";
+    return url.href;
+  };
+  const hydratePublicClientLink = () => {
+    const link = getPublicClientLink();
+    $$("[data-public-link]").forEach((el) => { el.textContent = link; });
+    $$("[data-whatsapp-share]").forEach((el) => {
+      const text = "Olá! Escolha seu horário na Barbearia Menuz pelo link: " + link;
+      el.setAttribute("href", "https://wa.me/?text=" + encodeURIComponent(text));
+      el.setAttribute("target", "_blank");
+      el.setAttribute("rel", "noopener");
+    });
+  };
 
   document.addEventListener("click", (e) => {
     const service = e.target.closest("[data-pick-service]");
@@ -1738,13 +1760,22 @@
     const plan = e.target.closest("[data-pick-plan]");
     const choice = e.target.closest("[data-choice-field]");
     const timeChoice = e.target.closest("[data-time-choice]");
+    const copyPublicLink = e.target.closest("[data-copy-public-link]");
     if (service) setBookingField("service", service.getAttribute("data-pick-service"));
     if (cut) setBookingField("cut", cut.getAttribute("data-pick-cut"));
     if (barber) setBookingField("barber", barber.getAttribute("data-pick-barber"));
     if (plan) setBookingField("plan", plan.getAttribute("data-pick-plan"));
     if (choice) setBookingField(choice.getAttribute("data-choice-field"), choice.getAttribute("data-choice-value"), false);
     if (timeChoice) setBookingField("time", timeChoice.getAttribute("data-time-choice"), false);
+    if (copyPublicLink) {
+      const link = getPublicClientLink();
+      navigator.clipboard?.writeText(link).catch(() => {});
+      const original = copyPublicLink.textContent;
+      copyPublicLink.textContent = "Copiado";
+      setTimeout(() => { copyPublicLink.textContent = original || "Copiar link"; }, 1600);
+    }
   });
+  hydratePublicClientLink();
 
   const bookingForm = $("[data-booking-form]");
   if (bookingForm) {
@@ -1780,7 +1811,7 @@
         if (success) {
           success.hidden = false;
           success.classList.add("is-error");
-          success.textContent = "Preencha profissional, serviÃ§o, data, horÃ¡rio e seus dados para confirmar.";
+          success.textContent = "Preencha profissional, serviço, data, horário e seus dados para confirmar.";
         }
         return;
       }
@@ -1788,7 +1819,7 @@
         if (success) {
           success.hidden = false;
           success.classList.add("is-error");
-          success.textContent = "Este horÃ¡rio acabou de ficar indisponÃ­vel. Escolha outro horÃ¡rio.";
+          success.textContent = "Este horário acabou de ficar indisponível. Escolha outro horário.";
         }
         updateBlockedTimes(bookingForm);
         return;
@@ -1799,7 +1830,7 @@
       if (success) {
         success.hidden = false;
         success.classList.remove("is-error");
-        success.innerHTML = `<strong>SolicitaÃ§Ã£o enviada.</strong><span>Status: ${statusText.pending}. O barbeiro foi notificado no painel e vocÃª receberÃ¡ a confirmaÃ§Ã£o automÃ¡tica.</span>`;
+        success.innerHTML = `<strong>Solicitação enviada.</strong><span>Status: ${statusText.pending}. O barbeiro foi notificado no painel e você receberá a confirmação automática.</span>`;
       }
     });
   }
@@ -1896,7 +1927,7 @@
         if (item) showMessagePreview(item, "confirmed");
       }
       if (e.target.closest("[data-appointment-cancel]")) {
-        const reason = window.prompt("Motivo da recusa (opcional):", "O profissional jÃ¡ possui outro compromisso nesse horÃ¡rio.") || "";
+        const reason = window.prompt("Motivo da recusa (opcional):", "O profissional já possui outro compromisso nesse horário.") || "";
         const item = updateAppointment(id, (current) => ({ ...current, status: "cancelled", reason, cancelledAt: new Date().toISOString() }));
         if (item) showMessagePreview(item, "cancelled");
       }
@@ -2040,7 +2071,7 @@
       (status === "all" || item.status === status)
     ));
     if (!filtered.length) {
-      wrap.innerHTML = `<div class="empty-state">Nenhuma avaliaÃ§Ã£o encontrada com estes filtros.</div>`;
+      wrap.innerHTML = `<div class="empty-state">Nenhuma avaliação encontrada com estes filtros.</div>`;
       return;
     }
     wrap.innerHTML = filtered.map((item) => `
@@ -2169,7 +2200,7 @@
       }
       if (e.target.closest("[data-review-reply]")) {
         const current = ensureReviews().find((item) => item.id === id);
-        const reply = window.prompt("Resposta da barbearia:", current?.reply || "Obrigado pela avaliaÃ§Ã£o. Ficamos felizes com sua experiÃªncia.") || "";
+        const reply = window.prompt("Resposta da barbearia:", current?.reply || "Obrigado pela avaliação. Ficamos felizes com sua experiência.") || "";
         if (reply.trim()) updateReview(id, (item) => ({ ...item, reply: reply.trim(), repliedAt: new Date().toISOString() }));
       }
     });
