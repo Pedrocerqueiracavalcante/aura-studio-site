@@ -121,14 +121,14 @@ body.premium-barber-page {
 }
 body.premium-barber-page::before {
   background:
-    linear-gradient(90deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.84) 38%, rgba(255,255,255,.70) 62%, rgba(255,255,255,.88) 100%),
-    linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.94) 72%, #fff 100%),
+    linear-gradient(90deg, rgba(255,255,255,.88) 0%, rgba(255,255,255,.66) 42%, rgba(255,255,255,.50) 70%, rgba(255,255,255,.76) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,.80) 72%, #fff 100%),
     url("../img/menuz-white-realistic-bg.png") center top / cover no-repeat;
 }
 body.premium-barber-page::after {
-  opacity: .78;
+  opacity: .54;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,.72) 48%, #fff 100%),
+    linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.58) 48%, #fff 100%),
     radial-gradient(820px 360px at 22% 4%, rgba(249,115,22,.10), transparent 68%);
 }
 
@@ -1927,7 +1927,15 @@ body.premium-barber-page::after {
   --muted: #667085;
   --border: #E5E7EB;
   --shadow: 0 26px 70px -56px rgba(15,23,42,.36);
-  background: var(--premium-bg);
+  background-color: #fff;
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,.93) 0%, rgba(255,255,255,.76) 46%, rgba(255,255,255,.58) 74%, rgba(255,255,255,.84) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.90) 560px, #fff 100%),
+    url("../img/menuz-white-realistic-bg.png");
+  background-attachment: fixed;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--text);
 }
 .public-premium-profile::before,
@@ -6108,7 +6116,27 @@ body.has-tabbar .to-top { bottom: calc(84px + 1rem); }
 }
 .premium-barber-page .home::before,
 .premium-barber-page .home::after {
-  opacity: 0;
+  opacity: 1;
+}
+.premium-barber-page .home::before {
+  width: min(96vw, 1180px);
+  height: clamp(380px, 54vw, 680px);
+  top: clamp(4rem, 8vw, 6.5rem);
+  right: max(-30vw, -360px);
+  border-radius: 44px 0 0 44px;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.72) 34%, rgba(255,255,255,.24) 78%, rgba(255,255,255,.42) 100%),
+    url("../img/menuz-white-realistic-bg.png") center / cover no-repeat;
+  box-shadow: 0 44px 120px -82px rgba(15,23,42,.48);
+  filter: none;
+}
+.premium-barber-page .home::after {
+  width: auto;
+  height: auto;
+  inset: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,.82) 76%, #fff 100%);
 }
 .home__welcome { margin-bottom: 1.3rem; }
 .home__welcome h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 800; letter-spacing: -.02em; }
