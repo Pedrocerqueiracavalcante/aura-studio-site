@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Meu Perfil | Menuz</title>
+  <meta name="description" content="Área de perfil Menuz: dados, agendamentos, favoritos, avaliações, notificações e configurações da conta.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/img/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-01">
+</head>
+<body class="landing-page premium-barber-page">
+  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+
+  <header class="site-header premium-header" data-header>
+    <div class="container premium-header__inner premium-header__inner--simple">
+      <a class="ticket-brand" href="index.html" aria-label="Menuz"><span>menuz</span><small>PT</small></a>
+      <nav class="nav premium-nav" aria-label="Navegação">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Início</a></li>
+          <li><a class="nav__link" href="index.html#estabelecimentos">Buscar</a></li>
+          <li><a class="nav__link is-active" href="perfil.html" aria-current="page">Perfil</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn--ghost btn--sm" href="login.html" data-logout>Sair</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="profile">
+      <div class="container profile__layout">
+
+        <!-- ===== Sidebar ===== -->
+        <aside class="profile-side">
+          <div class="profile-card">
+            <div class="profile-card__avatar" data-profile-avatar aria-hidden="true">AM</div>
+            <h1 class="profile-card__name" data-profile-name>André Menuz</h1>
+            <p class="profile-card__email" data-profile-email>andre.menuz@email.com</p>
+            <span class="profile-card__since">Cliente desde jul 2024</span>
+          </div>
+
+          <nav class="profile-nav" data-profile-nav aria-label="Seções do perfil">
+            <button type="button" class="is-active" data-tab="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Visão geral</button>
+            <button type="button" data-tab="appointments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Agendamentos</button>
+            <button type="button" data-tab="favorites"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"/></svg>Favoritos</button>
+            <button type="button" data-tab="reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8 6.2 21l1.1-6.5L2.6 9.8l6.5-.9Z"/></svg>Avaliações</button>
+            <button type="button" data-tab="notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg>Notificações<span class="profile-nav__badge">2</span></button>
+            <button type="button" data-tab="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H1a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 2.6 7Z"/></svg>Configurações</button>
+          </nav>
+
+          <button type="button" class="profile-logout" data-logout><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>Sair da conta</button>
+        </aside>
+
+        <!-- ===== Conteúdo ===== -->
+        <div class="profile-content">
+
+          <!-- Visão geral -->
+          <section class="profile-panel is-active" data-panel="overview" aria-label="Visão geral">
+            <div class="profile-stats">
+              <article class="stat-card"><strong>12</strong><span>Agendamentos</span></article>
+              <article class="stat-card"><strong data-fav-count>4</strong><span>Favoritos</span></article>
+              <article class="stat-card"><strong>7</strong><span>Avaliações</span></article>
+              <article class="stat-card"><strong>4,9</strong><span>Nota média dada</span></article>
+            </div>
+
+            <article class="profile-block profile-block--next">
+              <div class="profile-block__head"><h2>Próximo agendamento</h2><span class="status-pill status-pill--confirmed">Confirmado</span></div>
+              <div class="next-appt">
+                <div class="next-appt__date"><strong>01</strong><span>ago</span></div>
+                <div class="next-appt__info">
+                  <h3>Corte + Barba</h3>
+                  <p>Barbearia Menuz · com Pedro</p>
+                  <p class="next-appt__time">Sexta-feira · 16:30</p>
+                </div>
+                <div class="next-appt__actions">
+                  <a class="btn btn--primary btn--sm" href="barbearia-menuz.html#area">Ver detalhes</a>
+                  <button class="btn btn--ghost btn--sm" type="button">Reagendar</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="profile-block">
+              <div class="profile-block__head"><h2>Meus dados</h2><button class="btn btn--ghost btn--sm" type="button" data-goto="settings">Editar</button></div>
+              <dl class="data-list">
+                <div><dt>Nome completo</dt><dd data-profile-name>André Menuz</dd></div>
+                <div><dt>E-mail</dt><dd data-profile-email>andre.menuz@email.com</dd></div>
+                <div><dt>Telefone</dt><dd data-profile-phone>(31) 99999-0000</dd></div>
+                <div><dt>Cidade / Estado</dt><dd data-profile-city>Igarapé / MG</dd></div>
+                <div><dt>Membro desde</dt><dd>15 jul 2024</dd></div>
+                <div><dt>Plano</dt><dd>Cliente</dd></div>
+              </dl>
+            </article>
+          </section>
+
+          <!-- Agendamentos -->
+          <section class="profile-panel" data-panel="appointments" aria-label="Agendamentos" hidden>
+            <div class="profile-block__head"><h2>Meus agendamentos</h2></div>
+            <div class="sub-tabs" data-subtabs>
+              <button type="button" class="is-active" data-sub="future">Futuros</button>
+              <button type="button" data-sub="done">Concluídos</button>
+              <button type="button" data-sub="cancel">Cancelados</button>
+            </div>
+
+            <div class="appt-list" data-sublist="future">
+              <article class="appt-card"><div class="appt-card__d"><strong>01</strong><span>ago</span></div><div class="appt-card__i"><h3>Corte + Barba</h3><p>Barbearia Menuz · com Pedro · 16:30</p></div><span class="status-pill status-pill--confirmed">Confirmado</span></article>
+              <article class="appt-card"><div class="appt-card__d"><strong>09</strong><span>ago</span></div><div class="appt-card__i"><h3>Corte masculino</h3><p>Classic Barber Club · com Rafael · 10:00</p></div><span class="status-pill">Pendente</span></article>
+            </div>
+            <div class="appt-list" data-sublist="done" hidden>
+              <article class="appt-card"><div class="appt-card__d"><strong>18</strong><span>jul</span></div><div class="appt-card__i"><h3>Corte + Barba</h3><p>Barbearia Menuz · com Pedro</p></div><a class="btn btn--ghost btn--sm" href="barbearia-menuz.html#avaliar">Avaliar</a></article>
+              <article class="appt-card"><div class="appt-card__d"><strong>02</strong><span>jul</span></div><div class="appt-card__i"><h3>Navalhado</h3><p>Navalha de Ouro</p></div><span class="status-pill status-pill--confirmed">Concluído</span></article>
+            </div>
+            <div class="appt-list" data-sublist="cancel" hidden>
+              <article class="appt-card"><div class="appt-card__d"><strong>24</strong><span>jun</span></div><div class="appt-card__i"><h3>Corte masculino</h3><p>Studio Premium Centro</p></div><span class="status-pill status-pill--cancelled">Cancelado</span></article>
+            </div>
+          </section>
+
+          <!-- Favoritos -->
+          <section class="profile-panel" data-panel="favorites" aria-label="Favoritos" hidden>
+            <div class="profile-block__head"><h2>Barbearias favoritas</h2></div>
+            <div class="fav-grid" data-fav-shops></div>
+
+            <div class="profile-block__head" style="margin-top:2rem"><h2>Barbeiros favoritos</h2></div>
+            <div class="fav-grid">
+              <article class="fav-card"><div class="fav-card__ph bg-barber-1"></div><div><h3>Pedro</h3><p>Barbearia Menuz</p><span>★ 4,9</span></div><button class="fav-heart is-fav" type="button" aria-label="Remover">♥</button></article>
+              <article class="fav-card"><div class="fav-card__ph bg-barber-2"></div><div><h3>Rafael</h3><p>Classic Barber Club</p><span>★ 4,8</span></div><button class="fav-heart is-fav" type="button" aria-label="Remover">♥</button></article>
+            </div>
+          </section>
+
+          <!-- Avaliações -->
+          <section class="profile-panel" data-panel="reviews" aria-label="Avaliações realizadas" hidden>
+            <div class="profile-block__head"><h2>Minhas avaliações</h2></div>
+            <div class="review-list">
+              <article class="my-review"><div class="my-review__top"><strong>Barbearia Menuz</strong><span class="stars">★★★★★</span></div><p>Atendimento pontual e corte exatamente como escolhi. Recomendo!</p><time>18 jul 2026</time></article>
+              <article class="my-review"><div class="my-review__top"><strong>Navalha de Ouro</strong><span class="stars">★★★★☆</span></div><p>Ótimo acabamento à navalha, ambiente agradável.</p><time>02 jul 2026</time></article>
+              <article class="my-review"><div class="my-review__top"><strong>Classic Barber Club</strong><span class="stars">★★★★★</span></div><p>Profissionais atenciosos e resultado impecável.</p><time>21 jun 2026</time></article>
+            </div>
+          </section>
+
+          <!-- Notificações -->
+          <section class="profile-panel" data-panel="notifications" aria-label="Notificações" hidden>
+            <div class="profile-block__head"><h2>Notificações</h2><button class="btn btn--ghost btn--sm" type="button" data-notif-clear>Marcar como lidas</button></div>
+            <div class="notif-list" data-notif-list>
+              <article class="notif-item is-unread"><span class="notif-item__dot"></span><div><strong>Agendamento confirmado</strong><p>Barbearia Menuz confirmou o teu corte de 01 ago às 16:30.</p><time>há 2 h</time></div></article>
+              <article class="notif-item is-unread"><span class="notif-item__dot"></span><div><strong>Promoção perto de ti</strong><p>Combo Corte + Barba com 20% OFF esta semana.</p><time>há 1 dia</time></div></article>
+              <article class="notif-item"><span class="notif-item__dot"></span><div><strong>Avaliação registada</strong><p>Obrigado por avaliar a Navalha de Ouro.</p><time>há 5 dias</time></div></article>
+            </div>
+
+            <article class="profile-block" style="margin-top:1.5rem">
+              <div class="profile-block__head"><h3>Preferências de notificação</h3></div>
+              <ul class="pref-list">
+                <li><span>Notificações por e-mail</span><label class="switch"><input type="checkbox" checked><span></span></label></li>
+                <li><span>Notificações push</span><label class="switch"><input type="checkbox" checked><span></span></label></li>
+                <li><span>Promoções e novidades</span><label class="switch"><input type="checkbox"><span></span></label></li>
+              </ul>
+            </article>
+          </section>
+
+          <!-- Configurações -->
+          <section class="profile-panel" data-panel="settings" aria-label="Configurações da conta" hidden>
+            <article class="profile-block">
+              <div class="profile-block__head"><h2>Informações pessoais</h2></div>
+              <form class="profile-form" data-form-personal>
+                <label>Nome completo<input type="text" name="name" value="André Menuz" autocomplete="name"></label>
+                <label>E-mail<input type="email" name="email" value="andre.menuz@email.com" autocomplete="email"></label>
+                <label>Telefone<input type="tel" name="phone" value="(31) 99999-0000" autocomplete="tel"></label>
+                <label>Cidade / Estado<input type="text" name="city" value="Igarapé / MG"></label>
+                <div class="profile-form__actions"><button class="btn btn--primary" type="submit">Guardar alterações</button><span class="form-ok" data-ok hidden>✓ Guardado</span></div>
+              </form>
+            </article>
+
+            <article class="profile-block">
+              <div class="profile-block__head"><h2>Alterar senha</h2></div>
+              <form class="profile-form" data-form-password>
+                <label>Senha atual<input type="password" name="current" autocomplete="current-password"></label>
+                <label>Nova senha<input type="password" name="new" autocomplete="new-password"></label>
+                <label>Confirmar nova senha<input type="password" name="confirm" autocomplete="new-password"></label>
+                <div class="profile-form__actions"><button class="btn btn--primary" type="submit">Atualizar senha</button><span class="form-ok" data-ok hidden>✓ Atualizada</span></div>
+              </form>
+            </article>
+
+            <article class="profile-block">
+              <div class="profile-block__head"><h2>Preferências</h2></div>
+              <ul class="pref-list">
+                <li><span>Perfil público</span><label class="switch"><input type="checkbox" checked><span></span></label></li>
+                <li><span>Guardar histórico de buscas</span><label class="switch"><input type="checkbox" checked><span></span></label></li>
+                <li><span>Mostrar minha localização às barbearias</span><label class="switch"><input type="checkbox"><span></span></label></li>
+              </ul>
+            </article>
+
+            <article class="profile-block profile-block--danger">
+              <div class="profile-block__head"><h2>Zona de perigo</h2></div>
+              <p>Ao excluir a conta, todos os teus dados, agendamentos e favoritos serão removidos permanentemente.</p>
+              <button class="btn btn--danger" type="button" data-delete-account>Excluir minha conta</button>
+            </article>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal de confirmação de exclusão -->
+  <div class="confirm-modal" data-confirm hidden>
+    <div class="confirm-modal__backdrop" data-confirm-cancel></div>
+    <div class="confirm-modal__box" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+      <h3 id="confirmTitle">Excluir conta?</h3>
+      <p>Esta ação é permanente e não pode ser desfeita. Tens a certeza?</p>
+      <div class="confirm-modal__actions">
+        <button class="btn btn--ghost" type="button" data-confirm-cancel>Cancelar</button>
+        <button class="btn btn--danger" type="button" data-confirm-ok>Sim, excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer premium-footer">
+    <div class="container premium-footer__inner">
+      <a class="brand" href="index.html" aria-label="Menuz"><img class="brand__mark" src="assets/img/logo.svg" alt="" width="40" height="40"><span class="brand__name">Menuz<span class="brand__dot">.</span></span></a>
+      <p>© 2026 Menuz. Atendimento premium para barbearias modernas.</p>
+      <div class="premium-footer__links"><a href="index.html">Início</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js?v=20260728-01" defer></script>
+</body>
+</html>

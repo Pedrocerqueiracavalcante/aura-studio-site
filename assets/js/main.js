@@ -444,6 +444,82 @@
     if (estabForm) estabForm.addEventListener("submit", (e) => { e.preventDefault(); if (resultsEl.hidden) showResults(); render(); });
   })();
 
+  /* ---------- Área de Perfil ---------- */
+  (function profilePage() {
+    const nav = $("[data-profile-nav]");
+    if (!nav) return;
+
+    const panels = $$(".profile-panel");
+    const showTab = (name) => {
+      $$("button", nav).forEach((b) => b.classList.toggle("is-active", b.dataset.tab === name));
+      panels.forEach((p) => { p.hidden = p.dataset.panel !== name; });
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    };
+    nav.addEventListener("click", (e) => { const b = e.target.closest("button[data-tab]"); if (b) showTab(b.dataset.tab); });
+    $$("[data-goto]").forEach((b) => b.addEventListener("click", () => showTab(b.dataset.goto)));
+
+    const sub = $("[data-subtabs]");
+    if (sub) sub.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-sub]"); if (!b) return;
+      $$("button", sub).forEach((x) => x.classList.toggle("is-active", x === b));
+      $$("[data-sublist]").forEach((l) => { l.hidden = l.dataset.sublist !== b.dataset.sub; });
+    });
+
+    // Favoritos (do localStorage) + exemplo
+    const favWrap = $("[data-fav-shops]");
+    if (favWrap) {
+      const meta = {
+        menuz: { name: "Barbearia Menuz", city: "Igarapé/MG", rating: "4,9", photo: "bg-shop-main" },
+        studio: { name: "Studio Premium Centro", city: "Igarapé/MG", rating: "4,7", photo: "bg-shop-chair" },
+        classic: { name: "Classic Barber Club", city: "Igarapé/MG", rating: "4,8", photo: "bg-shop-tools" },
+        navalha: { name: "Navalha de Ouro", city: "Igarapé/MG", rating: "4,6", photo: "bg-shop-cards" },
+      };
+      let favs = [];
+      try { favs = JSON.parse(localStorage.getItem("menuzFavShops") || "[]"); } catch (e) {}
+      if (!favs.length) favs = ["menuz", "classic"];
+      const renderFavs = () => {
+        favWrap.innerHTML = favs.map((id) => { const s = meta[id]; if (!s) return ""; return '<article class="fav-card"><div class="fav-card__ph ' + s.photo + '"></div><div><h3>' + s.name + '</h3><p>' + s.city + '</p><span>★ ' + s.rating + '</span></div><button class="fav-heart is-fav" type="button" data-unfav="' + id + '" aria-label="Remover dos favoritos">♥</button></article>'; }).join("") || '<p style="color:var(--muted)">Ainda não tens barbearias favoritas.</p>';
+        const cnt = $("[data-fav-count]"); if (cnt) cnt.textContent = favs.length + 2;
+        $$("[data-unfav]", favWrap).forEach((btn) => btn.addEventListener("click", () => { favs = favs.filter((x) => x !== btn.dataset.unfav); localStorage.setItem("menuzFavShops", JSON.stringify(favs)); renderFavs(); }));
+      };
+      renderFavs();
+    }
+
+    // Formulários (simulação de gravação)
+    $$(".profile-form").forEach((form) => form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (form.hasAttribute("data-form-personal")) {
+        const name = form.elements.name.value, email = form.elements.email.value, phone = form.elements.phone.value, city = form.elements.city.value;
+        $$("[data-profile-name]").forEach((el) => el.textContent = name);
+        $$("[data-profile-email]").forEach((el) => el.textContent = email);
+        $$("[data-profile-phone]").forEach((el) => el.textContent = phone);
+        $$("[data-profile-city]").forEach((el) => el.textContent = city);
+        const av = $("[data-profile-avatar]"); if (av) av.textContent = name.trim().split(/\s+/).map((w) => w[0]).slice(0, 2).join("").toUpperCase();
+      }
+      const ok = form.querySelector("[data-ok]"); if (ok) { ok.hidden = false; setTimeout(() => { ok.hidden = true; }, 2500); }
+      if (form.hasAttribute("data-form-password")) form.reset();
+    }));
+
+    // Notificações
+    const notifClear = $("[data-notif-clear]");
+    if (notifClear) notifClear.addEventListener("click", () => {
+      $$(".notif-item.is-unread").forEach((n) => n.classList.remove("is-unread"));
+      const badge = $(".profile-nav__badge"); if (badge) badge.remove();
+    });
+
+    // Logout (botões)
+    $$("[data-logout]").forEach((b) => b.addEventListener("click", (e) => { if (b.tagName === "BUTTON") { e.preventDefault(); window.location.href = "login.html"; } }));
+
+    // Excluir conta (modal)
+    const modal = $("[data-confirm]");
+    const setModal = (open) => { if (modal) modal.hidden = !open; };
+    $$("[data-delete-account]").forEach((b) => b.addEventListener("click", () => setModal(true)));
+    $$("[data-confirm-cancel]").forEach((b) => b.addEventListener("click", () => setModal(false)));
+    const okBtn = $("[data-confirm-ok]");
+    if (okBtn) okBtn.addEventListener("click", () => { window.location.href = "index.html"; });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") setModal(false); });
+  })();
+
   const yearEl = $("#year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
