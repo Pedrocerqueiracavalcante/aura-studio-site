@@ -6133,3 +6133,40 @@ body.client-page {
   .ca-appt--full { flex-direction: column; } .ca-appt__photo { width: 100%; height: 160px; }
 }
 @media (max-width: 520px) { .ca-quick { grid-template-columns: repeat(2, 1fr); } }
+
+/* =====================================================================
+   CARROSSEL PREMIUM DE BARBEARIAS (coverflow) — home, tema atual
+   ===================================================================== */
+.hs { margin: clamp(1.6rem, 4vw, 2.6rem) 0; }
+.hs__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.2rem; }
+.hs__head h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); }
+.hs__nav { display: flex; gap: .5rem; }
+.hs-arrow { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface-2, #fff); color: var(--text); font-size: 1.5rem; line-height: 1; display: grid; place-items: center; cursor: pointer; box-shadow: 0 10px 24px -14px rgba(16,24,40,.4); transition: transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease); }
+.hs-arrow:hover { transform: scale(1.08); background: var(--grad); color: #fff; border-color: transparent; }
+
+.hs-stage { --hs-w: clamp(300px, 32vw, 440px); position: relative; overflow: hidden; padding-block: .5rem; touch-action: pan-y; cursor: grab; }
+.hs-stage:active { cursor: grabbing; }
+.hs-track { display: flex; gap: 0; list-style: none; margin: 0; padding: 0; transition: transform .55s var(--ease); }
+.hs-slide { flex: 0 0 var(--hs-w); margin-inline: -1rem; transform: scale(.84); opacity: .55; transition: transform .55s var(--ease), opacity .55s var(--ease); z-index: 1; }
+.hs-slide.is-active { transform: scale(1); opacity: 1; z-index: 2; }
+.hs-card { position: relative; height: clamp(420px, 58vh, 500px); border-radius: 26px; overflow: hidden; box-shadow: 0 34px 70px -34px rgba(16,24,40,.55); border: 1px solid rgba(255,255,255,.1); isolation: isolate; }
+.hs-card__ph { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; background-color: #1a1a1f; transition: transform .6s var(--ease); }
+.hs-slide.is-active .hs-card__ph { transform: scale(1.04); }
+.hs-card__grad { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,0,0,.05) 30%, rgba(6,8,12,.9)); }
+.hs-card__tag { position: absolute; top: 1rem; left: 1rem; z-index: 2; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.25); backdrop-filter: blur(6px); padding: .32rem .7rem; border-radius: 999px; }
+.hs-card__body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 1.4rem; color: #fff; }
+.hs-card__rating { color: #FFD24A; font-weight: 700; font-size: .9rem; margin-bottom: .35rem; }
+.hs-card__rating small { color: rgba(255,255,255,.7); font-weight: 500; }
+.hs-card__dist { color: rgba(255,255,255,.88); font-weight: 600; }
+.hs-card__body h3 { font-size: 1.5rem; font-weight: 800; }
+.hs-card__body p { color: rgba(255,255,255,.82); font-size: .92rem; margin: .2rem 0 1rem; }
+.hs-card__actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+.hs-card__actions .btn--ghost { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.3); color: #fff; }
+.hs-card__actions .btn--ghost:hover { background: rgba(255,255,255,.24); }
+
+.hs-dots { display: flex; justify-content: center; gap: .5rem; margin-top: 1.1rem; }
+.hs-dots button { width: 8px; height: 8px; border-radius: 50%; background: var(--border-2); border: none; cursor: pointer; transition: width .3s var(--ease), background .3s var(--ease); }
+.hs-dots button.is-active { width: 22px; border-radius: 999px; background: var(--grad); }
+
+@media (max-width: 900px) { .hs-stage { --hs-w: 62vw; } }
+@media (max-width: 600px) { .hs-stage { --hs-w: 82vw; } .hs-slide { margin-inline: -.5rem; } }

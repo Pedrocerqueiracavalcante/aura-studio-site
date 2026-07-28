@@ -383,6 +383,41 @@
 
     let userPos = null, query = "";
 
+    // Carrossel premium de barbearias em destaque (coverflow)
+    let updateHsDist = () => {};
+    (function highlightCarousel() {
+      const track = $("[data-hs-track]"); if (!track) return;
+      const stage = $("[data-hs-stage]"), dotsWrap = $("[data-hs-dots]");
+      track.innerHTML = shops.map((s) =>
+        '<li class="hs-slide"><article class="hs-card">' +
+          '<div class="hs-card__ph ' + s.photo + '"></div><div class="hs-card__grad"></div>' +
+          '<span class="hs-card__tag">' + s.city + '</span>' +
+          '<div class="hs-card__body">' +
+            '<div class="hs-card__rating">★ ' + String(s.rating).replace(".", ",") + ' <small>(' + s.reviews + ')</small><span class="hs-card__dist" data-hs-dist="' + s.id + '"></span></div>' +
+            '<h3>' + s.name + '</h3><p>' + s.services + ' · ' + s.price + '</p>' +
+            '<div class="hs-card__actions"><a class="btn btn--primary btn--sm" href="' + s.url + '">Agendar Agora</a><a class="btn btn--ghost btn--sm" href="barbearia-menuz.html">Ver Perfil</a></div>' +
+          '</div></article></li>').join("");
+      const slides = $$(".hs-slide", track);
+      if (!slides.length) return;
+      let active = Math.min(1, slides.length - 1), t = null;
+      slides.forEach((_, i) => { const d = document.createElement("button"); d.type = "button"; d.setAttribute("aria-label", "Barbearia " + (i + 1)); d.addEventListener("click", () => { go(i); restart(); }); dotsWrap.appendChild(d); });
+      const dots = $$("button", dotsWrap);
+      const go = (i) => { active = (i + slides.length) % slides.length; slides.forEach((s, k) => s.classList.toggle("is-active", k === active)); dots.forEach((d, k) => d.classList.toggle("is-active", k === active)); const s = slides[active]; track.style.transform = "translateX(" + (stage.clientWidth / 2 - (s.offsetLeft + s.offsetWidth / 2)) + "px)"; };
+      const next = () => go(active + 1), prev = () => go(active - 1);
+      const nb = $("[data-hs-next]"), pb = $("[data-hs-prev]");
+      if (nb) nb.addEventListener("click", () => { next(); restart(); });
+      if (pb) pb.addEventListener("click", () => { prev(); restart(); });
+      const start = () => { if (!reduceMotion) t = setInterval(next, 4500); }, stop = () => { if (t) clearInterval(t); }, restart = () => { stop(); start(); };
+      stage.addEventListener("mouseenter", stop); stage.addEventListener("mouseleave", start);
+      let sx = 0, drag = false;
+      stage.addEventListener("pointerdown", (e) => { sx = e.clientX; drag = true; stop(); });
+      window.addEventListener("pointerup", (e) => { if (!drag) return; drag = false; const dx = e.clientX - sx; if (Math.abs(dx) > 50) (dx < 0 ? next() : prev()); start(); });
+      let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => go(active), 120); });
+      window.addEventListener("load", () => go(active));
+      updateHsDist = () => { if (!userPos) return; shops.forEach((s) => { const el = track.querySelector('[data-hs-dist="' + s.id + '"]'); if (el) el.textContent = " · " + fmtKm(haversine(userPos, s)); }); };
+      requestAnimationFrame(() => go(active)); start();
+    })();
+
     const render = () => {
       const favs = getFavs();
       let list = shops.map((s) => ({ ...s, dist: userPos ? haversine(userPos, s) : null }));
@@ -426,9 +461,9 @@
       navigator.geolocation.getCurrentPosition(
         (pos) => {
           userPos = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-          showResults(); render();
+          showResults(); render(); updateHsDist();
           setNote("Ordenado pela distância a partir da tua localização atual.");
-          if (!reduceMotion) navigator.geolocation.watchPosition((p) => { userPos = { lat: p.coords.latitude, lng: p.coords.longitude }; render(); }, () => {}, { enableHighAccuracy: true, maximumAge: 15000 });
+          if (!reduceMotion) navigator.geolocation.watchPosition((p) => { userPos = { lat: p.coords.latitude, lng: p.coords.longitude }; render(); updateHsDist(); }, () => {}, { enableHighAccuracy: true, maximumAge: 15000 });
         },
         () => { userPos = null; showResults(); render(); setNote("Sem acesso à localização — a mostrar todas as barbearias afiliadas."); },
         { enableHighAccuracy: true, timeout: 8000, maximumAge: 30000 }
