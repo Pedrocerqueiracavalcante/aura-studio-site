@@ -295,7 +295,7 @@
     // Tab bar inferior
     const tabs = [
       { label: "InÃ­cio", href: "index.html", match: ["index.html", ""], icon: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>' },
-      { key: "app.search", label: "Buscar", href: "index.html#buscar", match: ["buscar"], icon: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>' },
+      { key: "app.search", label: "Buscar", href: "empresas-proximas.html", match: ["buscar", "empresas-proximas.html"], icon: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>' },
       { key: "app.appointments", label: "Área", href: "barbearia-menuz.html#area", match: ["barbearia-menuz.html"], icon: '<rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/>' },
       { key: "app.profile", label: "Perfil", href: "perfil.html", match: ["perfil.html", "login.html", "dashboard.html"], icon: '<circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3.5-6 7-6s7 2 7 6"/>' },
     ];
@@ -382,6 +382,17 @@
     const driveMin = (km) => Math.max(1, Math.round(km / 25 * 60));
 
     let userPos = null, query = "";
+    const initialQuery = (() => {
+      try {
+        return (new URLSearchParams(window.location.search).get("q") || "").trim();
+      } catch (e) {
+        return "";
+      }
+    })();
+    if (homeSearch && initialQuery) {
+      homeSearch.value = initialQuery;
+      query = initialQuery;
+    }
 
     // Carrossel premium de barbearias em destaque (coverflow, loop infinito)
     let updateHsDist = () => {};
@@ -492,6 +503,7 @@
     if (homeSearch) homeSearch.addEventListener("input", (e) => { query = e.target.value.trim(); if (resultsEl.hidden) showResults(); render(); });
     const estabForm = $("[data-estab-form]");
     if (estabForm) estabForm.addEventListener("submit", (e) => { e.preventDefault(); if (resultsEl.hidden) showResults(); render(); });
+    if (query) { showResults(); render(); setNote('Resultados para "' + query + '".'); }
   })();
 
   /* ---------- Área de Perfil ---------- */

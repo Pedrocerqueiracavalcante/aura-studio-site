@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-04">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-05">
 </head>
 <body class="landing-page premium-barber-page">
   <a class="skip-link" href="#main">Ir para o conteúdo</a>
@@ -28,7 +28,7 @@
         <small>PT</small>
       </a>
 
-      <form class="ticket-search" role="search" action="encontrar-barbearias.html">
+      <form class="ticket-search" role="search" action="empresas-proximas.html" method="get">
         <label class="sr-only" for="ticketSearch" data-i18n="search.label">Pesquisar</label>
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="m21 21-4.35-4.35"></path>
@@ -41,7 +41,7 @@
       <nav class="nav premium-nav" id="primaryNav" aria-label="Navegação principal">
         <ul class="nav__list">
           <li><a class="nav__link" href="#buscar" data-i18n="app.search">Buscar</a></li>
-          <li><a class="nav__link" href="#estabelecimentos">Barbearias</a></li>
+          <li><a class="nav__link" href="empresas-proximas.html">Barbearias</a></li>
           <li><a class="nav__link" href="#avaliacoes" data-i18n="nav.reviews">Avaliações</a></li>
         </ul>
       </nav>
@@ -101,13 +101,13 @@
           <p class="home__date" data-today>—</p>
         </div>
 
-        <form class="home-find" role="search" data-estab-form>
+        <form class="home-find" role="search" action="empresas-proximas.html" method="get">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="m21 21-4.35-4.35"></path>
             <circle cx="11" cy="11" r="7"></circle>
           </svg>
           <label class="sr-only" for="homeSearch">Encontre um estabelecimento</label>
-          <input id="homeSearch" name="q" type="search" placeholder="Encontre um estabelecimento" data-estab-search autocomplete="off">
+          <input id="homeSearch" name="q" type="search" placeholder="Encontre um estabelecimento" autocomplete="off">
         </form>
 
         <!-- Carrossel de destaques (auto) -->
@@ -136,35 +136,6 @@
           <div class="hs-dots" data-hs-dots role="tablist" aria-label="Selecionar barbearia"></div>
         </section>
 
-        <!-- Empresas próximas + GPS em tempo real -->
-        <section class="nearby" id="estabelecimentos" data-nearby aria-labelledby="nearbyTitle">
-          <div class="nearby__head" data-reveal>
-            <h2 id="nearbyTitle">Empresas próximas</h2>
-            <button class="nearby__refresh" type="button" data-geo-enable hidden>Atualizar localização</button>
-          </div>
-
-          <!-- Estado inicial: pedir localização -->
-          <div class="geo-empty" data-geo-empty>
-            <span class="geo-pin" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z" fill="currentColor"/><circle cx="12" cy="10" r="2.6" fill="#0C0E12"/></svg>
-            </span>
-            <h3>Habilitar localização</h3>
-            <p>Habilite o acesso à localização para encontrarmos as barbearias afiliadas mais próximas de você.</p>
-            <button class="btn btn--primary" type="button" data-geo-enable>Permitir localização</button>
-            <button class="geo-manual" type="button" data-geo-manual>Ou ver todas as barbearias</button>
-          </div>
-
-          <!-- Estado carregando (skeleton) -->
-          <div class="nearby__grid" data-geo-loading hidden aria-hidden="true">
-            <div class="shop-card shop-card--skeleton"></div>
-            <div class="shop-card shop-card--skeleton"></div>
-            <div class="shop-card shop-card--skeleton"></div>
-          </div>
-
-          <!-- Resultados -->
-          <div class="nearby__grid" data-geo-results hidden></div>
-          <p class="nearby__note" data-geo-note hidden></p>
-        </section>
       </div>
     </section>
 
@@ -213,6 +184,6 @@
   </footer>
 
   <button class="to-top" id="toTop" type="button" aria-label="Voltar ao topo" data-i18n-aria-label="toTop.label">↑</button>
-  <script src="assets/js/main.js?v=20260727-07" defer></script>
+  <script src="assets/js/main.js?v=20260728-05" defer></script>
 </body>
 </html>
