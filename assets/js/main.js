@@ -425,6 +425,8 @@
     const noteEl = nearby.querySelector("[data-geo-note]");
     const refreshBtn = nearby.querySelector(".nearby__refresh");
     const homeSearch = $("[data-estab-search]");
+    const mapEl = nearby.querySelector("[data-geo-map]");
+    const pinsEl = nearby.querySelector("[data-geo-pins]");
 
     // Barbearias afiliadas (mock — trocar por API/base real)
     const shops = [
@@ -522,7 +524,7 @@
         const dist = s.dist != null
           ? '<p class="shop-card__dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z"/><circle cx="12" cy="10" r="2.4"/></svg>' + fmtKm(s.dist) + " · ~" + driveMin(s.dist) + " min</p>"
           : "";
-        return '<article class="shop-card">' +
+        return '<article class="shop-card" data-shop-card="' + s.id + '">' +
           '<div class="shop-card__photo ' + s.photo + '">' +
             '<span class="shop-card__status ' + (isOpen ? "is-open" : "is-closed") + '">' + (isOpen ? "Aberto" : "Fechado") + '</span>' +
             '<button class="shop-card__fav ' + (fav ? "is-fav" : "") + '" type="button" data-fav="' + s.id + '" aria-label="Favoritar" aria-pressed="' + fav + '">' + (fav ? "♥" : "♡") + '</button>' +
@@ -536,6 +538,8 @@
           '</div></article>';
       }).join("") || '<p class="nearby__note" style="grid-column:1/-1">Nenhuma barbearia encontrada.</p>';
 
+      renderMap(list);
+
       $$("[data-fav]", resultsEl).forEach((btn) => btn.addEventListener("click", () => {
         const id = btn.getAttribute("data-fav"); const f = getFavs();
         const i = f.indexOf(id); if (i >= 0) f.splice(i, 1); else f.push(id);
@@ -543,8 +547,44 @@
       }));
     };
 
+    // Mini-mapa estatico: posiciona pins normalizando as coordenadas reais
+    const renderMap = (list) => {
+      if (!mapEl || !pinsEl) return;
+      const pts = list.filter((s) => typeof s.lat === "number" && typeof s.lng === "number");
+      if (!pts.length) { mapEl.hidden = true; return; }
+      mapEl.hidden = false;
+      const lats = pts.map((p) => p.lat), lngs = pts.map((p) => p.lng);
+      if (userPos) { lats.push(userPos.lat); lngs.push(userPos.lng); }
+      const minLat = Math.min(...lats), maxLat = Math.max(...lats);
+      const minLng = Math.min(...lngs), maxLng = Math.max(...lngs);
+      const spanLat = (maxLat - minLat) || 0.01, spanLng = (maxLng - minLng) || 0.01;
+      const pad = 0.16;
+      const px = (lng) => (pad + (1 - 2 * pad) * ((lng - minLng) / spanLng)) * 100;
+      const py = (lat) => (pad + (1 - 2 * pad) * (1 - (lat - minLat) / spanLat)) * 100;
+      let html = "";
+      pts.forEach((s, i) => {
+        html += '<button class="geo-map__pin" type="button" data-map-pin="' + s.id + '" ' +
+          'style="left:' + px(s.lng).toFixed(1) + '%;top:' + py(s.lat).toFixed(1) + '%" aria-label="' + s.name + '">' +
+          '<span class="geo-map__num">' + (i + 1) + '</span>' +
+          '<span class="geo-map__label">' + s.name + (s.dist != null ? ' · ' + fmtKm(s.dist) : '') + '</span>' +
+          '</button>';
+      });
+      if (userPos) {
+        html += '<span class="geo-map__me" style="left:' + px(userPos.lng).toFixed(1) + '%;top:' + py(userPos.lat).toFixed(1) + '%"><i></i><b>Você</b></span>';
+      }
+      pinsEl.innerHTML = html;
+      $$("[data-map-pin]", pinsEl).forEach((pin) => pin.addEventListener("click", () => {
+        const id = pin.getAttribute("data-map-pin");
+        const card = resultsEl.querySelector('[data-shop-card="' + id + '"]');
+        if (card) {
+          card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+          card.classList.remove("is-highlight"); void card.offsetWidth; card.classList.add("is-highlight");
+        }
+      }));
+    };
+
     const showResults = () => { emptyEl.hidden = true; loadingEl.hidden = true; resultsEl.hidden = false; if (refreshBtn) refreshBtn.hidden = false; };
-    const showLoading = () => { emptyEl.hidden = true; resultsEl.hidden = true; loadingEl.hidden = false; };
+    const showLoading = () => { emptyEl.hidden = true; resultsEl.hidden = true; loadingEl.hidden = false; if (mapEl) mapEl.hidden = true; };
     const setNote = (t) => { if (noteEl) { noteEl.hidden = false; noteEl.textContent = t; } };
 
     const locate = () => {

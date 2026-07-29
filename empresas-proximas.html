@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-08">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-14">
 </head>
 <body class="nearby-page premium-barber-page">
   <a class="skip-link" href="#main">Ir para o conteúdo</a>
@@ -114,6 +114,12 @@
           <div class="shop-card shop-card--skeleton"></div>
         </div>
 
+        <!-- Mini-mapa (pins por GPS, sem dependencias externas) -->
+        <div class="geo-map" data-geo-map hidden>
+          <div class="geo-map__grid" aria-hidden="true"></div>
+          <div class="geo-map__pins" data-geo-pins></div>
+        </div>
+
         <div class="nearby__grid" data-geo-results hidden></div>
         <p class="nearby__note" data-geo-note hidden></p>
       </div>
@@ -134,6 +140,6 @@
   </footer>
 
   <button class="to-top" id="toTop" type="button" aria-label="Voltar ao topo">↑</button>
-  <script src="assets/js/main.js?v=20260728-08" defer></script>
+  <script src="assets/js/main.js?v=20260728-14" defer></script>
 </body>
 </html>

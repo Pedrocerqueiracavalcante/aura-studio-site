@@ -7208,3 +7208,122 @@ summary:focus-visible,
   .book-bar { transition: opacity .3s linear; }
   .book-bar.is-visible { transform: translate(-50%, 0); }
 }
+
+/* =====================================================================
+   Mini-mapa estatico (pins por GPS, sem dependencias externas)
+   ===================================================================== */
+.geo-map {
+  position: relative;
+  height: clamp(200px, 34vw, 320px);
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.geo-map__grid {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 38px, rgba(16,24,40,.05) 38px 40px),
+    repeating-linear-gradient(90deg, transparent 0 46px, rgba(16,24,40,.05) 46px 48px),
+    radial-gradient(circle at 28% 22%, rgba(249,115,22,.07), transparent 55%),
+    radial-gradient(circle at 78% 74%, rgba(37,99,235,.06), transparent 55%),
+    linear-gradient(135deg, #F4F6F9, #E9EEF4);
+}
+.geo-map__grid::before,
+.geo-map__grid::after {
+  content: "";
+  position: absolute;
+  background: rgba(16,24,40,.06);
+}
+.geo-map__grid::before { top: -10%; bottom: -10%; left: 38%; width: 12px; transform: rotate(13deg); }
+.geo-map__grid::after { left: -10%; right: -10%; top: 58%; height: 12px; transform: rotate(-7deg); }
+.geo-map__pins { position: absolute; inset: 0; }
+
+.geo-map__pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  z-index: 2;
+}
+.geo-map__pin:hover, .geo-map__pin:focus-visible { z-index: 5; }
+.geo-map__num {
+  display: grid;
+  place-items: center;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--grad);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: .82rem;
+  border: 2px solid #fff;
+  box-shadow: 0 8px 18px -5px rgba(234,88,12,.6);
+  transition: transform .25s var(--ease);
+}
+.geo-map__pin:hover .geo-map__num,
+.geo-map__pin:focus-visible .geo-map__num { transform: scale(1.12); }
+.geo-map__label {
+  position: absolute;
+  bottom: calc(100% + 7px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: rgba(21,23,29,.94);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 500;
+  padding: .3rem .55rem;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s var(--ease);
+}
+.geo-map__pin:hover .geo-map__label,
+.geo-map__pin:focus-visible .geo-map__label { opacity: 1; }
+
+.geo-map__me {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  z-index: 3;
+}
+.geo-map__me i {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #2563EB;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 6px rgba(37,99,235,.18);
+  animation: geoPulse 2s ease-out infinite;
+}
+.geo-map__me b {
+  position: absolute;
+  top: calc(100% + 3px);
+  font-size: .68rem;
+  font-weight: 600;
+  color: #1D4ED8;
+  background: rgba(255,255,255,.85);
+  padding: 0 .35rem;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+@keyframes geoPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(37,99,235,.35); }
+  70%  { box-shadow: 0 0 0 14px rgba(37,99,235,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,99,235,0); }
+}
+.shop-card.is-highlight { animation: cardPulse 1.5s var(--ease); }
+@keyframes cardPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(249,115,22,.55); }
+  100% { box-shadow: 0 0 0 16px rgba(249,115,22,0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .geo-map__me i { animation: none; }
+  .shop-card.is-highlight { animation: none; }
+  .geo-map__num { transition: none; }
+}
