@@ -756,6 +756,26 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  /* ---------- Barra fixa de agendamento (pagina da barbearia) ---------- */
+  const bookBar = $("[data-book-bar]");
+  if (bookBar) {
+    const bookArea = document.getElementById("area");
+    let areaVisible = false;
+    const updateBar = () => {
+      const show = window.scrollY > 420 && !areaVisible;
+      bookBar.classList.toggle("is-visible", show);
+      bookBar.setAttribute("aria-hidden", String(!show));
+    };
+    if (bookArea && "IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => {
+        areaVisible = entries[0].isIntersecting;
+        updateBar();
+      }, { threshold: 0.12 }).observe(bookArea);
+    }
+    window.addEventListener("scroll", updateBar, { passive: true });
+    updateBar();
+  }
+
   /* ---------- Landing premium: carousel de fundo + tilt do card ---------- */
   const barberSlides = $$("[data-barber-carousel] .barber-slide");
   if (barberSlides.length) {

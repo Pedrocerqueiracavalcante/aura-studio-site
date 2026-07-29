@@ -7169,3 +7169,42 @@ summary:focus-visible,
   .how__step { transition: none; }
   .how__step:hover { transform: none; }
 }
+
+/* =====================================================================
+   Barra fixa de agendamento (pagina publica da barbearia)
+   ===================================================================== */
+.book-bar {
+  position: fixed;
+  left: 50%;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  transform: translate(-50%, 180%);
+  width: min(560px, calc(100% - 2rem));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .65rem .65rem .65rem 1.25rem;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 22px 54px -18px rgba(16,24,40,.42);
+  z-index: 1150;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .45s var(--ease), opacity .45s var(--ease);
+}
+.book-bar.is-visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.book-bar__info { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+.book-bar__info strong { font-family: var(--font-display); font-weight: 700; font-size: .98rem; color: var(--text); }
+.book-bar__info span { font-size: .8rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.book-bar .btn { white-space: nowrap; flex: 0 0 auto; padding-inline: 1.35rem; }
+@media (prefers-reduced-motion: reduce) {
+  .book-bar { transition: opacity .3s linear; }
+  .book-bar.is-visible { transform: translate(-50%, 0); }
+}

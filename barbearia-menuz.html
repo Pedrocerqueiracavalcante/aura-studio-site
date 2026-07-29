@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-12">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-13">
 </head>
 <body class="public-page public-premium-profile">
   <main class="public-shell">
@@ -55,7 +55,7 @@
             </div>
           </div>
           <a class="btn btn--ghost" href="#link-cliente">Link do cliente</a>
-          <a class="btn btn--primary" href="#area">Abrir Área</a>
+          <a class="btn btn--primary" href="#area">Agendar horário</a>
         </div>
       </header>
 
@@ -378,6 +378,16 @@
     <div class="lightbox__image" id="lightboxImage" role="img"></div>
     <p id="lightboxCaption"></p>
   </div>
-  <script src="assets/js/main.js?v=20260728-08" defer></script>
+
+  <!-- Barra fixa de agendamento -->
+  <div class="book-bar" data-book-bar aria-hidden="true">
+    <div class="book-bar__info">
+      <strong>Barbearia Menuz</strong>
+      <span>Serviços a partir de R$ 35</span>
+    </div>
+    <a class="btn btn--primary" href="#area" data-book-cta>Agendar horário</a>
+  </div>
+
+  <script src="assets/js/main.js?v=20260728-13" defer></script>
 </body>
 </html>
