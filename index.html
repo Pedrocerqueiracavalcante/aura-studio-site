@@ -10,13 +10,64 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Menuz Barber | Barbearia Premium">
   <meta property="og:description" content="Agende corte, barba, sobrancelha e pigmentação com uma experiência premium.">
-  <meta property="og:image" content="https://pedrocerqueiracavalcante.github.io/aura-studio-site/assets/img/logo.svg">
+  <meta property="og:image" content="https://pedrocerqueiracavalcante.github.io/aura-studio-site/assets/img/home-menuz-white-barber-bg.png">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Menuz Barber">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Menuz Barber | Barbearia Premium">
+  <meta name="twitter:description" content="Encontre e agende nas melhores barbearias perto de você — em segundos.">
+  <meta name="twitter:image" content="https://pedrocerqueiracavalcante.github.io/aura-studio-site/assets/img/home-menuz-white-barber-bg.png">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="apple-touch-icon" href="assets/img/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-08">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-11">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Menuz Barber",
+    "description": "Plataforma para encontrar e agendar nas melhores barbearias perto de você.",
+    "url": "https://pedrocerqueiracavalcante.github.io/aura-studio-site/",
+    "image": "https://pedrocerqueiracavalcante.github.io/aura-studio-site/assets/img/home-menuz-white-barber-bg.png",
+    "priceRange": "R$ 45–70",
+    "areaServed": "BR",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "327"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Preciso criar conta para agendar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Você pode explorar as barbearias livremente. Para confirmar um horário, basta um cadastro rápido com nome e telefone." }
+      },
+      {
+        "@type": "Question",
+        "name": "Como funciona o pagamento?",
+        "acceptedAnswer": { "@type": "Answer", "text": "O pagamento é feito diretamente na barbearia. O Menuz organiza o agendamento; o valor e a forma de pagamento são definidos por cada estabelecimento." }
+      },
+      {
+        "@type": "Question",
+        "name": "Posso cancelar ou remarcar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sim. Pela sua área do cliente você acompanha, cancela ou remarca seus agendamentos a qualquer momento." }
+      },
+      {
+        "@type": "Question",
+        "name": "As barbearias são verificadas?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sim. Todas as barbearias parceiras passam por validação e exibem avaliações reais de clientes." }
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="landing-page premium-barber-page">
   <a class="skip-link" href="#main">Ir para o conteúdo</a>
@@ -99,6 +150,7 @@
         <div class="home__welcome" data-reveal>
           <h1 id="homeHeroTitle">Seja bem-vindo(a)</h1>
           <p class="home__date" data-today>—</p>
+          <p class="home__lead">Encontre e agende nas melhores barbearias perto de você — em segundos.</p>
         </div>
 
         <form class="home-find" role="search" action="empresas-proximas.html" method="get">
@@ -109,6 +161,26 @@
           <label class="sr-only" for="homeSearch">Encontre um estabelecimento</label>
           <input id="homeSearch" name="q" type="search" placeholder="Encontre um estabelecimento" autocomplete="off">
         </form>
+
+        <!-- Prova social -->
+        <ul class="home-stats" data-reveal aria-label="Menuz em números">
+          <li class="home-stat">
+            <strong data-count="4.9">0</strong>
+            <span>Avaliação média</span>
+          </li>
+          <li class="home-stat">
+            <strong data-count="12">0</strong>
+            <span>Barbearias parceiras</span>
+          </li>
+          <li class="home-stat">
+            <strong><span data-count="8500">0</span>+</strong>
+            <span>Agendamentos</span>
+          </li>
+          <li class="home-stat">
+            <strong><span data-count="98">0</span>%</strong>
+            <span>Clientes satisfeitos</span>
+          </li>
+        </ul>
 
         <!-- Carrossel de destaques (auto) -->
         <section class="promo-carousel" data-promo-carousel aria-label="Destaques">
@@ -139,16 +211,29 @@
       </div>
     </section>
 
-    <section class="premium-section home-reviews" id="avaliacoes">
+    <section class="premium-section faq" id="faq" aria-labelledby="faqTitle">
       <div class="container">
         <div class="premium-section__head" data-reveal>
-          <p class="premium-eyebrow" data-i18n="reviews.eyebrow">Avaliações</p>
-          <h2 data-i18n="reviews.title">Confiança antes do primeiro corte.</h2>
+          <p class="premium-eyebrow">Dúvidas frequentes</p>
+          <h2 id="faqTitle">Tudo o que precisa saber antes de agendar.</h2>
         </div>
-        <div class="premium-grid premium-grid--three">
-          <article class="review-card" data-reveal><span>★★★★★</span><p data-i18n="reviews.card1">Atendimento pontual e corte exatamente como escolhi pelo link.</p><strong>Marcos Lima</strong></article>
-          <article class="review-card" data-reveal><span>★★★★★</span><p data-i18n="reviews.card2">A página é simples, vi os serviços e já cheguei sabendo o valor.</p><strong>André Souza</strong></article>
-          <article class="review-card" data-reveal><span>★★★★★</span><p data-i18n="reviews.card3">Ambiente limpo, barbeiro cuidadoso e acabamento muito profissional.</p><strong>João Pedro</strong></article>
+        <div class="faq__list" data-reveal>
+          <details class="faq__item">
+            <summary>Preciso criar conta para agendar?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <p>Você pode explorar as barbearias livremente. Para confirmar um horário, basta um cadastro rápido com nome e telefone.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Como funciona o pagamento?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <p>O pagamento é feito diretamente na barbearia. O Menuz organiza o agendamento; o valor e a forma de pagamento são definidos por cada estabelecimento.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Posso cancelar ou remarcar?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <p>Sim. Pela sua área do cliente você acompanha, cancela ou remarca seus agendamentos a qualquer momento.</p>
+          </details>
+          <details class="faq__item">
+            <summary>As barbearias são verificadas?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <p>Sim. Todas as barbearias parceiras passam por validação e exibem avaliações reais de clientes.</p>
+          </details>
         </div>
       </div>
     </section>
@@ -168,6 +253,20 @@
         </div>
       </div>
     </section>
+
+    <section class="premium-section home-reviews" id="avaliacoes">
+      <div class="container">
+        <div class="premium-section__head" data-reveal>
+          <p class="premium-eyebrow" data-i18n="reviews.eyebrow">Avaliações</p>
+          <h2 data-i18n="reviews.title">Confiança antes do primeiro corte.</h2>
+        </div>
+        <div class="premium-grid premium-grid--three">
+          <article class="review-card" data-reveal><span>★★★★★</span><p data-i18n="reviews.card1">Atendimento pontual e corte exatamente como escolhi pelo link.</p><strong>Marcos Lima</strong></article>
+          <article class="review-card" data-reveal><span>★★★★★</span><p data-i18n="reviews.card2">A página é simples, vi os serviços e já cheguei sabendo o valor.</p><strong>André Souza</strong></article>
+          <article class="review-card" data-reveal><span>★★★★★</span><p data-i18n="reviews.card3">Ambiente limpo, barbeiro cuidadoso e acabamento muito profissional.</p><strong>João Pedro</strong></article>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer premium-footer">
@@ -178,12 +277,13 @@
       </a>
       <p data-i18n="footer.copy">© 2026 Menuz Barber. Atendimento premium para barbearias modernas.</p>
       <div class="premium-footer__links">
+        <a href="#faq">Dúvidas</a>
         <a href="#contato" data-i18n="nav.contact">Contato</a>
       </div>
     </div>
   </footer>
 
   <button class="to-top" id="toTop" type="button" aria-label="Voltar ao topo" data-i18n-aria-label="toTop.label">↑</button>
-  <script src="assets/js/main.js?v=20260728-08" defer></script>
+  <script src="assets/js/main.js?v=20260728-11" defer></script>
 </body>
 </html>

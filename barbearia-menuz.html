@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-08">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260728-12">
 </head>
 <body class="public-page public-premium-profile">
   <main class="public-shell">
@@ -22,8 +22,7 @@
         <div class="public-profile-copy">
           <h1>Barbearia Menuz</h1>
           <div class="public-rating-line">
-            <span aria-hidden="true">★</span>
-            <strong data-review-summary>4,9 · 327 avaliações</strong>
+            <strong>Centro · Igarapé/MG</strong>
           </div>
         </div>
         <button class="public-favorite" type="button" aria-label="Favoritar perfil" aria-pressed="false" data-favorite-profile>♡</button>
@@ -73,7 +72,6 @@
         <a href="#planos">Planos</a>
         <a href="#produtos">Produtos</a>
         <a href="#area">Área</a>
-        <a href="#avaliacoes">Avaliações</a>
         <a href="#contato">Contato</a>
       </nav>
 
@@ -287,93 +285,6 @@
         <div class="booking-success" data-booking-success hidden></div>
       </section>
 
-      <section class="reviews-section" id="avaliacoes" data-public-reviews-section aria-labelledby="reviewsTitle">
-        <div class="section-heading section-heading--compact">
-          <p class="minimal-kicker">Avaliações dos clientes</p>
-          <h2 id="reviewsTitle">O que os clientes dizem</h2>
-          <span>Reputação da barbearia baseada em atendimentos concluídos.</span>
-        </div>
-
-        <div class="review-summary-grid" aria-label="Resumo das avaliações">
-          <article><strong data-review-average>4,9</strong><span>Nota média</span></article>
-          <article><strong data-review-total>327</strong><span>Avaliações</span></article>
-          <article><strong data-review-five>92%</strong><span>Notas 5 estrelas</span></article>
-          <article><strong data-review-satisfaction>100%</strong><span>Satisfação</span></article>
-        </div>
-
-        <div class="review-distribution" data-review-distribution aria-label="Distribuição por estrelas"></div>
-
-        <div class="review-toolbar" aria-label="Filtros de avaliações">
-          <label>
-            Filtrar nota
-            <select data-public-review-rating>
-              <option value="all">Todas as notas</option>
-              <option value="5">5 estrelas</option>
-              <option value="4">4 estrelas</option>
-              <option value="3">3 estrelas</option>
-              <option value="2">2 estrelas</option>
-              <option value="1">1 estrela</option>
-            </select>
-          </label>
-          <label>
-            Ordenar
-            <select data-public-review-order>
-              <option value="recent">Mais recentes</option>
-              <option value="best">Melhor avaliação</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="reviews-grid" data-public-reviews></div>
-
-        <article class="review-form-card" id="avaliar" aria-labelledby="reviewFormTitle">
-          <div>
-            <p class="minimal-kicker">Após o atendimento</p>
-            <h3 id="reviewFormTitle">Avalie sua experiência</h3>
-            <span>Leva menos de um minuto. Seu comentário ajuda novos clientes.</span>
-          </div>
-          <form class="review-form" data-review-form>
-            <fieldset>
-              <legend>Nota</legend>
-              <div class="star-rating" aria-label="Nota de 1 a 5 estrelas">
-                <input type="radio" id="star5" name="rating" value="5" required>
-                <label for="star5">★</label>
-                <input type="radio" id="star4" name="rating" value="4">
-                <label for="star4">★</label>
-                <input type="radio" id="star3" name="rating" value="3">
-                <label for="star3">★</label>
-                <input type="radio" id="star2" name="rating" value="2">
-                <label for="star2">★</label>
-                <input type="radio" id="star1" name="rating" value="1">
-                <label for="star1">★</label>
-              </div>
-            </fieldset>
-            <label>
-              Nome
-              <input name="client" type="text" placeholder="Seu nome" autocomplete="name" required>
-            </label>
-            <label class="review-check">
-              <input name="anonymous" type="checkbox">
-              Publicar como avaliação anônima
-            </label>
-            <label>
-              Cidade
-              <input name="city" type="text" placeholder="Sua cidade">
-            </label>
-            <label class="review-form__wide">
-              Comentário
-              <textarea name="comment" rows="4" placeholder="Conte como foi o atendimento"></textarea>
-            </label>
-            <label>
-              Foto do resultado
-              <input name="photo" type="file" accept="image/*">
-            </label>
-            <input name="date" type="hidden" data-review-date>
-            <button class="btn btn--primary btn--block" type="submit">Enviar avaliação</button>
-          </form>
-          <div class="booking-success" data-review-success hidden></div>
-        </article>
-      </section>
       </div>
     </section>
 
@@ -409,6 +320,58 @@
       </section>
     </aside>
   </main>
+
+  <footer class="public-menuz-footer" aria-labelledby="publicFooterTitle">
+    <div class="public-menuz-footer__inner">
+      <section class="public-menuz-footer__brand" aria-labelledby="publicFooterTitle">
+        <a class="public-menuz-footer__logo" href="barbearia-menuz.html" aria-label="Barbearia Menuz">
+          <img src="assets/img/logo.svg" alt="" width="58" height="58">
+          <span id="publicFooterTitle">Menuz</span>
+        </a>
+        <p>Uma experiência premium para uma tradição feita com cuidado, pontualidade e estilo.</p>
+        <div class="public-menuz-footer__socials" aria-label="Redes sociais">
+          <a href="https://wa.me/5531999999999" target="_blank" rel="noopener" aria-label="WhatsApp">☏</a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">▶</a>
+          <a href="#contato" aria-label="Contato">✦</a>
+        </div>
+      </section>
+
+      <nav class="public-menuz-footer__col" aria-label="Acesso rápido">
+        <h2>Acesso rápido</h2>
+        <a href="#servicos">Serviços</a>
+        <a href="#profissionais">Profissionais</a>
+        <a href="#planos">Planos</a>
+        <a href="#area">Agendar horário</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <nav class="public-menuz-footer__col" aria-label="Mais informações">
+        <h2>Mais</h2>
+        <a href="index.html">Início</a>
+        <a href="encontrar-barbearias.html">Encontrar barbearias</a>
+        <a href="login.html">Meus agendamentos</a>
+        <a href="perfil.html">Favoritos</a>
+      </nav>
+
+      <section class="public-menuz-footer__app" aria-labelledby="footerAppTitle">
+        <h2 id="footerAppTitle">Baixe nosso App</h2>
+        <div class="public-menuz-footer__store">
+          <a href="#" aria-label="Baixar na App Store"><span aria-hidden="true">●</span>App Store</a>
+          <a href="#" aria-label="Baixar no Google Play"><span aria-hidden="true">▶</span>Google Play</a>
+        </div>
+        <div class="public-menuz-footer__manager">
+          <h3>É gestor?</h3>
+          <p>Cadastre seu estabelecimento e comece a receber agendamentos online.</p>
+          <a href="dashboard.html">Saiba mais</a>
+        </div>
+      </section>
+    </div>
+    <div class="public-menuz-footer__bottom">
+      <p>© 2026 Menuz Barber. Todos os direitos reservados.</p>
+      <a href="#servicos">Voltar ao topo</a>
+    </div>
+  </footer>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lightbox__close" type="button" data-lightbox-close aria-label="Fechar imagem">×</button>

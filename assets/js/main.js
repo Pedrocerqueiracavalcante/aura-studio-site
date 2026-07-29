@@ -319,7 +319,8 @@
   (function homePage() {
     const promoTrack = $("[data-promo-track]");
     const nearby = $("[data-nearby]");
-    if (!promoTrack && !nearby) return;
+    const highlightTrack = $("[data-hs-track]");
+    if (!promoTrack && !nearby && !highlightTrack) return;
 
     const todayEl = $("[data-today]");
     if (todayEl) {
@@ -352,7 +353,72 @@
       pstart();
     }
 
-    if (!nearby) { const y0 = $("#year"); if (y0) y0.textContent = new Date().getFullYear(); return; }
+    if (!nearby) {
+      const y0 = $("#year"); if (y0) y0.textContent = new Date().getFullYear();
+      if (highlightTrack) {
+        const shops = [
+          { name: "Barbearia Menuz", city: "Centro · Igarapé/MG", rating: 4.9, reviews: 327, price: "R$ 45–70", services: "Corte, Barba, Navalha", photo: "bg-shop-main", url: "barbearia-menuz.html#area" },
+          { name: "Studio Premium Centro", city: "Centro · Igarapé/MG", rating: 4.7, reviews: 184, price: "R$ 50–90", services: "Corte, Sobrancelha", photo: "bg-shop-chair", url: "barbearia-menuz.html#area" },
+          { name: "Classic Barber Club", city: "São Benedito · Igarapé/MG", rating: 4.8, reviews: 256, price: "R$ 40–75", services: "Corte, Barba, Pigmentação", photo: "bg-shop-tools", url: "barbearia-menuz.html#area" },
+          { name: "Navalha de Ouro", city: "Nova Igarapé · MG", rating: 4.6, reviews: 98, price: "R$ 35–60", services: "Corte, Navalha", photo: "bg-shop-cards", url: "barbearia-menuz.html#area" },
+        ];
+        const stage = $("[data-hs-stage]");
+        const dotsWrap = $("[data-hs-dots]");
+        const cardHTML = (s) =>
+          '<li class="hs-slide"><article class="hs-card">' +
+            '<div class="hs-card__ph ' + s.photo + '"></div><div class="hs-card__grad"></div>' +
+            '<span class="hs-card__tag">' + s.city + '</span>' +
+            '<div class="hs-card__body">' +
+              '<div class="hs-card__rating">★ ' + String(s.rating).replace(".", ",") + ' <small>(' + s.reviews + ')</small></div>' +
+              '<h3>' + s.name + '</h3><p>' + s.services + ' · ' + s.price + '</p>' +
+              '<div class="hs-card__actions"><a class="btn btn--primary btn--sm" href="' + s.url + '">Agendar Agora</a><a class="btn btn--ghost btn--sm" href="barbearia-menuz.html">Ver Perfil</a></div>' +
+            '</div></article></li>';
+        highlightTrack.innerHTML = shops.concat(shops, shops).map(cardHTML).join("");
+        if (dotsWrap) dotsWrap.innerHTML = "";
+        shops.forEach((_, k) => {
+          if (!dotsWrap) return;
+          const d = document.createElement("button");
+          d.type = "button";
+          d.setAttribute("aria-label", "Barbearia " + (k + 1));
+          d.addEventListener("click", () => { go(shops.length + k); restart(); });
+          dotsWrap.appendChild(d);
+        });
+        const slides = $$(".hs-slide", highlightTrack);
+        const dots = dotsWrap ? $$("button", dotsWrap) : [];
+        let active = shops.length + Math.min(1, shops.length - 1), timer = null, jumpTimer = null;
+        const position = (anim) => {
+          if (!stage || !slides[active]) return;
+          if (!anim) highlightTrack.style.transition = "none";
+          slides.forEach((s, k) => s.classList.toggle("is-active", k === active));
+          dots.forEach((d, k) => d.classList.toggle("is-active", k === (((active % shops.length) + shops.length) % shops.length)));
+          const slide = slides[active];
+          highlightTrack.style.transform = "translateX(" + (stage.clientWidth / 2 - (slide.offsetLeft + slide.offsetWidth / 2)) + "px)";
+          if (!anim) { void highlightTrack.offsetHeight; highlightTrack.style.transition = ""; }
+        };
+        const go = (i) => {
+          active = i;
+          position(true);
+          clearTimeout(jumpTimer);
+          jumpTimer = setTimeout(() => {
+            if (active < shops.length) { active += shops.length; position(false); }
+            else if (active >= 2 * shops.length) { active -= shops.length; position(false); }
+          }, 600);
+        };
+        const next = () => go(active + 1);
+        const prev = () => go(active - 1);
+        const start = () => { if (!reduceMotion) timer = setInterval(next, 4500); };
+        const stop = () => { if (timer) clearInterval(timer); };
+        const restart = () => { stop(); start(); };
+        $("[data-hs-next]")?.addEventListener("click", () => { next(); restart(); });
+        $("[data-hs-prev]")?.addEventListener("click", () => { prev(); restart(); });
+        stage?.addEventListener("mouseenter", stop);
+        stage?.addEventListener("mouseleave", start);
+        window.addEventListener("resize", () => position(false));
+        requestAnimationFrame(() => position(false));
+        start();
+      }
+      return;
+    }
     const emptyEl = nearby.querySelector("[data-geo-empty]");
     const loadingEl = nearby.querySelector("[data-geo-loading]");
     const resultsEl = nearby.querySelector("[data-geo-results]");
@@ -674,12 +740,21 @@
   /* ---------- Header: estado ao rolar ---------- */
   const header = $("[data-header]");
   const toTop = $("#toTop");
+  const progress = document.createElement("div");
+  progress.className = "scroll-progress";
+  progress.setAttribute("aria-hidden", "true");
+  document.body.appendChild(progress);
   const onScroll = () => {
-    if (header) header.toggleAttribute("data-scrolled", window.scrollY > 24);
+    const y = window.scrollY;
+    if (header) header.toggleAttribute("data-scrolled", y > 24);
     // Back to top
-    if (toTop) toTop.classList.toggle("is-visible", window.scrollY > 600);
+    if (toTop) toTop.classList.toggle("is-visible", y > 600);
+    // Scroll progress
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = `scaleX(${max > 0 ? Math.min(y / max, 1) : 0})`;
   };
   window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 
   /* ---------- Landing premium: carousel de fundo + tilt do card ---------- */
   const barberSlides = $$("[data-barber-carousel] .barber-slide");
