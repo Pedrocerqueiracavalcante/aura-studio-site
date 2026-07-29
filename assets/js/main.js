@@ -518,15 +518,17 @@
       if (userPos) list.sort((a, b) => a.dist - b.dist);
       if (query) { const q = query.toLowerCase(); list = list.filter((s) => (s.name + " " + s.services + " " + s.city).toLowerCase().includes(q)); }
       const nowH = new Date().getHours();
-      resultsEl.innerHTML = list.map((s) => {
+      resultsEl.innerHTML = list.map((s, i) => {
         const isOpen = nowH >= s.open && nowH < s.close;
         const fav = favs.includes(s.id);
+        const nearest = !!userPos && i === 0;
         const dist = s.dist != null
           ? '<p class="shop-card__dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z"/><circle cx="12" cy="10" r="2.4"/></svg>' + fmtKm(s.dist) + " · ~" + driveMin(s.dist) + " min</p>"
           : "";
-        return '<article class="shop-card" data-shop-card="' + s.id + '">' +
+        return '<article class="shop-card' + (nearest ? " shop-card--nearest" : "") + '" data-shop-card="' + s.id + '">' +
           '<div class="shop-card__photo ' + s.photo + '">' +
             '<span class="shop-card__status ' + (isOpen ? "is-open" : "is-closed") + '">' + (isOpen ? "Aberto" : "Fechado") + '</span>' +
+            (nearest ? '<span class="shop-card__nearest">★ Mais próxima de você</span>' : "") +
             '<button class="shop-card__fav ' + (fav ? "is-fav" : "") + '" type="button" data-fav="' + s.id + '" aria-label="Favoritar" aria-pressed="' + fav + '">' + (fav ? "♥" : "♡") + '</button>' +
           '</div>' +
           '<div class="shop-card__body">' +
@@ -563,7 +565,8 @@
       const py = (lat) => (pad + (1 - 2 * pad) * (1 - (lat - minLat) / spanLat)) * 100;
       let html = "";
       pts.forEach((s, i) => {
-        html += '<button class="geo-map__pin" type="button" data-map-pin="' + s.id + '" ' +
+        const nearest = !!userPos && i === 0;
+        html += '<button class="geo-map__pin' + (nearest ? " is-nearest" : "") + '" type="button" data-map-pin="' + s.id + '" ' +
           'style="left:' + px(s.lng).toFixed(1) + '%;top:' + py(s.lat).toFixed(1) + '%" aria-label="' + s.name + '">' +
           '<span class="geo-map__num">' + (i + 1) + '</span>' +
           '<span class="geo-map__label">' + s.name + (s.dist != null ? ' · ' + fmtKm(s.dist) : '') + '</span>' +

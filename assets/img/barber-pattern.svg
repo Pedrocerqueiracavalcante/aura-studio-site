@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <g fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.11">
+    <!-- Tesoura -->
+    <g transform="translate(34,44) rotate(-20) scale(1.8)">
+      <circle cx="6" cy="6" r="3"/>
+      <circle cx="6" cy="18" r="3"/>
+      <line x1="20" y1="4" x2="8.12" y2="15.88"/>
+      <line x1="14.47" y1="14.48" x2="20" y2="20"/>
+      <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+    </g>
+    <!-- Pente -->
+    <g transform="translate(196,58) rotate(14) scale(1.7)">
+      <rect x="1" y="2" width="22" height="5" rx="1.6"/>
+      <line x1="4" y1="7" x2="4" y2="13"/>
+      <line x1="8" y1="7" x2="8" y2="13"/>
+      <line x1="12" y1="7" x2="12" y2="13"/>
+      <line x1="16" y1="7" x2="16" y2="13"/>
+      <line x1="20" y1="7" x2="20" y2="13"/>
+    </g>
+    <!-- Navalha -->
+    <g transform="translate(56,206) rotate(10) scale(1.8)">
+      <path d="M3 16 L15 4 q2 -2 4 0 q2 2 0 4 L7 20 Z"/>
+      <line x1="7" y1="20" x2="3" y2="24"/>
+      <circle cx="6.4" cy="19.4" r="1"/>
+    </g>
+    <!-- Tesoura pequena -->
+    <g transform="translate(214,214) rotate(36) scale(1.35)">
+      <circle cx="6" cy="6" r="3"/>
+      <circle cx="6" cy="18" r="3"/>
+      <line x1="20" y1="4" x2="8.12" y2="15.88"/>
+      <line x1="14.47" y1="14.48" x2="20" y2="20"/>
+      <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+    </g>
+    <!-- Pente pequeno (centro) -->
+    <g transform="translate(120,146) rotate(-8) scale(1.25)">
+      <rect x="1" y="2" width="22" height="5" rx="1.6"/>
+      <line x1="4" y1="7" x2="4" y2="12"/>
+      <line x1="8" y1="7" x2="8" y2="12"/>
+      <line x1="12" y1="7" x2="12" y2="12"/>
+      <line x1="16" y1="7" x2="16" y2="12"/>
+      <line x1="20" y1="7" x2="20" y2="12"/>
+    </g>
+  </g>
+</svg>
