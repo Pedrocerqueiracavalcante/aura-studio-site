@@ -7097,3 +7097,75 @@ summary:focus-visible,
   .home-stat, .review-card, .faq__item, .faq__icon::before, .faq__icon::after { transition: none; }
   .home-stat:hover, .review-card:hover { transform: none; }
 }
+
+/* =====================================================================
+   "Agende em 3 passos" — como funciona (foco em agendamento)
+   ===================================================================== */
+.how__steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.4vw, 1.6rem);
+}
+.how__step {
+  position: relative;
+  padding: clamp(1.6rem, 2.6vw, 2.2rem) clamp(1.4rem, 2.2vw, 1.9rem) clamp(1.5rem, 2.4vw, 2rem);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.how__step:hover { transform: translateY(-6px); box-shadow: var(--shadow-glow); }
+.how__num {
+  position: absolute;
+  top: clamp(1.1rem, 2vw, 1.55rem);
+  right: clamp(1.3rem, 2.2vw, 1.8rem);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.4px var(--border-2);
+  letter-spacing: .02em;
+}
+.how__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px; height: 54px;
+  border-radius: 16px;
+  background: var(--grad-soft);
+  color: var(--brand-deep);
+  margin-bottom: 1.1rem;
+}
+.how__icon svg { width: 26px; height: 26px; }
+.how__step h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.9vw, 1.28rem);
+  font-weight: 700;
+  margin-bottom: .5rem;
+  color: var(--text);
+}
+.how__step p {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: clamp(.92rem, 1.5vw, 1rem);
+  max-width: 32ch;
+}
+.how__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .8rem;
+  margin-top: clamp(1.8rem, 3.4vw, 2.6rem);
+}
+@media (max-width: 820px) {
+  .how__steps { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .how__step { transition: none; }
+  .how__step:hover { transform: none; }
+}
